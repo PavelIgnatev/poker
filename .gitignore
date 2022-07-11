@@ -4,6 +4,7 @@
 /node_modules
 /src/store2
 /client/node_modules
+/client/build
 /.pnp
 .pnp.js
 # testing
