@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/src/store2
+/src/store
 /client/node_modules
 /client/build
 /.pnp
