@@ -1,0 +1,19 @@
+.label{
+    position: absolute;
+    z-index: 1000;
+    pointer-events: none;
+    background-color: white;
+    top: 50%;
+    height: 22px;
+    transform: translateY(-50%);
+    left: 1px;
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(0, 0%, 20%)
+}
+
+.wrapper{
+    position: relative;
+}

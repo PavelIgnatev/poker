@@ -1,0 +1,26 @@
+@import "./fonts";
+@import "./normalize";
+@import "./media";
+
+.Toastify__toast-icon  {
+  display: none !important;
+}
+
+.Toastify__close-button {
+  color: white !important;
+  opacity: 1 !important;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body{
+  min-height: 100vh;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

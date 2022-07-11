@@ -1,0 +1,23 @@
+.input {
+    display: flex;
+    color: hsl(0, 0%, 20%);
+    font-size: 100%;
+    background-color: hsl(0, 0%, 100%);
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    outline: none;
+    min-height: 38px;
+    box-sizing: border-box;
+    transition: all 100ms;
+    padding: 2px 8px;
+    width: 100%;
+
+    &:focus,
+    &:active {
+        outline: none;
+        box-shadow: 0 0 0 1px #2684ff;
+        border-color: #2684ff;
+    }
+}

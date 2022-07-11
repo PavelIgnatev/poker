@@ -1,0 +1,70 @@
+{
+  "name": "react-effector",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.10.2",
+    "@types/react": "^17.0.27",
+    "@types/react-dom": "^17.0.9",
+    "@uiw/react-textarea-code-editor": "^1.4.14",
+    "ace-builds": "^1.4.13",
+    "axios": "^0.24.0",
+    "brace": "^0.11.1",
+    "classnames": "^2.3.1",
+    "effector": "^22.1.1",
+    "effector-react": "^22.0.4",
+    "node-sass": "^6.0.1",
+    "query-string": "^7.0.1",
+    "ra-input-json": "^0.2.8",
+    "react": "^17.0.2",
+    "react-ace": "^9.5.0",
+    "react-dom": "^17.0.2",
+    "react-input-mask": "^3.0.0-alpha.2",
+    "react-json-editor-ajrm": "^2.5.13",
+    "react-modal": "^3.14.4",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "react-select": "^5.1.0",
+    "react-toastify": "^8.0.3",
+    "typescript": "^4.4.3",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "PORT=3001 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.14.5",
+    "@types/react-input-mask": "^3.0.1",
+    "@types/react-json-editor-ajrm": "^2.5.2",
+    "@types/react-modal": "^3.12.1",
+    "@types/react-router-dom": "^5.1.8",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "eslint-config-react-app": "^6.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

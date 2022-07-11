@@ -1,0 +1,33 @@
+export interface tableCellModel {
+  "@currentEntrants": string;
+  "@lastUpdateTime": string;
+  "@reEntries": string;
+  "@scheduledStartDate": string;
+  "@currency": string;
+  "@guarantee": string;
+  "@filterString": string;
+  "@flags": string;
+  "@game": string;
+  "@gameClass": string;
+  "@id": string;
+  "@lateRegEndDate": string;
+  "@name": string;
+  "@network": string;
+  "@playersPerTable": string;
+  "@rake": string;
+  "@stake": string;
+  "@state": string;
+  "@structure": string;
+  "@totalEntrants": string;
+  "@prizepool": number;
+  "@bid": number;
+  "@turbo": boolean;
+  "@ko"?: boolean;
+  "@ability": string;
+  "@abilityBid": string;
+  "@duration": string;
+  "@timezone": string;
+  "@level": string;
+  "@status": string;
+  "@realBid": string;
+}

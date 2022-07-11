@@ -1,0 +1,1 @@
+export { BaseInputString } from "./BaseInputString";

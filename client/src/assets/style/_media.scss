@@ -1,0 +1,55 @@
+@media (min-width: 320px) {
+  header,
+  footer,
+  section {
+    padding: 0 16px;
+  }
+}
+
+@media (min-width: 575.98px) {
+  header,
+  footer,
+  section {
+    padding: 0 calc(50% - 270px);
+  }
+}
+
+@media (min-width: 767.98px) {
+  header,
+  footer,
+  section {
+    padding: 0 calc(50% - 360px);
+  }
+}
+
+@media (min-width: 991.98px) {
+  header,
+  footer,
+  section {
+    padding: 0 calc(50% - 472px);
+  }
+}
+
+@media (min-width: 1119.98px) {
+  header,
+  footer,
+  section {
+    padding: 0 calc(50% - 550px);
+  }
+}
+
+@media (min-width: 1259.98px) {
+  header,
+  footer,
+  section {
+    padding: 0 calc(50% - 625px);
+  }
+}
+
+@media (min-width: 1419.98px) {
+  header,
+  footer,
+  section {
+    padding: 0 calc(50% - 700px);
+  }
+}

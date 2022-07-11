@@ -1,0 +1,1 @@
+export { InfoPage } from "./InfoPage";

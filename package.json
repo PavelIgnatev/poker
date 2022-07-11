@@ -1,0 +1,33 @@
+{
+  "name": "exp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "cors": "^2.8.5",
+    "cors-anywhere": "^0.4.4",
+    "cron": "^1.8.2",
+    "exceljs": "^4.3.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.5.0",
+    "express-slow-down": "^1.4.0",
+    "forever": "^4.0.1",
+    "http-proxy-middleware": "^2.0.1",
+    "jsoneditor": "^9.5.11",
+    "jsoneditor-react": "^3.1.2",
+    "lodash": "^4.17.21",
+    "logrocket": "^2.1.2",
+    "node-fetch": "^3.0.0",
+    "nodemailer": "^6.7.2",
+    "path": "^0.12.7",
+    "pm2": "^5.2.0"
+  }
+}
