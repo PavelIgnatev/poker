@@ -1,3 +1,3 @@
-import "./SelectStore";
-import "./TableStore";
+import "./Select";
+import "./Table";
 import "./Settings"

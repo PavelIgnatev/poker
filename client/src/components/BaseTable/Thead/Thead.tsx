@@ -1,6 +1,6 @@
 import { useStore } from "effector-react";
 import { FC } from "react";
-import { $timezoneTable } from "../../../store/SelectStore";
+import { $timezoneTable } from "../../../store/Select";
 import classes from "../BaseTable.module.scss";
 
 export const Thead: FC = () => {

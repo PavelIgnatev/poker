@@ -8,11 +8,10 @@ import {
   fetchSettings,
   fetchStateAbility2,
   fetchStateAlias,
-  postFetchSettings,
 } from "../../store/Settings";
 import { AliasWrapper } from "../AliasWrapper";
-import { Loader } from "../Loader";
 import { RulesWrapper } from "../RulesWrapper";
+import { PagerModel } from "../RulesWrapper/types";
 
 import classes from "./AdminAbilitySection.module.scss";
 
@@ -20,14 +19,12 @@ export const AdminAbilitySection: FC = () => {
   const ability2: any = useStore($prevSettings);
   const stateAbility2 = useStore($state);
   const stateAlias = useStore($stateAliases);
-  const loading = useStore(fetchSettings.pending);
 
   useEffect(() => {
     fetchStateAbility2();
     fetchStateAlias();
     fetchSettings();
   }, []);
-
 
   return (
     <section className={classes.section}>

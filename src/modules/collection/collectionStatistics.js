@@ -133,55 +133,36 @@ const collectionStatistics = async () => {
       })
     );
 
+    if (nowDate === 6) {
+      const statistics = [];
+      Object.keys(nesw).forEach((day) => {
+        statistics.push(...nesw[day]);
+      });
+      sendStatistics(statistics);
+
+      await writeFile(
+        "src/store/errors/errorTournaments.json",
+        JSON.stringify({})
+      );
+    } else {
+      // если дней в базе теперь не 7, то просто добавляем турик в errorTournaments
+      const max = Math.max(...Object.keys(nesw));
+
+      if (nesw[max].length) {
+        await writeFile(
+          "src/store/errors/errorTournaments.json",
+          JSON.stringify(nesw)
+        );
+      }
+    }
+
+    console.log("Перезаписываю алиасы");
     await writeFile("src/store/alias/alias.json", JSON.stringify(aliases));
+    console.log(`Удаляю папку за день ${date}`);
     deleteFolder(`src/store/copies/${date}`);
-    if (nowDate === 6) {
-      const statistics = [];
-      Object.keys(nesw).forEach((day) => {
-        statistics.push(...nesw[day]);
-      });
-      sendStatistics(statistics);
-
-      await writeFile(
-        "src/store/errors/errorTournaments.json",
-        JSON.stringify({})
-      );
-      deleteFolder(`src/store/copies/${date}`);
-    } else {
-      const max = Math.max(...Object.keys(nesw));
-
-      if (nesw[max].length) {
-        await writeFile(
-          "src/store/errors/errorTournaments.json",
-          JSON.stringify(nesw)
-        );
-        deleteFolder(`src/store/copies/${date}`);
-      }
-    }
   } catch (error) {
-    if (nowDate === 6) {
-      const statistics = [];
-      Object.keys(nesw).forEach((day) => {
-        statistics.push(...nesw[day]);
-      });
-      sendStatistics(statistics);
-
-      await writeFile(
-        "src/store/errors/errorTournaments.json",
-        JSON.stringify({})
-      );
-      deleteFolder(`src/store/copies/${date}`);
-    } else {
-      const max = Math.max(...Object.keys(nesw));
-
-      if (nesw[max].length) {
-        await writeFile(
-          "src/store/errors/errorTournaments.json",
-          JSON.stringify(nesw)
-        );
-        deleteFolder(`src/store/copies/${date}`);
-      }
-    }
+    console.log("При отправке письма произошла ошибка", error);
+    console.log("Важно не забывать, что мы смотрим на 2 дня назад, так что возможно все заебись")
   }
 };
 

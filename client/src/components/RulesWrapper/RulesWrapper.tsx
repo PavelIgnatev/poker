@@ -1,10 +1,10 @@
 import { FC, useState } from "react";
 import classNames from "classnames";
 
-import { Page } from "./Page";
+import { Rules } from "./Rules";
 import { PagerModel } from "./types";
 
-import classes from "./Page/Page.module.scss";
+import classes from "./Rules/Rules.module.scss";
 
 export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
   const [count, setCount] = useState<Record<string, number>>({});
@@ -35,7 +35,7 @@ export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
                       .concat(Array(count[level + id] ?? 0).fill(null))
                       .map((e) => {
                         return (
-                          <Page
+                          <Rules
                             key={String(Math.random()).substr(2, 12)}
                             state={state}
                             prevState={e}

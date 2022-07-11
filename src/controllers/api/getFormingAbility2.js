@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
   );
 
   res.json(
-    state?.[network][level][currency][realBid][status].map((item) => {
+    state?.[network]?.[level]?.[currency]?.[realBid]?.[status]?.map((item) => {
       const abilityBid =
         stateAbility?.[network]?.[level]?.[currency]?.[realBid]?.[status];
       const time = item["s"]?.split(" ")?.[2];

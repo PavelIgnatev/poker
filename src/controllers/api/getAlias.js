@@ -10,5 +10,6 @@ module.exports = async (req, res) => {
 
     newAliases[level] = newAliases[level].concat(name);
   });
+  
   res.json(newAliases);
 };

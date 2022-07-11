@@ -50,10 +50,10 @@ async function updateFiltredTournaments() {
       console.log(`День ${date} успешно добавлен в tournaments.json`);
     }
 
-    // await writeFile(
-    //   "src/store/tournaments/tournaments.json",
-    //   JSON.stringify(state)
-    // );
+    await writeFile(
+      "src/store/tournaments/tournaments.json",
+      JSON.stringify(state)
+    );
 
     console.log(`Перезаписал tournaments.json`);
 

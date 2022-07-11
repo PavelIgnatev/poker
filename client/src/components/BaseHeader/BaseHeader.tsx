@@ -18,7 +18,7 @@ import {
   handleChangeOnlyTurbo,
   handleChangeTime,
   handleChangeTimezone,
-} from "../../store/SelectStore";
+} from "../../store/Select";
 import {
   $network,
   $onlyKO,
@@ -34,7 +34,7 @@ import {
   $stateMakeup,
   $stateTimezone,
   $alias,
-} from "../../store/SelectStore/state";
+} from "../../store/Select/state";
 import { useStore } from "effector-react";
 import { BaseSelect } from "../BaseSelect/BaseSelect";
 import { BaseSelectMulti } from "../BaseSelectMulti/BaseSelectMulti";
@@ -44,7 +44,6 @@ import { BaseCheckbox } from "../BaseCheckbox";
 import classes from "./BaseHeader.module.scss";
 import { BaseInputMask } from "../BaseInputMask";
 import { ComponentCategory } from "../ComponentCategory";
-import { $ability2Step, fetchSettings } from "../../store/Settings";
 import classNames from "classnames";
 
 export const BaseHeader: FC = () => {

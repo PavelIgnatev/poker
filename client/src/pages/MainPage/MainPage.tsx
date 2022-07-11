@@ -3,16 +3,16 @@ import { useStore } from "effector-react";
 
 import { BaseTable } from "../../components/BaseTable/BaseTable";
 import { BaseHeader } from "../../components/BaseHeader/BaseHeader";
-import { $tableStateFiltred, fetchUserReposFx } from "../../store/TableStore";
+import { $filtredTournamentsState, fetchUserReposFx } from "../../store/Table";
 
 export const MainPage: FC = () => {
   const loading = useStore(fetchUserReposFx.pending);
-  const data = useStore($tableStateFiltred);
+  const tournaments = useStore($filtredTournamentsState);
 
   return (
     <>
       <BaseHeader />
-      <BaseTable data={data} loading={loading} />
+      <BaseTable data={tournaments} loading={loading} />
     </>
   );
 };

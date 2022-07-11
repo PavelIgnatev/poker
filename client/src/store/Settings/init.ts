@@ -1,9 +1,7 @@
-import { useStore } from "effector-react";
 import { settingsModel } from "./../../@types/settingsModel";
-import { createApi, createEffect, createStore } from "effector";
+import { createEffect, createStore } from "effector";
 import api from "../../api";
 import { $settings } from "./state";
-import { $ability2Step } from "./state";
 
 export const fetchSettings = createEffect(async () => {
   const result = await api.get<any>("/api/settings");
@@ -36,13 +34,13 @@ export const $stateAliases = createStore({}).on(
 );
 
 export const postFetchSettings = createEffect(async (json: any) => {
-  console.log(json)
+  console.log(json);
   const result = await api.addSettings(json);
   return result;
 });
 
 export const postFetchAlias = createEffect(async (json: any) => {
-  console.log(json)
+  console.log(json);
   const result = await api.addAlias(json);
   return result;
 });

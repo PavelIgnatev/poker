@@ -7,10 +7,10 @@ class Api {
     }
     return (await axios(fullUrl))?.data as T;
   }
-  async addSettings(settings: unknown) {
+  async addSettings(settings: any) {
     return await axios.post(`/api/settings`, settings);
   }
-  async addAlias(settings: unknown) {
+  async addAlias(settings: any) {
     return await axios.post(`/api/aliases`, settings);
   }
   async checkPassword(password: string) {

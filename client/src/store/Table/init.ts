@@ -19,7 +19,7 @@ import {
   $timezone,
   handleChangeTimezoneTable,
   $onlySuperTurbo,
-} from "../SelectStore";
+} from "../Select";
 import { $tableState } from "./state";
 
 export const fetchUserReposFx = createEffect(async () => {
@@ -38,7 +38,7 @@ export const fetchUserReposFx = createEffect(async () => {
     onlyFreezout = $onlyFreezout.getState(),
     onlyNormal = $onlyNormal.getState(),
     alias = $alias.getState();
- 
+
   if (!level) ErrNot("Level filter: You have not chosen a level");
   if (!alias) ErrNot("Enter an alias");
   if (!network?.length)

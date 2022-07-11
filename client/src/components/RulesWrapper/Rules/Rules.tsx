@@ -6,18 +6,18 @@ import { fetchSettings, postFetchSettings } from "../../../store/Settings";
 import { BaseInputNumber } from "../../BaseInputNumber";
 import { BaseSelect } from "../../BaseSelect";
 
-import classes from "./Page.module.scss";
+import classes from "./Rules.module.scss";
 
-type PageProps = {
+type RulesProps = {
   state: any;
   prevState: any;
   level: string;
   minus: () => void;
 };
 
-export const Page: FC<PageProps> = ({ state, prevState, level, minus }) => {
+export const Rules: FC<RulesProps> = ({ state, prevState, level, minus }) => {
   const [value1, setValue1] = useState<string>(prevState?.network ?? "");
-  const [value2, setValue2] = useState<string>(level);
+  const [value2] = useState<string>(level);
   const [value3, setValue3] = useState<string>(prevState?.currency ?? "");
   const [value4, setValue4] = useState<string>(prevState?.bid ?? "");
   const [value5, setValue5] = useState<string>(prevState?.status ?? "");
@@ -49,11 +49,11 @@ export const Page: FC<PageProps> = ({ state, prevState, level, minus }) => {
     ability2,
   };
 
-  const allObj: any = {};
+  const allObj: Record<string, null> = {};
   allObj[`all (A2: ${ability2})`] = null;
 
   return (
-    <div className={classes.Page}>
+    <div className={classes.Rules}>
       <BaseSelect
         placeholder="Network"
         options={getOptions(state)}

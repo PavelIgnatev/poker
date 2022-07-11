@@ -1,10 +1,10 @@
-.Page {
+.Rules {
   display: flex;
   margin-bottom: 5px;
   
 }
 
-.Page div div div div {
+.Rules div div div div {
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
@@ -13,11 +13,11 @@
 span[aria-relevant="additions text"] + div {
   height: 100%;
 }
-.Page > div {
+.Rules > div {
   min-width: 80px;
 }
 
-.Page div input {
+.Rules div input {
   height: 100%;
 }
 

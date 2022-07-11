@@ -11,21 +11,22 @@ type BaseTableProps = {
 };
 
 export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
+  if (!data?.length)
+    return <section className={classes.nodata}>Nothing found</section>;
+
   if (loading)
     return (
       <section className={classes.section}>
         <Loader />
       </section>
     );
+
   if (!data)
     return (
       <section className={classes.nodata}>
         Select the options you are interested in and click the "Update" button
       </section>
     );
-
-  if (!data?.length)
-    return <section className={classes.nodata}>Nothing found</section>;
 
   return (
     <section className={classes.section}>

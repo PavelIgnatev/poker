@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     const level = req.query.level;
     const timezone = req.query.timezone;
     const alias = req.query.alias;
-    console.log(moneyEnd)
+    console.log(moneyEnd);
 
     updateAliasStore(alias, level);
 
@@ -39,9 +39,6 @@ module.exports = async (req, res) => {
     );
     const gaps = JSON.parse(await readFile("src/store/gaps/gap.json"));
     const rules = JSON.parse(await readFile("src/store/rules/rules.json"));
-    console.log(
-      `https://www.sharkscope.com/api/pocarrleaderboard/networks/${networks}/activeTournaments?filter=Date!:${time}S;Type:NL,H;Class:SCHEDULED,SNG;`
-    );
     console.log("Начинаю делать запрос");
     let result = (
       await api.get(
