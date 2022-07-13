@@ -17,17 +17,16 @@ module.exports = async (req, res) => {
   try {
     const networks = req.query.networks;
     const time = req.query.time;
-    const isB = req.query.onlyKO == "true" ? "B," : "";
-    const isT = req.query.onlyTurbo == "true" ? "T" : "";
-    const isST = req.query.onlySuperTurbo == "true" ? "T" : "";
-    const isNotB = req.query.onlyFreezout == "true" ? "B," : "";
-    const isNotT = req.query.onlyNormal == "true" ? "T" : "";
+    const isB = req.query.onlyKO == "true" ? true : false;
+    const isT = req.query.onlyTurbo == "true" ? true : false;
+    const isST = req.query.onlySuperTurbo == "true" ? true : false;
+    const isNotB = req.query.onlyFreezout == "true" ? true : false;
+    const isNotT = req.query.onlyNormal == "true" ? true : false;
     const moneyStart = req.query.moneyStart;
     const moneyEnd = req.query.moneyEnd;
     const level = req.query.level;
     const timezone = req.query.timezone;
     const alias = req.query.alias;
-    console.log(moneyEnd);
 
     updateAliasStore(alias, level);
 
@@ -171,19 +170,20 @@ module.exports = async (req, res) => {
       const superturbo = tournament["@superturbo"];
 
       const status = filterLevelByAbility(level, tournament);
-
+      // console.log(isT === isST);
       return (
         tournament["@bid"] >= Number(moneyStart) &&
         tournament["@bid"] <= Number(moneyEnd) &&
         (isB ? bounty : true) &&
-        (isT ? turbo : true) &&
-        (isST ? superturbo : true) &&
+        (isT && !isST ? turbo : true) &&
+        (isST && !isT ? superturbo : true) &&
+        (isT && isST ? turbo || superturbo : true) &&
         (isNotB ? !bounty : true) &&
         (isNotT ? !turbo : true) &&
         status
       );
     });
-
+    console.log(result.length);
     return res.json(result ?? []);
   } catch (err) {
     console.log(err);
