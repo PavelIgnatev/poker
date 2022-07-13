@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "nodemon ./src/server.js --ignore './src/store'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -27,6 +27,7 @@
     "logrocket": "^2.1.2",
     "node-fetch": "^3.0.0",
     "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.19",
     "path": "^0.12.7",
     "pm2": "^5.2.0"
   }
