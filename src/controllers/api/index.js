@@ -8,6 +8,8 @@ const postSettings = require("./postSettings");
 const postAlias = require("./postAlias");
 const postPassword = require("./postPassword");
 
+const config = require("./config");
+
 module.exports = {
   getTournaments,
   getFormingAbility2,
@@ -18,4 +20,6 @@ module.exports = {
   postSettings,
   postAlias,
   postPassword,
+
+  config,
 };

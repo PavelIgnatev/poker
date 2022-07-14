@@ -8,13 +8,17 @@ const apiRouter = new express.Router();
 
 apiRouter.get("/tour", api.getTournaments);
 apiRouter.get("/info", api.getFormingAbility2);
-apiRouter.get("/alias", api.getAlias);
 apiRouter.get("/state", api.getAbility2);
 apiRouter.get("/preview", api.getPreview);
 apiRouter.get("/settings", api.getPreviewRules);
 apiRouter.post("/settings", api.postSettings);
-apiRouter.post("/aliases", api.postAlias);
 apiRouter.post("/password", api.postPassword);
+
+apiRouter.route("/config")
+    .get(api.config.get)
+    .post(api.config.post)
+    .patch(api.config.patch)
+    .delete(api.config.delete);
 
 // routes for /
 const mainRouter = new express.Router();
