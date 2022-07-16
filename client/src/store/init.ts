@@ -1,3 +1,5 @@
 import "./Select";
 import "./Table";
-import "./Settings"
+import "./Settings";
+import "./Config";
+import "./Password";

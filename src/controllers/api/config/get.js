@@ -1,7 +1,7 @@
 const { getConfig } = require("../../../utils/config");
 
 module.exports = async (req, res) => {
-  const { alias } = req.body;
+  const { alias } = req.query;
 
   const config = await getConfig();
 
