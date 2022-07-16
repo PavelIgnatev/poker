@@ -3,11 +3,8 @@ import {
   $level,
   $moneyEnd,
   $moneyStart,
-  handleChangeAlias,
   handleChangeDateEnd,
   handleChangeDateStart,
-  handleChangeIsMakeupB,
-  handleChangeLevel,
   handleChangeMoneyEnd,
   handleChangeMoneyStart,
   handleChangeNetwork,
@@ -24,16 +21,13 @@ import {
   $onlyKO,
   $onlyTurbo,
   $onlySuperTurbo,
-  $stateLevel,
   $stateNetwork,
   $stateTime,
   $dateStart,
   $dateEnd,
   $onlyFreezout,
   $onlyNormal,
-  $stateMakeup,
   $stateTimezone,
-  $alias,
 } from "../../store/Select/state";
 import { useStore } from "effector-react";
 import { BaseSelect } from "../BaseSelect/BaseSelect";
@@ -44,7 +38,6 @@ import { BaseCheckbox } from "../BaseCheckbox";
 import classes from "./BaseHeader.module.scss";
 import { BaseInputMask } from "../BaseInputMask";
 import { ComponentCategory } from "../ComponentCategory";
-import classNames from "classnames";
 
 export const BaseHeader: FC = () => {
   const moneyStart = useStore($moneyStart),
@@ -58,21 +51,12 @@ export const BaseHeader: FC = () => {
     dateEnd = useStore($dateEnd),
     onlyFreezout = useStore($onlyFreezout),
     onlyNormal = useStore($onlyNormal),
-    networkLength = useStore($network)?.length ?? 0,
-    alias = useStore($alias);
+    networkLength = useStore($network)?.length ?? 0;
 
   return (
     <header className={classes.wrapper}>
       <div className={classes.wrap}>
         <div className={classes.wr}>
-          <ComponentCategory category="Level">
-            <BaseSelect
-              className={classes.level}
-              options={$stateLevel}
-              onChange={handleChangeLevel}
-              placeholder="Level"
-            />
-          </ComponentCategory>
           <ComponentCategory category="Network">
             <BaseSelectMulti
               children={networkLength + " networks"}
@@ -90,16 +74,32 @@ export const BaseHeader: FC = () => {
               placeholder="Time"
             />
           </ComponentCategory>
-        </div>
-        <div className={classes.wr} style={{ marginBottom: "5px" }}>
-          <ComponentCategory category="Eff. Mu">
+          <ComponentCategory category="Time range">
+            <div className={classes.inputWrapper}>
+              <BaseInputMask
+                placeholder="From(h)"
+                value={dateStart}
+                handleChange={handleChangeDateStart}
+                className={classes.input}
+              />
+              <BaseInputMask
+                placeholder="To(h)"
+                value={dateEnd}
+                handleChange={handleChangeDateEnd}
+                className={classes.input}
+              />
+            </div>
+          </ComponentCategory>
+          <ComponentCategory category="Time zone">
             <BaseSelect
-              placeholder="Eff. MU"
-              options={$stateMakeup}
-              className={classes.makeup}
-              onChange={handleChangeIsMakeupB}
+              className={classes.timezone}
+              options={$stateTimezone}
+              onChange={handleChangeTimezone}
+              placeholder="Timezone"
             />
           </ComponentCategory>
+        </div>
+        <div className={classes.wr} style={{ marginBottom: "5px" }}>
           <ComponentCategory category="Buy-in">
             <div className={classes.inputWrapper}>
               <BaseInput
@@ -118,24 +118,8 @@ export const BaseHeader: FC = () => {
               />
             </div>
           </ComponentCategory>
-          <ComponentCategory category="Time range">
-            <div className={classes.inputWrapper}>
-              <BaseInputMask
-                placeholder="From(h)"
-                value={dateStart}
-                handleChange={handleChangeDateStart}
-                className={classes.input}
-              />
-              <BaseInputMask
-                placeholder="To(h)"
-                value={dateEnd}
-                handleChange={handleChangeDateEnd}
-                className={classes.input}
-              />
-            </div>
-          </ComponentCategory>
         </div>
-        <div className={classes.wr} style={{ justifyContent: "center" }}>
+        <div className={classes.wr}>
           <ComponentCategory category="Format">
             <div className={classes.checkboxWrapper}>
               <BaseCheckbox
@@ -173,31 +157,6 @@ export const BaseHeader: FC = () => {
         </div>
         <div className={classes.wr} style={{ justifyContent: "center" }}>
           <UpdateButton />
-        </div>
-        <div className={classes.wr2}>
-          <ComponentCategory category="Time zone" gorizontal>
-            <BaseSelect
-              className={classes.timezone}
-              options={$stateTimezone}
-              onChange={handleChangeTimezone}
-              placeholder="Timezone"
-            />
-          </ComponentCategory>
-          <ComponentCategory
-            category="Alias"
-            gorizontal
-            className={classes.alias}
-          >
-            <input
-              type="text"
-              value={alias}
-              className={classNames(classes.input, classes.inputAlias)}
-              placeholder="Your alias"
-              onChange={({ currentTarget: { value } }) =>
-                handleChangeAlias(value)
-              }
-            />
-          </ComponentCategory>
         </div>
       </div>
     </header>

@@ -1,11 +1,17 @@
-.wrapper{
-    display: flex;  
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.category{
-    margin-top: 5px;
+.category {
+    margin-right: 10px;
     font-weight: 500;
     font-size: 20px;
     color: hsl(0, 0%, 20%);
-    width: 120px;
+    margin-bottom: 5px;
+}
+
+.children {
+    margin-bottom: 5px;
 }

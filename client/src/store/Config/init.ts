@@ -35,9 +35,7 @@ export const deleteConfig = failuresDomain.createEffect(
 
 failuresDomain.onCreateEffect((effect) => {
   effect.fail.watch(() =>
-    ErrNot(
-      "An error has occurred. You are denied access to the service. Contact the owner of the service for help."
-    )
+    ErrNot("An error has occurred. You are denied access to the service.")
   );
 });
 
