@@ -6,7 +6,7 @@ import { BaseTable } from "../../components/BaseTable";
 import { tableCellModel } from "../../@types/tableCellModel";
 
 export const InfoPage: FC = () => {
-  // на null не править, не выйдет
+  // TO-DO должен быть createEffect так-то хули тут useEffect
   const [result, setResult] = useState<tableCellModel[] | undefined>(undefined);
 
   const urlSearchParams = new URLSearchParams(window.location.search);

@@ -1,10 +1,8 @@
 import { useStore } from "effector-react";
 import { FC } from "react";
 import {
-  $isValidPassword,
   $password,
   handleChangePassword,
-  handleChangeValidPassword,
   postFetchPassword,
 } from "../../store/Password";
 import { BaseInputString } from "../BaseInputString";

@@ -1,7 +1,8 @@
 import { createDomain, createApi } from "effector";
-import { $config, $isError } from "./state";
+import { $config } from "./state";
 import { ConfigModel, defaultConfigModel } from "./../../@types/configModel";
 import api from "../../api";
+import { ErrNot } from "../../components/NotificationService";
 
 const failuresDomain = createDomain();
 
@@ -32,13 +33,12 @@ export const deleteConfig = failuresDomain.createEffect(
   }
 );
 
-const { handleChaingeIsError } = createApi($isError, {
-  handleChaingeIsError: (_, v: boolean) => v,
-});
-
 failuresDomain.onCreateEffect((effect) => {
-  effect.fail.watch(() => handleChaingeIsError(true));
-  effect.done.watch(() => handleChaingeIsError(false));
+  effect.fail.watch(() =>
+    ErrNot(
+      "An error has occurred. You are denied access to the service. Contact the owner of the service for help."
+    )
+  );
 });
 
 $config.on(getConfig.doneData, (_, config) => config);

@@ -1,0 +1,35 @@
+.alias {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.content {
+    width: 800px;
+}
+
+.text {
+    font-size: 23px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.input {
+    margin-right: 10px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eye{
+    display: block;
+    width: 30px;
+}
