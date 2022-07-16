@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+import { FC } from "react";
+import cx from "classnames";
 import {
   $level,
   $moneyEnd,
@@ -38,6 +39,8 @@ import { BaseCheckbox } from "../BaseCheckbox";
 import classes from "./BaseHeader.module.scss";
 import { BaseInputMask } from "../BaseInputMask";
 import { ComponentCategory } from "../ComponentCategory";
+import { BaseButton } from "../BaseButton";
+import { fetchUserReposFx } from "../../store/Table";
 
 export const BaseHeader: FC = () => {
   const moneyStart = useStore($moneyStart),
@@ -54,7 +57,7 @@ export const BaseHeader: FC = () => {
     networkLength = useStore($network)?.length ?? 0;
 
   return (
-    <header className={classes.wrapper}>
+    <header className={classes.header}>
       <div className={classes.wrap}>
         <div className={classes.wr}>
           <ComponentCategory category="Network">
@@ -66,40 +69,6 @@ export const BaseHeader: FC = () => {
               placeholder="Network"
             />
           </ComponentCategory>
-          <ComponentCategory category="Starts">
-            <BaseSelect
-              className={classes.time}
-              options={$stateTime}
-              onChange={handleChangeTime}
-              placeholder="Time"
-            />
-          </ComponentCategory>
-          <ComponentCategory category="Time range">
-            <div className={classes.inputWrapper}>
-              <BaseInputMask
-                placeholder="From(h)"
-                value={dateStart}
-                handleChange={handleChangeDateStart}
-                className={classes.input}
-              />
-              <BaseInputMask
-                placeholder="To(h)"
-                value={dateEnd}
-                handleChange={handleChangeDateEnd}
-                className={classes.input}
-              />
-            </div>
-          </ComponentCategory>
-          <ComponentCategory category="Time zone">
-            <BaseSelect
-              className={classes.timezone}
-              options={$stateTimezone}
-              onChange={handleChangeTimezone}
-              placeholder="Timezone"
-            />
-          </ComponentCategory>
-        </div>
-        <div className={classes.wr} style={{ marginBottom: "5px" }}>
           <ComponentCategory category="Buy-in">
             <div className={classes.inputWrapper}>
               <BaseInput
@@ -120,43 +89,84 @@ export const BaseHeader: FC = () => {
           </ComponentCategory>
         </div>
         <div className={classes.wr}>
+          <div className={classes.starts}>
+            <ComponentCategory category="Starts">
+              <BaseSelect
+                className={classes.time}
+                options={$stateTime}
+                onChange={handleChangeTime}
+                placeholder="Time"
+              />
+            </ComponentCategory>
+            <ComponentCategory>
+              <div className={classes.inputWrapper}>
+                <BaseInputMask
+                  placeholder="From(h)"
+                  value={dateStart}
+                  handleChange={handleChangeDateStart}
+                  className={cx(classes.input, classes.b)}
+                />
+                <BaseInputMask
+                  placeholder="To(h)"
+                  value={dateEnd}
+                  handleChange={handleChangeDateEnd}
+                  className={cx(classes.input, classes.b)}
+                />
+              </div>
+            </ComponentCategory>
+          </div>
           <ComponentCategory category="Format">
             <div className={classes.checkboxWrapper}>
               <BaseCheckbox
-                label="KO"
-                checked={onlyKO}
-                onChange={() => handleChangeOnlyKO(!onlyKO)}
+                selected={!onlyKO}
+                onClick={() => handleChangeOnlyKO(!onlyKO)}
                 className={classes.checkbox}
-              />
+              >
+                KO
+              </BaseCheckbox>
               <BaseCheckbox
-                label="Freezout"
-                checked={onlyFreezout}
-                onChange={() => handleChangeOnlyFreezout(!onlyFreezout)}
+                selected={!onlyFreezout}
+                onClick={() => handleChangeOnlyFreezout(!onlyFreezout)}
                 className={classes.checkbox}
-              />
+              >
+                Freezout
+              </BaseCheckbox>
               <BaseCheckbox
-                label="Normal"
-                checked={onlyNormal}
-                onChange={() => handleChangeOnlyNormal(!onlyNormal)}
+                selected={!onlyNormal}
+                onClick={() => handleChangeOnlyNormal(!onlyNormal)}
                 className={classes.checkbox}
-              />
+              >
+                Normal
+              </BaseCheckbox>
               <BaseCheckbox
-                label="Turbo"
-                checked={onlyTurbo}
-                onChange={() => handleChangeOnlyTurbo(!onlyTurbo)}
+                selected={!onlyTurbo}
+                onClick={() => handleChangeOnlyTurbo(!onlyTurbo)}
                 className={classes.checkbox}
-              />
+              >
+                Turbo
+              </BaseCheckbox>
               <BaseCheckbox
-                label="Super Turbo"
-                checked={onlySuperTurbo}
-                onChange={() => handleChangeOnlySuperTurbo(!onlySuperTurbo)}
+                selected={!onlySuperTurbo}
+                onClick={() => handleChangeOnlySuperTurbo(!onlySuperTurbo)}
                 className={classes.checkbox}
-              />
+              >
+                Super Turbo
+              </BaseCheckbox>
             </div>
           </ComponentCategory>
         </div>
-        <div className={classes.wr} style={{ justifyContent: "center" }}>
-          <UpdateButton />
+        <div className={classes.wr}>
+          <ComponentCategory>
+            <BaseSelect
+              className={classes.timezone}
+              options={$stateTimezone}
+              onChange={handleChangeTimezone}
+              placeholder="Timezone"
+            />
+          </ComponentCategory>
+          <BaseButton onClick={fetchUserReposFx} className={classes.button}>
+            Games search
+          </BaseButton>
         </div>
       </div>
     </header>

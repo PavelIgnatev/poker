@@ -1,6 +1,5 @@
 export interface BaseCheckboxModel {
-  checked: boolean;
-  onChange: () => void;
+  selected: boolean;
+  onClick: () => void;
   className?: string;
-  label: string;
 }

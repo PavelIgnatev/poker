@@ -32,7 +32,7 @@ export const AliasSection = () => {
             value={alias}
             onChange={handleChangeAlias}
           />
-          <BaseButton className={classes.button} onClick={handleSubmit}>
+          <BaseButton className={classes.button} onClick={() => {}}>
             <img src={eye} alt="eye" className={classes.eye} />
           </BaseButton>
         </div>

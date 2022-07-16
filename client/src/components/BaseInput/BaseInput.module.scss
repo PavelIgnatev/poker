@@ -6,6 +6,11 @@
 
 .label {
   flex: 1;
+  margin: 0 10px;
   text-align: right;
   user-select: none;
+}
+
+.input {
+  font-weight: 500;
 }

@@ -1,29 +1,29 @@
-.wrapper {
-  box-sizing: border-box;
-  padding-top: 25px;
+.header {
   display: flex;
   align-items: center;
-  min-height: 120px;
   display: flex;
-  background-color: #e2e0f0;
   position: relative;
+}
+
+.b {
+  width: 40px !important;
+}
+
+.wrap {
+  width: 100%;
+  padding: 30px 50px;
+  background: #e2e0f0;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .wr {
   display: flex;
-  width: 100%;
+  flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 15px;
 }
 
-.wr2 {
-  display: flex;
-  min-width: 185px;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 5px;
-}
 
 .timezone,
 .makeup,
@@ -47,13 +47,8 @@
   min-width: 150px;
 }
 
-.wrap {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
 .inputWrapper {
+  margin-left: 20px;
   color: hsl(0, 0%, 20%);
   display: flex;
 }
@@ -66,13 +61,15 @@
 }
 
 .checkboxWrapper {
-  margin-top: 5px;
   display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .checkbox {
-  color: hsl(0, 0%, 20%);
-  display: flex;
+  user-select: none;
+  cursor: pointer;
 }
 
 .input {
@@ -105,4 +102,16 @@
 
 #react-select-3-listbox {
   display: block !important;
+}
+
+.button {
+  background: #4A72FF;
+  border-radius: 10px;
+  font-weight: 700;
+  height: 38px;
+  width: 145px;
+}
+
+.starts {
+  display: flex;
 }

@@ -95,5 +95,5 @@ export const { handleChangeAlias } = createApi($alias, {
 
 $level.watch((v) => {
   handleChangeMoneyStart(v?.moneyStart ?? 1);
-  handleChangeMoneyEnd(v?.moneyEnd ?? 1);
+  handleChangeMoneyEnd(v?.moneyEnd ?? 1000);
 });

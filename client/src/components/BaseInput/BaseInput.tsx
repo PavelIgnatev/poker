@@ -1,13 +1,14 @@
 import { FC } from "react";
 import { BaseInputModel } from "./types";
-import classes from './BaseInput.module.scss';
+import classes from "./BaseInput.module.scss";
+import cx from "classnames";
 
 export const BaseInput: FC<BaseInputModel> = ({
   handleChange,
   value,
   max,
   placeholder,
-  className
+  className,
 }) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleChange(
@@ -27,12 +28,14 @@ export const BaseInput: FC<BaseInputModel> = ({
 
   return (
     <div className={classes.BaseInput}>
-      <label htmlFor={placeholder} className={classes.label}>{placeholder}:</label>
+      <label htmlFor={placeholder} className={classes.label}>
+        {placeholder}:
+      </label>
       <input
         id={placeholder}
         {...{ value, onChange }}
         placeholder={placeholder}
-        className={className}
+        className={cx(classes.input, className)}
       />
     </div>
   );

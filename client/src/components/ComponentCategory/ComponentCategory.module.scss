@@ -2,16 +2,23 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: space-between;
+    height: 38px;
+
+    &:nth-child(1) {
+        margin-bottom: 20px;
+    }
 }
 
 .category {
-    margin-right: 10px;
+    margin-right: 35px;
     font-weight: 500;
     font-size: 20px;
     color: hsl(0, 0%, 20%);
-    margin-bottom: 5px;
 }
 
 .children {
-    margin-bottom: 5px;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
 }

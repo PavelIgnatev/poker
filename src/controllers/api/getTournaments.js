@@ -169,8 +169,6 @@ module.exports = async (req, res) => {
       const turbo = tournament["@turbo"];
       const superturbo = tournament["@superturbo"];
 
-      const status = filterLevelByAbility(level, tournament);
-      // console.log(isT === isST);
       return (
         tournament["@bid"] >= Number(moneyStart) &&
         tournament["@bid"] <= Number(moneyEnd) &&
@@ -180,7 +178,7 @@ module.exports = async (req, res) => {
         (isT && isST ? turbo || superturbo : true) &&
         (isNotB ? !bounty : true) &&
         (isNotT ? !turbo : true) &&
-        status
+        filterLevelByAbility(level, tournament)
       );
     });
     console.log(result.length);
