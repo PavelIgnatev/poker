@@ -1,58 +1,44 @@
+import { createDomain, createApi } from "effector";
+import { $config, $isError } from "./state";
 import { ConfigModel, defaultConfigModel } from "./../../@types/configModel";
 import api from "../../api";
-import { $config, $isError } from "./state";
 
-import { createDomain, attach, is } from "effector";
+const failuresDomain = createDomain();
 
-const logFailuresDomain = createDomain();
+export const getConfig = failuresDomain.createEffect(async (alias: string) => {
+  const result = await api.get<ConfigModel>("/api/config", { alias });
 
-// logFailuresDomain.onCreateEffect((effect) => {
-//   if (is.attached(effect)) {
-//     console.log("DSA");
-//     effect.fail.watch(({ params, error }) => {
-//       console.warn(
-//         `Effect "${effect.compositeName.fullName}" failed`,
-//         params,
-//         error
-//       );
-//     });
-//   }
-// });
+  return result;
+});
 
-export const getConfig = logFailuresDomain.createEffect(
-  async (alias: string) => {
-    const result = await api.get<ConfigModel>("/api/config", { alias });
-
-    return result;
-  }
-);
-
-export const postConfig = logFailuresDomain.createEffect(
+export const postConfig = failuresDomain.createEffect(
   async (config: defaultConfigModel) => {
     await api.postConfig(config);
     await getConfig(config.alias);
-
-    return null;
   }
 );
 
-export const patchConfig = logFailuresDomain.createEffect(
+export const patchConfig = failuresDomain.createEffect(
   async ({ alias, config }: { alias: string; config: ConfigModel }) => {
     await api.patchConfig(alias, config);
     await getConfig(alias);
-
-    return null;
   }
 );
 
-export const deleteConfig = logFailuresDomain.createEffect(
+export const deleteConfig = failuresDomain.createEffect(
   async (alias: string) => {
     await api.deleteConfig(alias);
-
-    return null;
+    await getConfig(alias);
   }
 );
 
-getConfig("sadsad");
+const { handleChaingeIsError } = createApi($isError, {
+  handleChaingeIsError: (_, v: boolean) => v,
+});
+
+failuresDomain.onCreateEffect((effect) => {
+  effect.fail.watch(() => handleChaingeIsError(true));
+  effect.done.watch(() => handleChaingeIsError(false));
+});
 
 $config.on(getConfig.doneData, (_, config) => config);

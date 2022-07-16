@@ -1,5 +1,5 @@
 import axios from "axios";
-import ConfigApi from "./ConfigApi";
+import ConfigApi from "./configApi";
 class Api extends ConfigApi {
   async get<T>(url: string, params?: any) {
     let fullUrl: string = url;
