@@ -10,13 +10,19 @@ import eye from "../../assets/icons/eye.svg";
 export const AliasSection = () => {
   const alias = useStore($alias);
 
-  const handleClick = useCallback(() => {
+  const handleSubmit = useCallback(() => {
     getConfig(alias);
   }, [alias]);
 
   return (
     <section className={classes.alias}>
-      <div className={classes.content}>
+      <form
+        className={classes.content}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+      >
         <span className={classes.text}>
           Enter <strong>your alias</strong> here
         </span>
@@ -26,11 +32,11 @@ export const AliasSection = () => {
             value={alias}
             onChange={handleChangeAlias}
           />
-          <BaseButton className={classes.button} onClick={handleClick}>
+          <BaseButton className={classes.button} onClick={handleSubmit}>
             <img src={eye} alt="eye" className={classes.eye} />
           </BaseButton>
         </div>
-      </div>
+      </form>
     </section>
   );
 };
