@@ -33,9 +33,11 @@ export const deleteConfig = failuresDomain.createEffect(
   }
 );
 
+const DEFAULT_ERROR_MESSAGE = "An error has occurred. You are denied access to the service.";
+
 failuresDomain.onCreateEffect((effect) => {
-  effect.fail.watch(() =>
-    ErrNot("An error has occurred. You are denied access to the service.")
+  effect.fail.watch(({ error }: { error: any }) =>
+    ErrNot(error?.response?.data?.message || DEFAULT_ERROR_MESSAGE)
   );
 });
 
