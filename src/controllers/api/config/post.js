@@ -1,22 +1,33 @@
-const { getConfig, saveConfig } = require("../../../store/config/utils");
+const { getConfig, saveConfig } = require("../../../utils/config");
 
 const { networks } = require("../../../constants");
 
 module.exports = async (req, res) => {
-    const { alias, level = 16, effmu = 'A' } = req.body;
+  const { alias, level, effmu, mail } = req.body;
 
-    const config = await getConfig();
+  if (!mail || !level || !effmu) {
+    return res
+      .status(400)
+      .send("Check if the submitted data is correct (mail, level, effmu)");
+  }
 
-    if (config[alias]) {
-        return res.status(400).send('Alias is already in use');
-    }
+  const config = await getConfig();
 
-    config[alias] = {};
-    networks.forEach((network) => {
-       config[alias][network] = { level, effmu };
-    });
+  if (config[alias]) {
+    return res.status(400).send("Alias is already in use");
+  }
 
-    await saveConfig(config);
+  config[alias] = {};
+  config[alias].networks = {};
 
-    res.status(201).send();
-}
+  config[alias].effmu = effmu;
+  config[alias].mail = mail;
+
+  networks.forEach((network) => {
+    config[alias]["networks"][network] = level;
+  });
+
+  await saveConfig(config);
+
+  res.status(201).send();
+};

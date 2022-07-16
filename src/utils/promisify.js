@@ -10,4 +10,5 @@ const writeFile = async (path, text) => {
 const readFile = async (path) => {
   return await Read(path, "utf-8");
 };
+
 module.exports = { writeFile, readFile };

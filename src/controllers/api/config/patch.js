@@ -1,29 +1,21 @@
-const { getConfig, saveConfig } = require("../../../store/config/utils");
+const { getConfig, saveConfig } = require("../../../utils/config");
 
 module.exports = async (req, res) => {
-    const { alias, level, effmu, network } = req.body;
+  const { alias, config: newConfig } = req.body;
 
-    if (!network) {
-        return res.status(400).send('Network is required parameter');
-    }
+  if (!newConfig) {
+    return res.status(400).send("Config is required parameter");
+  }
 
-    const config = await getConfig();
+  const config = await getConfig();
 
-    if (!config[alias]) {
-        return res.status(404).send('No such alias');
-    }
-    if (!config[alias][network]) {
-        return res.status(400).send('Alias does not have this network');
-    }
+  if (!config[alias]) {
+    return res.status(404).send("No such alias");
+  }
 
-    if (level) {
-        config[alias][network].level = level;
-    }
-    if (effmu) {
-        config[alias][network].effmu = effmu;
-    }
+  config[alias] = newConfig;
 
-    await saveConfig(config);
+  await saveConfig(config);
 
-    res.status(200).send();
-}
+  res.status(200).send();
+};

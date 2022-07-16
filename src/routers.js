@@ -14,11 +14,12 @@ apiRouter.get("/settings", api.getPreviewRules);
 apiRouter.post("/settings", api.postSettings);
 apiRouter.post("/password", api.postPassword);
 
-apiRouter.route("/config")
-    .get(api.config.get)
-    .post(api.config.post)
-    .patch(api.config.patch)
-    .delete(api.config.delete);
+apiRouter
+  .route("/config")
+  .get(api.config.get)
+  .post(api.config.post)
+  .patch(api.config.patch)
+  .delete(api.config.delete);
 
 // routes for /
 const mainRouter = new express.Router();

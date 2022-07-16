@@ -1,17 +1,17 @@
-const { getConfig, saveConfig} = require("../../../store/config/utils");
+const { getConfig, saveConfig } = require("../../../utils/config");
 
 module.exports = async (req, res) => {
-    const { alias } = req.body;
+  const { alias } = req.body;
 
-    const config = await getConfig();
+  const config = await getConfig();
 
-    if (!config[alias]) {
-        return res.status(404).send('No such alias');
-    }
+  if (!config[alias]) {
+    return res.status(404).send("No such alias");
+  }
 
-    config[alias] = undefined;
+  delete config[alias];
 
-    await saveConfig(config);
+  await saveConfig(config);
 
-    res.status(204).send();
-}
+  res.status(204).send();
+};
