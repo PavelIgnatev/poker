@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import cx from 'classnames';
-import classes from './BaseButton.module.scss';
+import { FC } from "react";
+import cx from "classnames";
+import classes from "./BaseButton.module.scss";
 
 interface BaseButtonProps {
   onClick: () => void;

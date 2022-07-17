@@ -1,6 +1,6 @@
-import Select from 'react-select';
-import { BaseSelectModel } from './types';
-import classes from './BaseSelectMulti.module.scss';
+import Select from "react-select";
+import { BaseSelectModel } from "./types";
+import classes from "./BaseSelectMulti.module.scss";
 
 export const BaseSelectMulti = (props: BaseSelectModel) => {
   const { options, onChange, className, placeholder, children } = props;

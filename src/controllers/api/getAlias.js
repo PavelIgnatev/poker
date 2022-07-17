@@ -1,7 +1,7 @@
-const { readFile } = require('../../utils/promisify');
+const { readFile } = require("../../utils/promisify");
 
 module.exports = async (req, res) => {
-  const aliases = JSON.parse(await readFile('src/store/alias/alias.json'));
+  const aliases = JSON.parse(await readFile("src/store/alias/alias.json"));
   const newAliases = {};
 
   Object.keys(aliases).forEach((name) => {

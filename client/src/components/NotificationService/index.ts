@@ -1,1 +1,1 @@
-export { SucNot, ErrNot } from './NotificationService';
+export { SucNot, ErrNot } from "./NotificationService";

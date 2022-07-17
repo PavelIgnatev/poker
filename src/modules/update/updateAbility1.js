@@ -1,26 +1,26 @@
-const { readFile, writeFile } = require('../../utils/promisify');
-const { getTimeByMS } = require('../../helpers/getTimeByMS');
-const { updateCopies } = require('./updateCopies');
-const { getNetwork } = require('../../helpers/getNetwork');
+const { readFile, writeFile } = require("../../utils/promisify");
+const { getTimeByMS } = require("../../helpers/getTimeByMS");
+const { updateCopies } = require("./updateCopies");
+const { getNetwork } = require("../../helpers/getNetwork");
 
 const updateAbility1 = async () => {
   try {
-    const state = JSON.parse(await readFile('src/store/tournaments/tournaments.json'));
-    console.log('Длина стейта: ', Object.keys(state).length);
+    const state = JSON.parse(await readFile("src/store/tournaments/tournaments.json"));
+    console.log("Длина стейта: ", Object.keys(state).length);
     const obj = {};
 
     Object.values(state).forEach((tournamentsByDay) => {
       Object.values(tournamentsByDay).forEach((tournament) => {
-        const ability = tournament['@avability'];
-        const duration = tournament['@duration'];
-        const name = tournament['@name']?.toLowerCase();
-        const network = getNetwork(tournament['@network']);
-        const stake = Number(tournament['@stake'] ?? 0);
-        const rake = Number(tournament['@rake'] ?? 0);
+        const ability = tournament["@avability"];
+        const duration = tournament["@duration"];
+        const name = tournament["@name"]?.toLowerCase();
+        const network = getNetwork(tournament["@network"]);
+        const stake = Number(tournament["@stake"] ?? 0);
+        const rake = Number(tournament["@rake"] ?? 0);
         const bid = (stake + rake).toFixed(2);
-        const time = getTimeByMS(Number(`${tournament['@date']}000`));
+        const time = getTimeByMS(Number(`${tournament["@date"]}000`));
 
-        if (!name || !network || !bid || !time || name?.includes('global million')) {
+        if (!name || !network || !bid || !time || name?.includes("global million")) {
           return;
         }
 
@@ -29,12 +29,12 @@ const updateAbility1 = async () => {
         if (!obj[network][time][bid]) obj[network][time][bid] = {};
         if (!obj[network][time][bid][name])
           obj[network][time][bid][name] = {
-            '@avability': [],
-            '@duration': [],
+            "@avability": [],
+            "@duration": [],
           };
 
-        const abilities = obj[network][time][bid][name]['@avability'];
-        const durations = obj[network][time][bid][name]['@duration'];
+        const abilities = obj[network][time][bid][name]["@avability"];
+        const durations = obj[network][time][bid][name]["@duration"];
 
         if (ability && abilities.length < 30) abilities.push(ability);
         if (duration && durations.length < 30) durations.push(duration);
@@ -58,9 +58,9 @@ const updateAbility1 = async () => {
       });
     });
 
-    await writeFile('src/store/ability1/ability1.json', JSON.stringify(obj));
+    await writeFile("src/store/ability1/ability1.json", JSON.stringify(obj));
 
-    await updateCopies(obj, 'ability1.json');
+    await updateCopies(obj, "ability1.json");
   } catch (error) {
     console.log(error);
   }

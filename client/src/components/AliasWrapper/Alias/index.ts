@@ -1,1 +1,1 @@
-export { Alias } from './Alias';
+export { Alias } from "./Alias";

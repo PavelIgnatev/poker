@@ -1,39 +1,39 @@
-const { writeFile } = require('../../utils/promisify');
+const { writeFile } = require("../../utils/promisify");
 
 const createdGap = async () => {
   const result = {
-    '7A': {
-      'PS.eu': null,
+    "7A": {
+      "PS.eu": null,
       Party: {
-        normal: '55.00-66.99;77.00-88.99',
+        normal: "55.00-66.99;77.00-88.99",
       },
       888: null,
-      'Ps.es': null,
+      "Ps.es": null,
       GG: {
-        normal: '34.00-49.99;50.00-66.99;67.00-79.99;80.00-120.99;121.00-150.99',
-        turbo: '21.00-33.99;34.00-49.99;50.00-66.99;80.00-120.99;121.00-150.99',
+        normal: "34.00-49.99;50.00-66.99;67.00-79.99;80.00-120.99;121.00-150.99",
+        turbo: "21.00-33.99;34.00-49.99;50.00-66.99;80.00-120.99;121.00-150.99",
       },
       WNMX: null,
       WPN: {
-        normal: '34.00-49.99;50.00-66.99;67.00-79.99;80.00-120.99;121.00-150.99',
-        turbo: '21.00-33.99;34.00-49.99;50.00-66.99;80.00-120.99;121.00-150.99',
+        normal: "34.00-49.99;50.00-66.99;67.00-79.99;80.00-120.99;121.00-150.99",
+        turbo: "21.00-33.99;34.00-49.99;50.00-66.99;80.00-120.99;121.00-150.99",
       },
     },
-    '7B': {
-      'PS.eu': null,
+    "7B": {
+      "PS.eu": null,
       Party: {
-        normal: '55.00-66.99;77.00-88.99',
+        normal: "55.00-66.99;77.00-88.99",
       },
       888: null,
-      'Ps.es': null,
+      "Ps.es": null,
       GG: {
-        normal: '34.00-49.99;50.00-66.99;67.00-79.99;80.00-120.99;121.00-150.99',
-        turbo: '21.00-33.99;34.00-49.99;50.00-66.99',
+        normal: "34.00-49.99;50.00-66.99;67.00-79.99;80.00-120.99;121.00-150.99",
+        turbo: "21.00-33.99;34.00-49.99;50.00-66.99",
       },
       WNMX: null,
       WPN: {
-        normal: '34.00-49.99;50.00-66.99;67.00-79.99;80.00-120.99;121.00-150.99',
-        turbo: '21.00-33.99;34.00-49.99;50.00-66.99',
+        normal: "34.00-49.99;50.00-66.99;67.00-79.99;80.00-120.99;121.00-150.99",
+        turbo: "21.00-33.99;34.00-49.99;50.00-66.99",
       },
     },
     // "6A": {
@@ -78,17 +78,17 @@ const createdGap = async () => {
     Object.keys(result[level]).forEach((network) => {
       if (result[level][network]) {
         Object.keys(result[level][network]).forEach((status) => {
-          const statuss = result[level][network][status].split(';');
+          const statuss = result[level][network][status].split(";");
           const realFake = {};
           statuss.forEach((gap) => {
             const fake = {};
-            const gaps = gap.split('-');
+            const gaps = gap.split("-");
             let start = Number(gaps[0]);
             const end = Number(gaps[1]);
             while (start < end) {
               let i = 0;
               while (i < 100) {
-                fake[`${start}.${String(i).padStart(2, '0')}`] = gap;
+                fake[`${start}.${String(i).padStart(2, "0")}`] = gap;
                 i += 1;
               }
               start++;
@@ -101,7 +101,7 @@ const createdGap = async () => {
     });
   });
 
-  await writeFile('src/store/gaps/gap.json', JSON.stringify(result));
+  await writeFile("src/store/gaps/gap.json", JSON.stringify(result));
 };
 
 module.exports = { createdGap };

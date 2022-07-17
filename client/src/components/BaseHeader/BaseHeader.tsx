@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import cx from 'classnames';
+import { FC } from "react";
+import cx from "classnames";
 import {
   $level,
   $moneyEnd,
@@ -16,7 +16,7 @@ import {
   handleChangeOnlyTurbo,
   handleChangeTime,
   handleChangeTimezone,
-} from '../../store/Select';
+} from "../../store/Select";
 import {
   $network,
   $onlyKO,
@@ -29,18 +29,18 @@ import {
   $onlyFreezout,
   $onlyNormal,
   $stateTimezone,
-} from '../../store/Select/state';
-import { useStore } from 'effector-react';
-import { BaseSelect } from '../BaseSelect/BaseSelect';
-import { BaseSelectMulti } from '../BaseSelectMulti/BaseSelectMulti';
-import { UpdateButton } from '../UpdateButton/UpdateButton';
-import { BaseInput } from '../BaseInput/BaseInput';
-import { BaseCheckbox } from '../BaseCheckbox';
-import classes from './BaseHeader.module.scss';
-import { BaseInputMask } from '../BaseInputMask';
-import { ComponentCategory } from '../ComponentCategory';
-import { BaseButton } from '../BaseButton';
-import { fetchUserReposFx } from '../../store/Table';
+} from "../../store/Select/state";
+import { useStore } from "effector-react";
+import { BaseSelect } from "../BaseSelect/BaseSelect";
+import { BaseSelectMulti } from "../BaseSelectMulti/BaseSelectMulti";
+import { UpdateButton } from "../UpdateButton/UpdateButton";
+import { BaseInput } from "../BaseInput/BaseInput";
+import { BaseCheckbox } from "../BaseCheckbox";
+import classes from "./BaseHeader.module.scss";
+import { BaseInputMask } from "../BaseInputMask";
+import { ComponentCategory } from "../ComponentCategory";
+import { BaseButton } from "../BaseButton";
+import { fetchUserReposFx } from "../../store/Table";
 
 export const BaseHeader: FC = () => {
   const moneyStart = useStore($moneyStart),
@@ -62,7 +62,7 @@ export const BaseHeader: FC = () => {
         <div className={classes.wr}>
           <ComponentCategory category="Network">
             <BaseSelectMulti
-              children={networkLength + ' networks'}
+              children={networkLength + " networks"}
               className={classes.network}
               options={$stateNetwork}
               onChange={handleChangeNetwork}

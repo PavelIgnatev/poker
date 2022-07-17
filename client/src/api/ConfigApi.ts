@@ -1,6 +1,6 @@
-import { defaultConfigModel } from '../@types/configModel';
-import axios from 'axios';
-import { ConfigModel } from '../@types/configModel';
+import { defaultConfigModel } from "../@types/configModel";
+import axios from "axios";
+import { ConfigModel } from "../@types/configModel";
 
 class ConfigApi {
   async postConfig(params: defaultConfigModel) {

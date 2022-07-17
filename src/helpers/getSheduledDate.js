@@ -1,4 +1,4 @@
-const { getDate } = require('./getDate');
+const { getDate } = require("./getDate");
 
 /**
  * Возвращае sheduled date
@@ -7,9 +7,9 @@ const { getDate } = require('./getDate');
  */
 
 const getSheduledDate = (tournament) => {
-  const isStartDate = tournament['@date'] ?? 0;
+  const isStartDate = tournament["@date"] ?? 0;
   const startDate = Number(isStartDate * 1000);
-  return isStartDate ? getDate(startDate) : '-';
+  return isStartDate ? getDate(startDate) : "-";
 };
 
 module.exports = { getSheduledDate };

@@ -5,9 +5,9 @@
  */
 
 const getWeekday = (date) => {
-  return new Date(Number(date)).toLocaleString('en-EN', {
-    timeZone: 'Europe/Moscow',
-    weekday: 'long',
+  return new Date(Number(date)).toLocaleString("en-EN", {
+    timeZone: "Europe/Moscow",
+    weekday: "long",
   });
 };
 

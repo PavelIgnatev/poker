@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import { AdminPage } from './AdminPage';
-import { InfoPage } from './InfoPage';
-import { MainPage } from './MainPage';
+import { FC } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { AdminPage } from "./AdminPage";
+import { InfoPage } from "./InfoPage";
+import { MainPage } from "./MainPage";
 
 export const Pages: FC = () => {
   return (

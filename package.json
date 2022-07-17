@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon ./src/server.js --ignore './src/store'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier": "prettier --config ./.prettierrc  --write ."
+    "prettier": "prettier --config ./.prettierrc  --write .",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +34,11 @@
     "pm2": "^5.2.0"
   },
   "devDependencies": {
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
     "prettier": "2.7.1"
+  },
+  "lint-staged": {
+    "*.(js|jsx|ts|tsx|md|scss)": "prettier --config .prettierrc --write"
   }
 }

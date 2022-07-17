@@ -1,5 +1,5 @@
-import { useStore } from 'effector-react';
-import { FC, useEffect, useState } from 'react';
+import { useStore } from "effector-react";
+import { FC, useEffect, useState } from "react";
 
 import {
   $prevSettings,
@@ -8,12 +8,12 @@ import {
   fetchSettings,
   fetchStateAbility2,
   fetchStateAlias,
-} from '../../store/Settings';
-import { AliasWrapper } from '../AliasWrapper';
-import { RulesWrapper } from '../RulesWrapper';
-import { PagerModel } from '../RulesWrapper/types';
+} from "../../store/Settings";
+import { AliasWrapper } from "../AliasWrapper";
+import { RulesWrapper } from "../RulesWrapper";
+import { PagerModel } from "../RulesWrapper/types";
 
-import classes from './AdminAbilitySection.module.scss';
+import classes from "./AdminAbilitySection.module.scss";
 
 export const AdminAbilitySection: FC = () => {
   const ability2: any = useStore($prevSettings);

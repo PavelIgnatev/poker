@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 async function updateCopies(value, filename) {
   const currentTime = new Date(Date.now());

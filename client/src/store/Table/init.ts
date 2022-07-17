@@ -1,7 +1,7 @@
-import { createEffect } from 'effector';
-import { tableCellModel } from '../../@types/tableCellModel';
-import api from '../../api';
-import { ErrNot } from '../../components/NotificationService';
+import { createEffect } from "effector";
+import { tableCellModel } from "../../@types/tableCellModel";
+import api from "../../api";
+import { ErrNot } from "../../components/NotificationService";
 import {
   $dateEnd,
   $dateStart,
@@ -19,8 +19,8 @@ import {
   $timezone,
   handleChangeTimezoneTable,
   $onlySuperTurbo,
-} from '../Select';
-import { $tableState } from './state';
+} from "../Select";
+import { $tableState } from "./state";
 
 export const fetchUserReposFx = createEffect(async () => {
   const level = $level.getState()?.value,
@@ -39,16 +39,16 @@ export const fetchUserReposFx = createEffect(async () => {
     onlyNormal = $onlyNormal.getState(),
     alias = $alias.getState();
 
-  if (!level) ErrNot('Level filter: You have not chosen a level');
-  if (!alias) ErrNot('Enter an alias');
-  if (!network?.length) ErrNot('Network filter: You have not selected a network');
+  if (!level) ErrNot("Level filter: You have not chosen a level");
+  if (!alias) ErrNot("Enter an alias");
+  if (!network?.length) ErrNot("Network filter: You have not selected a network");
   if (!time) ErrNot("Time is less filter: You haven't chosen the time");
   if (!moneyStart || !moneyEnd || moneyStart > moneyEnd)
-    ErrNot('Buy-in filter: Invalid buy-in filter rules');
+    ErrNot("Buy-in filter: Invalid buy-in filter rules");
   if (Number(dateStart) > 23) ErrNot('Time from-before filter: Invalid "From" time filter rules');
   if (Number(dateEnd) > 23) ErrNot('Time from-before filter: Invalid "To" time filter rules');
-  if (!makeUp) ErrNot('Eff. MU: You have not selected a Eff. MU');
-  if (!timezone) ErrNot('Timezone: You have not selected a timezone');
+  if (!makeUp) ErrNot("Eff. MU: You have not selected a Eff. MU");
+  if (!timezone) ErrNot("Timezone: You have not selected a timezone");
 
   if (
     !level ||
@@ -66,8 +66,8 @@ export const fetchUserReposFx = createEffect(async () => {
     return [];
 
   try {
-    const result = await api.get<tableCellModel[]>('/api/tour', {
-      networks: network.map((elem) => elem.value).join(','),
+    const result = await api.get<tableCellModel[]>("/api/tour", {
+      networks: network.map((elem) => elem.value).join(","),
       time,
       level: level + makeUp,
       moneyStart,
@@ -81,10 +81,10 @@ export const fetchUserReposFx = createEffect(async () => {
       alias,
     });
 
-    handleChangeTimezoneTable($timezone.getState()?.label ?? '');
+    handleChangeTimezoneTable($timezone.getState()?.label ?? "");
     return result;
   } catch {
-    ErrNot('The request failed. Try again.');
+    ErrNot("The request failed. Try again.");
   }
 });
 

@@ -1,4 +1,4 @@
-import { SingleValue } from 'react-select';
+import { SingleValue } from "react-select";
 
 export interface BaseSelectModel {
   options: { value: string; label: string }[];

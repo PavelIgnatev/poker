@@ -10,10 +10,10 @@ const getTimeBySec = (timestamp) => {
   let seconds = timestamp % 60;
 
   return [
-    hours.toString().padStart(2, '0'),
-    minutes.toString().padStart(2, '0'),
-    seconds.toString().padStart(2, '0'),
-  ].join(':');
+    hours.toString().padStart(2, "0"),
+    minutes.toString().padStart(2, "0"),
+    seconds.toString().padStart(2, "0"),
+  ].join(":");
 };
 
 module.exports = { getTimeBySec };

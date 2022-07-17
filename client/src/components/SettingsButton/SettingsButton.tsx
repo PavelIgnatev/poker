@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import classes from './SettingsButton.module.scss';
+import { FC } from "react";
+import classes from "./SettingsButton.module.scss";
 
 export const SettingsButton: FC<{ handleClick: () => void }> = ({ handleClick }) => {
   return (

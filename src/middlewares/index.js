@@ -1,9 +1,9 @@
-const { json } = require('express');
-const rateLimiter = require('express-rate-limit');
-const slowDown = require('express-slow-down');
-const disablePoweredBy = require('./disablePoweredBy');
-const errorHandler = require('./errorHandler');
-const logger = require('./logger');
+const { json } = require("express");
+const rateLimiter = require("express-rate-limit");
+const slowDown = require("express-slow-down");
+const disablePoweredBy = require("./disablePoweredBy");
+const errorHandler = require("./errorHandler");
+const logger = require("./logger");
 
 const limiter = rateLimiter({
   windowMs: 1 * 60 * 1000,

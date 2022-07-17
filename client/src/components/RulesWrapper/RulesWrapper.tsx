@@ -1,21 +1,21 @@
-import { FC, useState } from 'react';
-import classNames from 'classnames';
+import { FC, useState } from "react";
+import classNames from "classnames";
 
-import { Rules } from './Rules';
-import { PagerModel } from './types';
+import { Rules } from "./Rules";
+import { PagerModel } from "./types";
 
-import classes from './Rules/Rules.module.scss';
+import classes from "./Rules/Rules.module.scss";
 
 export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
   const [count, setCount] = useState<Record<string, number>>({});
   const levels = Array(15)
     .fill(null)
     .map((e, i) => String(i + 1));
-  const EffMu = ['A', 'B'];
+  const EffMu = ["A", "B"];
 
   return (
     <div className={classes.pager}>
-      <h1 style={{ textAlign: 'center' }}>Rules for levels</h1>
+      <h1 style={{ textAlign: "center" }}>Rules for levels</h1>
       {levels.map((level) => {
         return (
           <div className={classes.wrapper} key={level}>

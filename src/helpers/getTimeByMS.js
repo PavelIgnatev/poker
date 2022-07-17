@@ -6,13 +6,13 @@
 
 const getTimeByMS = (timestamp) => {
   return new Date(Number(timestamp))
-    .toLocaleString('en-EN', {
+    .toLocaleString("en-EN", {
       hour12: false,
-      timeZone: 'Europe/Moscow',
-      hour: 'numeric',
-      minute: 'numeric',
+      timeZone: "Europe/Moscow",
+      hour: "numeric",
+      minute: "numeric",
     })
-    .replace('24', '00');
+    .replace("24", "00");
 };
 
 module.exports = { getTimeByMS };

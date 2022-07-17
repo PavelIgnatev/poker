@@ -1,1 +1,1 @@
-export { InfoPage } from './InfoPage';
+export { InfoPage } from "./InfoPage";

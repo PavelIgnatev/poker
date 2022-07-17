@@ -1,6 +1,6 @@
-import { createApi } from 'effector';
-import { MultiValue, SingleValue } from 'react-select';
-import { selectModel } from '../../@types/selectsModel';
+import { createApi } from "effector";
+import { MultiValue, SingleValue } from "react-select";
+import { selectModel } from "../../@types/selectsModel";
 import {
   $makeUp,
   $level,
@@ -18,7 +18,7 @@ import {
   $timezone,
   $timezoneTable,
   $onlySuperTurbo,
-} from './state';
+} from "./state";
 
 const cb = (_: SingleValue<selectModel>, v: SingleValue<selectModel>) => v;
 const cbMulti = (_: MultiValue<selectModel> | null, v: MultiValue<selectModel>) => [...v];

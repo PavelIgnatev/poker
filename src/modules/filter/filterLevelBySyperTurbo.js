@@ -7,8 +7,8 @@ const {
   EI: ei,
   StartDay: sd,
   I,
-} = require('../../helpers/curry');
-const { getNetwork } = require('../../helpers/getNetwork');
+} = require("../../helpers/curry");
+const { getNetwork } = require("../../helpers/getNetwork");
 
 /**
  * Возвращае true, если турнир прошел фильтрацию по правилам super turbo
@@ -18,12 +18,12 @@ const { getNetwork } = require('../../helpers/getNetwork');
  */
 
 function filterLevelBySyperTurbo(level, t) {
-  const name = t['@name']?.toLowerCase(),
-    network = getNetwork(t['@network']),
-    isKO = t['@bounty'],
-    bid = Number(t['@bid']),
-    prizepool = Number(t['@prizepool']),
-    weekDay = t['@getWeekday'],
+  const name = t["@name"]?.toLowerCase(),
+    network = getNetwork(t["@network"]),
+    isKO = t["@bounty"],
+    bid = Number(t["@bid"]),
+    prizepool = Number(t["@prizepool"]),
+    weekDay = t["@getWeekday"],
     MELE = mele(bid),
     MELEI = melei(name)(bid),
     EME = eme(bid)(prizepool),
@@ -33,25 +33,25 @@ function filterLevelBySyperTurbo(level, t) {
     StartDay = sd(weekDay),
     eI = I(name);
 
-  if (t['@superturbo']) {
-    if (level === '7A') {
-      if (network === '888') {
-      } else if (network === 'PS.eu') {
+  if (t["@superturbo"]) {
+    if (level === "7A") {
+      if (network === "888") {
+      } else if (network === "PS.eu") {
         if (EME(8.88)(5000)) return true;
-      } else if (network === 'PS.es') {
-      } else if (network === 'GG') {
-      } else if (network === 'WNMX') {
-      } else if (network === 'WPN') {
+      } else if (network === "PS.es") {
+      } else if (network === "GG") {
+      } else if (network === "WNMX") {
+      } else if (network === "WPN") {
       }
     }
-    if (level === '7B') {
-      if (network === '888') {
-      } else if (network === 'PS.eu') {
+    if (level === "7B") {
+      if (network === "888") {
+      } else if (network === "PS.eu") {
         if (EME(8.88)(8000)) return true;
-      } else if (network === 'PS.es') {
-      } else if (network === 'GG') {
-      } else if (network === 'WNMX') {
-      } else if (network === 'WPN') {
+      } else if (network === "PS.es") {
+      } else if (network === "GG") {
+      } else if (network === "WNMX") {
+      } else if (network === "WPN") {
       }
     }
   }

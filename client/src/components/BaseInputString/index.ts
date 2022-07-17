@@ -1,1 +1,1 @@
-export { BaseInputString } from './BaseInputString';
+export { BaseInputString } from "./BaseInputString";

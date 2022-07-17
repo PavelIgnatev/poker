@@ -1,6 +1,6 @@
-import { createApi, createEffect } from 'effector';
-import api from '../../api';
-import { $isValidPassword, $password } from './state';
+import { createApi, createEffect } from "effector";
+import api from "../../api";
+import { $isValidPassword, $password } from "./state";
 
 export const { handleChangePassword } = createApi($password, {
   handleChangePassword: (_: string, v: string) => v,

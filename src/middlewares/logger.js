@@ -28,18 +28,18 @@ const statusWithBadge = (statusCode) => {
 
 module.exports = (req, res, next) => {
   const method = grayBadge(req.method.toUpperCase());
-  const status = statusWithBadge('PENDING');
+  const status = statusWithBadge("PENDING");
   const fullUrl = getFullUrl(req);
 
-  console.log('\n', method, status, fullUrl);
+  console.log("\n", method, status, fullUrl);
 
-  res.on('finish', () => {
+  res.on("finish", () => {
     console.log(
-      '\n',
+      "\n",
       method,
       statusWithBadge(res.statusCode),
       fullUrl,
-      `${res.get('Content-Length') || 0} bytes sent`,
+      `${res.get("Content-Length") || 0} bytes sent`,
     );
   });
 

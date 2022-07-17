@@ -1,6 +1,6 @@
-import './Select';
-import './Table';
-import './Settings';
-import './Config';
-import './Password';
-import './Alias';
+import "./Select";
+import "./Table";
+import "./Settings";
+import "./Config";
+import "./Password";
+import "./Alias";

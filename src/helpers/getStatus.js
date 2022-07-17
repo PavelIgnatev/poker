@@ -1,5 +1,5 @@
-const { isSuperTurbo } = require('./isSuperTurbo');
-const { isTurbo } = require('./isTurbo');
+const { isSuperTurbo } = require("./isSuperTurbo");
+const { isTurbo } = require("./isTurbo");
 
 /**
  * Возвращае статус турнира
@@ -8,10 +8,10 @@ const { isTurbo } = require('./isTurbo');
  */
 
 const getStatus = (tournament) => {
-  const KO = tournament['@flags']?.includes('B');
+  const KO = tournament["@flags"]?.includes("B");
   const turbo = isTurbo(tournament);
   const superturbo = isSuperTurbo(tournament);
-  const status = `${KO ? 'KO' : '!KO'}${superturbo ? 'SuperTurbo' : turbo ? 'Turbo' : 'Normal'}`;
+  const status = `${KO ? "KO" : "!KO"}${superturbo ? "SuperTurbo" : turbo ? "Turbo" : "Normal"}`;
   return status;
 };
 

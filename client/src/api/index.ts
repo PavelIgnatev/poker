@@ -1,10 +1,10 @@
-import axios from 'axios';
-import ConfigApi from './ConfigApi';
+import axios from "axios";
+import ConfigApi from "./ConfigApi";
 class Api extends ConfigApi {
   async get<T>(url: string, params?: any) {
     let fullUrl: string = url;
     if (params) {
-      fullUrl += '?' + new URLSearchParams(params).toString();
+      fullUrl += "?" + new URLSearchParams(params).toString();
     }
     return (await axios(fullUrl))?.data as T;
   }

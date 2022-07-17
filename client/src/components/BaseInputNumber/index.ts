@@ -1,1 +1,1 @@
-export { BaseInputNumber } from './BaseInputNumber';
+export { BaseInputNumber } from "./BaseInputNumber";

@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { BaseInputModel } from './types';
-import classes from './BaseInput.module.scss';
-import cx from 'classnames';
+import { FC } from "react";
+import { BaseInputModel } from "./types";
+import classes from "./BaseInput.module.scss";
+import cx from "classnames";
 
 export const BaseInput: FC<BaseInputModel> = ({
   handleChange,

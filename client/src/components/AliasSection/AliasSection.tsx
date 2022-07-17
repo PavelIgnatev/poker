@@ -1,11 +1,11 @@
-import { useStore } from 'effector-react';
-import { useCallback } from 'react';
-import { $alias, handleChangeAlias } from '../../store/Alias';
-import { getConfig } from '../../store/Config';
-import { BaseButton } from '../BaseButton';
-import { BaseInputString } from '../BaseInputString';
-import classes from './AliasSection.module.scss';
-import eye from '../../assets/icons/eye.svg';
+import { useStore } from "effector-react";
+import { useCallback } from "react";
+import { $alias, handleChangeAlias } from "../../store/Alias";
+import { getConfig } from "../../store/Config";
+import { BaseButton } from "../BaseButton";
+import { BaseInputString } from "../BaseInputString";
+import classes from "./AliasSection.module.scss";
+import eye from "../../assets/icons/eye.svg";
 
 export const AliasSection = () => {
   const alias = useStore($alias);

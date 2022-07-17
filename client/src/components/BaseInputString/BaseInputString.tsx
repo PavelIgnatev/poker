@@ -1,6 +1,6 @@
-import classNames from 'classnames';
-import { FC, ChangeEventHandler } from 'react';
-import classes from './BaseInputString.module.scss';
+import classNames from "classnames";
+import { FC, ChangeEventHandler } from "react";
+import classes from "./BaseInputString.module.scss";
 
 type BaseInputStringProps = {
   value: string;
