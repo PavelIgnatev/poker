@@ -1,24 +1,21 @@
 .header {
   display: flex;
+  flex-direction: column;
   align-items: center;
   display: flex;
   position: relative;
 }
 
-.b {
-  width: 40px !important;
-}
-
-.wrap {
+.menu {
   width: 100%;
   padding: 30px 50px;
-  background: #e2e0f0;
+  background: #f5f8ff;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.wr {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,32 +34,16 @@
   width: 145px;
 }
 
-.alias {
-  margin-left: 25px;
-}
-
-.inputAlias {
-  max-width: initial;
-  min-width: 150px;
-}
-
 .inputWrapper {
   margin-left: 20px;
   color: hsl(0, 0%, 20%);
   display: flex;
 }
 
-.fake {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .checkboxWrapper {
   display: flex;
-  align-items: center;
   flex: 1;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -95,12 +76,8 @@
   }
 }
 
-.p {
-  color: #333333;
-}
-
-#react-select-3-listbox {
-  display: block !important;
+.inputTime {
+  width: 40px;
 }
 
 .button {
@@ -113,4 +90,47 @@
 
 .starts {
   display: flex;
+}
+
+.profileImage {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.alias {
+  display: flex;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: #4a72ff;
+  border-radius: 50%;
+}
+
+.info,
+.alias,
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.info {
+  margin-top: 10px;
+  padding: 0 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings {
+  cursor: pointer;
+  font-weight: 700;
+  color: #4a72ff;
+
+  &:hover {
+    color: #3157de;
+  }
 }

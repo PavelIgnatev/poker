@@ -33,14 +33,16 @@ import {
 import { useStore } from "effector-react";
 import { BaseSelect } from "../BaseSelect/BaseSelect";
 import { BaseSelectMulti } from "../BaseSelectMulti/BaseSelectMulti";
-import { UpdateButton } from "../UpdateButton/UpdateButton";
 import { BaseInput } from "../BaseInput/BaseInput";
 import { BaseCheckbox } from "../BaseCheckbox";
-import classes from "./BaseHeader.module.scss";
 import { BaseInputMask } from "../BaseInputMask";
 import { ComponentCategory } from "../ComponentCategory";
 import { BaseButton } from "../BaseButton";
 import { fetchUserReposFx } from "../../store/Table";
+import { $config } from "../../store/Config";
+import { $alias } from "../../store/Alias";
+import profileSrc from "../../assets/icons/Profile.svg";
+import classes from "./BaseHeader.module.scss";
 
 export const BaseHeader: FC = () => {
   const moneyStart = useStore($moneyStart),
@@ -56,10 +58,29 @@ export const BaseHeader: FC = () => {
     onlyNormal = useStore($onlyNormal),
     networkLength = useStore($network)?.length ?? 0;
 
+  const config = useStore($config);
+  const alias = useStore($alias);
+
   return (
     <header className={classes.header}>
-      <div className={classes.wrap}>
-        <div className={classes.wr}>
+      <div className={classes.info}>
+        <div className={classes.userInfo}>
+          <div className={classes.alias}>
+            <img className={classes.profileImage} src={profileSrc} alt="profile" />
+            <p>
+              Hello, <strong>{alias}!</strong>
+            </p>
+          </div>
+          <div className={classes.dot}></div>
+          <div className={classes.mail}>
+            <strong>Your e-mail: </strong>
+            {config?.mail}
+          </div>
+        </div>
+        <div className={classes.settings}>Edit settings</div>
+      </div>
+      <div className={classes.menu}>
+        <div className={classes.content}>
           <ComponentCategory category="Network">
             <BaseSelectMulti
               children={networkLength + " networks"}
@@ -88,7 +109,7 @@ export const BaseHeader: FC = () => {
             </div>
           </ComponentCategory>
         </div>
-        <div className={classes.wr}>
+        <div className={classes.content}>
           <div className={classes.starts}>
             <ComponentCategory category="Starts">
               <BaseSelect
@@ -104,13 +125,13 @@ export const BaseHeader: FC = () => {
                   placeholder="From(h)"
                   value={dateStart}
                   handleChange={handleChangeDateStart}
-                  className={cx(classes.input, classes.b)}
+                  className={cx(classes.input, classes.inputTime)}
                 />
                 <BaseInputMask
                   placeholder="To(h)"
                   value={dateEnd}
                   handleChange={handleChangeDateEnd}
-                  className={cx(classes.input, classes.b)}
+                  className={cx(classes.input, classes.inputTime)}
                 />
               </div>
             </ComponentCategory>
@@ -155,7 +176,7 @@ export const BaseHeader: FC = () => {
             </div>
           </ComponentCategory>
         </div>
-        <div className={classes.wr}>
+        <div className={classes.content}>
           <ComponentCategory>
             <BaseSelect
               className={classes.timezone}
