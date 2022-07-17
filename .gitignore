@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/src/store
+./src/store/**/*.json
 /client/node_modules
 /client/build
 /.pnp
