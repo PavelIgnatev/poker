@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./src/server.js --ignore './src/store'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --config ./.prettierrc  --write ."
   },
   "keywords": [],
   "author": "",
@@ -30,5 +31,8 @@
     "nodemon": "^2.0.19",
     "path": "^0.12.7",
     "pm2": "^5.2.0"
+  },
+  "devDependencies": {
+    "prettier": "2.7.1"
   }
 }

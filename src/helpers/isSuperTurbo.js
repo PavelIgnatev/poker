@@ -1,4 +1,4 @@
-const { getNetwork } = require("./getNetwork");
+const { getNetwork } = require('./getNetwork');
 
 /**
  * Возвращае true, если турнир является super turbo
@@ -7,7 +7,7 @@ const { getNetwork } = require("./getNetwork");
  */
 
 const isSuperTurbo = (tournament) => {
-  const superturbo = tournament["@flags"]?.includes("ST");
+  const superturbo = tournament['@flags']?.includes('ST');
   return superturbo;
 };
 

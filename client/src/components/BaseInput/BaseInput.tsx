@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { BaseInputModel } from "./types";
-import classes from "./BaseInput.module.scss";
-import cx from "classnames";
+import { FC } from 'react';
+import { BaseInputModel } from './types';
+import classes from './BaseInput.module.scss';
+import cx from 'classnames';
 
 export const BaseInput: FC<BaseInputModel> = ({
   handleChange,
@@ -14,15 +14,11 @@ export const BaseInput: FC<BaseInputModel> = ({
     handleChange(
       Math.max(
         Math.min(
-          Number(
-            /\d+/.test(String(Number(e.currentTarget.value)))
-              ? e.target.value
-              : value
-          ),
-          max
+          Number(/\d+/.test(String(Number(e.currentTarget.value))) ? e.target.value : value),
+          max,
         ),
-        1
-      )
+        1,
+      ),
     );
   };
 

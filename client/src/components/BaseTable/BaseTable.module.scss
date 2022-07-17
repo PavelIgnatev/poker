@@ -4,7 +4,8 @@
   min-width: 100%;
   grid-template-columns:
     minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(200px, 2fr)
-    minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 0.5fr) minmax(50px, 0.5fr)  minmax(100px, 1fr);
+    minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 0.5fr) minmax(50px, 0.5fr)
+    minmax(100px, 1fr);
 }
 
 .thead,
@@ -28,7 +29,7 @@
   background: rgb(57, 99, 162);
   height: 50px;
   display: flex;
-  align-items: center;  
+  align-items: center;
   justify-content: center;
   text-align: center;
   border: 0px;
@@ -74,7 +75,7 @@
     }
   }
 }
-.section{
+.section {
   min-height: 200px;
   position: relative;
   flex: 1;

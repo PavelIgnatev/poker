@@ -20,14 +20,10 @@ const MELEI = curry((name, a, b, c, d) => a >= b && a <= c && name.includes(d));
 const EME = curry((a, b, c, d) => a == c && b >= d);
 
 //Ставка равно, гарантия больше либо равно + name.includes
-const EMEI = curry(
-  (name, a, b, c, d, e) => a == c && b >= d && name.includes(e)
-);
+const EMEI = curry((name, a, b, c, d, e) => a == c && b >= d && name.includes(e));
 
 //тик равно, тикеты больше либо равно + name.includes
-const TEMEI = curry(
-  (name, a, b, c, d, e) => a == c && b >= d && name.includes(e)
-);
+const TEMEI = curry((name, a, b, c, d, e) => a == c && b >= d && name.includes(e));
 
 //Ставка равно + name.includes
 const EI = curry((name, a, b, e) => a == b && name.includes(e));

@@ -1,5 +1,5 @@
-import Select from "react-select";
-import { BaseSelectModel } from "./types";
+import Select from 'react-select';
+import { BaseSelectModel } from './types';
 
 export const BaseSelect = (props: BaseSelectModel) => {
   const { options, onChange, className, placeholder, disabled, defaultValue } = props;

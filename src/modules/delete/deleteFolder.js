@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require('fs');
 
 function deleteFolder(path) {
   let files = [];
@@ -6,7 +6,7 @@ function deleteFolder(path) {
   if (fs.existsSync(path)) {
     files = fs.readdirSync(path);
     files.forEach(function (file, index) {
-      let curPath = path + "/" + file;
+      let curPath = path + '/' + file;
       if (fs.statSync(curPath).isDirectory()) {
         deleteFolder(curPath);
       } else {

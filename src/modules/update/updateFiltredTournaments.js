@@ -1,17 +1,15 @@
-const { api } = require("../../api");
-const { getNetwork } = require("../../helpers/getNetwork");
-const { writeFile, readFile } = require("../../utils/promisify");
-const { filterLevelByWord } = require("../filter/filterLevelByWord");
-const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
+const { api } = require('../../api');
+const { getNetwork } = require('../../helpers/getNetwork');
+const { writeFile, readFile } = require('../../utils/promisify');
+const { filterLevelByWord } = require('../filter/filterLevelByWord');
+const { isSuperTurbo } = require('../../helpers/isSuperTurbo');
 
 async function updateFiltredTournaments() {
   try {
-    const prevState = JSON.parse(
-      await readFile("src/store/tournaments/tournaments.json")
-    );
+    const prevState = JSON.parse(await readFile('src/store/tournaments/tournaments.json'));
     const state = {};
     const stateLength = Object.keys(prevState).length;
-    console.log("Длина стейта до фильтра: ", stateLength);
+    console.log('Длина стейта до фильтра: ', stateLength);
 
     // Удаляем турики если их больше 90
     const my = Object.keys(prevState)
@@ -29,7 +27,7 @@ async function updateFiltredTournaments() {
       state[date] = prevState[date];
     });
 
-    console.log("Длина стейта после фильтра: ", Object.keys(state).length);
+    console.log('Длина стейта после фильтра: ', Object.keys(state).length);
 
     const currentTime = new Date(Date.now() - 2 * 86400000);
     const year = currentTime.getFullYear();
@@ -38,10 +36,10 @@ async function updateFiltredTournaments() {
     const date = `${year}-${month}-${day}`;
 
     if (!state[date]) {
-      console.log("Добавляем новый день в базу");
+      console.log('Добавляем новый день в базу');
       const tournaments = (
         await api.get(
-          `https://www.sharkscope.com/api/pocarrleaderboard/reports/dailyscheduledtournaments/networks/888Poker,GGNetwork,PartyPoker,PokerStars,WPN,PokerStars(FR-ES-PT),Winamax.fr,Chico,iPoker?date=${date}`
+          `https://www.sharkscope.com/api/pocarrleaderboard/reports/dailyscheduledtournaments/networks/888Poker,GGNetwork,PartyPoker,PokerStars,WPN,PokerStars(FR-ES-PT),Winamax.fr,Chico,iPoker?date=${date}`,
         )
       )?.DailyScheduledTournamentResponse?.ScheduledTournament;
 
@@ -50,10 +48,7 @@ async function updateFiltredTournaments() {
       console.log(`День ${date} успешно добавлен в tournaments.json`);
     }
 
-    await writeFile(
-      "src/store/tournaments/tournaments.json",
-      JSON.stringify(state)
-    );
+    await writeFile('src/store/tournaments/tournaments.json', JSON.stringify(state));
 
     console.log(`Перезаписал tournaments.json`);
 
@@ -62,25 +57,25 @@ async function updateFiltredTournaments() {
     Object.keys(state).forEach((day) => {
       if (!filtredState[day]) filtredState[day] = {};
       filtredState[day] = state[day]?.filter((item) => {
-        const od = item["@flags"]?.includes("OD"),
-          sng = item["@gameClass"]?.includes("sng"),
-          isNL = item["@structure"] === "NL",
-          isH = item["@game"] === "H" || item["@game"] === "H6",
-          name = item["@name"],
-          sat = item["@flags"]?.includes("SAT");
+        const od = item['@flags']?.includes('OD'),
+          sng = item['@gameClass']?.includes('sng'),
+          isNL = item['@structure'] === 'NL',
+          isH = item['@game'] === 'H' || item['@game'] === 'H6',
+          name = item['@name'],
+          sat = item['@flags']?.includes('SAT');
 
-        const network = getNetwork(item["@network"]);
+        const network = getNetwork(item['@network']);
 
         const rebuy =
-          network === "888"
-            ? name?.includes("R&A")
-            : item["@flags"]?.includes("R") && !item["@flags"]?.includes("RH");
+          network === '888'
+            ? name?.includes('R&A')
+            : item['@flags']?.includes('R') && !item['@flags']?.includes('RH');
 
         if (!name) return false;
 
         if (filterLevelByWord(network, name?.toLowerCase())) return false;
 
-        const superturbo = network === "WNMX" ? false : isSuperTurbo(item);
+        const superturbo = network === 'WNMX' ? false : isSuperTurbo(item);
 
         if (isNL && isH && !rebuy && !od && !sng && !sat && !superturbo) {
           return true;
@@ -89,12 +84,9 @@ async function updateFiltredTournaments() {
       });
     });
 
-    console.log("Начал записывать filtredTournaments в базу");
-    writeFile(
-      "src/store/tournaments/filtredTournaments.json",
-      JSON.stringify(filtredState)
-    );
-    console.log("Записал filtredTournaments в базу");
+    console.log('Начал записывать filtredTournaments в базу');
+    writeFile('src/store/tournaments/filtredTournaments.json', JSON.stringify(filtredState));
+    console.log('Записал filtredTournaments в базу');
   } catch (error) {
     console.log(error);
   }

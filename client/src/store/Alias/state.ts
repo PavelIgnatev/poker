@@ -1,3 +1,3 @@
-import { createStore } from "effector";
+import { createStore } from 'effector';
 
-export const $alias = createStore<string>("");
+export const $alias = createStore<string>('');

@@ -1,8 +1,8 @@
-import { toast } from "react-toastify";
-import { Check } from "../Icon/Check";
-import { Error } from "../Icon/Error";
-import "react-toastify/dist/ReactToastify.css";
-import classes from "./NotificationService.module.scss";
+import { toast } from 'react-toastify';
+import { Check } from '../Icon/Check';
+import { Error } from '../Icon/Error';
+import 'react-toastify/dist/ReactToastify.css';
+import classes from './NotificationService.module.scss';
 
 //Уведомление о успехе
 export function SucNot(content: string) {
@@ -12,7 +12,7 @@ export function SucNot(content: string) {
     </div>,
     {
       className: classes.NotificationSuccess,
-    }
+    },
   );
 }
 
@@ -24,6 +24,6 @@ export function ErrNot(content: string) {
     </div>,
     {
       className: classes.NotificationError,
-    }
+    },
   );
 }

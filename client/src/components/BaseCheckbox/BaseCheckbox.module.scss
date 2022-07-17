@@ -1,5 +1,5 @@
 .checkbox {
-  transition: .2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
   padding: 4px 8px;
   border-radius: 20px;
   margin: 0 2px;
@@ -7,6 +7,6 @@
 
 .selected {
   color: white;
-  background: #4A72FF !important;
+  background: #4a72ff !important;
   user-select: none;
 }

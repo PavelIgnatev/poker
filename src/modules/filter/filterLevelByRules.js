@@ -1,4 +1,4 @@
-const { getNetwork } = require("../../helpers/getNetwork");
+const { getNetwork } = require('../../helpers/getNetwork');
 const {
   MELE: mele,
   MELEI: melei,
@@ -8,8 +8,8 @@ const {
   EI: ei,
   StartDay: sd,
   I,
-} = require("../../helpers/curry");
-const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
+} = require('../../helpers/curry');
+const { isSuperTurbo } = require('../../helpers/isSuperTurbo');
 
 /**
  * Возвращае true, если турнир прошел фильтрацию по правилам уровня
@@ -19,12 +19,12 @@ const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
  */
 
 const filterLevelByRules = (level, tournament) => {
-  const name = tournament["@name"]?.toLowerCase(),
-    network = getNetwork(tournament["@network"]),
-    isKO = tournament["@bounty"],
-    bid = Number(tournament["@bid"]),
-    prizepool = Number(tournament["@prizepool"]),
-    weekDay = tournament["@getWeekday"],
+  const name = tournament['@name']?.toLowerCase(),
+    network = getNetwork(tournament['@network']),
+    isKO = tournament['@bounty'],
+    bid = Number(tournament['@bid']),
+    prizepool = Number(tournament['@prizepool']),
+    weekDay = tournament['@getWeekday'],
     MELE = mele(bid),
     MELEI = melei(name)(bid),
     EME = eme(bid)(prizepool),
@@ -37,13 +37,13 @@ const filterLevelByRules = (level, tournament) => {
   if (!name) return false;
 
   //Фильтр снг для румов, отличных от PS.eu
-  if (network !== "PS.eu" && tournament["@sng"]) return false;
+  if (network !== 'PS.eu' && tournament['@sng']) return false;
 
-  if (level === "7A") {
-    if (network === "PS.eu") {
-      if (!tournament["@turbo"]) {
+  if (level === '7A') {
+    if (network === 'PS.eu') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(7.5)) return true;
         } else {
           if (MELE(1.0)(33.0)) return true;
@@ -60,7 +60,7 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(55.0)(60000)) return true;
           if (EME(44.0)(40000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(16.5)) return true;
 
@@ -82,11 +82,11 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(22.0)(30000)) return true;
         }
       }
-    } else if (network === "GG") {
-      if (!tournament["@turbo"]) {
+    } else if (network === 'GG') {
+      if (!tournament['@turbo']) {
         //Синие
         if (MELE(1.0)(33.0)) return true;
-        if (tournament["@currency"] === "CNY" && MELE(1.0)(270.0)) return true;
+        if (tournament['@currency'] === 'CNY' && MELE(1.0)(270.0)) return true;
         if (isKO) {
           if (MELEME(121.0)(150.0)(250000)) return true;
           if (MELEME(80.0)(120.0)(100000)) return true;
@@ -100,7 +100,7 @@ const filterLevelByRules = (level, tournament) => {
           if (MELEME(50.0)(66.0)(60000)) return true;
           if (MELEME(34.0)(49.0)(40000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(20.0)) return true;
         if (isKO) {
@@ -119,10 +119,10 @@ const filterLevelByRules = (level, tournament) => {
           if (MELEME(21.0)(33.0)(40000)) return true;
         }
       }
-    } else if (network === "PS.es") {
-      if (!tournament["@turbo"]) {
+    } else if (network === 'PS.es') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(5.0)) return true;
         } else {
           if (MELE(1.0)(30.0)) return true;
@@ -139,7 +139,7 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(100.0)(200000)) return true;
           if (EME(50.0)(50000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(10.0)) return true;
         if (isKO) {
@@ -150,10 +150,10 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(20.0)(20000)) return true;
         }
       }
-    } else if (network === "Party") {
-      if (!tournament["@turbo"]) {
+    } else if (network === 'Party') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(11.0)) return true;
         } else {
           if (MELE(1.0)(33.0)) return true;
@@ -170,14 +170,14 @@ const filterLevelByRules = (level, tournament) => {
           if (MELEME(55.0)(66.0)(60000)) return true;
           if (EME(44.0)(40000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(11.0)) return true;
       }
-    } else if (network === "888") {
-      if (!tournament["@turbo"]) {
+    } else if (network === '888') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(6.0)) return true;
         } else {
           if (MELE(1.0)(33.0)) return true;
@@ -194,19 +194,19 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(55.0)(50000)) return true;
           if (EME(44.0)(30000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(12.0)) return true;
       }
-    } else if (network === "WPN" || network === "Chico") {
-      if (tournament["@rebuy"] && !tournament["@turbo"]) {
-        if (network === "WPN") {
+    } else if (network === 'WPN' || network === 'Chico') {
+      if (tournament['@rebuy'] && !tournament['@turbo']) {
+        if (network === 'WPN') {
           if (MELE(1.0)(6.6)) return true;
         }
-        if (network === "Chico") {
+        if (network === 'Chico') {
           if (MELE(1.0)(12.0)) return true;
         }
-      } else if (!tournament["@turbo"]) {
+      } else if (!tournament['@turbo']) {
         //Синие
         if (MELE(1.0)(33.0)) return true;
         if (isKO) {
@@ -222,7 +222,7 @@ const filterLevelByRules = (level, tournament) => {
           if (MELEME(50.0)(66.0)(60000)) return true;
           if (MELEME(34.0)(49.0)(40000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(20.0)) return true;
         if (isKO) {
@@ -239,10 +239,10 @@ const filterLevelByRules = (level, tournament) => {
           if (MELEME(21.0)(33.0)(32000)) return true;
         }
       }
-    } else if (network === "WNMX" || network === "IP") {
-      if (!tournament["@turbo"]) {
+    } else if (network === 'WNMX' || network === 'IP') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(5.0)) return true;
         } else {
           if (MELE(1.0)(30.0)) return true;
@@ -255,9 +255,9 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(100.0)(125000)) return true;
           if (EME(50.0)(15000)) return true;
         }
-      } else if (tournament["@superturbo"]) {
+      } else if (tournament['@superturbo']) {
         if (MELE(1.0)(10.0)) return true;
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(30.0)) return true;
         if (isKO) {
@@ -270,11 +270,11 @@ const filterLevelByRules = (level, tournament) => {
       }
     }
   }
-  if (level === "7B") {
-    if (network === "PS.eu") {
-      if (!tournament["@turbo"]) {
+  if (level === '7B') {
+    if (network === 'PS.eu') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(5.5)) return true;
         } else {
           if (MELE(1.0)(27.0)) return true;
@@ -293,7 +293,7 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(44.0)(50000)) return true;
           if (EME(33.0)(20000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(11.0)) return true;
         if (isKO) {
@@ -312,11 +312,11 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(16.5)(25000)) return true;
         }
       }
-    } else if (network === "GG") {
-      if (!tournament["@turbo"]) {
+    } else if (network === 'GG') {
+      if (!tournament['@turbo']) {
         //Синие
         if (MELE(1.0)(33.0)) return true;
-        if (tournament["@currency"] === "CNY" && MELE(1.0)(240.0)) return true;
+        if (tournament['@currency'] === 'CNY' && MELE(1.0)(240.0)) return true;
         if (isKO) {
           if (MELEME(121.0)(150.0)(300000)) return true;
           if (MELEME(80.0)(120.0)(150000)) return true;
@@ -330,7 +330,7 @@ const filterLevelByRules = (level, tournament) => {
           if (MELEME(50.0)(66.0)(100000)) return true;
           if (MELEME(34.0)(49.0)(50000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(13.0)) return true;
         if (isKO) {
@@ -347,10 +347,10 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(15.0)(20000)) return true;
         }
       }
-    } else if (network === "PS.es") {
-      if (!tournament["@turbo"]) {
+    } else if (network === 'PS.es') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(5.0)) return true;
         } else {
           if (MELE(1.0)(20.0)) return true;
@@ -369,7 +369,7 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(50.0)(75000)) return true;
           if (EME(30.0)(15000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(10.0)) return true;
         if (isKO) {
@@ -380,10 +380,10 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(20.0)(30000)) return true;
         }
       }
-    } else if (network === "Party") {
-      if (!tournament["@turbo"]) {
+    } else if (network === 'Party') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(11.0)) return true;
         } else {
           if (MELE(1.0)(33.0)) return true;
@@ -400,14 +400,14 @@ const filterLevelByRules = (level, tournament) => {
           if (MELEME(55.0)(66.0)(90000)) return true;
           if (EME(44.0)(50000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(11.0)) return true;
       }
-    } else if (network === "888") {
-      if (!tournament["@turbo"]) {
+    } else if (network === '888') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(6.0)) return true;
         } else {
           if (MELE(1.0)(33.0)) return true;
@@ -424,19 +424,19 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(55.0)(75000)) return true;
           if (EME(44.0)(50000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(12.0)) return true;
       }
-    } else if (network === "WPN" || network === "Chico") {
-      if (tournament["@rebuy"] && !tournament["@turbo"]) {
-        if (network === "WPN") {
+    } else if (network === 'WPN' || network === 'Chico') {
+      if (tournament['@rebuy'] && !tournament['@turbo']) {
+        if (network === 'WPN') {
           if (MELE(1.0)(6.6)) return true;
         }
-        if (network === "Chico") {
+        if (network === 'Chico') {
           if (MELE(1.0)(12.0)) return true;
         }
-      } else if (!tournament["@turbo"]) {
+      } else if (!tournament['@turbo']) {
         //Синие
         if (MELE(1.0)(33.0)) return true;
         if (isKO) {
@@ -452,7 +452,7 @@ const filterLevelByRules = (level, tournament) => {
           if (MELEME(50.0)(66.0)(100000)) return true;
           if (MELEME(34.0)(49.0)(50000)) return true;
         }
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(13.0)) return true;
         if (isKO) {
@@ -467,10 +467,10 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(15.0)(15000)) return true;
         }
       }
-    } else if (network === "WNMX" || network === "IP") {
-      if (!tournament["@turbo"]) {
+    } else if (network === 'WNMX' || network === 'IP') {
+      if (!tournament['@turbo']) {
         //Синие
-        if (tournament["@rebuy"]) {
+        if (tournament['@rebuy']) {
           if (MELE(1.0)(5.0)) return true;
         } else {
           if (MELE(1.0)(30.0)) return true;
@@ -483,9 +483,9 @@ const filterLevelByRules = (level, tournament) => {
           if (EME(100.0)(150000)) return true;
           if (EME(50.0)(20000)) return true;
         }
-      } else if (tournament["@superturbo"]) {
+      } else if (tournament['@superturbo']) {
         if (MELE(1.0)(10.0)) return true;
-      } else if (!tournament["@rebuy"]) {
+      } else if (!tournament['@rebuy']) {
         //Красные
         if (MELE(1.0)(30.0)) return true;
         if (isKO) {
@@ -1002,7 +1002,7 @@ const filterLevelByRules = (level, tournament) => {
   //     }
   //   }
   // }
-  if (level === "16A" || level === "16B") {
+  if (level === '16A' || level === '16B') {
     return true;
   }
   return false;

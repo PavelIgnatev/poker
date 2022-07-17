@@ -1,4 +1,4 @@
-const { getConfig, saveConfig } = require("../../../utils/config");
+const { getConfig, saveConfig } = require('../../../utils/config');
 
 module.exports = async (req, res) => {
   const { alias } = req.body;
@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   const config = await getConfig();
 
   if (!config[alias]) {
-    return res.status(404).send("No such alias");
+    return res.status(404).send('No such alias');
   }
 
   delete config[alias];

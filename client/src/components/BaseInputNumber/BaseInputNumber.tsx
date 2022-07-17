@@ -1,8 +1,8 @@
-import { FC } from "react";
-import classes from "./BaseInputNumber.module.scss";
-import { BaseInputNumberModel } from "./types";
+import { FC } from 'react';
+import classes from './BaseInputNumber.module.scss';
+import { BaseInputNumberModel } from './types';
 
-import classnames from "classnames";
+import classnames from 'classnames';
 
 export const BaseInputNumber: FC<BaseInputNumberModel> = ({
   handleChange,
@@ -15,16 +15,12 @@ export const BaseInputNumber: FC<BaseInputNumberModel> = ({
     const value = e.currentTarget.value;
     if (
       value &&
-      value !== "-" &&
-      !/^(0$|-?[1-9]\d*(\.\d*[1-9]$)?|-?0\.\d*[1-9])$/.test(
-        e.currentTarget.value
-      )
+      value !== '-' &&
+      !/^(0$|-?[1-9]\d*(\.\d*[1-9]$)?|-?0\.\d*[1-9])$/.test(e.currentTarget.value)
     )
       return value;
 
-    handleChange(
-      Number(value) > 9999 ? "9999" : Number(value) < -9999 ? "-9999" : value
-    );
+    handleChange(Number(value) > 9999 ? '9999' : Number(value) < -9999 ? '-9999' : value);
   }
 
   return (

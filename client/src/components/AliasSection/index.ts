@@ -1,1 +1,1 @@
-export { AliasSection } from "./AliasSection";
+export { AliasSection } from './AliasSection';

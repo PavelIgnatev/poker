@@ -1,21 +1,21 @@
 .input {
-    background-color: #F5F8FF;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #F5F8FF;
-    outline: none;
-    height: 45px;
-    box-sizing: border-box;
-    transition: .3s all ease-in-out;
-    padding-left: 18px;
-    border-color: rgb(190, 206, 226);
-    width: 100%;
-    cursor: pointer;
+  background-color: #f5f8ff;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #f5f8ff;
+  outline: none;
+  height: 45px;
+  box-sizing: border-box;
+  transition: 0.3s all ease-in-out;
+  padding-left: 18px;
+  border-color: rgb(190, 206, 226);
+  width: 100%;
+  cursor: pointer;
 
-    &:focus,
-    &:active {
-        outline: none;
-        border-color: #4A72FF;
-    }
+  &:focus,
+  &:active {
+    outline: none;
+    border-color: #4a72ff;
+  }
 }

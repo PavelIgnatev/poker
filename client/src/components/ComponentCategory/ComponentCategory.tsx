@@ -1,6 +1,6 @@
-import classNames from "classnames";
-import { FC } from "react";
-import classes from "./ComponentCategory.module.scss";
+import classNames from 'classnames';
+import { FC } from 'react';
+import classes from './ComponentCategory.module.scss';
 
 export const ComponentCategory: FC<{
   category?: string;

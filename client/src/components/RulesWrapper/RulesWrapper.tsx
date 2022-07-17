@@ -1,21 +1,21 @@
-import { FC, useState } from "react";
-import classNames from "classnames";
+import { FC, useState } from 'react';
+import classNames from 'classnames';
 
-import { Rules } from "./Rules";
-import { PagerModel } from "./types";
+import { Rules } from './Rules';
+import { PagerModel } from './types';
 
-import classes from "./Rules/Rules.module.scss";
+import classes from './Rules/Rules.module.scss';
 
 export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
   const [count, setCount] = useState<Record<string, number>>({});
   const levels = Array(15)
     .fill(null)
     .map((e, i) => String(i + 1));
-  const EffMu = ["A", "B"];
+  const EffMu = ['A', 'B'];
 
   return (
     <div className={classes.pager}>
-      <h1 style={{ textAlign: "center" }}>Rules for levels</h1>
+      <h1 style={{ textAlign: 'center' }}>Rules for levels</h1>
       {levels.map((level) => {
         return (
           <div className={classes.wrapper} key={level}>
@@ -24,11 +24,7 @@ export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
             <div>
               {EffMu.map((id) => (
                 <div className={classes.effmu} key={level + id}>
-                  <input
-                    type="checkbox"
-                    id={level + id}
-                    className={classes.hide}
-                  />
+                  <input type="checkbox" id={level + id} className={classes.hide} />
                   <label htmlFor={level + id}>Rules for Eff.mu - {id}</label>
                   <div>
                     {(prevState?.[level + id] ?? [])
@@ -44,7 +40,10 @@ export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
                               const newState: Record<string, number> = {};
                               newState[level + id] = 0;
 
-                              setCount({ ...count, ...newState });
+                              setCount({
+                                ...count,
+                                ...newState,
+                              });
                             }}
                           />
                         );
@@ -54,7 +53,10 @@ export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
                         const newState: Record<string, number> = {};
                         newState[level + id] = 1;
 
-                        setCount({ ...count, ...newState });
+                        setCount({
+                          ...count,
+                          ...newState,
+                        });
                       }}
                       disabled={count[level + id] === 1}
                       className={classNames(classes.button, classes.maxButton)}

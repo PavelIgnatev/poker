@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { Thead } from "./Thead";
-import { Tbody } from "./Tbody/Tbody";
-import { Loader } from "../Loader/Loader";
-import classes from "./BaseTable.module.scss";
-import { tableCellModel } from "../../@types/tableCellModel";
+import { FC } from 'react';
+import { Thead } from './Thead';
+import { Tbody } from './Tbody/Tbody';
+import { Loader } from '../Loader/Loader';
+import classes from './BaseTable.module.scss';
+import { tableCellModel } from '../../@types/tableCellModel';
 
 type BaseTableProps = {
   data: tableCellModel[] | undefined;
@@ -11,8 +11,7 @@ type BaseTableProps = {
 };
 
 export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
-  if (!data?.length)
-    return <section className={classes.nodata}>Nothing found</section>;
+  if (!data?.length) return <section className={classes.nodata}>Nothing found</section>;
 
   if (loading)
     return (

@@ -6,36 +6,36 @@
 
 const getNetwork = (network) => {
   switch (network) {
-    case "PokerStars(FR-ES-PT)": {
-      network = "PS.es";
+    case 'PokerStars(FR-ES-PT)': {
+      network = 'PS.es';
       break;
     }
-    case "PokerStars": {
-      network = "PS.eu";
+    case 'PokerStars': {
+      network = 'PS.eu';
       break;
     }
-    case "PartyPoker": {
-      network = "Party";
+    case 'PartyPoker': {
+      network = 'Party';
       break;
     }
-    case "GGNetwork": {
-      network = "GG";
+    case 'GGNetwork': {
+      network = 'GG';
       break;
     }
-    case "888Poker": {
-      network = "888";
+    case '888Poker': {
+      network = '888';
       break;
     }
-    case "Winamax.fr": {
-      network = "WNMX";
+    case 'Winamax.fr': {
+      network = 'WNMX';
       break;
     }
-    case "iPoker": {
-      network = "IP";
+    case 'iPoker': {
+      network = 'IP';
       break;
     }
-    case "Chico": {
-      network = "Chico";
+    case 'Chico': {
+      network = 'Chico';
       break;
     }
   }

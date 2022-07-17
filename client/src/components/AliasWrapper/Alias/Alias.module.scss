@@ -1,7 +1,6 @@
 .Page {
   display: flex;
   margin-bottom: 5px;
-  
 }
 
 .Page div div div div {
@@ -10,7 +9,7 @@
   white-space: initial;
 }
 
-span[aria-relevant="additions text"] + div {
+span[aria-relevant='additions text'] + div {
   height: 100%;
 }
 .Page > div {

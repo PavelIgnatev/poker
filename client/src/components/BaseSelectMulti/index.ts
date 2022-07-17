@@ -1,1 +1,1 @@
-export { BaseSelectMulti } from "./BaseSelectMulti";
+export { BaseSelectMulti } from './BaseSelectMulti';

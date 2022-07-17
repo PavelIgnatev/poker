@@ -1,1 +1,1 @@
-export { ComponentCategory } from "./ComponentCategory";
+export { ComponentCategory } from './ComponentCategory';
