@@ -86,6 +86,7 @@ $borderColor: rgba(74, 114, 255, 0.2);
 
 .UserCardAliasInfo {
   margin-left: 78px;
+  margin-right: 1px;
   flex: 1;
 
   &__Alias {
@@ -117,10 +118,12 @@ $borderColor: rgba(74, 114, 255, 0.2);
 
       &:focus,
       &:active {
-        outline: 1px solid #4a72ff !important;
+        z-index: 1000;
+        box-shadow: 0 0 0 1px #4a72ff;
         border-color: #4a72ff !important;
       }
     }
+
     &_effMu {
       cursor: pointer;
     }

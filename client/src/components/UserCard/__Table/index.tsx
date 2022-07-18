@@ -18,7 +18,7 @@ export const UserCardTable = ({ networks2levels }: Props) => {
         <div className={b("Cell")}>Level</div>
       </div>
       {Object.keys(networks2levels).map((network) => (
-        <div className={b("Row")}>
+        <div className={b("Row")} key={network}>
           <div className={b("Cell")}>{network}</div>
           <div className={b("Cell")}>{networks2levels[network]}</div>
         </div>

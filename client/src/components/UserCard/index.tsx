@@ -37,7 +37,7 @@ export const UserCard = ({ alias, config, onClose }: Props) => {
       <div className={b("Content")}>
         <UserCardTable networks2levels={config.networks} />
         <UserCardAliasInfo
-          alias="valeria"
+          alias={alias}
           effMu={effMu}
           setEffMu={setEffMu}
           mail={mail}

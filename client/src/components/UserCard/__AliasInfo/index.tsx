@@ -58,7 +58,7 @@ export const UserCardAliasInfo = ({ alias, effMu, mail, setEffMu, setMail }: Pro
       </div>
       <div className={b("Settings")}>
         <div className={b("EffMuWrapper")}>
-          <div>Eff mu</div>
+          <b>Eff mu</b>
           <Select
             options={effMuOptions}
             defaultValue={defaultEffMuOption}
@@ -70,7 +70,7 @@ export const UserCardAliasInfo = ({ alias, effMu, mail, setEffMu, setMail }: Pro
         </div>
         <div className={b("EmailWrapper")}>
           <div>
-            Your <b>e-mail</b>
+            <b>E-mail</b>
           </div>
           <BaseInputString
             value={mail}
