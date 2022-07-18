@@ -12,6 +12,7 @@ import {
 import { AliasWrapper } from "../AliasWrapper";
 import { RulesWrapper } from "../RulesWrapper";
 import { PagerModel } from "../RulesWrapper/types";
+import { UserCard } from "../UserCard";
 
 import classes from "./AdminAbilitySection.module.scss";
 
@@ -44,6 +45,7 @@ export const AdminAbilitySection: FC = () => {
 
       <RulesWrapper state={stateAbility2} prevState={ability2} />
       <AliasWrapper prevState={stateAlias} />
+      <UserCard alias="valeria" />
     </section>
   );
 };

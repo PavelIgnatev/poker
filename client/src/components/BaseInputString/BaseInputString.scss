@@ -1,4 +1,4 @@
-.input {
+.BaseInputString {
   background-color: #f5f8ff;
   border-radius: 10px;
   border-style: solid;
@@ -7,11 +7,11 @@
   outline: none;
   height: 45px;
   box-sizing: border-box;
-  transition: 0.3s all ease-in-out;
+  transition: 0.05s all ease-in-out;
   padding-left: 18px;
   border-color: rgb(190, 206, 226);
   width: 100%;
-  cursor: pointer;
+  cursor: text;
 
   &:focus,
   &:active {
