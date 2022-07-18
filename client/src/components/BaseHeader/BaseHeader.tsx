@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import cx from "classnames";
 import {
   $level,
@@ -42,7 +42,11 @@ import { fetchUserReposFx } from "../../store/Table";
 import { $config } from "../../store/Config";
 import { $alias } from "../../store/Alias";
 import profileSrc from "../../assets/icons/Profile.svg";
+
+import { Modal, ModalRef } from "../Modal";
+
 import classes from "./BaseHeader.module.scss";
+import { UserCard } from "../UserCard";
 
 export const BaseHeader: FC = () => {
   const moneyStart = useStore($moneyStart),
@@ -61,6 +65,10 @@ export const BaseHeader: FC = () => {
   const config = useStore($config);
   const alias = useStore($alias);
 
+  const settingsModalRef = React.useRef<ModalRef>(null);
+  const handleSettingsModalOpen = () => settingsModalRef.current?.open();
+  const handleSettingsModalClose = () => settingsModalRef.current?.close();
+
   return (
     <header className={classes.header}>
       <div className={classes.info}>
@@ -77,7 +85,16 @@ export const BaseHeader: FC = () => {
             {config?.mail}
           </div>
         </div>
-        <div className={classes.settings}>Edit settings</div>
+        <div className={classes.settings} onClick={handleSettingsModalOpen}>
+          Edit settings
+        </div>
+        <Modal ref={settingsModalRef}>
+          {config ? (
+            <UserCard alias={alias} config={config} onClose={handleSettingsModalClose} />
+          ) : (
+            "Loading config"
+          )}
+        </Modal>
       </div>
       <div className={classes.menu}>
         <div className={classes.content}>
