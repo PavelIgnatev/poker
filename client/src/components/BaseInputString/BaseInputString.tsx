@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { FC, ChangeEventHandler } from "react";
-import classes from "./BaseInputString.module.scss";
+import "./BaseInputString.scss";
 
 type BaseInputStringProps = {
   value: string;
@@ -11,7 +11,7 @@ type BaseInputStringProps = {
 export const BaseInputString: FC<BaseInputStringProps> = ({ onChange, className, value }) => {
   return (
     <input
-      className={classNames(className, classes.input)}
+      className={classNames("BaseInputString", className)}
       value={value}
       onChange={(e) => onChange(e.currentTarget.value)}
     />
