@@ -21,6 +21,8 @@ apiRouter
   .patch(api.config.patch)
   .delete(api.config.delete);
 
+apiRouter.get("/aliases", api.aliases.get);
+
 // routes for /
 const mainRouter = new express.Router();
 

@@ -9,6 +9,7 @@ const postAlias = require("./postAlias");
 const postPassword = require("./postPassword");
 
 const config = require("./config");
+const aliases = require("./aliases");
 
 module.exports = {
   getTournaments,
@@ -22,4 +23,5 @@ module.exports = {
   postPassword,
 
   config,
+  aliases,
 };
