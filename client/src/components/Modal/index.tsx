@@ -26,6 +26,17 @@ export const Modal = forwardRef(({ children, mix }: Props, ref) => {
 
   useImperativeHandle<unknown, ModalRef>(ref, () => ({ open, close, isOpened: show }));
 
+  React.useEffect(() => {
+    const closeListener = (e: KeyboardEvent) => {
+      if (e.keyCode === 27) {
+        close();
+      }
+    };
+
+    window.addEventListener("keydown", closeListener);
+    return () => window.removeEventListener("keydown", closeListener);
+  }, []);
+
   const container = document.getElementById("modal-root");
 
   if (!container || !show) {

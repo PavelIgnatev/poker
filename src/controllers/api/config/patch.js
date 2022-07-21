@@ -7,6 +7,10 @@ module.exports = async (req, res) => {
     return res.status(400).send("Config is required parameter");
   }
 
+  if (alias !== newConfig.alias) {
+    return res.status(400).send("You can't change alias field");
+  }
+
   const config = await getConfig();
 
   if (!config[alias]) {
@@ -14,6 +18,7 @@ module.exports = async (req, res) => {
   }
 
   config[alias] = newConfig;
+  console.log(newConfig);
 
   await saveConfig(config);
 

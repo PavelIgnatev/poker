@@ -46,7 +46,7 @@ import profileSrc from "../../assets/icons/Profile.svg";
 import { Modal, ModalRef } from "../Modal";
 
 import classes from "./BaseHeader.module.scss";
-import { UserCard } from "../UserCard";
+import { UserSettings } from "../UserSettings";
 
 export const BaseHeader: FC = () => {
   const moneyStart = useStore($moneyStart),
@@ -90,7 +90,7 @@ export const BaseHeader: FC = () => {
         </div>
         <Modal ref={settingsModalRef}>
           {config ? (
-            <UserCard alias={alias} config={config} onClose={handleSettingsModalClose} />
+            <UserSettings alias={alias} config={config} onClose={handleSettingsModalClose} />
           ) : (
             "Loading config"
           )}

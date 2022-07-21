@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useStore } from "effector-react";
 
-import { BaseTable } from "../../components/BaseTable/BaseTable";
-import { BaseHeader } from "../../components/BaseHeader/BaseHeader";
+import { BaseTable } from "../../components/BaseTable";
+import { BaseHeader } from "../../components/BaseHeader";
 import { $filtredTournamentsState, fetchUserReposFx } from "../../store/Table";
-import { AliasSection } from "../../components/AliasSection";
+// import { AliasSection } from "../../components/AliasSection";
 import { $config } from "../../store/Config";
 
 export const MainPage: FC = () => {
@@ -14,9 +14,8 @@ export const MainPage: FC = () => {
 
   return (
     <>
-      {!config ? (
-        <AliasSection />
-      ) : (
+      {!config ? // <AliasSection />
+      null : (
         <>
           <BaseHeader />
           <BaseTable data={tournaments} loading={loading} />

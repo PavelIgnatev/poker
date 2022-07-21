@@ -5,7 +5,7 @@ import { $prevSettings, $state, fetchSettings, fetchStateAbility2 } from "../../
 import { RulesWrapper } from "../RulesWrapper";
 
 import classes from "./AdminAbilitySection.module.scss";
-import { AliasesWrapper } from "../AliasesWrapper";
+import { AliasesSection } from "../AliasesSection";
 
 export const AdminAbilitySection: FC = () => {
   const ability2: any = useStore($prevSettings);
@@ -34,7 +34,7 @@ export const AdminAbilitySection: FC = () => {
         </ul>
 
         <RulesWrapper state={stateAbility2} prevState={ability2} />
-        <AliasesWrapper />
+        <AliasesSection />
       </section>
     </>
   );

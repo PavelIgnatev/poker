@@ -2,20 +2,24 @@ import { useStore } from "effector-react";
 import { FC } from "react";
 import { AdminAbilitySection } from "../../components/AdminAbilitySection";
 import { PasswordSection } from "../../components/PasswordSection";
-import { $isValidPassword } from "../../store/Password";
+import { $isValidAdminPassword, validateAdminPasswordRequest } from "../../store/Password";
+import { $password } from "../../store/Password";
 
 export const AdminPage: FC = () => {
-  const isValidPassword = useStore($isValidPassword);
+  const password = useStore($password);
+  const isAdmin = useStore($isValidAdminPassword);
+
+  const handlePasswordSubmit = () => validateAdminPasswordRequest(password);
 
   return (
     <>
-      {isValidPassword ? (
+      {isAdmin ? (
         <>
           <h1 style={{ textAlign: "center" }}>Admin Panel</h1>
           <AdminAbilitySection />
         </>
       ) : (
-        <PasswordSection />
+        <PasswordSection onSubmit={handlePasswordSubmit} />
       )}
     </>
   );

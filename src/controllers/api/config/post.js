@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   const { alias, level, effmu, mail } = req.body;
 
   if (!mail || !level || !effmu) {
-    return res.status(400).send("Check if the submitted data is correct (mail, level, effmu)");
+    return res.status(400).send("All parameters are required (mail, level, effmu)");
   }
 
   const config = await getConfig();
@@ -15,14 +15,10 @@ module.exports = async (req, res) => {
     return res.status(400).send("Alias is already in use");
   }
 
-  config[alias] = {};
-  config[alias].networks = {};
-
-  config[alias].effmu = effmu;
-  config[alias].mail = mail;
+  config[alias] = { alias, effmu, mail, networks: {} };
 
   networks.forEach((network) => {
-    config[alias]["networks"][network] = level;
+    config[alias].networks[network] = level;
   });
 
   await saveConfig(config);

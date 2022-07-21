@@ -5,4 +5,9 @@ export type selectModel = {
   moneyEnd?: number;
 };
 
+export type SelectOption<T> = {
+  value: T;
+  label: string | number;
+};
+
 export type selectedModel = selectModel[] | null;

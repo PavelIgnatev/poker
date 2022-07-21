@@ -1,1 +1,1 @@
-export { BaseSelect } from "./BaseSelect";
+export * from "./BaseSelect";
