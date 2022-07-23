@@ -2,6 +2,7 @@ import Select from "react-select";
 import { BaseSelectModel } from "./types";
 
 const COLOR = "#4A72FF";
+const BORDER_COLOR = "rgba(74, 114, 225, 0.25)";
 
 export const specialSelectStyles = {
   option: (provided: object, state: any) => ({
@@ -14,7 +15,7 @@ export const specialSelectStyles = {
   }),
   control: (provided: object) => ({
     ...provided,
-    border: "none",
+    border: `2px solid ${BORDER_COLOR} !important`,
     borderRadius: "10px",
     boxShadow: "none",
     background: "#F5F8FF",

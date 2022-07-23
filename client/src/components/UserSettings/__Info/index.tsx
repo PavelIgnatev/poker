@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Select from "react-select";
 
 import { Effmu } from "../../../@types/common";
@@ -7,6 +7,7 @@ import { ConfigModel } from "../../../@types/configModel";
 import InfoIcon from "../../../assets/icons/info.svg";
 import MailIcon from "../../../assets/icons/mail.svg";
 import SettingsIcon from "../../../assets/icons/settings.png";
+import EyeIcon from "../../../assets/icons/eye.svg";
 import { editableConfigEvents } from "../../../store/Config";
 
 import { specialSelectStyles } from "../../BaseSelect";
@@ -38,6 +39,8 @@ const b = b_.with("user-settings-info");
 
 export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   const { effmu, alias, mail, password } = config;
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => setShowPassword((p) => !p);
 
   const defaultEffMuOption =
     effMuOptions.find((option) => option.value === effmu) || effMuOptions[0];
@@ -52,12 +55,25 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
 
   return (
     <div className={b()}>
-      <div className={b("alias")}>
-        <b>Alias:</b> {alias}
+      <div className={b("header")}>
+        <span className={b("header-alias")}>
+          <b>Alias:</b> {alias}
+        </span>
+        {!isAdminPage && (
+          <span className={b("header-password")}>
+            <b>Password:</b>
+            <div className={b("header-password-block")} onClick={toggleShowPassword}>
+              <span className={b("header-password-text", { hidden: !showPassword })}>
+                {showPassword ? password : "****"}
+              </span>
+              <img className={b("header-password-img")} src={EyeIcon} alt="" />
+            </div>
+          </span>
+        )}
       </div>
       <div className={b("settings")}>
         <div className={b("effmu-wrapper")}>
-          <b>Eff mu</b>
+          <b className={b("label")}>Eff mu</b>
           <Select
             options={effMuOptions}
             defaultValue={defaultEffMuOption}
@@ -68,7 +84,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           />
         </div>
         <div className={b("email-wrapper")}>
-          <b>E-mail</b>
+          <b className={b("label")}>E-mail</b>
           <BaseInputString
             value={mail}
             onChange={handleEmailChange}
@@ -76,15 +92,17 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           />
         </div>
       </div>
-      <div className={b("password-wrapper")}>
-        <b>Password</b>
-        <BaseInputString
-          value={password}
-          onChange={handlePasswordChange}
-          className={b("input", { text: true })}
-          disabled={!isAdminPage}
-        />
-      </div>
+      {isAdminPage && (
+        <div className={b("password-wrapper")}>
+          <b className={b("label")}>Password</b>
+          <BaseInputString
+            value={password}
+            onChange={handlePasswordChange}
+            className={b("input", { text: true })}
+            disabled={!isAdminPage}
+          />
+        </div>
+      )}
       <div className={b("additional-info")}>
         <div className={b("additional-info-line")}>
           <img src={InfoIcon} alt="info" />

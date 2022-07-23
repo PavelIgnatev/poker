@@ -122,27 +122,73 @@ $borderColor: transparentize($mainColor, 0.75);
 .user-settings-info {
   flex: 1;
 
-  &__alias {
-    font-size: 1.33em;
+  &__header {
     margin-bottom: 36px;
+  }
+
+  &__header-alias {
+    display: block;
+
+    font-size: 1.33em;
+  }
+
+  &__header-password {
+    display: flex;
+    align-items: center;
+
+    font-size: 0.9em;
+    margin-top: 4px;
+  }
+
+  &__header-password-block {
+    display: flex;
+    align-items: center;
+
+    width: fit-content;
+    height: 28px;
+    margin-left: 6px;
+    padding: 8px;
+
+    border-radius: 5px;
+    background-color: transparentize(#dddddd, 0.5);
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: transparentize(#dddddd, 0.3);
+    }
+  }
+
+  &__header-password-text {
+    display: block;
+
+    &_hidden {
+      line-height: 0;
+      padding-top: 0.4em;
+      user-select: none;
+    }
+  }
+
+  &__header-password-img {
+    display: block;
+    height: 0.8em;
+    margin-left: 4px;
+    pointer-events: none;
+    user-select: none;
   }
 
   &__settings {
     display: flex;
   }
 
-  &__effmu-wrapper,
-  &__email-wrapper,
-  &__password-wrapper {
-    font-size: 0.83em;
+  &__label {
+    display: block;
 
-    b {
-      display: block;
-    }
+    margin-bottom: 12px;
   }
 
   &__password-wrapper {
-    margin-top: 12px;
+    margin-top: 16px;
   }
 
   &__email-wrapper {
@@ -153,7 +199,9 @@ $borderColor: transparentize($mainColor, 0.75);
   &__input {
     height: 48px !important;
 
-    margin-top: 16px;
+    &__text {
+      font-size: 0.83em;
+    }
   }
 
   &__additional-info {
