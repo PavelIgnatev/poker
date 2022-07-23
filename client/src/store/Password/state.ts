@@ -1,5 +1,5 @@
 import { createStore } from "effector";
 
-export const $isValidAliasPassword = createStore<boolean>(false);
+export const $password = createStore<string>("");
 
 export const $isValidAdminPassword = createStore<boolean>(false);

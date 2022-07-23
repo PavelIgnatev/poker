@@ -129,14 +129,20 @@ $borderColor: transparentize($mainColor, 0.75);
 
   &__settings {
     display: flex;
-    font-size: 0.83em;
   }
 
   &__effmu-wrapper,
-  &__email-wrapper {
+  &__email-wrapper,
+  &__password-wrapper {
+    font-size: 0.83em;
+
     b {
       display: block;
     }
+  }
+
+  &__password-wrapper {
+    margin-top: 12px;
   }
 
   &__email-wrapper {

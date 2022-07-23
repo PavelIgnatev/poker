@@ -11,26 +11,34 @@ const DEFAULT_ERROR_MESSAGE = "An error has occurred. You are denied access to t
 
 const configDomain = createDomain();
 
-export const getConfig = configDomain.createEffect(async (alias: string) => {
-  return await api.get<ConfigModel>("/api/config", { alias });
-});
-
-export const postConfig = configDomain.createEffect(async (config: defaultConfigModel) => {
-  await api.postConfig(config);
-  await getConfig(config.alias);
-});
-
-export const patchConfig = configDomain.createEffect(
-  async ({ alias, config }: { alias: string; config: ConfigModel }) => {
-    await api.patchConfig(alias, config);
-    await getConfig(alias);
+export const getConfig = configDomain.createEffect(
+  async (params: { alias: string; password: string }) => {
+    return await api.get<ConfigModel>("/api/config", params);
   },
 );
 
-export const deleteConfig = configDomain.createEffect(async (alias: string) => {
-  await api.deleteConfig(alias);
-  await getConfig(alias);
-});
+export const postConfig = configDomain.createEffect(
+  async (params: { config: defaultConfigModel; password: string }) => {
+    const { config, password } = params;
+
+    await api.postConfig(config, password);
+  },
+);
+
+export const patchConfig = configDomain.createEffect(
+  async ({ alias, config, password }: { alias: string; config: ConfigModel; password: string }) => {
+    await api.patchConfig(alias, config, password);
+    await getConfig({ alias, password: config.password });
+  },
+);
+
+export const deleteConfig = configDomain.createEffect(
+  async (params: { alias: string; password: string }) => {
+    const { alias, password } = params;
+    await api.deleteConfig(alias, password);
+    await getConfig({ alias, password });
+  },
+);
 
 configDomain.onCreateEffect((effect) => {
   effect.fail.watch(({ error }: { error: any }) =>
@@ -52,6 +60,10 @@ export const editableConfigEvents = createApi($editableConfig, {
   handleChangeLevel: (config, { network, level }: { network: Network; level: Level }) => ({
     ...config,
     networks: { ...config.networks, [network]: level },
+  }),
+  handleChangePassword: (config, password: string) => ({
+    ...config,
+    password,
   }),
 });
 

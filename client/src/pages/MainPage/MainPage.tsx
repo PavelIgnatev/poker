@@ -4,9 +4,8 @@ import { useStore } from "effector-react";
 import { BaseTable } from "../../components/BaseTable";
 import { BaseHeader } from "../../components/BaseHeader";
 import { $filtredTournamentsState, fetchUserReposFx } from "../../store/Table";
-import { $config } from "../../store/Config";
+import { $config, getConfig } from "../../store/Config";
 import { OnPasswordSubmit, PasswordSection } from "../../components/PasswordSection";
-import { validateAliasPasswordRequest } from "../../store/Password";
 
 export const MainPage: FC = () => {
   const loading = useStore(fetchUserReposFx.pending);
@@ -14,7 +13,7 @@ export const MainPage: FC = () => {
   const config = useStore($config);
 
   const handlePasswordSubmit: OnPasswordSubmit = ({ password, login }) =>
-    validateAliasPasswordRequest({ alias: login, password });
+    getConfig({ alias: login, password });
 
   if (!config) {
     return <PasswordSection onSubmit={handlePasswordSubmit} />;

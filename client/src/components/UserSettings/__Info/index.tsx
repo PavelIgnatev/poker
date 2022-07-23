@@ -3,21 +3,19 @@ import Select from "react-select";
 
 import { Effmu } from "../../../@types/common";
 import { SelectOption } from "../../../@types/selectsModel";
+import { ConfigModel } from "../../../@types/configModel";
+import InfoIcon from "../../../assets/icons/info.svg";
+import MailIcon from "../../../assets/icons/mail.svg";
+import SettingsIcon from "../../../assets/icons/settings.png";
 import { editableConfigEvents } from "../../../store/Config";
 
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
 
-import InfoIcon from "../../../assets/icons/info.svg";
-import MailIcon from "../../../assets/icons/mail.svg";
-import SettingsIcon from "../../../assets/icons/settings.png";
-
 import b_ from "b_";
 
 interface Props {
-  alias: string;
-  effmu: string;
-  mail: string;
+  config: ConfigModel;
   isAdminPage?: boolean;
 }
 
@@ -38,11 +36,15 @@ const selectStyles = {
 
 const b = b_.with("user-settings-info");
 
-export const UserSettingsInfo: FC<Props> = ({ alias, effmu, mail, isAdminPage }) => {
+export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
+  const { effmu, alias, mail, password } = config;
+
   const defaultEffMuOption =
     effMuOptions.find((option) => option.value === effmu) || effMuOptions[0];
 
   const handleEmailChange = (email: string) => editableConfigEvents.handleChangeMail(email);
+  const handlePasswordChange = (password: string) =>
+    editableConfigEvents.handleChangePassword(password);
   const handleEffMuChange = (option: SelectOption<Effmu>) =>
     editableConfigEvents.handleChangeEffmu(option.value);
 
@@ -70,9 +72,18 @@ export const UserSettingsInfo: FC<Props> = ({ alias, effmu, mail, isAdminPage })
           <BaseInputString
             value={mail}
             onChange={handleEmailChange}
-            className={b("input", { email: true })}
+            className={b("input", { text: true })}
           />
         </div>
+      </div>
+      <div className={b("password-wrapper")}>
+        <b>Password</b>
+        <BaseInputString
+          value={password}
+          onChange={handlePasswordChange}
+          className={b("input", { text: true })}
+          disabled={!isAdminPage}
+        />
       </div>
       <div className={b("additional-info")}>
         <div className={b("additional-info-line")}>

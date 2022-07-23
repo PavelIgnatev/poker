@@ -6,14 +6,21 @@ type BaseInputStringProps = {
   value: string;
   onChange: (v: string) => void;
   className?: string;
+  disabled?: boolean;
 };
 
-export const BaseInputString: FC<BaseInputStringProps> = ({ onChange, className, value }) => {
+export const BaseInputString: FC<BaseInputStringProps> = ({
+  onChange,
+  className,
+  value,
+  disabled,
+}) => {
   return (
     <input
       className={classNames("BaseInputString", className)}
       value={value}
       onChange={(e) => onChange(e.currentTarget.value)}
+      disabled={disabled}
     />
   );
 };

@@ -1,5 +1,8 @@
 import b_ from "b_";
+import { useStore } from "effector-react";
 import { FC, useState } from "react";
+
+import { $password, handleChangePassword } from "../../store/Password";
 
 import { BaseInputString } from "../BaseInputString";
 import { BaseButton } from "../BaseButton";
@@ -22,7 +25,7 @@ const b = b_.with("password-section");
 
 export const PasswordSection: FC<Props> = ({ onSubmit, type }) => {
   const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
+  const password = useStore($password);
 
   const isAdmin = type === PasswordSectionType.ADMIN;
   const isAlias = type === PasswordSectionType.ALIAS || !type;
@@ -45,7 +48,11 @@ export const PasswordSection: FC<Props> = ({ onSubmit, type }) => {
           <span className={b("label")}>
             Enter <strong>{whosePassword} password</strong> here
           </span>
-          <BaseInputString className={b("input")} value={password} onChange={setPassword} />
+          <BaseInputString
+            className={b("input")}
+            value={password}
+            onChange={handleChangePassword}
+          />
         </div>
         <BaseButton className={b("submit-button")} onClick={() => onSubmit({ password, login })}>
           Submit

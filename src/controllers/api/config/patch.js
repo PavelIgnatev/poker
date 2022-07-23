@@ -1,7 +1,8 @@
 const { getConfig, saveConfig } = require("../../../utils/config");
+const { checkPassword } = require("../../../utils/passwords");
 
 module.exports = async (req, res) => {
-  const { alias, config: newConfig } = req.body;
+  const { alias, config: newConfig, password } = req.body;
 
   if (!newConfig) {
     return res.status(400).send("Config is required parameter");
@@ -13,12 +14,13 @@ module.exports = async (req, res) => {
 
   const config = await getConfig();
 
-  if (!config[alias]) {
-    return res.status(404).send("No such alias");
+  const wrongAlias = !config[alias];
+  const wrongPassword = checkPassword(password, config[alias]?.password);
+  if (wrongAlias || wrongPassword) {
+    return res.status(403).send({ message: "Wrong password or alias" });
   }
 
   config[alias] = newConfig;
-  console.log(newConfig);
 
   await saveConfig(config);
 

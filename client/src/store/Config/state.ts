@@ -9,5 +9,7 @@ export const DEFAULT_EDITABLE_CONFIG: ConfigModel = {
   networks: [],
   mail: "",
   effmu: "A",
+  // todo чекнуть на баги
+  password: "",
 };
 export const $editableConfig = createStore<ConfigModel>(DEFAULT_EDITABLE_CONFIG);

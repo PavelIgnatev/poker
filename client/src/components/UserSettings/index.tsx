@@ -3,17 +3,18 @@ import React from "react";
 import b_ from "b_";
 
 import CloseIcon from "../../assets/icons/close.svg";
+import { $password } from "../../store/Password";
+import { ConfigModel } from "../../@types/configModel";
 import { $editableConfig, editableConfigEvents, patchConfig } from "../../store/Config";
+
 import { BaseButton } from "../BaseButton";
 
 import { UserSettingsTable } from "./__Table";
 import { UserSettingsInfo } from "./__Info";
-import { ConfigModel } from "../../@types/configModel";
 
 import "./index.scss";
 
 interface Props {
-  alias: string;
   config: ConfigModel;
   isAdminPage?: boolean;
   onClose: () => void;
@@ -23,7 +24,11 @@ export const b = b_.with("user-settings");
 
 export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
   const [progress, setProgress] = React.useState(false);
-  const { mail, effmu, alias, networks } = useStore($editableConfig);
+
+  const editableConfig = useStore($editableConfig);
+  const { mail, effmu, alias, networks, password: newPassword } = editableConfig;
+
+  const password = useStore($password);
 
   React.useEffect(() => {
     editableConfigEvents.setConfig(config);
@@ -44,7 +49,9 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
         mail,
         effmu,
         alias,
+        password: isAdminPage ? newPassword : config.password,
       },
+      password,
     });
     setProgress(false);
 
@@ -59,7 +66,7 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
       <div className={b("content")}>
         <UserSettingsTable networks={networks} canChangeLevels={isAdminPage} />
         <div className={b("content-main-block")}>
-          <UserSettingsInfo alias={alias} effmu={effmu} mail={mail} isAdminPage={isAdminPage} />
+          <UserSettingsInfo config={editableConfig} isAdminPage={isAdminPage} />
           <BaseButton onClick={handleSubmit} className={b("save-button")} disabled={progress}>
             Save changes
           </BaseButton>

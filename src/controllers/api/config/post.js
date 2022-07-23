@@ -1,13 +1,17 @@
 const { getConfig, saveConfig } = require("../../../utils/config");
-const { getPasswords, savePasswords } = require("../../../utils/passwords");
 
-const { networks } = require("../../../constants");
+const { networks, adminPassword } = require("../../../constants");
 
 module.exports = async (req, res) => {
-  const { alias, level, effmu, mail } = req.body;
+  const { config: newConfig, password: reqAdminPassword } = req.body;
+  const { alias, level, effmu, mail, password } = newConfig;
 
-  if (!mail || !level || !effmu) {
-    return res.status(400).send("All parameters are required (mail, level, effmu)");
+  if (reqAdminPassword !== adminPassword) {
+    return res.status(403).send("Wrong password");
+  }
+
+  if (!mail || !level || !effmu || !alias) {
+    return res.status(400).send("All parameters are required (mail, level, effmu, alias)");
   }
 
   const config = await getConfig();
@@ -16,17 +20,13 @@ module.exports = async (req, res) => {
     return res.status(400).send("Alias is already in use");
   }
 
-  config[alias] = { alias, effmu, mail, networks: {} };
+  config[alias] = { alias, effmu, mail, networks: {}, password };
 
   networks.forEach((network) => {
     config[alias].networks[network] = level;
   });
 
   await saveConfig(config);
-
-  const passwords = getPasswords();
-  passwords[alias] = Math.random().toString(36).slice(-8);
-  await savePasswords(passwords);
 
   res.status(201).send();
 };

@@ -63,7 +63,6 @@ export const BaseHeader: FC = () => {
     networkLength = useStore($network)?.length ?? 0;
 
   const config = useStore($config);
-  const alias = useStore($alias);
 
   const settingsModalRef = React.useRef<ModalRef>(null);
   const handleSettingsModalOpen = () => settingsModalRef.current?.open();
@@ -76,7 +75,7 @@ export const BaseHeader: FC = () => {
           <div className={classes.alias}>
             <img className={classes.profileImage} src={profileSrc} alt="profile" />
             <p>
-              Hello, <strong>{alias}!</strong>
+              Hello, <strong>{config?.alias}!</strong>
             </p>
           </div>
           <div className={classes.dot}></div>
@@ -90,7 +89,7 @@ export const BaseHeader: FC = () => {
         </div>
         <Modal ref={settingsModalRef}>
           {config ? (
-            <UserSettings alias={alias} config={config} onClose={handleSettingsModalClose} />
+            <UserSettings config={config} onClose={handleSettingsModalClose} />
           ) : (
             "Loading config"
           )}

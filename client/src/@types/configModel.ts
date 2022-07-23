@@ -5,6 +5,7 @@ export interface ConfigModel {
   networks: Networks;
   effmu: Effmu;
   mail: string;
+  password: string;
 }
 
 export interface defaultConfigModel {
@@ -12,4 +13,5 @@ export interface defaultConfigModel {
   level: number;
   effmu: Effmu;
   mail: string;
+  password: string;
 }

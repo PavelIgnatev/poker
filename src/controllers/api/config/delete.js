@@ -1,9 +1,14 @@
 const { getConfig, saveConfig } = require("../../../utils/config");
+const { adminPassword } = require("../../../constants");
 
 module.exports = async (req, res) => {
-  const { alias } = req.body;
+  const { alias, password } = req.body;
 
   const config = await getConfig();
+
+  if (password !== adminPassword) {
+    return res.status(403).send("Wrong password");
+  }
 
   if (!config[alias]) {
     return res.status(404).send("No such alias");

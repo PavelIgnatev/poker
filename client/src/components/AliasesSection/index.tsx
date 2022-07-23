@@ -5,9 +5,9 @@ import { useStore } from "effector-react";
 import { Modal, ModalRef } from "../Modal";
 import { UserSettings } from "../UserSettings";
 
-import { $alias, $aliases, handleChangeAlias } from "../../store/Alias";
+import { $alias, $aliases } from "../../store/Alias";
 import { $config, getConfig } from "../../store/Config";
-import { $isValidAdminPassword } from "../../store/Password";
+import { $isValidAdminPassword, $password } from "../../store/Password";
 
 import "./index.scss";
 
@@ -19,13 +19,12 @@ export const AliasesSection = () => {
   const handleSettingsModalClose = () => settingsModalRef.current?.close();
 
   const isAdminPage = useStore($isValidAdminPassword);
-  const selectedAlias = useStore($alias);
   const selectedConfig = useStore($config);
   const aliases = useStore($aliases);
+  const password = useStore($password);
 
   const handleAliasClick = (alias: string) => async () => {
-    handleChangeAlias(alias);
-    await getConfig(alias);
+    await getConfig({ alias, password });
     handleSettingsModalOpen();
   };
 
@@ -38,9 +37,8 @@ export const AliasesSection = () => {
         </div>
       ))}
       <Modal ref={settingsModalRef}>
-        {selectedAlias && selectedConfig ? (
+        {selectedConfig ? (
           <UserSettings
-            alias={selectedAlias}
             config={selectedConfig}
             isAdminPage={isAdminPage}
             onClose={handleSettingsModalClose}

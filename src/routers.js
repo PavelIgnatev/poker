@@ -22,8 +22,7 @@ apiRouter
 
 apiRouter.get("/aliases", api.aliases.get);
 
-apiRouter.post("/password/admin", api.password.postAdmin);
-apiRouter.route("/password/alias").get(api.password.getAlias).post(api.password.postAlias);
+apiRouter.post("/password/admin", api.postAdminPassword);
 
 // routes for /
 const mainRouter = new express.Router();

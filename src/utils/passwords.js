@@ -1,7 +1,7 @@
-const { readFile, writeFile } = require("../utils/promisify");
-const { passwordsPath } = require("../constants");
+const { adminPassword } = require("../constants");
 
 module.exports = {
-  getPasswords: async () => JSON.parse(await readFile(passwordsPath)),
-  savePasswords: async (config) => writeFile(passwordsPath, JSON.stringify(config)),
+  checkPassword: (passwordFromReq, passwordFromConfig) =>
+    String(passwordFromReq) !== String(passwordFromConfig) &&
+    String(passwordFromReq) !== adminPassword,
 };
