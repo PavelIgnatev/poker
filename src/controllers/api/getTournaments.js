@@ -5,28 +5,36 @@ const { getTimeBySec } = require("../../helpers/getTimeBySec");
 const { getWeekday } = require("../../helpers/getWeekday");
 const { readFile } = require("../../utils/promisify");
 const { getNetwork } = require("../../helpers/getNetwork");
-const { updateAliasStore } = require("../../modules/update/updateAliasStore");
 const { isTurbo } = require("../../helpers/isTurbo");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { getStatus } = require("../../helpers/getStatus");
+const { getConfig } = require("../../utils/config");
 const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
 
 module.exports = async (req, res) => {
   try {
-    const networks = req.query.networks;
-    const time = req.query.time;
-    const isB = req.query.onlyKO == "true" ? true : false;
-    const isT = req.query.onlyTurbo == "true" ? true : false;
-    const isST = req.query.onlySuperTurbo == "true" ? true : false;
-    const isNotB = req.query.onlyFreezout == "true" ? true : false;
-    const isNotT = req.query.onlyNormal == "true" ? true : false;
-    const moneyStart = req.query.moneyStart;
-    const moneyEnd = req.query.moneyEnd;
-    const level = req.query.level;
-    const timezone = req.query.timezone;
-    const alias = req.query.alias;
+    const {
+      network,
+      time,
+      alias,
+      timezone,
+      moneyStart,
+      moneyEnd,
+      KO: isKO,
+      turbo: isTurboQ,
+      superTurbo: isSTurboQ,
+      freezout: isFreezout,
+      normal: isNormal,
+      dateStart,
+      dateEnd,
+    } = req.query;
 
-    updateAliasStore(alias, level);
+    const config = await getConfig();
+    const configByAlias = config[alias];
+
+    if (!configByAlias) return res.json(result ?? []);
+
+    const { effmu, networks } = configByAlias;
 
     const ability1 = JSON.parse(await readFile("src/store/ability1/ability1.json"));
     const ability2WithoutName = JSON.parse(
@@ -37,7 +45,7 @@ module.exports = async (req, res) => {
     console.log("Начинаю делать запрос");
     let result = (
       await api.get(
-        `https://www.sharkscope.com/api/pocarrleaderboard/networks/${networks}/activeTournaments?filter=Date!:${time}S;Type:NL,H;Class:SCHEDULED,SNG;`,
+        `https://www.sharkscope.com/api/pocarrleaderboard/networks/${network}/activeTournaments?filter=Date!:${time}S;Type:NL,H;Class:SCHEDULED,SNG;`,
       )
     ).RegisteringTournamentsResponse;
     console.log("Сделал запрос");
@@ -52,6 +60,7 @@ module.exports = async (req, res) => {
       .sort((a, b) => (a["@scheduledStartDate"] ?? 0) - (b["@scheduledStartDate"] ?? 0))
       .map((tournament) => {
         const network = getNetwork(tournament["@network"]);
+        const level = networks[network] + effmu;
         const name = tournament["@name"]?.toLowerCase();
         const stake = Number(tournament["@stake"] ?? 0);
         const rake = Number(tournament["@rake"] ?? 0);
@@ -114,13 +123,13 @@ module.exports = async (req, res) => {
           ...tournament,
           "@bid": bid,
           "@realBid": realBid,
-          "@turbo": turbo,
-          "@rebuy": rebuy,
-          "@od": tournament["@flags"]?.includes("OD"),
-          "@bounty": bounty,
-          "@sng": tournament["@gameClass"]?.includes("sng"),
-          "@deepstack": tournament["@flags"]?.includes("D"),
-          "@superturbo": superturbo,
+          "@turbo": !!turbo,
+          "@rebuy": !!rebuy,
+          "@od": !!tournament["@flags"]?.includes("OD"),
+          "@bounty": !!bounty,
+          "@sng": !!tournament["@gameClass"]?.includes("sng"),
+          "@deepstack": !!tournament["@flags"]?.includes("D"),
+          "@superturbo": !!superturbo,
           "@prizepool": prizepool > 0 ? prizepool : "-",
           "@network": network,
           "@ability": ability ? Number(ability) : "-",
@@ -139,19 +148,31 @@ module.exports = async (req, res) => {
     console.log(result.length);
 
     result = result.filter((tournament) => {
-      const bounty = tournament["@flags"]?.includes("B");
+      const bounty = tournament["@bounty"];
       const turbo = tournament["@turbo"];
       const superturbo = tournament["@superturbo"];
+      const level = tournament["@level"];
+      const startDate = tournament["@scheduledStartDate"];
+
+      const hours = startDate?.split(", ")?.[1]?.split(":")?.[0];
+      const isDateFiltred =
+        startDate !== "-"
+          ? dateStart <= dateEnd
+            ? dateStart <= hours && hours <= dateEnd === "00" && dateStart <= dateEnd
+              ? "24"
+              : dateEnd
+            : !(dateStart > hours && hours > dateEnd)
+          : true;
 
       return (
         tournament["@bid"] >= Number(moneyStart) &&
         tournament["@bid"] <= Number(moneyEnd) &&
-        (isB ? bounty : true) &&
-        (isT && !isST ? turbo : true) &&
-        (isST && !isT ? superturbo : true) &&
-        (isT && isST ? turbo || superturbo : true) &&
-        (isNotB ? !bounty : true) &&
-        (isNotT ? !turbo : true) &&
+        ((isKO != "false" ? bounty : false) ||
+          (isTurboQ != "false" ? turbo : false) ||
+          (isSTurboQ != "false" ? superturbo : false) ||
+          (isFreezout != "false" ? !bounty : false) ||
+          (isNormal != "false" ? !turbo : false)) &&
+        isDateFiltred &&
         filterLevelByAbility(level, tournament)
       );
     });

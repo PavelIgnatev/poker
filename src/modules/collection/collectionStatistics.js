@@ -26,7 +26,6 @@ const collectionStatistics = async () => {
     const month = currentTime.getMonth() + 1;
     const day = currentTime.getDate();
     const date = `${year}-${month}-${day}`;
-    console.log(date);
     const path = `src/store/copies/${date}`;
     const stateAlias = JSON.parse(await readFile(`${path}/alias.json`));
     const ability1 = JSON.parse(await readFile(`${path}/ability1.json`));

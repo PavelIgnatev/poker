@@ -1,6 +1,6 @@
 export interface BaseInputMaskModel {
   handleChange: (value: string) => void;
-  value: string;
+  value: string | null;
   placeholder: string;
   className?: string;
 }

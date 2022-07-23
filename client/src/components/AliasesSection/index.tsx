@@ -5,7 +5,7 @@ import { useStore } from "effector-react";
 import { Modal, ModalRef } from "../Modal";
 import { UserSettings } from "../UserSettings";
 
-import { $alias, $aliases } from "../../store/Alias";
+import { $aliases } from "../../store/Alias";
 import { $config, getConfig } from "../../store/Config";
 import { $isValidAdminPassword, $password } from "../../store/Password";
 

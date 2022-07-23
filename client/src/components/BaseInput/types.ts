@@ -1,6 +1,6 @@
 export interface BaseInputModel {
   handleChange: (v: number) => void;
-  value: number | string;
+  value: number | string | null;
   max: number;
   min?: number;
   placeholder: string;

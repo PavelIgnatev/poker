@@ -14,7 +14,7 @@ export const BaseInput: FC<BaseInputModel> = ({
     handleChange(
       Math.max(
         Math.min(
-          Number(/\d+/.test(String(Number(e.currentTarget.value))) ? e.target.value : value),
+          Number(/\d+/.test(String(Number(e.currentTarget.value))) ? e.target.value : value ?? 0),
           max,
         ),
         1,
@@ -29,7 +29,8 @@ export const BaseInput: FC<BaseInputModel> = ({
       </label>
       <input
         id={placeholder}
-        {...{ value, onChange }}
+        value={value ?? 0}
+        onChange={onChange}
         placeholder={placeholder}
         className={cx(classes.input, className)}
       />

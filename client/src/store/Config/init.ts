@@ -48,6 +48,7 @@ configDomain.onCreateEffect((effect) => {
 
 export const editableConfigEvents = createApi($editableConfig, {
   setConfig: (_, config: ConfigModel) => config,
+  setConfig2: (_, config: ConfigModel) => config,
   clearConfig: (_) => DEFAULT_EDITABLE_CONFIG,
   handleChangeMail: (config, mail: string) => ({
     ...config,

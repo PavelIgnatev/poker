@@ -22,5 +22,5 @@ export const InfoPage: FC = () => {
     fetchData();
   }, []);
 
-  return <BaseTable data={result} loading={!result} />;
+  return <BaseTable data={result as any} loading={!result} />;
 };

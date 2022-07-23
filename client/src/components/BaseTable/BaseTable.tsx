@@ -6,19 +6,19 @@ import classes from "./BaseTable.module.scss";
 import { tableCellModel } from "../../@types/tableCellModel";
 
 type BaseTableProps = {
-  data: tableCellModel[] | undefined;
+  data: tableCellModel[] | null;
   loading: boolean;
 };
 
 export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
-  if (!data?.length) return <section className={classes.nodata}>Nothing found</section>;
-
   if (loading)
     return (
       <section className={classes.section}>
         <Loader />
       </section>
     );
+
+  if (!data?.length) return <section className={classes.nodata}>Nothing found</section>;
 
   if (!data)
     return (

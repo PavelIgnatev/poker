@@ -1,35 +1,12 @@
 import React, { FC } from "react";
 import cx from "classnames";
 import {
-  $level,
-  $moneyEnd,
-  $moneyStart,
-  handleChangeDateEnd,
-  handleChangeDateStart,
-  handleChangeMoneyEnd,
-  handleChangeMoneyStart,
-  handleChangeNetwork,
-  handleChangeOnlyFreezout,
-  handleChangeOnlyKO,
-  handleChangeOnlyNormal,
-  handleChangeOnlySuperTurbo,
-  handleChangeOnlyTurbo,
-  handleChangeTime,
-  handleChangeTimezone,
+  $tournamentsSettings,
+  editableTournamentsSettings,
+  NETWORKS,
+  TIMERANGE,
+  TIMEZONES,
 } from "../../store/Select";
-import {
-  $network,
-  $onlyKO,
-  $onlyTurbo,
-  $onlySuperTurbo,
-  $stateNetwork,
-  $stateTime,
-  $dateStart,
-  $dateEnd,
-  $onlyFreezout,
-  $onlyNormal,
-  $stateTimezone,
-} from "../../store/Select/state";
 import { useStore } from "effector-react";
 import { BaseSelect } from "../BaseSelect/BaseSelect";
 import { BaseSelectMulti } from "../BaseSelectMulti/BaseSelectMulti";
@@ -40,7 +17,6 @@ import { ComponentCategory } from "../ComponentCategory";
 import { BaseButton } from "../BaseButton";
 import { fetchUserReposFx } from "../../store/Table";
 import { $config } from "../../store/Config";
-import { $alias } from "../../store/Alias";
 import profileSrc from "../../assets/icons/Profile.svg";
 
 import { Modal, ModalRef } from "../Modal";
@@ -49,18 +25,7 @@ import classes from "./BaseHeader.module.scss";
 import { UserSettings } from "../UserSettings";
 
 export const BaseHeader: FC = () => {
-  const moneyStart = useStore($moneyStart),
-    moneyEnd = useStore($moneyEnd),
-    levelInfo = useStore($level),
-    onlyKO = useStore($onlyKO),
-    onlyTurbo = useStore($onlyTurbo),
-    onlySuperTurbo = useStore($onlySuperTurbo),
-    maxMoneyEnd = levelInfo?.moneyEnd ?? 1,
-    dateStart = useStore($dateStart),
-    dateEnd = useStore($dateEnd),
-    onlyFreezout = useStore($onlyFreezout),
-    onlyNormal = useStore($onlyNormal),
-    networkLength = useStore($network)?.length ?? 0;
+  const tournamentsSettings = useStore($tournamentsSettings);
 
   const config = useStore($config);
 
@@ -99,26 +64,26 @@ export const BaseHeader: FC = () => {
         <div className={classes.content}>
           <ComponentCategory category="Network">
             <BaseSelectMulti
-              children={networkLength + " networks"}
               className={classes.network}
-              options={$stateNetwork}
-              onChange={handleChangeNetwork}
+              children={(tournamentsSettings.network?.length ?? 0) + " networks"}
+              options={NETWORKS}
+              onChange={editableTournamentsSettings.handleChangeNetwork}
               placeholder="Network"
             />
           </ComponentCategory>
           <ComponentCategory category="Buy-in">
             <div className={classes.inputWrapper}>
               <BaseInput
-                value={moneyStart}
-                handleChange={handleChangeMoneyStart}
-                max={moneyEnd}
+                value={tournamentsSettings.moneyStart}
+                handleChange={editableTournamentsSettings.handleChangeMoneyStart}
+                max={tournamentsSettings.moneyEnd ?? 0}
                 placeholder="From"
                 className={classes.input}
               />
               <BaseInput
-                value={moneyEnd}
-                handleChange={handleChangeMoneyEnd}
-                max={maxMoneyEnd}
+                value={tournamentsSettings.moneyEnd}
+                handleChange={editableTournamentsSettings.handleChangeMoneyEnd}
+                max={10000}
                 placeholder="To"
                 className={classes.input}
               />
@@ -130,8 +95,8 @@ export const BaseHeader: FC = () => {
             <ComponentCategory category="Starts">
               <BaseSelect
                 className={classes.time}
-                options={$stateTime}
-                onChange={handleChangeTime}
+                options={TIMERANGE}
+                onChange={editableTournamentsSettings.handleChangeTime}
                 placeholder="Time"
               />
             </ComponentCategory>
@@ -139,14 +104,14 @@ export const BaseHeader: FC = () => {
               <div className={classes.inputWrapper}>
                 <BaseInputMask
                   placeholder="From(h)"
-                  value={dateStart}
-                  handleChange={handleChangeDateStart}
+                  value={tournamentsSettings.dateStart}
+                  handleChange={editableTournamentsSettings.handleChangeDateStart}
                   className={cx(classes.input, classes.inputTime)}
                 />
                 <BaseInputMask
                   placeholder="To(h)"
-                  value={dateEnd}
-                  handleChange={handleChangeDateEnd}
+                  value={tournamentsSettings.dateEnd}
+                  handleChange={editableTournamentsSettings.handleChangeDateEnd}
                   className={cx(classes.input, classes.inputTime)}
                 />
               </div>
@@ -155,36 +120,46 @@ export const BaseHeader: FC = () => {
           <ComponentCategory category="Format">
             <div className={classes.checkboxWrapper}>
               <BaseCheckbox
-                selected={!onlyKO}
-                onClick={() => handleChangeOnlyKO(!onlyKO)}
+                selected={!tournamentsSettings.KO}
+                onClick={() => editableTournamentsSettings.handleChangeKo(!tournamentsSettings.KO)}
                 className={classes.checkbox}
               >
                 KO
               </BaseCheckbox>
               <BaseCheckbox
-                selected={!onlyFreezout}
-                onClick={() => handleChangeOnlyFreezout(!onlyFreezout)}
+                selected={!tournamentsSettings.freezout}
+                onClick={() =>
+                  editableTournamentsSettings.handleChangeFreezout(!tournamentsSettings.freezout)
+                }
                 className={classes.checkbox}
               >
                 Freezout
               </BaseCheckbox>
               <BaseCheckbox
-                selected={!onlyNormal}
-                onClick={() => handleChangeOnlyNormal(!onlyNormal)}
+                selected={!tournamentsSettings.normal}
+                onClick={() =>
+                  editableTournamentsSettings.handleChangeNormal(!tournamentsSettings.normal)
+                }
                 className={classes.checkbox}
               >
                 Normal
               </BaseCheckbox>
               <BaseCheckbox
-                selected={!onlyTurbo}
-                onClick={() => handleChangeOnlyTurbo(!onlyTurbo)}
+                selected={!tournamentsSettings.turbo}
+                onClick={() =>
+                  editableTournamentsSettings.handleChangeTurbo(!tournamentsSettings.turbo)
+                }
                 className={classes.checkbox}
               >
                 Turbo
               </BaseCheckbox>
               <BaseCheckbox
-                selected={!onlySuperTurbo}
-                onClick={() => handleChangeOnlySuperTurbo(!onlySuperTurbo)}
+                selected={!tournamentsSettings.superTurbo}
+                onClick={() =>
+                  editableTournamentsSettings.handleChangeSuperTurbo(
+                    !tournamentsSettings.superTurbo,
+                  )
+                }
                 className={classes.checkbox}
               >
                 Super Turbo
@@ -196,8 +171,8 @@ export const BaseHeader: FC = () => {
           <ComponentCategory>
             <BaseSelect
               className={classes.timezone}
-              options={$stateTimezone}
-              onChange={handleChangeTimezone}
+              options={TIMEZONES}
+              onChange={editableTournamentsSettings.handleChangeTimezone}
               placeholder="Timezone"
             />
           </ComponentCategory>
