@@ -1,13 +1,22 @@
 .button {
-  border: 0;
-  color: white;
-  cursor: pointer;
-  background: #4a72ff;
-  border-radius: 10px;
   min-width: 50px;
-  transition: 0.2s all ease-in-out;
+  padding: 8px 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #4a72ff;
+  color: white;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease-in-out, transform 50ms ease-in;
 
   &:hover {
-    background: #3d5dd3;
+    background-color: #3d5dd3;
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }

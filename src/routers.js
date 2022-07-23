@@ -12,7 +12,6 @@ apiRouter.get("/state", api.getAbility2);
 apiRouter.get("/preview", api.getPreview);
 apiRouter.get("/settings", api.getPreviewRules);
 apiRouter.post("/settings", api.postSettings);
-apiRouter.post("/password", api.postPassword);
 
 apiRouter
   .route("/config")
@@ -22,6 +21,9 @@ apiRouter
   .delete(api.config.delete);
 
 apiRouter.get("/aliases", api.aliases.get);
+
+apiRouter.post("/password/admin", api.password.postAdmin);
+apiRouter.route("/password/alias").get(api.password.getAlias).post(api.password.postAlias);
 
 // routes for /
 const mainRouter = new express.Router();

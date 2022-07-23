@@ -4,23 +4,26 @@ import { useStore } from "effector-react";
 import { BaseTable } from "../../components/BaseTable";
 import { BaseHeader } from "../../components/BaseHeader";
 import { $filtredTournamentsState, fetchUserReposFx } from "../../store/Table";
-// import { AliasSection } from "../../components/AliasSection";
 import { $config } from "../../store/Config";
+import { OnPasswordSubmit, PasswordSection } from "../../components/PasswordSection";
+import { validateAliasPasswordRequest } from "../../store/Password";
 
 export const MainPage: FC = () => {
   const loading = useStore(fetchUserReposFx.pending);
   const tournaments = useStore($filtredTournamentsState);
   const config = useStore($config);
 
+  const handlePasswordSubmit: OnPasswordSubmit = ({ password, login }) =>
+    validateAliasPasswordRequest({ alias: login, password });
+
+  if (!config) {
+    return <PasswordSection onSubmit={handlePasswordSubmit} />;
+  }
+
   return (
     <>
-      {!config ? // <AliasSection />
-      null : (
-        <>
-          <BaseHeader />
-          <BaseTable data={tournaments} loading={loading} />
-        </>
-      )}
+      <BaseHeader />
+      <BaseTable data={tournaments} loading={loading} />
     </>
   );
 };

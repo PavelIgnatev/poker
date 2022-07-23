@@ -145,16 +145,9 @@ $borderColor: transparentize($mainColor, 0.75);
   }
 
   &__input {
-    background-color: #f5f8ff;
-    border-radius: 10px;
-    border: none;
     height: 48px !important;
 
     margin-top: 16px;
-
-    &_email {
-      width: 100%;
-    }
   }
 
   &__additional-info {

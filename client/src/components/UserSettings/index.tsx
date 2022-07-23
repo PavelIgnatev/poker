@@ -4,6 +4,7 @@ import b_ from "b_";
 
 import CloseIcon from "../../assets/icons/close.svg";
 import { $editableConfig, editableConfigEvents, patchConfig } from "../../store/Config";
+import { BaseButton } from "../BaseButton";
 
 import { UserSettingsTable } from "./__Table";
 import { UserSettingsInfo } from "./__Info";
@@ -59,9 +60,9 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
         <UserSettingsTable networks={networks} canChangeLevels={isAdminPage} />
         <div className={b("content-main-block")}>
           <UserSettingsInfo alias={alias} effmu={effmu} mail={mail} isAdminPage={isAdminPage} />
-          <button onClick={handleSubmit} className={b("save-button")} disabled={progress}>
+          <BaseButton onClick={handleSubmit} className={b("save-button")} disabled={progress}>
             Save changes
-          </button>
+          </BaseButton>
         </div>
       </div>
     </div>

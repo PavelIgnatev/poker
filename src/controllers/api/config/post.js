@@ -1,4 +1,5 @@
 const { getConfig, saveConfig } = require("../../../utils/config");
+const { getPasswords, savePasswords } = require("../../../utils/passwords");
 
 const { networks } = require("../../../constants");
 
@@ -22,6 +23,10 @@ module.exports = async (req, res) => {
   });
 
   await saveConfig(config);
+
+  const passwords = getPasswords();
+  passwords[alias] = Math.random().toString(36).slice(-8);
+  await savePasswords(passwords);
 
   res.status(201).send();
 };

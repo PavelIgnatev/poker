@@ -3,4 +3,5 @@ const networks = ["PS.eu", "IP", "Chico", "PS.es", "Party", "GG", "888", "WNMX",
 module.exports = {
   networks,
   configPath: "src/store/config/config.json",
+  passwordsPath: "src/store/passwords/passwords.json",
 };

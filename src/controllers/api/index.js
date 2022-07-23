@@ -6,10 +6,10 @@ const getPreview = require("./getPreview");
 const getPreviewRules = require("./getPreviewRules");
 const postSettings = require("./postSettings");
 const postAlias = require("./postAlias");
-const postPassword = require("./postPassword");
 
 const config = require("./config");
 const aliases = require("./aliases");
+const password = require("./password");
 
 module.exports = {
   getTournaments,
@@ -20,8 +20,8 @@ module.exports = {
   getPreview,
   postSettings,
   postAlias,
-  postPassword,
 
   config,
   aliases,
+  password,
 };

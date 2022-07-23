@@ -14,8 +14,11 @@ class Api extends ConfigApi {
   async addAlias(settings: any) {
     return await axios.post(`/api/aliases`, settings);
   }
-  async checkPassword(password: string) {
-    return await axios.post(`/api/password`, { password });
+  async checkAdminPassword(password: string) {
+    return await axios.post(`/api/password/admin`, { password });
+  }
+  async checkAliasPassword(alias: string, password: string) {
+    return await axios.post(`/api/password/alias`, { alias, password });
   }
 }
 export default new Api();
