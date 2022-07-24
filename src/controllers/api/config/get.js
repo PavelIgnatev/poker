@@ -8,8 +8,7 @@ module.exports = async (req, res) => {
 
   const wrongAlias = !config[alias];
   const wrongPassword = checkPassword(password, config[alias]?.password);
-  console.log(wrongAlias, wrongPassword);
-  console.log(password);
+
   if (wrongAlias || wrongPassword) {
     return res.status(403).send({ message: "Wrong password or alias" });
   }

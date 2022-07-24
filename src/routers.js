@@ -20,8 +20,8 @@ apiRouter
   .patch(api.config.patch)
   .delete(api.config.delete);
 
+apiRouter.route("/sample").get(api.sample.get).post(api.sample.patch);
 apiRouter.get("/aliases", api.aliases.get);
-
 apiRouter.post("/password/admin", api.postAdminPassword);
 
 // routes for /

@@ -4,3 +4,4 @@ import "./Settings";
 import "./Config";
 import "./Password";
 import "./Alias";
+import "./Sample";

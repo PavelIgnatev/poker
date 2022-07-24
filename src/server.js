@@ -10,7 +10,7 @@ const { updateAbility2 } = require("./modules/update/updateAbility2");
 const app = express();
 const { createdGap } = require("./modules/created/createdGap");
 const { saveCopyRules } = require("./modules/save/saveCopyRules");
-const { saveCopyAlias } = require("./modules/save/saveCopyAlias");
+const { saveCopyConfig } = require("./modules/save/saveCopyConfig");
 const { collectionStatistics } = require("./modules/collection/collectionStatistics");
 const { writeFile, readFile } = require("./utils/promisify");
 const { filterLevelByAbility } = require("./modules/filter/filterLevelByAbility");
@@ -41,9 +41,9 @@ const run = async () => {
   console.log(`Начал копировать rules.json`);
   await saveCopyRules();
   console.log(`Завершил копировать rules.json`);
-  console.log(`Начал копировать alias.json`);
-  await saveCopyAlias();
-  console.log(`Завершил копировать alias.json`);
+  console.log(`Начал копировать config.json`);
+  await saveCopyConfig();
+  console.log(`Завершил копировать config.json`);
   console.log("Начал собирать статистику по турнирам игроков");
   await collectionStatistics();
 };
@@ -54,7 +54,7 @@ app.listen(process.env.PORT || PORT, async () => {
   //   await readFile(`src/store/errors/errorTournaments.json`)
   // );
   // sendStatistics(prevErrorTournaments);
-  // run();
+  run();
 });
 
 const job = new CronJob(

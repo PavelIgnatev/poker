@@ -27,16 +27,21 @@ const collectionStatistics = async () => {
     const day = currentTime.getDate();
     const date = `${year}-${month}-${day}`;
     const path = `src/store/copies/${date}`;
-    const stateAlias = JSON.parse(await readFile(`${path}/alias.json`));
+    const stateConfig = JSON.parse(await readFile(`${path}/config.json`));
     const ability1 = JSON.parse(await readFile(`${path}/ability1.json`));
     const ability2 = JSON.parse(await readFile(`${path}/ability2.json`));
     const gaps = JSON.parse(await readFile("src/store/gaps/gap.json"));
     const rules = JSON.parse(await readFile(`${path}/rules.json`));
-    const aliases = JSON.parse(await readFile(`src/store/alias/alias.json`));
+    const config = JSON.parse(await readFile(`src/store/config/config.json`));
 
     await Promise.all(
-      Object.keys(stateAlias).map(async (alias) => {
-        const level = stateAlias[alias].level;
+      Object.keys(stateConfig).map(async (alias) => {
+        const configByAlias = stateConfig[alias];
+
+        if (!configByAlias) return;
+
+        const { effmu, networks } = configByAlias;
+
         let result;
 
         try {
@@ -47,11 +52,11 @@ const collectionStatistics = async () => {
           );
         } catch (error) {
           console.log(error);
-          if (aliases[alias]) delete aliases[alias];
+          if (config[alias]) delete config[alias];
         }
 
         if (result?.ErrorResponse?.Error?.$ === "Player group not found.") {
-          if (aliases[alias]) delete aliases[alias];
+          if (config[alias]) delete config[alias];
           console.log(`Алиас ${alias} удален из базы`);
         }
 
@@ -68,8 +73,8 @@ const collectionStatistics = async () => {
             const t = getMoreProp(ft);
             const name = t["@name"]?.toLowerCase();
             const network = t["@network"];
+            const level = networks[network] + effmu;
             const currency = t["@currency"];
-            const bounty = t["@flags"]?.includes("B");
             const turbo = isTurbo(t);
             const bid = t["@bid"];
             const statusGap = `${turbo ? "turbo" : "normal"}`;
@@ -133,7 +138,7 @@ const collectionStatistics = async () => {
     }
 
     console.log("Перезаписываю алиасы");
-    await writeFile("src/store/alias/alias.json", JSON.stringify(aliases));
+    await writeFile("src/store/config/config.json", JSON.stringify(config));
     console.log(`Удаляю папку за день ${date}`);
     deleteFolder(`src/store/copies/${date}`);
   } catch (error) {

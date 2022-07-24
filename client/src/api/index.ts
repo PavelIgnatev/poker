@@ -17,5 +17,8 @@ class Api extends ConfigApi {
   async checkAdminPassword(password: string) {
     return await axios.post(`/api/password/admin`, { password });
   }
+  async postSample(sample: string) {
+    return await axios.post(`/api/sample`, { sample });
+  }
 }
 export default new Api();

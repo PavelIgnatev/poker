@@ -8,13 +8,17 @@ const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { updateCopies } = require("./updateCopies");
 
 const updateAbility2 = async () => {
-  const levels = ["7A", "7B", "16A", "16B"];
+  const levels = Array(16)
+    .fill(null)
+    .map((_, i) => [i + 1 + "A", i + 1 + "B"])
+    .flat();
+
   const state = JSON.parse(await readFile("src/store/tournaments/filtredTournaments.json"));
   console.log("Длина стейта: ", Object.keys(state).length);
   const gaps = JSON.parse(await readFile("src/store/gaps/gap.json"));
+  const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
   const obj = {};
-
   levels.forEach((l) => {
     Object.values(state).forEach((tournaments) => {
       Object.values(tournaments).forEach((ft) => {
@@ -61,7 +65,7 @@ const updateAbility2 = async () => {
 
             Object.keys(obj[r][l][c][b][s]).forEach((n) => {
               const values = obj[r][l][c][b][s][n];
-              if (values?.length >= 10) {
+              if (values?.length >= Number(count)) {
                 result.push(...values);
               }
             });
@@ -71,9 +75,9 @@ const updateAbility2 = async () => {
             } else {
               delete obj[r][l][c][b][s];
               if (!Object.keys(obj[r][l][c][b]).length) {
-                delete obj[r][l][c][b];
+                // delete obj[r][l][c][b];
                 if (!Object.keys(obj[r][l][c]).length) {
-                  delete obj[r][l][c];
+                  // delete obj[r][l][c];
                 }
               }
             }
@@ -115,6 +119,7 @@ const updateAbility2 = async () => {
 
   await writeFile("src/store/ability2/ability2WithoutName.json", JSON.stringify(obj));
 
+  // сохранием ability2WithoutName
   await updateCopies(obj, "ability2.json");
 
   const obj2 = {};

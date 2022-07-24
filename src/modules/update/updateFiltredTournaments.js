@@ -36,7 +36,7 @@ async function updateFiltredTournaments() {
     const date = `${year}-${month}-${day}`;
 
     if (!state[date]) {
-      console.log("Добавляем новый день в базу");
+      console.log(`Добавляем новый день ${date} в базу`);
       const tournaments = (
         await api.get(
           `https://www.sharkscope.com/api/pocarrleaderboard/reports/dailyscheduledtournaments/networks/888Poker,GGNetwork,PartyPoker,PokerStars,WPN,PokerStars(FR-ES-PT),Winamax.fr,Chico,iPoker?date=${date}`,
@@ -46,6 +46,8 @@ async function updateFiltredTournaments() {
       state[date] = tournaments;
 
       console.log(`День ${date} успешно добавлен в tournaments.json`);
+    } else {
+      console.log(`День ${date} уже в базе`);
     }
 
     await writeFile("src/store/tournaments/tournaments.json", JSON.stringify(state));
