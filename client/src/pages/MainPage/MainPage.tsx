@@ -4,7 +4,7 @@ import { useStore } from "effector-react";
 import { BaseTable } from "../../components/BaseTable";
 import { BaseHeader } from "../../components/BaseHeader";
 import { $tableState, fetchUserReposFx } from "../../store/Table";
-import { $config, getConfig } from "../../store/Config";
+import { $config, getConfigRequest } from "../../store/Config";
 import { OnPasswordSubmit, PasswordSection } from "../../components/PasswordSection";
 
 export const MainPage: FC = () => {
@@ -13,7 +13,7 @@ export const MainPage: FC = () => {
   const config = useStore($config);
 
   const handlePasswordSubmit: OnPasswordSubmit = ({ password, login }) =>
-    getConfig({ alias: login, password });
+    getConfigRequest({ alias: login, password });
 
   if (!config) {
     return <PasswordSection onSubmit={handlePasswordSubmit} />;

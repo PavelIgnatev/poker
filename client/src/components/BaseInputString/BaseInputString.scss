@@ -1,4 +1,7 @@
-$borderColor: transparentize(#4a72ff, 0.75);
+$shadow100: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.1px 0.3px rgba(0, 0, 0, 0.1),
+  0 1px 2px rgba(0, 0, 0, 0.2);
+$shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
+  0 3px 6px rgba(0, 0, 0, 0.2);
 
 .BaseInputString {
   box-sizing: border-box;
@@ -7,26 +10,26 @@ $borderColor: transparentize(#4a72ff, 0.75);
   height: 48px;
   padding-left: 18px;
 
-  border: 2px solid $borderColor;
+  border: none;
   border-radius: 10px;
   outline: none;
+  box-shadow: $shadow100;
 
   background-color: #f5f8ff;
 
-  transition: 0.05s all ease-in-out;
+  transition: 50ms ease-out box-shadow;
 
   cursor: text;
 
   &:focus,
   &:active {
     outline: none;
-    box-shadow: none;
+    box-shadow: $shadow300;
   }
 
   &:disabled {
     cursor: default;
 
     background-color: transparentize(#f5f8ff, 0.25);
-    border-color: transparentize(#4a72ff, 0.9);
   }
 }

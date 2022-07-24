@@ -4,14 +4,20 @@ const { networks, adminPassword } = require("../../../constants");
 
 module.exports = async (req, res) => {
   const { config: newConfig, password: reqAdminPassword } = req.body;
-  const { alias, level, effmu, mail, password } = newConfig;
 
   if (reqAdminPassword !== adminPassword) {
     return res.status(403).send("Wrong password");
   }
 
-  if (!mail || !level || !effmu || !alias) {
-    return res.status(400).send("All parameters are required (mail, level, effmu, alias)");
+  if (!newConfig) {
+    return res.status(400).send('"Config" parameter is required');
+  }
+
+  const { alias, level, effmu, mail, password } = newConfig;
+  if (!mail || !level || !effmu || !alias || !password) {
+    return res
+      .status(400)
+      .send("All parameters are required (mail, level, effmu, alias, password)");
   }
 
   const config = await getConfig();

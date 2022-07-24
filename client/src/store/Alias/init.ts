@@ -1,11 +1,14 @@
-import { createEffect } from "effector";
+import { createEffect, createApi } from "effector";
 import { $aliases } from "./state";
 import api from "../../api";
 
-export const getAliases = createEffect(async () => {
-  return await api.get<string[]>("/api/aliases");
+export const aliasesEvents = createApi($aliases, {
+  addAlias: (store, alias: string) => [...store, alias],
+  deleteAlias: (store, alias: string) => store.filter((a) => a !== alias),
 });
 
-$aliases.on(getAliases.doneData, (_, aliases) => aliases);
+export const getAliasesRequest = createEffect(async (level?: number) => {
+  return await api.get<string[]>("/api/aliases", { level });
+});
 
-getAliases();
+$aliases.on(getAliasesRequest.doneData, (store, aliases) => aliases);

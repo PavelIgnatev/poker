@@ -1,52 +1,72 @@
 import b_ from "b_";
 import React from "react";
-import { useStore } from "effector-react";
 
-import { Modal, ModalRef } from "../Modal";
-import { UserSettings } from "../UserSettings";
+import { LEVELS_ARRAY } from "../../constants";
+import { getAliasesRequest } from "../../store/Alias";
 
-import { $aliases } from "../../store/Alias";
-import { $config, getConfig } from "../../store/Config";
-import { $isValidAdminPassword, $password } from "../../store/Password";
+import { AliasesSectionForm } from "./__Form";
+import { AliasesSectionList } from "./__List";
 
 import "./index.scss";
 
-const b = b_.with("aliases-section");
+export const b = b_.with("aliases-section");
+
+const ALL_LEVELS = -1;
 
 export const AliasesSection = () => {
-  const settingsModalRef = React.useRef<ModalRef>(null);
-  const handleSettingsModalOpen = () => settingsModalRef.current?.open();
-  const handleSettingsModalClose = () => settingsModalRef.current?.close();
+  const [selectedLevel, setSelectedLevel] = React.useState<number | null>(null);
+  const isAllLevels = selectedLevel === ALL_LEVELS;
 
-  const isAdminPage = useStore($isValidAdminPassword);
-  const selectedConfig = useStore($config);
-  const aliases = useStore($aliases);
-  const password = useStore($password);
+  React.useEffect(() => {
+    if (isAllLevels) {
+      getAliasesRequest();
+    } else if (selectedLevel) {
+      getAliasesRequest(selectedLevel);
+    }
+  }, [selectedLevel]);
 
-  const handleAliasClick = (alias: string) => async () => {
-    await getConfig({ alias, password });
-    handleSettingsModalOpen();
+  const handleLevelBlockClick = (level: number) => () => {
+    if (level === selectedLevel) {
+      setSelectedLevel(null);
+    } else {
+      setSelectedLevel(level);
+    }
   };
+
+  // крч добавляем юзеров асинхронно - и запрос шлем и сами добавляем, если ошибка - убираем его
+  // с удалением то же самое
+  // чтобы не было много загрузок - можно было по многу добавлять
 
   return (
     <div className={b()}>
-      <h2>ALIASES</h2>
-      {aliases.map((alias) => (
-        <div onClick={handleAliasClick(alias)} key={alias}>
-          {alias}
+      <h2 className={b("title")}>Alias by levels:</h2>
+      <div className={b("level-blocks")}>
+        {LEVELS_ARRAY.map((level) => (
+          <button
+            className={b("level-block", {
+              selected: selectedLevel === level,
+            })}
+            onClick={handleLevelBlockClick(level)}
+          >
+            <span className={b("level-block-text")}>{level}</span>
+          </button>
+        ))}
+        <button
+          className={b("level-block", {
+            selected: selectedLevel === ALL_LEVELS,
+            all: true,
+          })}
+          onClick={handleLevelBlockClick(ALL_LEVELS)}
+        >
+          <span className={b("level-block-text")}>All</span>
+        </button>
+      </div>
+      {selectedLevel && (
+        <div className={b("content-wrapper")}>
+          <AliasesSectionForm />
+          <AliasesSectionList selectedLevel={selectedLevel} />
         </div>
-      ))}
-      <Modal ref={settingsModalRef}>
-        {selectedConfig ? (
-          <UserSettings
-            config={selectedConfig}
-            isAdminPage={isAdminPage}
-            onClose={handleSettingsModalClose}
-          />
-        ) : (
-          "Loading config"
-        )}
-      </Modal>
+      )}
     </div>
   );
 };

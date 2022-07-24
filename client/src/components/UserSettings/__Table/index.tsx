@@ -4,6 +4,7 @@ import Select from "react-select";
 
 import { Networks } from "../../../@types/common";
 import { SelectOption } from "../../../@types/selectsModel";
+import { LEVELS_ARRAY } from "../../../constants";
 import { editableConfigEvents } from "../../../store/Config";
 
 import { specialSelectStyles } from "../../BaseSelect";
@@ -31,15 +32,10 @@ interface Props {
 
 const b = b_.with("user-settings-table");
 
-// todo импортить колличество уровней
-// + 1 чтобы считать с первого уровня
-const LEVELS_COUNT = 15 + 1;
-const levelsOptions: SelectOption<number>[] = new Array(LEVELS_COUNT)
-  .fill(null)
-  .map((_, index) => ({
-    value: index + 1,
-    label: index + 1,
-  }));
+const levelsOptions: SelectOption<number>[] = LEVELS_ARRAY.map((level) => ({
+  value: level,
+  label: level,
+}));
 
 export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
   return (

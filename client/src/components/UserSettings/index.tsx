@@ -5,7 +5,7 @@ import b_ from "b_";
 import CloseIcon from "../../assets/icons/close.svg";
 import { $password } from "../../store/Password";
 import { ConfigModel } from "../../@types/configModel";
-import { $editableConfig, editableConfigEvents, patchConfig } from "../../store/Config";
+import { $editableConfig, editableConfigEvents, patchConfigRequest } from "../../store/Config";
 
 import { BaseButton } from "../BaseButton";
 
@@ -42,7 +42,7 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
 
   const handleSubmit = async () => {
     setProgress(true);
-    await patchConfig({
+    await patchConfigRequest({
       alias,
       config: {
         networks: isAdminPage ? networks : config.networks,

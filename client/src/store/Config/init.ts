@@ -11,32 +11,35 @@ const DEFAULT_ERROR_MESSAGE = "An error has occurred. You are denied access to t
 
 const configDomain = createDomain();
 
-export const getConfig = configDomain.createEffect(
+export const { clearConfig } = createApi($config, {
+  clearConfig: () => null,
+});
+
+export const getConfigRequest = configDomain.createEffect(
   async (params: { alias: string; password: string }) => {
     return await api.get<ConfigModel>("/api/config", params);
   },
 );
 
-export const postConfig = configDomain.createEffect(
+export const postConfigRequest = configDomain.createEffect(
   async (params: { config: defaultConfigModel; password: string }) => {
     const { config, password } = params;
 
-    await api.postConfig(config, password);
+    await api.postConfigRequest(config, password);
   },
 );
 
-export const patchConfig = configDomain.createEffect(
+export const patchConfigRequest = configDomain.createEffect(
   async ({ alias, config, password }: { alias: string; config: ConfigModel; password: string }) => {
-    await api.patchConfig(alias, config, password);
-    await getConfig({ alias, password: config.password });
+    await api.patchConfigRequest(alias, config, password);
+    await getConfigRequest({ alias, password: config.password });
   },
 );
 
-export const deleteConfig = configDomain.createEffect(
+export const deleteConfigRequest = configDomain.createEffect(
   async (params: { alias: string; password: string }) => {
-    const { alias, password } = params;
-    await api.deleteConfig(alias, password);
-    await getConfig({ alias, password });
+    await api.deleteConfig(params);
+    clearConfig();
   },
 );
 
@@ -68,4 +71,4 @@ export const editableConfigEvents = createApi($editableConfig, {
   }),
 });
 
-$config.on(getConfig.doneData, (_, config) => config);
+$config.on(getConfigRequest.doneData, (_, config) => config);
