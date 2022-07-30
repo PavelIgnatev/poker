@@ -1,13 +1,9 @@
 $shadow100: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.1px 0.3px rgba(0, 0, 0, 0.1),
   0 1px 2px rgba(0, 0, 0, 0.2);
-$shadow200: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.3px 0.5px rgba(0, 0, 0, 0.1),
-  0 2px 4px rgba(0, 0, 0, 0.2);
-$shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
-  0 3px 6px rgba(0, 0, 0, 0.2);
 
 .approval-section {
   position: relative;
-  padding: 33px 80px;
+  padding: 52px 80px;
   box-sizing: border-box;
   max-width: 70vw;
   max-height: 92vh;
@@ -37,29 +33,10 @@ $shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
 
   &__approve-button,
   &__close-button {
-    border: 0;
     width: 150px;
     height: 50px;
-    background: #4a72ff;
-    border-radius: 12px;
-    color: white;
+
     font-weight: 500;
-    cursor: pointer;
-    transition: 0.2s all ease-in-out;
-    box-shadow: $shadow100;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-
-    &:active {
-      transform: scale(1.01);
-    }
-  }
-
-  &__close-button {
-    color: #4a72ff;
-    background: #f5f8ff;
   }
 
   &__close-icon {

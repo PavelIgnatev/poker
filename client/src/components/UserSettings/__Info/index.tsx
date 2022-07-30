@@ -9,6 +9,7 @@ import MailIcon from "../../../assets/icons/mail.svg";
 import SettingsIcon from "../../../assets/icons/settings.png";
 import EyeIcon from "../../../assets/icons/eye.svg";
 import { editableConfigEvents } from "../../../store/Config";
+import { EFFMU } from "../../../store/Select";
 
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
@@ -19,11 +20,6 @@ interface Props {
   config: ConfigModel;
   isAdminPage?: boolean;
 }
-
-const effMuOptions: SelectOption<Effmu>[] = [
-  { value: "A", label: "A" },
-  { value: "B", label: "B" },
-];
 
 const selectStyles = {
   ...specialSelectStyles,
@@ -42,8 +38,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => setShowPassword((p) => !p);
 
-  const defaultEffMuOption =
-    effMuOptions.find((option) => option.value === effmu) || effMuOptions[0];
+  const defaultEffMuOption = EFFMU.find((option) => option.value === effmu) || EFFMU[0];
 
   const handleEmailChange = (email: string) => editableConfigEvents.handleChangeMail(email);
   const handlePasswordChange = (password: string) =>
@@ -75,7 +70,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
         <div className={b("effmu-wrapper")}>
           <b className={b("label")}>Eff mu</b>
           <Select
-            options={effMuOptions}
+            options={EFFMU}
             defaultValue={defaultEffMuOption}
             // @ts-ignore все работает че дурной жалуется
             onChange={handleEffMuChange}

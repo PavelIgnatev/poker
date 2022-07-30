@@ -1,12 +1,38 @@
-import { FC, useState } from "react";
+import { useEffect, useState } from "react";
 import classNames from "classnames";
 
 import { Rules } from "./Rules";
-import { PagerModel } from "./types";
 
 import classes from "./Rules/Rules.module.scss";
+import { useStore } from "effector-react";
+import { $prevSettings, $state, fetchSettings, fetchStateAbility2 } from "../../store/Settings";
 
-export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
+// поработать над неймингом если есть желание
+type State = any;
+type PrevState = {
+  [key: string]:
+    | {
+        network: string;
+        level: string;
+        currency: string;
+        bid: string;
+        status: string;
+        name: string;
+        ability: string;
+      }[]
+    | null;
+};
+
+export const Ability2Section = () => {
+  // @ts-ignore блять пиздец нахуй блять что тут с типами и неймингом
+  const prevState = useStore($prevSettings) as PrevState;
+  const state = useStore($state) as State;
+
+  useEffect(() => {
+    fetchStateAbility2();
+    fetchSettings();
+  }, []);
+
   const [count, setCount] = useState<Record<string, number>>({});
   const levels = Array(15)
     .fill(null)
@@ -14,7 +40,7 @@ export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
   const EffMu = ["A", "B"];
 
   return (
-    <div className={classes.pager}>
+    <section className={classes.pager}>
       <h1 style={{ textAlign: "center" }}>Rules for levels</h1>
       {levels.map((level) => {
         return (
@@ -70,6 +96,6 @@ export const RulesWrapper: FC<PagerModel> = ({ state, prevState }) => {
           </div>
         );
       })}
-    </div>
+    </section>
   );
 };

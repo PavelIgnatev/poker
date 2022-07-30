@@ -6,11 +6,11 @@ import { $config, deleteConfigRequest, getConfigRequest } from "../../../store/C
 import { $aliases, aliasesEvents, getAliasesRequest } from "../../../store/Alias";
 import { $isValidAdminPassword, $password } from "../../../store/Password";
 
+import { ApprovalSection } from "../../ApprovalSection";
 import { UserSettings } from "../../UserSettings";
 import { Modal, ModalRef } from "../../Modal";
 
 import { b } from "../index";
-import { ApprovalSection } from "../../ApprovalSection";
 
 interface Props {
   selectedLevel: number | null;
@@ -29,7 +29,10 @@ export const AliasesSectionList: FC<Props> = ({ selectedLevel, search }) => {
   const isAdminPage = useStore($isValidAdminPassword);
   const selectedConfig = useStore($config);
   const password = useStore($password);
-  const aliases = useStore($aliases)?.filter((alias) => alias.includes(search)) ?? [];
+  const aliases =
+    useStore($aliases)?.filter((alias) =>
+      alias.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+    ) ?? [];
   const aliasesLoading = useStore(getAliasesRequest.pending);
 
   if (!selectedLevel) {
@@ -86,6 +89,7 @@ export const AliasesSectionList: FC<Props> = ({ selectedLevel, search }) => {
       </Modal>
       <Modal ref={deleteModalRef}>
         <ApprovalSection
+          title="Do you really want to delete this alias?"
           onApprove={handleAliasDelete(selectedAlias)}
           onClose={() => handleModalClose(deleteModalRef)}
         />

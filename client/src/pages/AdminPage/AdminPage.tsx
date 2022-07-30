@@ -1,14 +1,17 @@
 import { useStore } from "effector-react";
-import { FC, useEffect } from "react";
-import { AdminAbilitySection } from "../../components/AdminAbilitySection";
+import React, { FC, useEffect } from "react";
+
+import { Ability2Section } from "../../components/Admin.Ability2Section";
+import { AdmissibleStatusSection } from "../../components/Admin.AdmissibleStatusSection";
+import { AliasesSection } from "../../components/Admin.AliasesSection";
 import {
   OnPasswordSubmit,
   PasswordSection,
   PasswordSectionType,
 } from "../../components/PasswordSection";
+import { getSample } from "../../store/Sample";
 import { SampleSection } from "../../components/SampleSection2";
 import { $isValidAdminPassword, validateAdminPasswordRequest } from "../../store/Password";
-import { getSample } from "../../store/Sample";
 
 export const AdminPage: FC = () => {
   const isAdmin = useStore($isValidAdminPassword);
@@ -28,7 +31,9 @@ export const AdminPage: FC = () => {
     <>
       <h1 style={{ textAlign: "center" }}>Admin Panel</h1>
       <SampleSection />
-      <AdminAbilitySection />
+      <AdmissibleStatusSection />
+      <Ability2Section />
+      <AliasesSection />
     </>
   );
 };

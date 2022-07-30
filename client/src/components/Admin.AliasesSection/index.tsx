@@ -9,6 +9,7 @@ import { AliasesSectionForm } from "./__Form";
 import { AliasesSectionList } from "./__List";
 
 import "./index.scss";
+import { BaseInputString } from "../BaseInputString";
 
 export const b = b_.with("aliases-section");
 
@@ -40,8 +41,8 @@ export const AliasesSection = () => {
   // чтобы не было много загрузок - можно было по многу добавлять
 
   return (
-    <div className={b()}>
-      <h2 className={b("title")}>Alias by levels:</h2>
+    <section className={b()}>
+      <h2 className={b("title")}>Aliases by level:</h2>
       <div className={b("level-blocks")}>
         {LEVELS_ARRAY.map((level) => (
           <button
@@ -66,27 +67,27 @@ export const AliasesSection = () => {
       </div>
       {selectedLevel && (
         <div className={b("content-wrapper")}>
-          {selectedLevel !== -1 && <AliasesSectionForm selectedLevel={selectedLevel} />}
-          <div className={b("wrapper")}>
-            {selectedLevel !== -1 ? (
-              <h2 className={b("title")}>
-                Alias for <strong>{selectedLevel} level</strong>
+          <div className={b("subtitle-wrapper")}>
+            {!isAllLevels ? (
+              <h2 className={b("subtitle")}>
+                Aliases for <strong>{selectedLevel} level</strong>
               </h2>
             ) : (
-              <h2 className={b("title")}>
-                Alias for <strong>all level</strong>
+              <h2 className={b("subtitle")}>
+                Aliases for <strong>all level</strong>
               </h2>
             )}
-            <input
+            <BaseInputString
+              onChange={setSearch}
               value={search}
-              onChange={(e) => setSearch(e.currentTarget.value)}
               placeholder="Search"
-              className={cx(b("alias-form-input"), b("search"))}
-            ></input>
+              className={b("alias-form-input", { search: true })}
+            />
           </div>
+          {!isAllLevels && <AliasesSectionForm selectedLevel={selectedLevel} />}
           <AliasesSectionList selectedLevel={selectedLevel} search={search} />
         </div>
       )}
-    </div>
+    </section>
   );
 };

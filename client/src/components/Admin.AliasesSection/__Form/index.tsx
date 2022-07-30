@@ -1,16 +1,31 @@
 import { useStore } from "effector-react";
 import { FC, FormEvent, useState } from "react";
+import Select from "react-select";
+
 import { getAliasesRequest } from "../../../store/Alias";
 import { postConfigRequest } from "../../../store/Config";
 import { $password } from "../../../store/Password";
 import { EFFMU } from "../../../store/Select";
-import { BaseSelect } from "../../BaseSelect";
+import { specialSelectStyles } from "../../BaseSelect";
+import { BaseInputString } from "../../BaseInputString";
 
 interface AliasesSectionFormProps {
   selectedLevel: number | null;
 }
 
 import { b } from "../index";
+import { SelectOption } from "../../../@types/selectsModel";
+import { Effmu } from "../../../@types/common";
+
+const selectStyles = {
+  ...specialSelectStyles,
+  control: (provided: object) => ({
+    ...specialSelectStyles.control(provided),
+    fontWeight: 700,
+    fontSize: "20px",
+    width: "90px",
+  }),
+};
 
 export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel }) => {
   const [alias, setAlias] = useState<string>("");
@@ -40,30 +55,31 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
 
   return (
     <form onSubmit={handleSubmit} className={b("alias-form")}>
-      <input
+      <BaseInputString
+        onChange={setAlias}
         value={alias}
-        onChange={(e) => setAlias(e.currentTarget.value)}
         placeholder="Alias"
         className={b("alias-form-input")}
       />
-      <input
+      <BaseInputString
+        onChange={setPassword}
         value={password}
-        onChange={(e) => setPassword(e.currentTarget.value)}
         placeholder="Password"
         className={b("alias-form-input")}
       />
-      <input
+      <BaseInputString
+        onChange={setMail}
         value={mail}
-        onChange={(e) => setMail(e.currentTarget.value)}
-        placeholder="E-mail"
+        placeholder="Mail"
         className={b("alias-form-input")}
       />
-      <BaseSelect
-        placeholder="Effmu"
+      <Select
         options={EFFMU}
-        onChange={(e) => setEffmu((e?.value as "A" | "B") ?? "A")}
-        className={b("alias-form-select")}
+        placeholder="Effmu"
         defaultValue={EFFMU[0]}
+        // @ts-ignore react-select конечно молодец, но типы и стили ужасны
+        onChange={(option: SelectOption<Effmu>) => setEffmu(option.value)}
+        styles={selectStyles}
       />
       <button className={b("alias-form-button")} type="submit">
         Add
