@@ -29,17 +29,17 @@ const sendStatistics = async (errorTournaments) => {
   const buffer = await workbook.xlsx.writeBuffer();
 
   const transporter = createTransport({
-    host: "smtp.mail.ru",
+    host: "smtp.mail.yandex.ru",
     port: 465,
     secure: true,
     auth: {
-      user: "avy.vyf.15@bk.ru",
-      pass: "rigQGJskXKAkdj96GLrw",
+      user: "palllkaignatev@yandex.ru",
+      pass: "pikcelxxx",
     },
   });
 
   const mailOptions = {
-    from: "avy.vyf.15@bk.ru",
+    from: "d4sdsa.da5@yandex.ru",
     to: ["behaappy@ya.ru, palllkaignatev@yandex.ru"],
     subject: "",
     html: `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,

@@ -1,5 +1,6 @@
 import b_ from "b_";
 import React from "react";
+import cx from "classnames";
 
 import { LEVELS_ARRAY } from "../../constants";
 import { getAliasesRequest } from "../../store/Alias";
@@ -15,6 +16,7 @@ const ALL_LEVELS = -1;
 
 export const AliasesSection = () => {
   const [selectedLevel, setSelectedLevel] = React.useState<number | null>(null);
+  const [search, setSearch] = React.useState<string>("");
   const isAllLevels = selectedLevel === ALL_LEVELS;
 
   React.useEffect(() => {
@@ -46,6 +48,7 @@ export const AliasesSection = () => {
             className={b("level-block", {
               selected: selectedLevel === level,
             })}
+            key={level}
             onClick={handleLevelBlockClick(level)}
           >
             <span className={b("level-block-text")}>{level}</span>
@@ -63,8 +66,25 @@ export const AliasesSection = () => {
       </div>
       {selectedLevel && (
         <div className={b("content-wrapper")}>
-          <AliasesSectionForm />
-          <AliasesSectionList selectedLevel={selectedLevel} />
+          {selectedLevel !== -1 && <AliasesSectionForm selectedLevel={selectedLevel} />}
+          <div className={b("wrapper")}>
+            {selectedLevel !== -1 ? (
+              <h2 className={b("title")}>
+                Alias for <strong>{selectedLevel} level</strong>
+              </h2>
+            ) : (
+              <h2 className={b("title")}>
+                Alias for <strong>all level</strong>
+              </h2>
+            )}
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.currentTarget.value)}
+              placeholder="Search"
+              className={cx(b("alias-form-input"), b("search"))}
+            ></input>
+          </div>
+          <AliasesSectionList selectedLevel={selectedLevel} search={search} />
         </div>
       )}
     </div>

@@ -96,6 +96,7 @@ export const BaseHeader: FC = () => {
               <BaseSelect
                 className={classes.time}
                 options={TIMERANGE}
+                defaultValue={TIMERANGE[1]}
                 onChange={editableTournamentsSettings.handleChangeTime}
                 placeholder="Time"
               />
@@ -172,6 +173,7 @@ export const BaseHeader: FC = () => {
             <BaseSelect
               className={classes.timezone}
               options={TIMEZONES}
+              defaultValue={TIMEZONES[0]}
               onChange={editableTournamentsSettings.handleChangeTimezone}
               placeholder="Timezone"
             />

@@ -22,9 +22,74 @@ $shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
     font-size: 1.2em;
   }
 
+  &__alias-form {
+    margin-top: 20px;
+    display: flex;
+    max-width: 950px;
+    width: 100%;
+    gap: 20px;
+    justify-content: space-between;
+
+    &-input {
+      border: 0;
+      outline: 0;
+      background: #f5f8ff;
+      border-radius: 12px;
+      font-size: 18px;
+      padding-left: 10px;
+      box-shadow: 0 0 0 1px #dde7ff;
+
+      &::placeholder {
+        color: rgba(29%, 45%, 100%, 0.5);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 1px #4a72ff;
+      }
+    }
+
+    &-select {
+      span[aria-relevant="additions text"] + div {
+        font-size: 18px;
+        border: 0;
+        background: #f5f8ff;
+
+        border-radius: 12px;
+        box-shadow: 0 0 0 1px #dde7ff;
+
+        & * div {
+          color: rgba(29%, 45%, 100%, 0.5);
+        }
+
+        & * div:not([id]) {
+          color: black !important;
+        }
+
+        svg {
+          color: rgba(29%, 45%, 100%, 0.5) !important;
+        }
+      }
+    }
+
+    &-button {
+      color: #ffffff;
+      font-weight: 500;
+      padding: 10px 40px;
+      border: 0;
+      background: $green;
+      cursor: pointer;
+      transition: 0.2s all ease-in-out;
+      border-radius: 12px;
+
+      &:hover {
+        background: #38965e;
+      }
+    }
+  }
+
   &__level-blocks {
     display: grid;
-    grid-template-columns: repeat(8, 64px);
+    grid-template-columns: repeat(9, 64px);
     gap: 20px;
   }
 
@@ -69,7 +134,20 @@ $shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
 
     max-width: 800px;
 
-    padding: 40px 0;
+    padding: 0;
+    padding-bottom: 40px;
+  }
+
+  &__wrapper {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__search {
+    margin-left: 30px;
+    height: 40px;
+    margin-bottom: 7px;
   }
 
   &__alias-item {
@@ -78,6 +156,7 @@ $shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
     align-items: center;
 
     min-width: 72px;
+    font-weight: 500;
 
     border-radius: 12px;
     box-shadow: $shadow100;
@@ -87,7 +166,7 @@ $shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
   }
 
   &__alias-item-text {
-    padding: 8px 8px 8px 12px;
+    padding: 8px 14px 8px 20px;
   }
 
   &__alias-item-delete-wrapper {

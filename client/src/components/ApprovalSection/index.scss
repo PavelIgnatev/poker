@@ -1,0 +1,86 @@
+$shadow100: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.1px 0.3px rgba(0, 0, 0, 0.1),
+  0 1px 2px rgba(0, 0, 0, 0.2);
+$shadow200: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.3px 0.5px rgba(0, 0, 0, 0.1),
+  0 2px 4px rgba(0, 0, 0, 0.2);
+$shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
+  0 3px 6px rgba(0, 0, 0, 0.2);
+
+.approval-section {
+  position: relative;
+  padding: 33px 80px;
+  box-sizing: border-box;
+  max-width: 70vw;
+  max-height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__title {
+    color: #4a72ff;
+    margin: 0;
+    font-size: 30px;
+  }
+
+  &__subtitle {
+    margin: 10px 0 15px 0;
+    font-size: 23px;
+    font-weight: 400;
+  }
+
+  &__button-wrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  &__approve-button,
+  &__close-button {
+    border: 0;
+    width: 150px;
+    height: 50px;
+    background: #4a72ff;
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s all ease-in-out;
+    box-shadow: $shadow100;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(1.01);
+    }
+  }
+
+  &__close-button {
+    color: #4a72ff;
+    background: #f5f8ff;
+  }
+
+  &__close-icon {
+    position: absolute;
+    border: none;
+    background: none;
+    padding: 0;
+
+    cursor: pointer;
+
+    top: 30px;
+    right: 30px;
+    transition: 50ms ease-in transform;
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    img {
+      display: block;
+      pointer-events: none;
+    }
+  }
+}

@@ -7,6 +7,7 @@ type BaseInputStringProps = {
   onChange: (v: string) => void;
   className?: string;
   disabled?: boolean;
+  placeholder?: string;
 };
 
 export const BaseInputString: FC<BaseInputStringProps> = ({
@@ -14,6 +15,7 @@ export const BaseInputString: FC<BaseInputStringProps> = ({
   className,
   value,
   disabled,
+  placeholder,
 }) => {
   return (
     <input
@@ -21,6 +23,7 @@ export const BaseInputString: FC<BaseInputStringProps> = ({
       value={value}
       onChange={(e) => onChange(e.currentTarget.value)}
       disabled={disabled}
+      placeholder={placeholder}
     />
   );
 };

@@ -6,8 +6,8 @@ export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {
   time: null,
   timezone: null,
   timezoneTable: null,
-  moneyStart: null,
-  moneyEnd: null,
+  moneyStart: 1,
+  moneyEnd: 1000,
   KO: false,
   turbo: false,
   superTurbo: false,
@@ -20,6 +20,11 @@ export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {
 export const $tournamentsSettings = createStore<tournamentsSettingsProps>(
   DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS,
 );
+
+export const EFFMU = [
+  { value: "A", label: "A" },
+  { value: "B", label: "B" },
+];
 
 export const NETWORKS = [
   { value: "PokerStars", label: "PS.eu" },

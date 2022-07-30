@@ -61,6 +61,7 @@ export const BaseSelect = (props: BaseSelectModel) => {
       placeholder={placeholder}
       isDisabled={disabled}
       defaultValue={defaultValue}
+      id={className}
     />
   );
 };
