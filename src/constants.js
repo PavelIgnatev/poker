@@ -3,4 +3,5 @@ module.exports = {
   adminPassword: "Ej7JgawcsKcs",
   configPath: "src/store/config/config.json",
   samplePath: "src/store/sample/sample.json",
+  offpeakPath: "src/store/offpeak/offpeak.json",
 };

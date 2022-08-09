@@ -28,13 +28,21 @@ export const editableTournamentsSettings = createApi($tournamentsSettings, {
     ...setting,
     moneyEnd,
   }),
+  handleChangePrizepoolStart: (setting, prizepoolStart: number) => ({
+    ...setting,
+    prizepoolStart,
+  }),
+  handleChangePrizepoolEnd: (setting, prizepoolEnd: number) => ({
+    ...setting,
+    prizepoolEnd,
+  }),
   handleChangeDateStart: (setting, dateStart: string) => ({
     ...setting,
-    dateStart,
+    dateStart: String(Number(dateStart) >= 24 ? 24 : dateStart),
   }),
   handleChangeDateEnd: (setting, dateEnd: string) => ({
     ...setting,
-    dateEnd,
+    dateEnd: String(Number(dateEnd) >= 24 ? 24 : dateEnd),
   }),
   handleChangeKo: (setting, KO: boolean) => ({
     ...setting,

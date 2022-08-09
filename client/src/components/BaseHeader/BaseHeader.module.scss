@@ -4,6 +4,7 @@
   align-items: center;
   display: flex;
   position: relative;
+  margin-bottom: 20px;
 }
 
 .menu {
@@ -18,7 +19,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .timezone,
@@ -66,7 +67,7 @@
   box-sizing: border-box;
   transition: all 100ms;
   padding: 2px 8px;
-  max-width: 60px;
+  max-width: 90px;
 
   &:focus,
   &:active {
@@ -133,4 +134,8 @@
   &:hover {
     color: #3157de;
   }
+}
+
+.prizepool {
+  margin-top: 20px;
 }

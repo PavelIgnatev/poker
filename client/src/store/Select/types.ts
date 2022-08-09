@@ -7,8 +7,10 @@ export interface tournamentsSettingsProps {
   time: SingleValue<selectModel> | null;
   timezone: SingleValue<selectModel> | null;
   timezoneTable: string | null;
-  moneyStart: number | null;
-  moneyEnd: number | null;
+  moneyStart: number;
+  moneyEnd: number;
+  prizepoolStart: number;
+  prizepoolEnd: number;
   KO: boolean;
   turbo: boolean;
   superTurbo: boolean;

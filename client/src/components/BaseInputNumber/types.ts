@@ -4,4 +4,5 @@ export interface BaseInputNumberModel {
   placeholder: string;
   className?: string;
   disabled?: boolean | undefined;
+  max?: number;
 }

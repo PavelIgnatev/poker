@@ -1,3 +1,4 @@
+import { offpeakModel } from "../@types/offpeakModel";
 import axios from "axios";
 import ConfigApi from "./ConfigApi";
 class Api extends ConfigApi {
@@ -19,6 +20,9 @@ class Api extends ConfigApi {
   }
   async postSample(sample: string) {
     return await axios.post(`/api/sample`, { sample });
+  }
+  async postOffpeak(offpeak: offpeakModel) {
+    return await axios.post(`/api/offpeak`, { offpeak });
   }
 }
 export default new Api();

@@ -27,7 +27,11 @@ module.exports = async (req, res) => {
       normal: isNormal,
       dateStart,
       dateEnd,
+      prizepoolStart,
+      prizepoolEnd,
     } = req.query;
+
+    console.log(time);
 
     const config = await getConfig();
     const configByAlias = config[alias];
@@ -121,6 +125,7 @@ module.exports = async (req, res) => {
 
         return {
           ...tournament,
+          "@date": isStartDate,
           "@bid": bid,
           "@realBid": realBid,
           "@turbo": !!turbo,
@@ -152,6 +157,7 @@ module.exports = async (req, res) => {
       const turbo = tournament["@turbo"];
       const superturbo = tournament["@superturbo"];
       const level = tournament["@level"];
+      const prizepool = tournament["@prizepool"];
       const startDate = tournament["@scheduledStartDate"];
 
       const hours = startDate?.split(", ")?.[1]?.split(":")?.[0];
@@ -173,6 +179,7 @@ module.exports = async (req, res) => {
           (isFreezout != "false" ? !bounty : false) ||
           (isNormal != "false" ? !turbo : false)) &&
         isDateFiltred &&
+        (prizepool ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
         filterLevelByAbility(level, tournament)
       );
     });

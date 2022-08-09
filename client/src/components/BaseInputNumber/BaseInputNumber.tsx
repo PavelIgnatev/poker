@@ -10,6 +10,7 @@ export const BaseInputNumber: FC<BaseInputNumberModel> = ({
   placeholder,
   className,
   disabled,
+  max = 9999,
 }) => {
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value;
@@ -20,7 +21,7 @@ export const BaseInputNumber: FC<BaseInputNumberModel> = ({
     )
       return value;
 
-    handleChange(Number(value) > 9999 ? "9999" : Number(value) < -9999 ? "-9999" : value);
+    handleChange(Number(value) > max ? String(max) : Number(value) < -max ? `-${max}` : value);
   }
 
   return (

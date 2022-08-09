@@ -10,14 +10,17 @@ import {
   PasswordSectionType,
 } from "../../components/PasswordSection";
 import { getSample } from "../../store/Sample";
-import { SampleSection } from "../../components/SampleSection2";
+import { SampleSection } from "../../components/SampleSection";
 import { $isValidAdminPassword, validateAdminPasswordRequest } from "../../store/Password";
+import { OffpeakSection } from "../../components/OffpeakSection";
+import { getOffpeak } from "../../store/Offpeak";
 
 export const AdminPage: FC = () => {
   const isAdmin = useStore($isValidAdminPassword);
 
   useEffect(() => {
     getSample();
+    getOffpeak();
   }, []);
 
   const handlePasswordSubmit: OnPasswordSubmit = ({ password }) =>
@@ -31,6 +34,7 @@ export const AdminPage: FC = () => {
     <>
       <h1 style={{ textAlign: "center" }}>Admin Panel</h1>
       <SampleSection />
+      <OffpeakSection />
       <AdmissibleStatusSection />
       <Ability2Section />
       <AliasesSection />

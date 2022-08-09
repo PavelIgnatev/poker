@@ -6,7 +6,7 @@ import classes from "./BaseTable.module.scss";
 import { tableCellModel } from "../../@types/tableCellModel";
 
 type BaseTableProps = {
-  data: tableCellModel[] | null;
+  data: tableCellModel[] | undefined;
   loading: boolean;
 };
 

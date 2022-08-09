@@ -21,6 +21,7 @@ apiRouter
   .delete(api.config.delete);
 
 apiRouter.route("/sample").get(api.sample.get).post(api.sample.patch);
+apiRouter.route("/offpeak").get(api.offpeak.get).post(api.offpeak.patch);
 apiRouter.get("/aliases", api.aliases.get);
 apiRouter.post("/password/admin", api.postAdminPassword);
 

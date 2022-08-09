@@ -89,6 +89,24 @@ export const BaseHeader: FC = () => {
               />
             </div>
           </ComponentCategory>
+          <ComponentCategory category="Prizepool" className={classes.prizepool}>
+            <div className={classes.inputWrapper}>
+              <BaseInput
+                value={tournamentsSettings.moneyStart}
+                handleChange={editableTournamentsSettings.handleChangePrizepoolStart}
+                max={tournamentsSettings.prizepoolStart ?? 0}
+                placeholder="From"
+                className={classes.input}
+              />
+              <BaseInput
+                value={tournamentsSettings.prizepoolEnd}
+                handleChange={editableTournamentsSettings.handleChangePrizepoolEnd}
+                max={10000000}
+                placeholder="To"
+                className={classes.input}
+              />
+            </div>
+          </ComponentCategory>
         </div>
         <div className={classes.content}>
           <div className={classes.starts}>
@@ -117,6 +135,7 @@ export const BaseHeader: FC = () => {
                 />
               </div>
             </ComponentCategory>
+            <ComponentCategory></ComponentCategory>
           </div>
           <ComponentCategory category="Format">
             <div className={classes.checkboxWrapper}>

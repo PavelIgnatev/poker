@@ -18,7 +18,10 @@ export const BaseInputMask: FC<BaseInputMaskModel> = ({
       <InputMask
         id={placeholder}
         mask="99"
-        onChange={(e) => handleChange(e.currentTarget.value)}
+        onChange={(e) => {
+          console.log(e.currentTarget.value);
+          return handleChange(e.currentTarget.value);
+        }}
         className={cx(classes.input, className)}
         value={value ?? 0}
         maskPlaceholder={"00"}

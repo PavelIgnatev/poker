@@ -7,6 +7,7 @@ const postSettings = require("./postSettings");
 const postAdminPassword = require("./postAdminPassword");
 
 const sample = require("./sample");
+const offpeak = require("./offpeak");
 const config = require("./config");
 const aliases = require("./aliases");
 
@@ -21,5 +22,6 @@ module.exports = {
 
   sample,
   config,
+  offpeak,
   aliases,
 };
