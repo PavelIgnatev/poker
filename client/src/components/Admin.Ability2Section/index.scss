@@ -1,0 +1,76 @@
+@import "src/assets/style/design.scss";
+
+.ability-2-section {
+  font-size: 20px;
+  color: $baseColor;
+
+  &__title {
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+
+  &__subtitle {
+    display: block;
+    margin-top: 20px;
+
+    font-weight: 700;
+    font-size: 1.1em;
+  }
+
+  &__effmu-toggle {
+    max-width: 764px;
+
+    margin-top: 20px;
+  }
+
+  &__rules {
+    margin-top: 20px;
+  }
+
+  &__rules-row {
+    display: flex;
+    margin-top: 16px;
+  }
+
+  &__rules-select {
+    margin-left: 20px;
+
+    flex-shrink: 0;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &_network {
+      width: 124px;
+    }
+
+    &_currency {
+      width: 124px;
+    }
+
+    &_bid {
+      width: 100px;
+    }
+
+    &_status {
+      width: 136px;
+    }
+
+    &_name {
+      flex-grow: 1;
+    }
+  }
+
+  &__rules-ability {
+    width: 120px;
+
+    margin-left: 20px;
+  }
+
+  &__button {
+    width: 100px;
+
+    margin-left: 20px;
+  }
+}

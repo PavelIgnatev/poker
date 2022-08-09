@@ -1,6 +1,8 @@
 import Select from "react-select";
 import { BaseSelectModel } from "./types";
 
+const GRAY_BACKGROUND_COLOR = "rgb(242, 242, 242)";
+const GRAY_COLOR = "rgb(124, 124, 124)";
 const COLOR = "#4A72FF";
 const BOX_SHADOW_100 =
   "0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.1px 0.3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2)";
@@ -16,13 +18,14 @@ export const specialSelectStyles = {
   indicatorSeparator: () => ({
     display: "none",
   }),
-  control: (provided: object) => ({
+  control: (provided: object, state: any) => ({
     ...provided,
     border: `none !important`,
     borderRadius: "10px",
     boxShadow: "none",
-    background: "#F5F8FF",
+    background: state.isDisabled ? GRAY_BACKGROUND_COLOR : "#F5F8FF",
     cursor: "pointer",
+    height: "100%",
   }),
   container: (provided: any, state: any) => ({
     ...provided,
@@ -30,22 +33,26 @@ export const specialSelectStyles = {
     boxShadow: state.selectProps.menuIsOpen ? BOX_SHADOW_300 : BOX_SHADOW_100,
     borderRadius: "10px",
   }),
-  singleValue: (provided: object) => ({
+  singleValue: (provided: object, state: any) => ({
     ...provided,
-    color: COLOR,
+    color: state.isDisabled ? GRAY_COLOR : COLOR,
   }),
-  dropdownIndicator: (provided: object) => ({
+  dropdownIndicator: (provided: object, state: any) => ({
     ...provided,
-    color: `${COLOR} !important`,
+    color: state.isDisabled ? GRAY_COLOR : `${COLOR} !important`,
     paddingLeft: 0,
   }),
-  input: (provided: object) => ({
+  input: (provided: object, state: any) => ({
     ...provided,
-    color: COLOR,
+    color: state.isDisabled ? GRAY_COLOR : COLOR,
   }),
   valueContainer: (provided: object) => ({
     ...provided,
     paddingRight: 0,
+  }),
+  placeholder: (provided: object) => ({
+    ...provided,
+    color: "rgb(160, 160, 160)",
   }),
 };
 

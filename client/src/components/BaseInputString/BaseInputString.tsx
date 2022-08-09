@@ -3,7 +3,7 @@ import { FC, ChangeEventHandler } from "react";
 import "./BaseInputString.scss";
 
 type BaseInputStringProps = {
-  value: string;
+  value: string | undefined;
   onChange: (v: string) => void;
   className?: string;
   disabled?: boolean;

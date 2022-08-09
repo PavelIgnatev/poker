@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 
 import { Ability2Section } from "../../components/Admin.Ability2Section";
 import { AdmissibleStatusSection } from "../../components/Admin.AdmissibleStatusSection";

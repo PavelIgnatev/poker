@@ -16,11 +16,12 @@ interface AliasesSectionFormProps {
 import { b } from "../index";
 import { SelectOption } from "../../../@types/selectsModel";
 import { Effmu } from "../../../@types/common";
+import { BaseButton } from "../../BaseButton";
 
 const selectStyles = {
   ...specialSelectStyles,
-  control: (provided: object) => ({
-    ...specialSelectStyles.control(provided),
+  control: (provided: object, state: any) => ({
+    ...specialSelectStyles.control(provided, state),
     fontWeight: 700,
     fontSize: "20px",
     width: "90px",
@@ -34,8 +35,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
   const [effmu, setEffmu] = useState<"A" | "B">("A");
   const adminPassword = useStore($password);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     await postConfigRequest({
       config: {
         alias,
@@ -54,7 +54,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
   };
 
   return (
-    <form onSubmit={handleSubmit} className={b("alias-form")}>
+    <div className={b("alias-form")}>
       <BaseInputString
         onChange={setAlias}
         value={alias}
@@ -81,9 +81,9 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
         onChange={(option: SelectOption<Effmu>) => setEffmu(option.value)}
         styles={selectStyles}
       />
-      <button className={b("alias-form-button")} type="submit">
+      <BaseButton className={b("alias-form-button")} onClick={handleSubmit} green>
         Add
-      </button>
-    </form>
+      </BaseButton>
+    </div>
   );
 };

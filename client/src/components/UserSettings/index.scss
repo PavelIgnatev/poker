@@ -1,3 +1,5 @@
+@import "src/assets/style/design.scss";
+
 .user-settings {
   position: relative;
   padding: 60px 120px;
@@ -53,26 +55,13 @@
 
   &__save-button {
     margin-top: 36px;
-    cursor: pointer;
-    background: #4a72ff;
-    border-radius: 20px;
-    width: 100%;
-    color: #ffffff;
     padding: 16px 0;
-    text-align: center;
-    font-size: 1em;
-    font-weight: 700;
-    border: none;
-    transition: 50ms ease-in transform;
 
-    &:active {
-      transform: scale(0.98);
-    }
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 700;
   }
 }
-
-$mainColor: #4a72ff;
-$borderColor: transparentize($mainColor, 0.75);
 
 .user-settings-table {
   &__row {
@@ -86,7 +75,7 @@ $borderColor: transparentize($mainColor, 0.75);
 
     &_headline {
       font-weight: 400;
-      color: $mainColor;
+      color: $baseColor;
     }
 
     &:not(&_headline) .user-settings-table__cell:first-child {

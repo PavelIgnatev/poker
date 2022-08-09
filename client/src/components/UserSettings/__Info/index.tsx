@@ -23,8 +23,8 @@ interface Props {
 
 const selectStyles = {
   ...specialSelectStyles,
-  control: (provided: object) => ({
-    ...specialSelectStyles.control(provided),
+  control: (provided: object, state: any) => ({
+    ...specialSelectStyles.control(provided, state),
     fontWeight: 700,
     fontSize: "22px",
     width: "90px",

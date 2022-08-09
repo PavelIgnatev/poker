@@ -1,9 +1,10 @@
-import "./index.scss";
 import b_ from "b_";
 
 import CloseIcon from "../../assets/icons/close.svg";
 
 import { BaseButton } from "../BaseButton";
+
+import "./index.scss";
 
 export const b = b_.with("approval-section");
 

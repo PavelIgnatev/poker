@@ -9,6 +9,8 @@ interface BaseButtonProps {
   className?: string;
   disabled?: boolean;
   clear?: boolean;
+  red?: boolean;
+  green?: boolean;
   autoFocus?: boolean;
 }
 
@@ -21,11 +23,13 @@ export const BaseButton: FC<BaseButtonProps> = ({
   children,
   disabled,
   clear,
+  red,
+  green,
   autoFocus,
 }) => {
   return (
     <button
-      className={cx(b({ clear }), className)}
+      className={cx(b({ clear, red, green }), className)}
       onClick={onClick}
       disabled={disabled}
       autoFocus={autoFocus}

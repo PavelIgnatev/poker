@@ -15,8 +15,8 @@ const selectStyles = {
     ...specialSelectStyles.option(provided, state),
     fontSize: "20px",
   }),
-  control: (provided: object) => ({
-    ...specialSelectStyles.control(provided),
+  control: (provided: object, state: any) => ({
+    ...specialSelectStyles.control(provided, state),
     fontSize: "20px",
     width: "70px",
   }),

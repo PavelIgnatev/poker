@@ -1,0 +1,18 @@
+$baseColor: #4a72ff;
+$baseColorHover: #3d5dd3;
+
+$borderColor: transparentize($baseColor, 0.75);
+
+$lightBlue: #dde7ff;
+$lighterBlue: #f5f8ff;
+$lighterBlueHover: #e5ebf8;
+
+$green: #52b479;
+$greenHover: #38965e;
+
+$shadow100: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.1px 0.3px rgba(0, 0, 0, 0.1),
+  0 1px 2px rgba(0, 0, 0, 0.2);
+$shadow200: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.3px 0.5px rgba(0, 0, 0, 0.1),
+  0 2px 4px rgba(0, 0, 0, 0.2);
+$shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
+  0 3px 6px rgba(0, 0, 0, 0.2);

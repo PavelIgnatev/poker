@@ -1,16 +1,7 @@
-$baseColor: #4a72ff;
-$lightBlue: #dde7ff;
-$lighterBlue: #f5f8ff;
-$green: #52b479;
-
-$shadow100: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.1px 0.3px rgba(0, 0, 0, 0.1),
-  0 1px 2px rgba(0, 0, 0, 0.2);
-$shadow200: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.3px 0.5px rgba(0, 0, 0, 0.1),
-  0 2px 4px rgba(0, 0, 0, 0.2);
-$shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
-  0 3px 6px rgba(0, 0, 0, 0.2);
+@import "src/assets/style/design.scss";
 
 .aliases-section {
+  margin-top: 48px;
   margin-bottom: 60vh;
 
   font-size: 20px;
@@ -78,58 +69,7 @@ $shadow300: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.4px 0.8px rgba(0, 0, 0, 0.1),
     }
 
     &-button {
-      color: #ffffff;
-      font-weight: 500;
       padding: 0 40px;
-      border: 0;
-      background: $green;
-      cursor: pointer;
-      transition: 0.2s all ease-in-out;
-      border-radius: 12px;
-
-      &:hover {
-        background: #38965e;
-      }
-    }
-  }
-
-  &__level-blocks {
-    display: grid;
-    grid-template-columns: repeat(9, 64px);
-    gap: 20px;
-    margin-top: 20px;
-  }
-
-  &__level-block {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 64px;
-    height: 64px;
-
-    border: none;
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    color: $baseColor;
-    background: $lighterBlue;
-    box-shadow: $shadow100;
-
-    transition: 100ms transform ease-out;
-
-    &_selected {
-      background: $baseColor;
-      color: #ffffff;
-    }
-
-    &:hover {
-      transform: scale(1.05);
-    }
-
-    &:active {
-      transform: scale(1.01);
     }
   }
 
