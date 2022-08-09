@@ -87,7 +87,7 @@ async function updateFiltredTournaments() {
     });
 
     console.log("Начал записывать filtredTournaments в базу");
-    writeFile("src/store/tournaments/filtredTournaments.json", JSON.stringify(filtredState));
+    await writeFile("src/store/tournaments/filtredTournaments.json", JSON.stringify(filtredState));
     console.log("Записал filtredTournaments в базу");
   } catch (error) {
     console.log(error);

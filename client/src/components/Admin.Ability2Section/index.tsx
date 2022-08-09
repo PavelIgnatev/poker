@@ -3,7 +3,7 @@ import { useStore } from "effector-react";
 import React, { useEffect, useState } from "react";
 
 import { Effmu, LevelPlusEffmu, Rule } from "../../@types/common";
-import { LEVELS_ARRAY, EFFMU } from "../../constants";
+import { EFFMU } from "../../constants";
 import { $prevSettings, $state, fetchSettings, fetchStateAbility2 } from "../../store/Settings";
 
 import { LevelBlocks, useLevelBlocks } from "../LevelBlocks";
@@ -30,8 +30,6 @@ export const Ability2Section = () => {
     fetchStateAbility2();
     fetchSettings();
   }, []);
-
-  const [count, setCount] = useState<Record<string, number>>({});
 
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
   const { selectedElement: selectedEffmu, handleElementChange: handleEffmuChange } =

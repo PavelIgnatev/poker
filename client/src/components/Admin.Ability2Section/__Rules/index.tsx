@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import Select from "react-select";
 
 import { getSelectOptionsFromKeys } from "../../../helpers/getSelectOptionsFromKeys";
@@ -10,6 +10,7 @@ import { BaseInputString } from "../../BaseInputString";
 import { BaseButton } from "../../BaseButton";
 
 import { b, SavedRules } from "../index";
+import { fetchSettings, postFetchSettings } from "../../../store/Settings";
 
 interface Props {
   savedRules: SavedRules;
@@ -48,10 +49,20 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
     ...allStatuses?.[status],
   };
 
+  const clearRows = () => {
+    setNetwork("");
+    setCurrency("");
+    setBid("");
+    setStatus("");
+    setName("");
+    setAbility("");
+  };
+
+  useEffect(clearRows, [effmu, level]);
+
   const rows = [
     {
       rowStatus: "editable",
-      // type: "wierd_rule_type",
       rule: { network, currency, bid, status, name, ability } as Rule,
     },
     ...selectedRules.map((rule) => ({ rowStatus: "saved", rule })),
@@ -59,8 +70,10 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
 
   return (
     <div className={b("rules")}>
-      {rows.map(({ rowStatus, rule }, index) => {
+      {rows.map(({ rowStatus, rule }) => {
         const disabled = rowStatus !== "editable";
+
+        const formData = { ...rule, ability2, level: levelPlusEffmu };
 
         return (
           <div className={b("rules-row")} key={rule.network + rule.bid + rule.name}>
@@ -118,12 +131,19 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
               value={rule.ability}
               onChange={setAbility}
               className={b("rules-ability")}
-              disabled={disabled}
+              disabled={disabled || !rule.name}
               placeholder="Ability 2"
             />
             {!disabled && (
               <BaseButton
-                onClick={() => {}}
+                onClick={async () => {
+                  await postFetchSettings({
+                    method: "add",
+                    ...formData,
+                  });
+                  await fetchSettings();
+                  clearRows();
+                }}
                 className={b("button", { apply: true })}
                 disabled={!rule.status || !rule.ability}
                 green
@@ -132,7 +152,14 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
               </BaseButton>
             )}
             {disabled && (
-              <BaseButton onClick={() => {}} className={b("button", { delete: true })} red>
+              <BaseButton
+                onClick={async () => {
+                  await postFetchSettings({ method: "delete", ...formData });
+                  await fetchSettings();
+                }}
+                className={b("button", { delete: true })}
+                red
+              >
                 Delete
               </BaseButton>
             )}

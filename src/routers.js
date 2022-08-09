@@ -9,9 +9,8 @@ const apiRouter = new express.Router();
 apiRouter.get("/tour", api.getTournaments);
 apiRouter.get("/info", api.getFormingAbility2);
 apiRouter.get("/state", api.getAbility2);
-apiRouter.get("/preview", api.getPreview);
-apiRouter.get("/settings", api.getPreviewRules);
-apiRouter.post("/settings", api.postSettings);
+
+apiRouter.route("/settings").get(api.getPreviewRules).post(api.postSettings);
 
 apiRouter
   .route("/config")

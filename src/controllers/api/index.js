@@ -1,7 +1,6 @@
 const getTournaments = require("./getTournaments");
 const getFormingAbility2 = require("./getFormingAbility2");
 const getAbility2 = require("./getAbility2");
-const getPreview = require("./getPreview");
 const getPreviewRules = require("./getPreviewRules");
 const postSettings = require("./postSettings");
 const postAdminPassword = require("./postAdminPassword");
@@ -16,7 +15,6 @@ module.exports = {
   getFormingAbility2,
   getAbility2,
   getPreviewRules,
-  getPreview,
   postSettings,
   postAdminPassword,
 
