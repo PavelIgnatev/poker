@@ -21,7 +21,7 @@ app.listen(process.env.PORT || PORT, async () => {
   // const prevErrorTournaments = JSON.parse(await readFile(`src/store/errors/errorTournaments.json`));
   // sendStatistics(prevErrorTournaments);
   // run();
-  await updateServer();
+  // await updateServer();
 });
 
 const job = new CronJob(
