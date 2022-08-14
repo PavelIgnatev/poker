@@ -2,10 +2,14 @@
   "name": "exp",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/server.js --ignore './src/store'",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently -n server,client \"(npm run start:server)\" \"(npm run start:client)\"",
+    "start:server": "nodemon ./src/server.js --ignore './src/store' --ignore ./client",
+    "start:client": "npm start --prefix client",
     "prettier": "prettier --config ./.prettierrc  --write .",
     "prepare": "husky install"
   },
@@ -34,6 +38,7 @@
     "pm2": "^5.2.0"
   },
   "devDependencies": {
+    "concurrently": "^7.3.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "2.7.1"
