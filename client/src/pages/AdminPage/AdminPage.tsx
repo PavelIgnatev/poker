@@ -14,6 +14,7 @@ import { SampleSection } from "../../components/SampleSection";
 import { $isValidAdminPassword, validateAdminPasswordRequest } from "../../store/Password";
 import { OffpeakSection } from "../../components/OffpeakSection";
 import { getOffpeak } from "../../store/Offpeak";
+import { RulesSection } from "../../components/Admin.RulesSection";
 
 export const AdminPage: FC = () => {
   const isAdmin = useStore($isValidAdminPassword);
@@ -36,6 +37,7 @@ export const AdminPage: FC = () => {
       <SampleSection />
       <OffpeakSection />
       <AdmissibleStatusSection />
+      <RulesSection />
       <Ability2Section />
       <AliasesSection />
     </>

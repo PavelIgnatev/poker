@@ -1,0 +1,40 @@
+@import "src/assets/style/design.scss";
+
+.rules-section {
+  font-size: 20px;
+  color: $baseColor;
+
+  &__title {
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+
+  &__subtitle {
+    display: block;
+    margin-top: 20px;
+
+    font-weight: 700;
+    font-size: 1.05em;
+  }
+
+  &__filter {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    max-width: 764px;
+  }
+
+  &__elems-toggle {
+    max-width: 764px;
+    margin-top: 16px;
+  }
+
+  &__filter &__elems-toggle {
+    margin-top: 0;
+    margin-left: 16px;
+  }
+
+  &__filter-network {
+    width: 160px;
+  }
+}
