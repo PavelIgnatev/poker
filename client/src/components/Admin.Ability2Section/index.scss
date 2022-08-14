@@ -30,6 +30,8 @@
   &__rules-row {
     display: flex;
     margin-top: 16px;
+    font-size: 18px;
+    height: 40px;
   }
 
   &__rules-select {
@@ -69,7 +71,8 @@
 
   &__rules-ability {
     width: 120px;
-
+    font-size: 18px;
+    height: 40px;
     margin-left: 20px;
   }
 
