@@ -1,10 +1,13 @@
 function renderRule(rule) {
-  return `(${rule?.type}(${rule?.values.join(",")}) 
-    || ${rule?.offpeak ? "isOffpeak" : false})
-    && network === '${rule?.network}'
-    && color === '${rule?.color}'
-    && level === '${rule?.level}'
-    && ${rule?.KO ? "isKo" : "!isKo"}`;
+  const { type, values, offpeak, network, color, level, KO, status } = rule;
+
+  return `(${type}(${values.join(",")}) 
+    || ${offpeak ? "isOffpeak" : false})
+    && network === '${network}'
+    && color === '${color}'
+    && level === '${level}'
+    && ${status}
+    && ${KO ? "isKo" : "!isKo"}`;
 }
 
 module.exports = { renderRule };

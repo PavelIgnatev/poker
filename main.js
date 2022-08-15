@@ -8,7 +8,6 @@ const { writeFile } = require("./src/utils/promisify");
 //   4. Учимся добавлять проверки на синие красные и тп
 
 (() => {
-  const types = ["MELE", "MELEI", "EME", "TEMEI", "EMEI", "MELEME", "EI", "I", "FLAGS", "StardDay"];
   const example = [
     [
       {
@@ -18,6 +17,7 @@ const { writeFile } = require("./src/utils/promisify");
         level: "7A",
         offpeak: false,
         KO: true,
+        status: "isTurbo",
         network: "GG",
       },
       {
@@ -26,6 +26,7 @@ const { writeFile } = require("./src/utils/promisify");
         color: "red",
         level: "7A",
         offpeak: true,
+        status: "isTurbo",
         KO: true,
         network: "PS.eu",
       },
@@ -35,6 +36,7 @@ const { writeFile } = require("./src/utils/promisify");
       values: [109.0, 150000],
       color: "black",
       level: "7A",
+      status: "isNormal",
       offpeak: true,
       KO: false,
       network: "GG",
@@ -43,6 +45,7 @@ const { writeFile } = require("./src/utils/promisify");
       type: "MELEME",
       values: [121.0, 150.0, 250000],
       color: "black",
+      status: "isSuperTurbo",
       level: "8A",
       offpeak: true,
       KO: true,

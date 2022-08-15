@@ -3,11 +3,13 @@ if (
   network === "GG" &&
   color === "red" &&
   level === "7A" &&
+  isTurbo &&
   isKo &&
   (MELE(1, 7.5) || isOffpeak) &&
   network === "PS.eu" &&
   color === "red" &&
   level === "7A" &&
+  isTurbo &&
   isKo
 )
   return true;
@@ -16,6 +18,7 @@ if (
   network === "GG" &&
   color === "black" &&
   level === "7A" &&
+  isNormal &&
   !isKo
 )
   return true;
@@ -24,6 +27,7 @@ if (
   network === "GG" &&
   color === "black" &&
   level === "8A" &&
+  isSuperTurbo &&
   isKo
 )
   return true;
