@@ -2,7 +2,6 @@ import { useStore } from "effector-react";
 import { FC, useEffect } from "react";
 
 import { Ability2Section } from "../../components/Admin.Ability2Section";
-import { AdmissibleStatusSection } from "../../components/Admin.AdmissibleStatusSection";
 import { AliasesSection } from "../../components/Admin.AliasesSection";
 import {
   OnPasswordSubmit,
@@ -33,10 +32,11 @@ export const AdminPage: FC = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>Admin Panel</h1>
+      <section style={{ marginTop: "20px", color: "#FF4242", fontSize: "18px" }}>
+        Welcome to <strong>Admin Panel</strong>
+      </section>
       <SampleSection />
       <OffpeakSection />
-      <AdmissibleStatusSection />
       <RulesSection />
       <Ability2Section />
       <AliasesSection />

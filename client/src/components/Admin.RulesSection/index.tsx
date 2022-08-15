@@ -33,7 +33,7 @@ export const RulesSection = () => {
 
   return (
     <section className={b()}>
-      <span className={b("title")}>Rules Ability 2:</span>
+      <span className={b("title")}>Rules for levels:</span>
       <LevelBlocks selectedLevel={selectedLevel} onLevelChange={handleLevelChange} />
       {selectedLevel && (
         <>
