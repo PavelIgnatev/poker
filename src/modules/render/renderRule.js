@@ -6,7 +6,7 @@ function renderRule(rule) {
     && network === '${network}'
     && color === '${color}'
     && level === '${level}'
-    && ${status}
+    && is${status}
     && ${KO ? "isKo" : "!isKo"}`;
 }
 
