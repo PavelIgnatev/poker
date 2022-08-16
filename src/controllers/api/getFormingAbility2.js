@@ -1,8 +1,9 @@
 const { readFile } = require("../../utils/promisify");
+const { getRulesAbility2 } = require("../../utils/rules");
 
 module.exports = async (req, res) => {
   const state = JSON.parse(await readFile("src/store/ability2/formingAbility2.json"));
-  const settings = JSON.parse(await readFile("src/store/rules/rules.json"));
+  const settings = await getRulesAbility2();
 
   const network = req.query.network;
   const level = req.query.level;

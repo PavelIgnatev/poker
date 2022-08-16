@@ -20,7 +20,6 @@ app.listen(process.env.PORT || PORT, async () => {
   console.log("Сервер запущен", new Date());
   // const prevErrorTournaments = JSON.parse(await readFile(`src/store/errors/errorTournaments.json`));
   // sendStatistics(prevErrorTournaments);
-  // run();
   // await updateServer();
 });
 

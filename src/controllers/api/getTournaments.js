@@ -10,6 +10,7 @@ const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { getStatus } = require("../../helpers/getStatus");
 const { getConfig } = require("../../utils/config");
 const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
+const { getRulesAbility2 } = require("../../utils/rules");
 
 module.exports = async (req, res) => {
   try {
@@ -45,7 +46,7 @@ module.exports = async (req, res) => {
       await readFile("src/store/ability2/ability2WithoutName.json"),
     );
     const gaps = JSON.parse(await readFile("src/store/gaps/gap.json"));
-    const rules = JSON.parse(await readFile("src/store/rules/rules.json"));
+    const rules = await getRulesAbility2();
     console.log("Начинаю делать запрос");
     let result = (
       await api.get(

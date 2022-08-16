@@ -1,11 +1,11 @@
 const { updateRules } = require("../../modules/update/updateRules");
-const { readFile, writeFile } = require("../../utils/promisify");
+const { savePreviewAbility2, getPreviewAbility2 } = require("../../utils/rules");
 
 module.exports = async (req, res) => {
   console.log("Начинаю обновлять настройки");
   try {
     let { network, level, currency, bid, status, name, ability, ability2 } = req.body;
-    let prevAbility = JSON.parse(await readFile("src/store/rules/preview.json"));
+    let prevAbility = await getPreviewAbility2();
 
     if (req.body.method === "add") {
       if (!prevAbility[level]) prevAbility[level] = [];
@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
         console.log("Новое правило " + JSON.stringify(previw) + " добавлено не было");
       }
 
-      await writeFile("src/store/rules/preview.json", JSON.stringify(prevAbility));
+      await savePreviewAbility2(prevAbility);
     } else {
       try {
         prevAbility[level] = prevAbility[level].filter((el) => {
@@ -48,7 +48,7 @@ module.exports = async (req, res) => {
         console.log(error);
       }
 
-      await writeFile("src/store/rules/preview.json", JSON.stringify(prevAbility));
+      await savePreviewAbility2(prevAbility);
     }
     console.log("Начал обновлять config правил");
     updateRules(prevAbility);

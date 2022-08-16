@@ -1,4 +1,4 @@
-const { writeFile } = require("../../utils/promisify");
+const { saveRulesAbility2 } = require("../../utils/rules");
 
 async function updateRules(preview) {
   const settings = {};
@@ -25,7 +25,7 @@ async function updateRules(preview) {
       settings[network][time][level][currency][bid][status][name] = Number(ability);
     });
   });
-  await writeFile("src/store/rules/rules.json", JSON.stringify(settings));
+  await saveRulesAbility2(settings);
 }
 
 module.exports = { updateRules };

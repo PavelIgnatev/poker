@@ -1,8 +1,8 @@
-const { readFile } = require("../../utils/promisify");
+const { getPreviewAbility2 } = require("../../utils/rules");
 
 module.exports = async (req, res) => {
   try {
-    const settings = JSON.parse(await readFile("src/store/rules/preview.json"));
+    const settings = await getPreviewAbility2();
 
     res.json(settings);
   } catch (error) {
