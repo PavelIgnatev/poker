@@ -1,7 +1,8 @@
-const { getRules } = require("../../../utils/rules");
+const { getFiltredRules } = require("../../../utils/rules");
 
 module.exports = async (req, res) => {
-  const sample = await getRules();
+  const { color, level, network, status, KO } = req.query;
+  const rules = await getFiltredRules(color, level, network, status, KO);
 
-  res.status(200).send(sample);
+  res.status(200).send(rules);
 };

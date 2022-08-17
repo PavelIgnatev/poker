@@ -1,7 +1,12 @@
-const { getRules } = require("../../../utils/rules");
+const { getRules, saveRules } = require("../../../utils/rules");
 
 module.exports = async (req, res) => {
-  const sample = await getRules();
+  const { rule } = req.body;
+  const rules = await getRules();
 
-  res.status(200).send(sample);
+  rules.push(rule);
+
+  await saveRules(rules);
+
+  res.status(200).send(rule);
 };

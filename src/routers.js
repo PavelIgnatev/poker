@@ -19,8 +19,9 @@ apiRouter
   .patch(api.config.patch)
   .delete(api.config.delete);
 
-apiRouter.route("/sample").get(api.sample.get).post(api.sample.patch);
-apiRouter.route("/offpeak").get(api.offpeak.get).post(api.offpeak.patch);
+apiRouter.route("/rules").get(api.rules.get).post(api.rules.post).delete(api.rules.delete);
+apiRouter.route("/sample").get(api.sample.get).post(api.sample.post);
+apiRouter.route("/offpeak").get(api.offpeak.get).post(api.offpeak.post);
 apiRouter.get("/aliases", api.aliases.get);
 apiRouter.post("/password/admin", api.postAdminPassword);
 

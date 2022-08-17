@@ -9,6 +9,7 @@ const sample = require("./sample");
 const offpeak = require("./offpeak");
 const config = require("./config");
 const aliases = require("./aliases");
+const rules = require("./rules");
 
 module.exports = {
   getTournaments,
@@ -20,6 +21,7 @@ module.exports = {
 
   sample,
   config,
+  rules,
   offpeak,
   aliases,
 };
