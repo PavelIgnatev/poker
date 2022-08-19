@@ -1,6 +1,6 @@
 import b_ from "b_";
 import cx from "classnames";
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 
 import "./BaseButton.scss";
 
@@ -12,6 +12,7 @@ interface BaseButtonProps {
   red?: boolean;
   green?: boolean;
   autoFocus?: boolean;
+  style?: CSSProperties;
 }
 
 const b = b_.with("base-button");
@@ -26,12 +27,14 @@ export const BaseButton: FC<BaseButtonProps> = ({
   red,
   green,
   autoFocus,
+  style,
 }) => {
   return (
     <button
       className={cx(b({ clear, red, green }), className)}
       onClick={onClick}
       disabled={disabled}
+      style={style}
       autoFocus={autoFocus}
     >
       {children}

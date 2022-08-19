@@ -5,6 +5,16 @@
   color: $baseColor;
   margin-top: 48px;
 
+  &__rules {
+    margin-top: 16px;
+  }
+
+  &__rule {
+    &_composite {
+      border: 3px solid red;
+    }
+  }
+
   &__title {
     font-size: 1.2em;
     font-weight: 700;
@@ -28,6 +38,21 @@
   &__elems-toggle {
     max-width: 764px;
     margin-top: 16px;
+
+    &_KO {
+      margin-left: 0 !important;
+      margin-right: 8px;
+      width: 65%;
+    }
+
+    &_effmu {
+      margin-left: 0 !important;
+      width: 100%;
+    }
+
+    &_status {
+      margin-left: 8px !important;
+    }
   }
 
   &__filter &__elems-toggle {
@@ -36,6 +61,15 @@
   }
 
   &__filter-network {
-    width: 160px;
+    margin-left: 16px;
+    width: 205px;
+  }
+
+  &__line {
+    width: 4px;
+    border-radius: 10px;
+    margin: 0 8px;
+    height: 36px;
+    background-color: $baseColor;
   }
 }

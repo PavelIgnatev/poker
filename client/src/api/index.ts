@@ -1,3 +1,4 @@
+import { rulesModel } from "./../@types/rulesModel";
 import { offpeakModel } from "../@types/offpeakModel";
 import axios from "axios";
 import ConfigApi from "./ConfigApi";
@@ -24,5 +25,12 @@ class Api extends ConfigApi {
   async postOffpeak(offpeak: offpeakModel) {
     return await axios.post(`/api/offpeak`, { offpeak });
   }
+  async postRules(rules: rulesModel[]) {
+    return await axios.post(`/api/rules`, { rules });
+  }
+  async deleteRules(data: rulesModel[]) {
+    return await axios.delete(`/api/rules`, { data });
+  }
 }
+
 export default new Api();

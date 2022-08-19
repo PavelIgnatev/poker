@@ -1,0 +1,7 @@
+{
+        type,
+        values: new Array(formatRules[type].length)
+          .fill(null)
+          .map((t, i) => values[i] ?? ""),
+        ...props,
+      },

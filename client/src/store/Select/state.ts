@@ -31,6 +31,18 @@ export const NETWORKS = [
   { value: "WPN", label: "WPN" },
 ];
 
+export const SHORT_NETWORKS = [
+  { value: "PS.eu", label: "PS.eu" },
+  { value: "IP", label: "IP" },
+  { value: "Chico", label: "Chico" },
+  { value: "PS.es", label: "PS.es" },
+  { value: "Party", label: "Party" },
+  { value: "GG", label: "GG" },
+  { value: "888", label: "888" },
+  { value: "WNMX", label: "WNMX" },
+  { value: "WPN", label: "WPN" },
+];
+
 export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {
   network: null,
   time: TIMERANGE[1],

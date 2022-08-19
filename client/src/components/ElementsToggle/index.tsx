@@ -1,9 +1,6 @@
 import b_ from "b_";
 import cx from "classnames";
-import { FC, useState } from "react";
-
-import { EFFMU } from "../../constants";
-import { Effmu } from "../../@types/common";
+import { useState } from "react";
 
 import { BaseButton } from "../BaseButton";
 

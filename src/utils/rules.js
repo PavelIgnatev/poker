@@ -8,9 +8,7 @@ module.exports = {
   getFiltredRules: async (color, level, network, status, KO) => {
     const rules = JSON.parse(await readFile(rulesPath));
 
-    return rules.filter((rule) =>
-      filterRules(Array.isArray(rule) ? rule[0] : rule, color, level, network, status, KO),
-    );
+    return rules.filter((rule) => filterRules(rule[0], color, level, network, status, KO));
   },
 
   getPreviewAbility2: async () => JSON.parse(await readFile(previewRulesAbility2Path)),
