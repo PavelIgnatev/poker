@@ -87,7 +87,7 @@ export const RulesSection = () => {
               onElementChange={handleKOChange}
               elements={KO}
             />
-            <div className={b("line")}></div>
+            <div className={b("elems-toggle-divider")} />
             <ElementsToggle
               mix={b("elems-toggle", { status: true })}
               selectedElement={selectedStatus}

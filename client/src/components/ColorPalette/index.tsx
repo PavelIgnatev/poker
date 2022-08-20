@@ -24,11 +24,10 @@ export const ColorPalette = ({
   <div className={cx(b(), mix)}>
     {elements.map((elem) => (
       <BaseButton
-        className={b("button")}
+        className={b("button", { selected: elem === selectedElement })}
         onClick={onElementChange(elem)}
-        clear={elem !== selectedElement}
         key={elem}
-        style={{ background: elem }}
+        style={{ color: elem }}
       />
     ))}
   </div>

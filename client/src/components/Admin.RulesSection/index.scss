@@ -3,15 +3,76 @@
 .rules-section {
   font-size: 20px;
   color: $baseColor;
-  margin-top: 48px;
+  margin-top: 64px;
 
   &__rules {
     margin-top: 16px;
   }
 
   &__rule {
-    &_composite {
-      border: 3px solid red;
+    position: relative;
+
+    padding-left: 16px;
+  }
+
+  &__rule-stripe {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    display: block;
+    width: 4px;
+    height: 100%;
+    background-color: $baseColor;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: -50%;
+
+      display: block;
+      width: 8px;
+      height: 8px;
+      background-color: $baseColor;
+
+      border-radius: 24px;
+    }
+
+    &:after {
+      top: unset;
+      bottom: -5px;
+    }
+  }
+
+  &__rule-row {
+    display: flex;
+
+    min-height: 48px;
+    margin-top: 20px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__rule-row-select {
+    width: 180px;
+  }
+
+  &__rule-row-field {
+    width: 200px;
+
+    margin-left: 20px;
+  }
+
+  &__rule-row-control-btn {
+    margin-left: 20px;
+
+    &:first-child {
+      margin-left: 0;
     }
   }
 
@@ -55,6 +116,14 @@
     }
   }
 
+  &__elems-toggle-divider {
+    width: 4px;
+    border-radius: 10px;
+    margin: 0 8px;
+    height: 36px;
+    background-color: $baseColor;
+  }
+
   &__filter &__elems-toggle {
     margin-top: 0;
     margin-left: 16px;
@@ -63,13 +132,5 @@
   &__filter-network {
     margin-left: 16px;
     width: 205px;
-  }
-
-  &__line {
-    width: 4px;
-    border-radius: 10px;
-    margin: 0 8px;
-    height: 36px;
-    background-color: $baseColor;
   }
 }

@@ -1,7 +1,6 @@
-import { rulesModel } from "./../../@types/rulesModel";
-import { createDomain, createApi } from "effector";
+import { rulesModel } from "../../@types/rulesModel";
+import { createDomain } from "effector";
 
-import { ConfigModel, defaultConfigModel } from "../../@types/configModel";
 import api from "../../api";
 import { ErrNot } from "../../components/NotificationService";
 
@@ -25,7 +24,6 @@ export const getRulesRequest = configDomain.createEffect(
 
 export const postRulesRequest = configDomain.createEffect(async (rules: rulesModel[]) => {
   await api.postRules(rules);
-  console.log(rules);
   await getRulesRequest(rules[0]);
 });
 

@@ -3,23 +3,52 @@
 .color-palette {
   display: flex;
   align-items: center;
-  padding: 2px 8px;
+  padding: 4px 12px;
   margin-left: 16px;
   background: #f5f8ff;
-  height: 38px;
+  height: 48px;
   border-radius: 10px;
   box-shadow: $shadow100;
 
   &__button {
     flex: 1;
-    height: 36px;
-    min-width: 36px;
-    max-width: 36px;
-    border-radius: 100%;
-    transform: scale(0.82);
-  }
 
-  & .base-button_clear {
-    transform: scale(0.7);
+    height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    margin-left: 9px;
+    box-sizing: border-box;
+
+    border-radius: 100%;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 0 white, 0 0 0 6px currentColor;
+    background-color: currentColor;
+
+    transition: 100ms ease-out;
+    transition-property: box-shadow, opacity;
+
+    transform: scale(0.82);
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:active {
+      transform: scale(0.82);
+    }
+
+    &:hover {
+      opacity: 0.7;
+      background-color: currentColor;
+    }
+
+    &_selected {
+      box-shadow: 0 0 0 3px white, 0 0 0 6px currentColor;
+
+      &:hover {
+        opacity: 1;
+        cursor: default;
+      }
+    }
   }
 }

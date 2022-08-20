@@ -1,4 +1,6 @@
-export const formatRules = {
+import { rulesType } from "../../@types/rulesModel";
+
+export const RULES_TYPES_TO_FIELDS = {
   MELE: [
     {
       type: "number",
@@ -125,3 +127,5 @@ export const formatRules = {
     },
   ],
 };
+
+export const RULES_TYPES = Object.keys(RULES_TYPES_TO_FIELDS) as rulesType[];
