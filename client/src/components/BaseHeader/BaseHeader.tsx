@@ -155,6 +155,7 @@ export const BaseHeader: FC = () => {
               >
                 Freezout
               </BaseCheckbox>
+              <div className={classes.line} />
               <BaseCheckbox
                 selected={!tournamentsSettings.normal}
                 onClick={() =>

@@ -7,9 +7,12 @@ const {
   MELEME: meleme,
   EI: ei,
   StartDay: sd,
+  FLAGS: flags,
   I,
 } = require("../../helpers/curry");
-const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
+const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
+const { isTurbo: isTurboS } = require("../../helpers/isTurbo.js");
+const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
 
 /**
  * Возвращае true, если турнир прошел фильтрацию по правилам уровня
@@ -32,7 +35,14 @@ const filterLevelByRules = (level, tournament) => {
     MELEME = meleme(bid)(prizepool),
     EI = ei(name)(bid),
     StartDay = sd(weekDay),
-    eI = I(name);
+    eI = I(name),
+    FLAGS = flags(tournament);
+
+  const isTurbo = isTurboS(tournament);
+  const isOffpeak = isOffpeakQ(tournament);
+  const isSuperTurbo = isSuperTurboS(tournament);
+  const isKo = tournament["@bounty"];
+  const isNormal = !isTurbo && !isSuperTurbo;
 
   if (!name) return false;
 

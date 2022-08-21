@@ -28,6 +28,9 @@ class Api extends ConfigApi {
   async postRules(rules: rulesModel[]) {
     return await axios.post(`/api/rules`, { rules });
   }
+  async patchRules(rules: rulesModel[], offpeak: boolean) {
+    return await axios.patch(`/api/rules`, { rules, offpeak });
+  }
   async deleteRules(data: rulesModel[]) {
     return await axios.delete(`/api/rules`, { data });
   }

@@ -1,7 +1,5 @@
-const { getDate } = require("./getDate");
-
 /**
- * Возвращает utc hourse
+ * Возвращает utc hours
  * @param {Object} tournament Экземпляр объекта tournament
  * @return {string} День, месяц и точное время или "-"
  */

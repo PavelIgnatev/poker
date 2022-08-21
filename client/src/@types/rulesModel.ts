@@ -6,9 +6,9 @@ export type rulesType =
   | "EMEI"
   | "MELEME"
   | "EI"
-  | "I"
+  | "eI"
   | "FLAGS"
-  | "StardDay";
+  | "StartDay";
 
 export interface rulesModel {
   type: rulesType;

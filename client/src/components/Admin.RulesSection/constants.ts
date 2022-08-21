@@ -1,5 +1,6 @@
 import { rulesType } from "../../@types/rulesModel";
 
+// если здесь чет меняем то меняем и на сервере
 export const RULES_TYPES_TO_FIELDS = {
   MELE: [
     {
@@ -105,7 +106,7 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  I: [
+  eI: [
     {
       type: "string",
       placeholder: "Includes",
@@ -115,11 +116,11 @@ export const RULES_TYPES_TO_FIELDS = {
   FLAGS: [
     {
       type: "string",
-      options: ["rebuy", "od", "bounty", "sng", "deepstack"],
+      options: ["rebuy", "!rebuy", "od", "!od", "sng", "!sng", "deepstack", "!deepstack"],
       placeholder: "Flags",
     },
   ],
-  StardDay: [
+  StartDay: [
     {
       type: "string",
       placeholder: "Weekday",

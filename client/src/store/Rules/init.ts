@@ -32,6 +32,13 @@ export const deleteRulesRequest = configDomain.createEffect(async (rule: rulesMo
   await getRulesRequest(rule[0]);
 });
 
+export const patchRulesRequest = configDomain.createEffect(
+  async ({ rule, offpeak }: { rule: rulesModel[]; offpeak: boolean }) => {
+    await api.patchRules(rule, offpeak);
+    await getRulesRequest(rule[0]);
+  },
+);
+
 configDomain.onCreateEffect((effect) => {
   effect.fail.watch(({ error }: { error: any }) =>
     ErrNot(error?.response?.data?.message || DEFAULT_ERROR_MESSAGE),

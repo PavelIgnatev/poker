@@ -11,6 +11,7 @@ const { getStatus } = require("../../helpers/getStatus");
 const { getConfig } = require("../../utils/config");
 const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
 const { getRulesAbility2 } = require("../../utils/rules");
+const { filterLevelByRules } = require("../../modules/filter/filter");
 
 module.exports = async (req, res) => {
   try {
@@ -21,11 +22,11 @@ module.exports = async (req, res) => {
       timezone,
       moneyStart,
       moneyEnd,
-      KO: isKO,
+      KO: isKOQ,
       turbo: isTurboQ,
       superTurbo: isSTurboQ,
-      freezout: isFreezout,
-      normal: isNormal,
+      freezout: isFreezoutQ,
+      normal: isNormalQ,
       dateStart,
       dateEnd,
       prizepoolStart,
@@ -161,6 +162,7 @@ module.exports = async (req, res) => {
       const prizepool = tournament["@prizepool"];
       const startDate = tournament["@scheduledStartDate"];
 
+      // фильтрация по дате
       const hours = startDate?.split(", ")?.[1]?.split(":")?.[0];
       const isDateFiltred =
         startDate !== "-"
@@ -174,14 +176,15 @@ module.exports = async (req, res) => {
       return (
         tournament["@bid"] >= Number(moneyStart) &&
         tournament["@bid"] <= Number(moneyEnd) &&
-        ((isKO != "false" ? bounty : false) ||
-          (isTurboQ != "false" ? turbo : false) ||
-          (isSTurboQ != "false" ? superturbo : false) ||
-          (isFreezout != "false" ? !bounty : false) ||
-          (isNormal != "false" ? !turbo : false)) &&
+        ((isKOQ != "false" && isNormalQ != "false" ? bounty && !turbo : false) ||
+          (isKOQ != "false" && isTurboQ != "false" ? bounty && turbo : false) ||
+          (isKOQ != "false" && isSTurboQ != "false" ? bounty && superturbo : false) ||
+          (isFreezoutQ != "false" && isNormalQ != "false" ? !bounty && !turbo : false) ||
+          (isFreezoutQ != "false" && isTurboQ != "false" ? !bounty && turbo : false) ||
+          (isFreezoutQ != "false" && isSTurboQ != "false" ? !bounty && superturbo : false)) &&
         isDateFiltred &&
         (prizepool ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
-        filterLevelByAbility(level, tournament)
+        filterLevelByRules(level, tournament)
       );
     });
     console.log(result.length);

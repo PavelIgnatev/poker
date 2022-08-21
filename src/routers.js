@@ -19,7 +19,13 @@ apiRouter
   .patch(api.config.patch)
   .delete(api.config.delete);
 
-apiRouter.route("/rules").get(api.rules.get).post(api.rules.post).delete(api.rules.delete);
+apiRouter
+  .route("/rules")
+  .get(api.rules.get)
+  .post(api.rules.post)
+  .patch(api.rules.patch)
+  .delete(api.rules.delete);
+
 apiRouter.route("/sample").get(api.sample.get).post(api.sample.post);
 apiRouter.route("/offpeak").get(api.offpeak.get).post(api.offpeak.post);
 apiRouter.get("/aliases", api.aliases.get);

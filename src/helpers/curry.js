@@ -37,6 +37,13 @@ const MELEME = curry((a, b, c, d, e) => a >= c && a <= d && b >= e);
 //Ставка больше либо равно и ставка меньше либо равно, гарантия больше либо равно
 const StartDay = curry((a, b) => a == b);
 
+const FLAGS = curry((a, b) => {
+  const isNotRule = b?.includes("!");
+  const rule = a?.[`@${b.replace("!", "")}`] ?? false;
+
+  return isNotRule ? !rule : rule;
+});
+
 module.exports = {
   curry,
   MELE,
@@ -48,4 +55,5 @@ module.exports = {
   EI,
   StartDay,
   I,
+  FLAGS,
 };

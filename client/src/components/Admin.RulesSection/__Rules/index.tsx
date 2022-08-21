@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { b } from "../index";
 import { useStore } from "effector-react";
-import { $rules, deleteRulesRequest, postRulesRequest } from "../../../store/Rules";
+import {
+  $rules,
+  deleteRulesRequest,
+  patchRulesRequest,
+  postRulesRequest,
+} from "../../../store/Rules";
 import { rulesModel, rulesType } from "../../../@types/rulesModel";
 import { RULES_TYPES_TO_FIELDS, RULES_TYPES } from "../constants";
 import { specialSelectStyles } from "../../BaseSelect";
@@ -10,6 +15,7 @@ import Select from "react-select";
 import { validateNumber } from "../../../helpers/validateNumber";
 import { BaseInputString } from "../../BaseInputString";
 import { BaseButton } from "../../BaseButton";
+import { BaseCheckbox } from "../../BaseCheckbox";
 
 type RulesSectionRulesProps = {
   color: string;
@@ -58,10 +64,12 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
       .map((_, i) => values?.[ruleIndex]?.[i] ?? ""),
     ...props,
   }));
-  const rules: rulesModel[][] = [...savedRules, editableRule];
-  rules.reverse();
+  const rules: rulesModel[][] = [editableRule, ...savedRules];
 
-  const handleSaveRule = () => postRulesRequest(editableRule);
+  const handleSaveRule = () => {
+    postRulesRequest(editableRule);
+    setValues([{}]);
+  };
 
   const handleTypeChange = (rowIndex: number) => (e: any) => {
     setTypes((types) => {
@@ -94,6 +102,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
       {rules.map((ruleRows, ruleIndex) => {
         const isComposite = ruleRows.length > 1;
         const isEditable = ruleIndex === 0;
+        const offpeak = ruleRows?.[0]?.offpeak ?? false;
 
         const isSaveBtnDisabled = getIsSaveBtnDisabled(ruleRows, values);
 
@@ -169,7 +178,20 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                       Х
                     </BaseButton>
                   )}
-
+                  {!isEditable && isLastRow && (
+                    <BaseButton
+                      onClick={() => {
+                        patchRulesRequest({
+                          rule: ruleRows,
+                          offpeak: !offpeak,
+                        });
+                      }}
+                      green={offpeak}
+                      className={b("offpeak")}
+                    >
+                      Offpeak
+                    </BaseButton>
+                  )}
                   {!isEditable && isLastRow && (
                     <BaseButton
                       className={b("rule-row-control-btn")}
@@ -182,6 +204,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                 </div>
               );
             })}
+
             {isEditable && (
               <div className={b("rule-row")}>
                 <BaseButton onClick={handleAddRuleRow} className={b("rule-row-control-btn")}>

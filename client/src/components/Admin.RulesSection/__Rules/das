@@ -1,7 +1,0 @@
-{
-        type,
-        values: new Array(RULES_TYPES_TO_FIELDS[type].length)
-          .fill(null)
-          .map((t, i) => values[i] ?? ""),
-        ...props,
-      },
