@@ -8,7 +8,8 @@ export type rulesType =
   | "EI"
   | "eI"
   | "FLAGS"
-  | "StartDay";
+  | "StartDay"
+  | "TotalEntrants";
 
 export interface rulesModel {
   type: rulesType;

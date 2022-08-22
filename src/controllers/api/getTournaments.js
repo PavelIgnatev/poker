@@ -135,6 +135,7 @@ module.exports = async (req, res) => {
           "@rebuy": !!rebuy,
           "@od": !!tournament["@flags"]?.includes("OD"),
           "@bounty": !!bounty,
+          "@sat": !!tournament["@flags"]?.includes("SAT"),
           "@sng": !!tournament["@gameClass"]?.includes("sng"),
           "@deepstack": !!tournament["@flags"]?.includes("D"),
           "@superturbo": !!superturbo,
@@ -173,6 +174,14 @@ module.exports = async (req, res) => {
               : dateEnd
             : !(dateStart > hours && hours > dateEnd)
           : true;
+
+      if (tournament["@id"] == 3456603791) {
+        console.log(
+          tournament,
+          prizepool,
+          prizepool ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true,
+        );
+      }
 
       return (
         tournament["@bid"] >= Number(moneyStart) &&

@@ -39,7 +39,7 @@ export const Ability2Section = () => {
     <section className={b()}>
       <span className={b("title")}>Rules Ability 2:</span>
       <LevelBlocks selectedLevel={selectedLevel} onLevelChange={handleLevelChange} />
-      {selectedLevel && (
+      {selectedLevel !== null && (
         <>
           <span className={b("subtitle")}>Rules for {selectedLevel} level</span>
           <ElementsToggle

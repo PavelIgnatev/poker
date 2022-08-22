@@ -18,10 +18,10 @@ import { RulesSectionRules } from "./__Rules";
 
 type KOType = "KO" | "Freezout";
 type StatusType = "Normal" | "Turbo" | "SuperTurbo";
-type ColorsType = "blue" | "red" | "brown" | "black" | "green";
+type ColorsType = "blue" | "red" | "brown" | "black" | "green" | "orange";
 const KO: KOType[] = ["KO", "Freezout"];
 const Status: StatusType[] = ["Normal", "Turbo", "SuperTurbo"];
-const Colors: ColorsType[] = ["blue", "red", "brown", "green", "black"];
+const Colors: ColorsType[] = ["blue", "red", "brown", "green", "black", "orange"];
 
 export const b = b_.with("rules-section");
 
@@ -55,7 +55,7 @@ export const RulesSection = () => {
     <section className={b()}>
       <span className={b("title")}>Rules for levels:</span>
       <LevelBlocks selectedLevel={selectedLevel} onLevelChange={handleLevelChange} />
-      {selectedLevel && (
+      {selectedLevel !== null && (
         <>
           <span className={b("subtitle")}>Rules for {selectedLevel} level</span>
           <div className={b("filter")}>

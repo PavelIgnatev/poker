@@ -107,6 +107,7 @@ const collectionStatistics = async () => {
             t["@realDuration"] = d;
             t["@alias"] = alias;
             t["@nickname"] = t?.["TournamentEntry"]?.["@playerName"] ?? "undefined";
+            t["@prize"] = t?.["TournamentEntry"]?.["@prize"] ?? 0;
             t["@d"] = data[0];
             t["@times"] = data[1];
             t["@level"] = level;

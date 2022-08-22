@@ -35,7 +35,7 @@ export const AliasesSection = () => {
     <section className={b()}>
       <h2 className={b("title")}>Aliases by level:</h2>
       <LevelBlocks selectedLevel={selectedLevel} onLevelChange={handleLevelChange} withAllLevels />
-      {selectedLevel && (
+      {selectedLevel !== null && (
         <div className={b("content-wrapper")}>
           <div className={b("subtitle-wrapper")}>
             {!isAllLevels ? (

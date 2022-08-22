@@ -92,9 +92,9 @@ export const BaseHeader: FC = () => {
           <ComponentCategory category="Prizepool" className={classes.prizepool}>
             <div className={classes.inputWrapper}>
               <BaseInput
-                value={tournamentsSettings.moneyStart}
+                value={tournamentsSettings.prizepoolStart}
                 handleChange={editableTournamentsSettings.handleChangePrizepoolStart}
-                max={tournamentsSettings.prizepoolStart ?? 0}
+                max={tournamentsSettings.prizepoolEnd}
                 placeholder="From"
                 className={classes.input}
               />

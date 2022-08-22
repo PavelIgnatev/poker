@@ -8,6 +8,8 @@ const {
   EI: ei,
   StartDay: sd,
   FLAGS: flags,
+  TEMEI: temei,
+  TotalEntrants: TotalEntrantsQ,
   I,
 } = require("../../helpers/curry");
 const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
@@ -33,6 +35,8 @@ const filterLevelByRules = (level, tournament) => {
     EME = eme(bid)(prizepool),
     EMEI = emei(name)(bid)(prizepool),
     MELEME = meleme(bid)(prizepool),
+    TEMEI = temei(name)(bid)(tournament["@tickets"] ?? 0),
+    TotalEntrants = TotalEntrantsQ(tournament?.["@totalEntrants"] ?? 0),
     EI = ei(name)(bid),
     StartDay = sd(weekDay),
     eI = I(name),
@@ -48,10 +52,8 @@ const filterLevelByRules = (level, tournament) => {
 
   //Фильтр снг для румов, отличных от PS.eu
   if (network !== "PS.eu" && tournament["@sng"]) return false;
-  if (MELE(12, 321) && network === "PS.eu" && level === "7A" && isNormal && isKo) return true;
-  if (MELE(21, 2) && network === "PS.eu" && level === "7A" && isNormal && isKo) return true;
-  if (EME(12, isOffpeak ? 0 : 2121) && network === "PS.eu" && level === "7A" && isNormal && isKo)
-    return true;
+  if (FLAGS("sat") && network === "PS.eu" && level === "7A" && isNormal && isKo) return true;
+  if (MELE(1, 10000) && network === "GG" && level === "7A" && isNormal && isKo) return true;
 
   return false;
 };

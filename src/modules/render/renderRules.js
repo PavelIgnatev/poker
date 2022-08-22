@@ -1,7 +1,17 @@
 const { renderCheck } = require("./renderCheck");
+const { renderCheckFalse } = require("./renderCheckFalse");
 const { renderRule } = require("./renderRule");
 
+function customSort(a, s) {
+  return a.sort(function (x1, x2) {
+    var i1 = s.indexOf(x1[0].color),
+      i2 = s.indexOf(x2[0].color);
+    return i1 < 0 ? 1 : i2 < 0 ? -1 : i1 - i2;
+  });
+}
+
 function renderRules(rules) {
+  customSort(rules, ["orange", "blue", "red", "brown", "black", "green"]);
   return `const { getNetwork } = require("../../helpers/getNetwork");
   const {
     MELE: mele,
@@ -12,6 +22,8 @@ function renderRules(rules) {
     EI: ei,
     StartDay: sd,
     FLAGS: flags,
+    TEMEI: temei,
+    TotalEntrants: TotalEntrantsQ,
     I,
   } = require("../../helpers/curry");
   const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
@@ -36,7 +48,8 @@ function renderRules(rules) {
       MELEI = melei(name)(bid),
       EME = eme(bid)(prizepool),
       EMEI = emei(name)(bid)(prizepool),
-      MELEME = meleme(bid)(prizepool),
+      MELEME = meleme(bid)(prizepool),TEMEI = temei(name)(bid)(tournament["@tickets"] ?? 0),
+      TotalEntrants = TotalEntrantsQ(tournament?.["@totalEntrants"] ?? 0),
       EI = ei(name)(bid),
       StartDay = sd(weekDay),
       eI = I(name),
@@ -54,13 +67,11 @@ function renderRules(rules) {
     if (network !== "PS.eu" && tournament["@sng"]) return false;
     ${rules
       .map((rule) => {
-        const isArray = Array.isArray(rule);
-
-        if (isArray) {
-          return renderCheck(rule.map(renderRule).join(" && "));
+        if (rule[0].color === "orange") {
+          return renderCheckFalse(rule.map(renderRule).join(" && "));
         }
 
-        return renderCheck(renderRule(rule));
+        return renderCheck(rule.map(renderRule).join(" && "));
       })
       .join("")}
     

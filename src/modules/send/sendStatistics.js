@@ -16,6 +16,7 @@ const sendStatistics = async (errorTournaments) => {
     { header: "Nickname", key: "@nickname" },
     { header: "Name", key: "@name" },
     { header: "Buy-in", key: "@bid" },
+    { header: "Prize", key: "@prize" },
     { header: "Guarantee", key: "@prizepool" },
     { header: "ReEntry", key: "@multientries" },
     { header: "A1", key: "@ability" },

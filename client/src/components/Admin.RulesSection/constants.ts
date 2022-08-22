@@ -116,8 +116,26 @@ export const RULES_TYPES_TO_FIELDS = {
   FLAGS: [
     {
       type: "string",
-      options: ["rebuy", "!rebuy", "od", "!od", "sng", "!sng", "deepstack", "!deepstack"],
+      options: [
+        "rebuy",
+        "!rebuy",
+        "od",
+        "!od",
+        "sng",
+        "!sng",
+        "deepstack",
+        "!deepstack",
+        "sat",
+        "!sat",
+      ],
       placeholder: "Flags",
+    },
+  ],
+  TotalEntrants: [
+    {
+      type: "number",
+      placeholder: "Count",
+      options: null,
     },
   ],
   StartDay: [

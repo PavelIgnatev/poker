@@ -159,11 +159,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                         className={b("rule-row-field", { input: true })}
                         value={value}
                         onChange={(value) => {
-                          handleValues(
-                            isNum ? Number(validateNumber(value)) : value,
-                            rowIndex,
-                            fieldIndex,
-                          );
+                          handleValues(isNum ? validateNumber(value) : value, rowIndex, fieldIndex);
                         }}
                         placeholder={placeholder}
                         disabled={!isEditable}

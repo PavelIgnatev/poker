@@ -49,7 +49,7 @@ export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {
   timezone: TIMEZONES[0],
   timezoneTable: null,
   prizepoolStart: 1,
-  prizepoolEnd: 500000,
+  prizepoolEnd: 10000000,
   moneyStart: 1,
   moneyEnd: 1000,
   KO: false,
