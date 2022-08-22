@@ -48,10 +48,10 @@ const filterLevelByRules = (level, tournament) => {
 
   //Фильтр снг для румов, отличных от PS.eu
   if (network !== "PS.eu" && tournament["@sng"]) return false;
-  if (FLAGS("deepstack") && network === "PS.eu" && level === "7A" && isNormal && isKo) return true;
-  if (FLAGS("!deepstack") && network === "PS.eu" && level === "7A" && isNormal && !isKo)
+  if (MELE(12, 321) && network === "PS.eu" && level === "7A" && isNormal && isKo) return true;
+  if (MELE(21, 2) && network === "PS.eu" && level === "7A" && isNormal && isKo) return true;
+  if (EME(12, isOffpeak ? 0 : 2121) && network === "PS.eu" && level === "7A" && isNormal && isKo)
     return true;
-  if (FLAGS("sng") && network === "PS.eu" && level === "7A" && isTurbo && isKo) return true;
 
   return false;
 };

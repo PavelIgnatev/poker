@@ -11,7 +11,7 @@ const { getStatus } = require("../../helpers/getStatus");
 const { getConfig } = require("../../utils/config");
 const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
 const { getRulesAbility2 } = require("../../utils/rules");
-const { filterLevelByRules } = require("../../modules/filter/filter");
+let filter = require("../../modules/filter/filter");
 
 module.exports = async (req, res) => {
   try {
@@ -33,7 +33,8 @@ module.exports = async (req, res) => {
       prizepoolEnd,
     } = req.query;
 
-    console.log(time);
+    delete require.cache[require.resolve("../../modules/filter/filter")];
+    filter = require("../../modules/filter/filter");
 
     const config = await getConfig();
     const configByAlias = config[alias];
@@ -184,7 +185,7 @@ module.exports = async (req, res) => {
           (isFreezoutQ != "false" && isSTurboQ != "false" ? !bounty && superturbo : false)) &&
         isDateFiltred &&
         (prizepool ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
-        filterLevelByRules(level, tournament)
+        filter.filterLevelByRules(level, tournament)
       );
     });
     console.log(result.length);
