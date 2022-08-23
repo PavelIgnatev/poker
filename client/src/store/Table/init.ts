@@ -15,7 +15,7 @@ export const fetchUserReposFx = createEffect(async () => {
     const result = await api.get<tableCellModel[]>("/api/tour", {
       ...tournamentsSettings,
       //@ts-ignore
-      network: tournamentsSettings.network.map((elem) => elem.value).join(","),
+      network: tournamentsSettings.network?.map((elem) => elem.value).join(","),
       timezone: tournamentsSettings.timezone?.value ?? 0,
       time: tournamentsSettings.time?.value ?? 0,
       alias: config?.alias,
@@ -26,8 +26,8 @@ export const fetchUserReposFx = createEffect(async () => {
     );
 
     return result;
-  } catch {
-    ErrNot("The request failed. Try again.");
+  } catch (error: any) {
+    ErrNot(error?.response?.data?.message || "The request failed. Try again.");
   }
 });
 

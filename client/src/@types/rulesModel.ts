@@ -1,15 +1,15 @@
 export type rulesType =
-  | "MELE"
-  | "MELEI"
-  | "EME"
-  | "TEMEI"
-  | "EMEI"
-  | "MELEME"
-  | "EI"
-  | "eI"
+  | "FromTo"
+  | "FromToName"
+  | "BidGt"
+  | "Ticket"
+  | "BidGtName"
+  | "FromToGt"
+  | "BidName"
+  | "Name"
   | "FLAGS"
   | "StartDay"
-  | "TotalEntrants";
+  | "Entrants";
 
 export interface rulesModel {
   type: rulesType;

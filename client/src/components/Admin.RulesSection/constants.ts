@@ -2,7 +2,7 @@ import { rulesType } from "../../@types/rulesModel";
 
 // если здесь чет меняем то меняем и на сервере
 export const RULES_TYPES_TO_FIELDS = {
-  MELE: [
+  FromTo: [
     {
       type: "number",
       placeholder: "From",
@@ -14,7 +14,7 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  MELEI: [
+  FromToName: [
     {
       type: "number",
       placeholder: "From",
@@ -31,7 +31,7 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  EME: [
+  BidGt: [
     {
       type: "number",
       placeholder: "Bid",
@@ -43,7 +43,7 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  TEMEI: [
+  Ticket: [
     {
       type: "number",
       placeholder: "Bid",
@@ -60,7 +60,7 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  EMEI: [
+  BidGtName: [
     {
       type: "number",
       placeholder: "Bid",
@@ -77,7 +77,7 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  MELEME: [
+  FromToGt: [
     {
       type: "number",
       placeholder: "From",
@@ -94,7 +94,7 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  EI: [
+  BidName: [
     {
       type: "number",
       placeholder: "Bid",
@@ -106,7 +106,7 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  eI: [
+  Name: [
     {
       type: "string",
       placeholder: "Includes",
@@ -131,7 +131,7 @@ export const RULES_TYPES_TO_FIELDS = {
       placeholder: "Flags",
     },
   ],
-  TotalEntrants: [
+  Entrants: [
     {
       type: "number",
       placeholder: "Count",

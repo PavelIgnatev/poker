@@ -14,17 +14,17 @@ function renderRules(rules) {
   customSort(rules, ["orange", "blue", "red", "brown", "black", "green"]);
   return `const { getNetwork } = require("../../helpers/getNetwork");
   const {
-    MELE: mele,
-    MELEI: melei,
-    EME: eme,
-    EMEI: emei,
-    MELEME: meleme,
-    EI: ei,
-    StartDay: sd,
-    FLAGS: flags,
-    TEMEI: temei,
-    TotalEntrants: TotalEntrantsQ,
-    I,
+    FromTo: FromToQ,
+    FromToName: FromToNameQ,
+    BidGt: BidGtQ,
+    BidGtName: BidGtNameQ,
+    Ticket: TicketQ,
+    BidName: BidNameQ,
+    Name: NameQ,
+    FromToGt: FromToGtQ,
+    StartDay: StartDayQ,
+    Entrants: EntrantsQ,
+    FLAGS: FLAGSQ,
   } = require("../../helpers/curry");
   const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
   const { isTurbo: isTurboS } = require("../../helpers/isTurbo.js");
@@ -40,20 +40,21 @@ function renderRules(rules) {
   const filterLevelByRules = (level, tournament) => {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
-      isKO = tournament["@bounty"],
       bid = Number(tournament["@bid"]),
       prizepool = Number(tournament["@prizepool"]),
       weekDay = tournament["@getWeekday"],
-      MELE = mele(bid),
-      MELEI = melei(name)(bid),
-      EME = eme(bid)(prizepool),
-      EMEI = emei(name)(bid)(prizepool),
-      MELEME = meleme(bid)(prizepool),TEMEI = temei(name)(bid)(tournament["@tickets"] ?? 0),
-      TotalEntrants = TotalEntrantsQ(tournament?.["@totalEntrants"] ?? 0),
-      EI = ei(name)(bid),
-      StartDay = sd(weekDay),
-      eI = I(name),
-      FLAGS = flags(tournament);
+
+      FromTo = FromToQ(bid),
+      FromToName = FromToNameQ(name)(bid),
+      BidGt = BidGtQ(bid)(prizepool),
+      BidGtName = BidGtNameQ(name)(bid)(prizepool),
+      FromToGt = FromToGtQ(bid)(prizepool),
+      Ticket = TicketQ(name)(bid)(tournament["@tickets"] ?? 0),
+      Entrants = EntrantsQ(tournament?.["@totalEntrants"] ?? 0),
+      BidName = BidNameQ(name)(bid),
+      StartDay = StartDayQ(weekDay),
+      Name = NameQ(name),
+      FLAGS = FLAGSQ(tournament);
   
     const isTurbo = isTurboS(tournament);
     const isOffpeak = isOffpeakQ(tournament);

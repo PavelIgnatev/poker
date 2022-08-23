@@ -33,6 +33,22 @@ module.exports = async (req, res) => {
       prizepoolEnd,
     } = req.query;
 
+    if (network == "undefined")
+      return res.status(404).send({
+        message: "Select game network",
+      });
+
+    if (
+      isKOQ == "false" ||
+      isFreezoutQ == "false" ||
+      isTurboQ == "false" ||
+      isSTurboQ == "false" ||
+      isNormalQ == "false"
+    )
+      return res.status(404).send({
+        message: "Select tournament format [KO, Frezoout] and [Normal, Turbo, SuperTurbo]",
+      });
+
     delete require.cache[require.resolve("../../modules/filter/filter")];
     filter = require("../../modules/filter/filter");
 
@@ -186,10 +202,12 @@ module.exports = async (req, res) => {
       return (
         tournament["@bid"] >= Number(moneyStart) &&
         tournament["@bid"] <= Number(moneyEnd) &&
-        ((isKOQ != "false" && isNormalQ != "false" ? bounty && !turbo : false) ||
+        ((isKOQ != "false" && isNormalQ != "false" ? bounty && !turbo && !superturbo : false) ||
           (isKOQ != "false" && isTurboQ != "false" ? bounty && turbo : false) ||
           (isKOQ != "false" && isSTurboQ != "false" ? bounty && superturbo : false) ||
-          (isFreezoutQ != "false" && isNormalQ != "false" ? !bounty && !turbo : false) ||
+          (isFreezoutQ != "false" && isNormalQ != "false"
+            ? !bounty && !turbo && !superturbo
+            : false) ||
           (isFreezoutQ != "false" && isTurboQ != "false" ? !bounty && turbo : false) ||
           (isFreezoutQ != "false" && isSTurboQ != "false" ? !bounty && superturbo : false)) &&
         isDateFiltred &&

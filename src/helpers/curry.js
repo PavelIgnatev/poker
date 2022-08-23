@@ -11,34 +11,34 @@ function curry(func) {
 }
 
 //Ставка больше либо равно и ставка меньше либо равно
-const MELE = curry((a, b, c) => a >= b && a <= c);
+const FromTo = curry((a, b, c) => a >= b && a <= c);
 
 //Ставка больше либо равно и ставка меньше либо равно + name.includes
-const MELEI = curry(
+const FromToName = curry(
   (name, a, b, c, d) => a >= b && a <= c && name.toLowerCase().includes(d.toLowerCase()),
 );
 
 //Ставка равно, гарантия больше либо равно
-const EME = curry((a, b, c, d) => a == c && b >= d);
+const BidGt = curry((a, b, c, d) => a == c && b >= d);
 
 //Ставка равно, гарантия больше либо равно + name.includes
-const EMEI = curry(
+const BidGtName = curry(
   (name, a, b, c, d, e) => a == c && b >= d && name.toLowerCase().includes(e.toLowerCase()),
 );
 
 //тик равно, тикеты больше либо равно + name.includes
-const TEMEI = curry(
+const Ticket = curry(
   (name, a, b, c, d, e) => a == c && b >= d && name.toLowerCase().includes(e.toLowerCase()),
 );
 
 //Ставка равно + name.includes
-const EI = curry((name, a, b, e) => a == b && name.toLowerCase().includes(e.toLowerCase()));
+const BidName = curry((name, a, b, e) => a == b && name.toLowerCase().includes(e.toLowerCase()));
 
 //name.includes
-const I = curry((name, a) => name.toLowerCase().includes(a.toLowerCase()));
+const Name = curry((name, a) => name.toLowerCase().includes(a.toLowerCase()));
 
 //Ставка больше либо равно и ставка меньше либо равно, гарантия больше либо равно
-const MELEME = curry((a, b, c, d, e) => a >= c && a <= d && b >= e);
+const FromToGt = curry((a, b, c, d, e) => a >= c && a <= d && b >= e);
 
 //Ставка больше либо равно и ставка меньше либо равно, гарантия больше либо равно
 const StartDay = curry((a, b) => a == b);
@@ -51,20 +51,20 @@ const FLAGS = curry((a, b) => {
   return isNotRule ? !rule : rule;
 });
 
-// Фильтр по TotalEntrants
-const TotalEntrants = curry((a, b) => a >= b);
+// Фильтр по Entrants
+const Entrants = curry((a, b) => a >= b);
 
 module.exports = {
   curry,
-  MELE,
-  MELEI,
-  EME,
-  TEMEI,
-  EMEI,
-  MELEME,
-  EI,
+  FromTo,
+  FromToName,
+  BidGt,
+  BidGtName,
+  Ticket,
+  BidName,
+  Name,
+  FromToGt,
   StartDay,
-  I,
-  TotalEntrants,
+  Entrants,
   FLAGS,
 };

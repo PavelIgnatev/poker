@@ -1,4 +1,4 @@
-const config = require("../../store/rules/confgi.json");
+const config = require("../../store/rules/config.json");
 
 function renderRule(rule) {
   const { type, values, offpeak, network, level, KO, status } = rule;
