@@ -63,9 +63,7 @@ function renderRules(rules) {
     const isNormal = !isTurbo && !isSuperTurbo;
   
     if (!name) return false;
-  
-    //Фильтр снг для румов, отличных от PS.eu
-    if (network !== "PS.eu" && tournament["@sng"]) return false;
+
     ${rules
       .map((rule) => {
         if (rule[0].color === "orange") {
