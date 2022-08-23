@@ -39,11 +39,8 @@ module.exports = async (req, res) => {
       });
 
     if (
-      isKOQ == "false" ||
-      isFreezoutQ == "false" ||
-      isTurboQ == "false" ||
-      isSTurboQ == "false" ||
-      isNormalQ == "false"
+      !(isKOQ !== "false" || isFreezoutQ !== "false") ||
+      !(isTurboQ !== "false" || isSTurboQ !== "false" || isNormalQ !== "false")
     )
       return res.status(404).send({
         message: "Select tournament format [KO, Frezoout] and [Normal, Turbo, SuperTurbo]",
