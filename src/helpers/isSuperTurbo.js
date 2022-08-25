@@ -1,5 +1,3 @@
-const { getNetwork } = require("./getNetwork");
-
 /**
  * Возвращае true, если турнир является super turbo
  * @param {Object} tournament Экземпляр объекта tournament
@@ -7,7 +5,9 @@ const { getNetwork } = require("./getNetwork");
  */
 
 const isSuperTurbo = (tournament) => {
-  const superturbo = tournament["@flags"]?.includes("ST");
+  const name = (tournament["@name"] ?? "").toLowerCase();
+  const superturbo = tournament["@flags"]?.includes("ST") || name?.includes("hyper");
+
   return superturbo;
 };
 

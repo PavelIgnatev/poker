@@ -51,7 +51,7 @@ export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {
   prizepoolStart: 1,
   prizepoolEnd: 10000000,
   moneyStart: 1,
-  moneyEnd: 1000,
+  moneyEnd: 10000,
   KO: false,
   turbo: false,
   superTurbo: false,

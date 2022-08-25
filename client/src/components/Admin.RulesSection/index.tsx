@@ -21,7 +21,7 @@ type StatusType = "Normal" | "Turbo" | "SuperTurbo";
 type ColorsType = "blue" | "red" | "brown" | "black" | "green" | "orange";
 const KO: KOType[] = ["KO", "Freezout"];
 const Status: StatusType[] = ["Normal", "Turbo", "SuperTurbo"];
-const Colors: ColorsType[] = ["blue", "red", "brown", "green", "black", "orange"];
+const Colors: ColorsType[] = ["blue", "red", "brown", "black", "green", "orange"];
 
 export const b = b_.with("rules-section");
 

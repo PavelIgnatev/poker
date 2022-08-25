@@ -2,6 +2,8 @@ const { getTimeBySec } = require("./getTimeBySec");
 const { isTurbo } = require("./isTurbo");
 const { getNetwork } = require("./getNetwork");
 const { isSuperTurbo } = require("./isSuperTurbo");
+const { isRebuy } = require("./isRebuy");
+const { isSat } = require("./IsSat");
 
 /**
  * Возвращает объект, содержащий в себе большее количество свойств
@@ -15,6 +17,7 @@ const getMoreProp = (tournament) => {
   const stake = Number(tournament["@stake"] ?? 0);
   const rake = Number(tournament["@rake"] ?? 0);
   const bid = (stake + rake).toFixed(2);
+  const sat = isSat(tournament);
 
   //Фикс гарантии для WPN и 888Poker
   if (network === "WPN" || network === "Chico" || network === "888") {
@@ -34,10 +37,7 @@ const getMoreProp = (tournament) => {
     ),
   );
 
-  const rebuy =
-    network === "888"
-      ? name?.includes("r&a")
-      : tournament["@flags"]?.includes("R") && !tournament["@flags"]?.includes("RH");
+  const rebuy = isRebuy(tournament);
 
   return {
     ...tournament,
@@ -45,7 +45,7 @@ const getMoreProp = (tournament) => {
     "@turbo": !!isTurbo(tournament),
     "@rebuy": rebuy,
     "@od": !!tournament["@flags"]?.includes("OD"),
-    "@sat": !!tournament["@flags"]?.includes("SAT"),
+    "@sat": !!sat,
     "@bounty": !!tournament["@flags"]?.includes("B"),
     "@sng": !!tournament["@gameClass"]?.includes("sng"),
     "@deepstack": !!tournament["@flags"]?.includes("D"),

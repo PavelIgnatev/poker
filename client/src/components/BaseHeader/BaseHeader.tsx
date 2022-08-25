@@ -83,7 +83,7 @@ export const BaseHeader: FC = () => {
               <BaseInput
                 value={tournamentsSettings.moneyEnd}
                 handleChange={editableTournamentsSettings.handleChangeMoneyEnd}
-                max={10000}
+                max={100000}
                 placeholder="To"
                 className={classes.input}
               />

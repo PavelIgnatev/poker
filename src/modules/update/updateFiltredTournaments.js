@@ -3,6 +3,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
 const { writeFile, readFile } = require("../../utils/promisify");
 const { filterLevelByWord } = require("../filter/filterLevelByWord");
 const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
+const { isRebuy } = require("../../helpers/isRebuy");
 
 async function updateFiltredTournaments() {
   try {
@@ -68,10 +69,7 @@ async function updateFiltredTournaments() {
 
         const network = getNetwork(item["@network"]);
 
-        const rebuy =
-          network === "888"
-            ? name?.includes("R&A")
-            : item["@flags"]?.includes("R") && !item["@flags"]?.includes("RH");
+        const rebuy = isRebuy(item);
 
         if (!name) return false;
 

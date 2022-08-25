@@ -12,6 +12,8 @@ const { getConfig } = require("../../utils/config");
 const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
 const { getRulesAbility2 } = require("../../utils/rules");
 let filter = require("../../modules/filter/filter");
+const { isRebuy } = require("../../helpers/isRebuy");
+const { isSat } = require("../../helpers/IsSat");
 
 module.exports = async (req, res) => {
   try {
@@ -99,10 +101,7 @@ module.exports = async (req, res) => {
         const sng = tournament["@gameClass"]?.includes("sng");
         const isNL = tournament["@structure"] === "NL";
         const isH = tournament["@game"] === "H" || tournament["@game"] === "H6";
-        const rebuy =
-          network === "888"
-            ? name?.includes("r&a")
-            : tournament["@flags"]?.includes("R") && !tournament["@flags"]?.includes("RH");
+        const rebuy = isRebuy(tournament);
 
         const isMandatoryСonditions = isNL && isH && !rebuy && !od && !sng;
         const info = ability1?.[network]?.[time]?.[bid]?.[name];
@@ -112,6 +111,7 @@ module.exports = async (req, res) => {
         const gap = gaps?.[level]?.[network]?.[statusGap]?.[bid];
         const realBid = gap ? gap : bid;
         const abilityBid = ability2WithoutName?.[network]?.[level]?.[currency]?.[realBid]?.[status];
+        const sat = isSat(tournament);
 
         //Фикс гарантии для WPN и 888Poker и Chiko
         if (network === "WPN" || network === "888") {
@@ -148,7 +148,7 @@ module.exports = async (req, res) => {
           "@rebuy": !!rebuy,
           "@od": !!tournament["@flags"]?.includes("OD"),
           "@bounty": !!bounty,
-          "@sat": !!tournament["@flags"]?.includes("SAT"),
+          "@sat": !!sat,
           "@sng": !!tournament["@gameClass"]?.includes("sng"),
           "@deepstack": !!tournament["@flags"]?.includes("D"),
           "@superturbo": !!superturbo,

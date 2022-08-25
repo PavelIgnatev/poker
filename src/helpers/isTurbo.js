@@ -1,4 +1,5 @@
 const { getNetwork } = require("./getNetwork");
+const { isSat } = require("./IsSat");
 const { isSuperTurbo } = require("./isSuperTurbo");
 
 /**
@@ -7,13 +8,14 @@ const { isSuperTurbo } = require("./isSuperTurbo");
  * @return {boolean} True, если турнир является turbo
  */
 
+// пока корректно, ждем ответ
 const isTurbo = (tournament) => {
   let flags = tournament["@flags"];
   const name = (tournament["@name"] ?? "").toLowerCase();
   const network = getNetwork(tournament["@network"]);
   const superturbo = isSuperTurbo(tournament);
-  const isSat = flags?.includes("SAT");
-  if (isSat) flags = flags.replace("SAT", "");
+  const sat = isSat(tournament);
+  if (sat && flags) flags = flags.replace("SAT", "");
 
   const turbo =
     (flags?.includes("T") ||

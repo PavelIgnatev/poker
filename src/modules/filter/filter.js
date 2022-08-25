@@ -26,7 +26,6 @@ const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
 const filterLevelByRules = (level, tournament) => {
   const name = tournament["@name"]?.toLowerCase(),
     network = getNetwork(tournament["@network"]),
-    isKO = tournament["@bounty"],
     bid = Number(tournament["@bid"]),
     prizepool = Number(tournament["@prizepool"]),
     weekDay = tournament["@getWeekday"],
@@ -50,8 +49,39 @@ const filterLevelByRules = (level, tournament) => {
 
   if (!name) return false;
 
-  //Фильтр снг для румов, отличных от PS.eu
-  if (network !== "PS.eu" && tournament["@sng"]) return false;
+  if (FromToGt(1, 1111, 7000) && network === "WPN" && level === "7A" && isNormal && !isKo)
+    return false;
+  if (FromTo(1, 11111) && network === "WPN" && level === "7A" && isTurbo && !isKo) return false;
+  if (FromTo(1, 11111) && network === "PS.eu" && level === "7A" && isSuperTurbo && isKo)
+    return true;
+  if (
+    FromTo(1, 11111) &&
+    network === "IP" &&
+    level === "7A" &&
+    isNormal &&
+    isKo &&
+    FLAGS("sat") &&
+    network === "IP" &&
+    level === "7A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (FromTo(1, 111111) && network === "PS.es" && level === "7A" && isNormal && !isKo) return true;
+  if (FromTo(1, 11111) && network === "Party" && level === "7A" && isNormal && !isKo) return true;
+  if (FromTo(1, 111111) && network === "GG" && level === "7A" && isNormal && !isKo) return true;
+  if (FromTo(1, 11111) && network === "WNMX" && level === "7A" && isNormal && !isKo) return true;
+  if (FromTo(1, 11111) && network === "WPN" && level === "7A" && isNormal && !isKo) return true;
+  if (FromTo(1, 11111) && network === "WNMX" && level === "7A" && isTurbo && !isKo) return true;
+  if (FromTo(1, 111111) && network === "WNMX" && level === "7A" && isTurbo && isKo) return true;
+  if (FromTo(1, 111111) && network === "WNMX" && level === "7A" && isSuperTurbo && isKo)
+    return true;
+  if (FromTo(1, 111111) && network === "WNMX" && level === "7A" && isSuperTurbo && !isKo)
+    return true;
+  if (FromTo(1, 5) && network === "888" && level === "7A" && isNormal && !isKo) return true;
+  if (FromTo(1, 5) && network === "888" && level === "7A" && isNormal && isKo) return true;
+  if (FromTo(1, 11111) && network === "GG" && level === "7A" && isNormal && isKo) return true;
+  if (FromTo(1, 11111) && network === "WNMX" && level === "7A" && isNormal && isKo) return true;
 
   return false;
 };
