@@ -42,10 +42,18 @@ const isSat = (tournament) => {
         name.includes("seat") ||
         name.includes(" qualifier") ||
         name.includes("qualifier ");
+    } else if (network === "IP") {
+      sat =
+        name.includes("ticket") ||
+        name.includes("ticket") ||
+        name.includes(" seats") ||
+        name.includes("seats ") ||
+        (name.includes(" sat") && !name.includes(" satu")) ||
+        name.includes("sat  ");
     }
   }
 
-  return sat;
+  return !!sat;
 };
 
 module.exports = { isSat };

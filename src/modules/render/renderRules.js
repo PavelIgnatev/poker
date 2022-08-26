@@ -23,6 +23,7 @@ function renderRules(rules) {
     Name: NameQ,
     FromToGt: FromToGtQ,
     StartDay: StartDayQ,
+    NotName: NotNameQ,
     Entrants: EntrantsQ,
     FLAGS: FLAGSQ,
   } = require("../../helpers/curry");
@@ -37,10 +38,10 @@ function renderRules(rules) {
    * @return {boolean} True, если турнир прошел фильтрацию по правилам уровня
    */
   
-  const filterLevelByRules = (level, tournament) => {
+  const filter = (level, tournament) => {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
-      bid = Number(tournament["@bid"]),
+      bid = Number(tournament["@usdBid"]),
       prizepool = Number(tournament["@prizepool"]),
       weekDay = tournament["@getWeekday"],
 
@@ -54,6 +55,7 @@ function renderRules(rules) {
       BidName = BidNameQ(name)(bid),
       StartDay = StartDayQ(weekDay),
       Name = NameQ(name),
+      NotName = NotNameQ(name),
       FLAGS = FLAGSQ(tournament);
   
     const isTurbo = isTurboS(tournament);
@@ -78,7 +80,7 @@ function renderRules(rules) {
   };
   
   module.exports = {
-    filterLevelByRules,
+    filter,
   };`;
 }
 module.exports = { renderRules };

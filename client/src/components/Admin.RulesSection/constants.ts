@@ -113,6 +113,13 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
+  NotName: [
+    {
+      type: "string",
+      placeholder: "Includes",
+      options: null,
+    },
+  ],
   FLAGS: [
     {
       type: "string",

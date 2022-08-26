@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 
   let aliases = Object.keys(config);
 
-  if (numLevel) {
+  if (!isNaN(numLevel)) {
     aliases = aliases.filter((alias) => {
       const levels = Object.values(config[alias].networks);
 

@@ -1,9 +1,9 @@
 const { api } = require("../../api");
 const { getNetwork } = require("../../helpers/getNetwork");
 const { writeFile, readFile } = require("../../utils/promisify");
-const { filterLevelByWord } = require("../filter/filterLevelByWord");
 const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
 const { isRebuy } = require("../../helpers/isRebuy");
+const { isSat } = require("../../helpers/IsSat");
 
 async function updateFiltredTournaments() {
   try {
@@ -65,15 +65,13 @@ async function updateFiltredTournaments() {
           isNL = item["@structure"] === "NL",
           isH = item["@game"] === "H" || item["@game"] === "H6",
           name = item["@name"],
-          sat = item["@flags"]?.includes("SAT");
+          sat = isSat(item);
 
         const network = getNetwork(item["@network"]);
 
         const rebuy = isRebuy(item);
 
         if (!name) return false;
-
-        if (filterLevelByWord(network, name?.toLowerCase())) return false;
 
         const superturbo = network === "WNMX" ? false : isSuperTurbo(item);
 

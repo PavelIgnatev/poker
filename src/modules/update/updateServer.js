@@ -25,9 +25,8 @@ const updateServer = async () => {
   console.log(`Начал копировать config.json`);
   await saveCopyConfig();
   console.log(`Завершил копировать config.json`);
-  console.log("Начал собирать статистику по турнирам игроков");
-  // Пофиксить сбор туриков
-  // await collectionStatistics();
+  console.log("Начал собирать статистику по турнирам игроков за определенный день");
+  await collectionStatistics();
 };
 
 module.exports = { updateServer };

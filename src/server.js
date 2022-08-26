@@ -30,6 +30,6 @@ const job = new CronJob(
   },
   null,
   true,
-  "Europe/Moscow",
+  "America/New_York",
 );
 job.start();

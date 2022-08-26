@@ -37,6 +37,9 @@ const BidName = curry((name, a, b, e) => a == b && name.toLowerCase().includes(e
 //name.includes
 const Name = curry((name, a) => name.toLowerCase().includes(a.toLowerCase()));
 
+//!name.includes
+const NotName = curry((name, a) => !name.toLowerCase().includes(a.toLowerCase()));
+
 //Ставка больше либо равно и ставка меньше либо равно, гарантия больше либо равно
 const FromToGt = curry((a, b, c, d, e) => a >= c && a <= d && b >= e);
 
@@ -67,4 +70,5 @@ module.exports = {
   StartDay,
   Entrants,
   FLAGS,
+  NotName,
 };

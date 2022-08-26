@@ -1,5 +1,4 @@
 const { api } = require("../../api");
-const { filterLevelByAbility } = require("../../modules/filter/filterLevelByAbility");
 const { getDate } = require("../../helpers/getDate");
 const { getTimeBySec } = require("../../helpers/getTimeBySec");
 const { getWeekday } = require("../../helpers/getWeekday");
@@ -14,6 +13,7 @@ const { getRulesAbility2 } = require("../../utils/rules");
 let filter = require("../../modules/filter/filter");
 const { isRebuy } = require("../../helpers/isRebuy");
 const { isSat } = require("../../helpers/IsSat");
+const currency = require("node-currency");
 
 module.exports = async (req, res) => {
   try {
@@ -52,6 +52,7 @@ module.exports = async (req, res) => {
     filter = require("../../modules/filter/filter");
 
     const config = await getConfig();
+    const { lastValue } = await currency.getCurrency("usd-cny");
     const configByAlias = config[alias];
 
     if (!configByAlias) return res.json(result ?? []);
@@ -114,10 +115,22 @@ module.exports = async (req, res) => {
         const sat = isSat(tournament);
 
         //Фикс гарантии для WPN и 888Poker и Chiko
-        if (network === "WPN" || network === "888") {
+        if (network === "WPN" || network === "888" || network === "Chico") {
           const $ = tournament["@name"].split("$");
-          if ($.length > 1)
-            tournament["@guarantee"] = $[1].split(" ")[0].replace(")", "").replace(",", "");
+          if ($.length > 1) {
+            if (network === "Chico") {
+              tournament["@guarantee"] = $[2]
+                ?.split(" ")?.[0]
+                ?.replace(",", "")
+                .replace(".5K", "500")
+                .replace("K", "000")
+                .replace("K", "000")
+                .replace("M", "000000")
+                .replace(".", "");
+            } else {
+              tournament["@guarantee"] = $[1].split(" ")[0].replace(")", "").replace(",", "");
+            }
+          }
         }
 
         const prizepool = Math.round(
@@ -163,6 +176,7 @@ module.exports = async (req, res) => {
           "@timezone": timezone,
           "@status": status,
           "@level": level,
+          "@usdBid": currency === "CNY" ? bid / lastValue : bid,
         };
       });
 
@@ -188,14 +202,6 @@ module.exports = async (req, res) => {
             : !(dateStart > hours && hours > dateEnd)
           : true;
 
-      if (tournament["@id"] == 3456603791) {
-        console.log(
-          tournament,
-          prizepool,
-          prizepool ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true,
-        );
-      }
-
       return (
         tournament["@bid"] >= Number(moneyStart) &&
         tournament["@bid"] <= Number(moneyEnd) &&
@@ -209,7 +215,7 @@ module.exports = async (req, res) => {
           (isFreezoutQ != "false" && isSTurboQ != "false" ? !bounty && superturbo : false)) &&
         isDateFiltred &&
         (prizepool ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
-        filter.filterLevelByRules(level, tournament)
+        filter.filter(level, tournament)
       );
     });
     console.log(result.length);

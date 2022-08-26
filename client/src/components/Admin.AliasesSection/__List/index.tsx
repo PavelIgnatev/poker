@@ -33,9 +33,10 @@ export const AliasesSectionList: FC<Props> = ({ selectedLevel, search }) => {
     useStore($aliases)?.filter((alias) =>
       alias.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
     ) ?? [];
+
   const aliasesLoading = useStore(getAliasesRequest.pending);
 
-  if (!selectedLevel) {
+  if (selectedLevel === null) {
     return null;
   }
 

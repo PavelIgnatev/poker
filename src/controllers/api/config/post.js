@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
   }
 
   const { alias, level, effmu, mail, password } = newConfig;
-  if (!mail || !level || !effmu || !alias || !password) {
+  if (!mail || level === null || !effmu || !alias || !password) {
     return res
       .status(400)
       .send("All parameters are required (mail, level, effmu, alias, password)");

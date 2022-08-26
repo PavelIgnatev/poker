@@ -22,7 +22,7 @@ export const AliasesSection = () => {
   React.useEffect(() => {
     if (isAllLevels) {
       getAliasesRequest();
-    } else if (selectedLevel) {
+    } else if (selectedLevel !== null) {
       getAliasesRequest(selectedLevel);
     }
   }, [selectedLevel]);

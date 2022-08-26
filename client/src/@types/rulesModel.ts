@@ -7,6 +7,7 @@ export type rulesType =
   | "FromToGt"
   | "BidName"
   | "Name"
+  | "NotName"
   | "FLAGS"
   | "StartDay"
   | "Entrants";

@@ -1,16 +1,18 @@
 const { readFile, writeFile } = require("../../utils/promisify");
-const { filterLevelByRules } = require("../filter/filterLevelByRules");
 const { getBid } = require("../../helpers/getBid");
 const { getStatus } = require("../../helpers/getStatus");
 const { getSheduledDate } = require("../../helpers/getSheduledDate");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { updateCopies } = require("./updateCopies");
+const currency = require("node-currency");
+const { filter } = require("../filter/filter");
 
 const updateAbility2 = async () => {
-  const levels = Array(16)
+  const { lastValue } = await currency.getCurrency("usd-cny");
+  const levels = Array(17)
     .fill(null)
-    .map((_, i) => [i + 1 + "A", i + 1 + "B"])
+    .map((_, i) => [i + "A", i + "B"])
     .flat();
 
   const state = JSON.parse(await readFile("src/store/tournaments/filtredTournaments.json"));
@@ -28,8 +30,9 @@ const updateAbility2 = async () => {
         const r = t["@network"]; //network - room
         const n = t["@name"]?.toLowerCase(); //name
         const c = t["@currency"]; //currency
+        t["@usdBid"] = c === "CNY" ? b / lastValue : b;
 
-        if (!b || !r || !n || !c || !filterLevelByRules(l, t)) {
+        if (!b || !r || !n || !c || !filter(l, t)) {
           return;
         }
 
