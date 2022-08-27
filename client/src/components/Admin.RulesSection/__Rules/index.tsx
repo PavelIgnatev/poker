@@ -1,21 +1,23 @@
 import { useState } from "react";
+import Select from "react-select";
 
-import { b } from "../index";
 import { useStore } from "effector-react";
+import { rulesModel, rulesType } from "../../../@types/rulesModel";
+import { getUniqueElemKeyGetter } from "../../../helpers/getUniqueElemKeyGetter";
 import {
   $rules,
   deleteRulesRequest,
   patchRulesRequest,
   postRulesRequest,
 } from "../../../store/Rules";
-import { rulesModel, rulesType } from "../../../@types/rulesModel";
-import { RULES_TYPES_TO_FIELDS, RULES_TYPES } from "../constants";
-import { specialSelectStyles } from "../../BaseSelect";
-import Select from "react-select";
 import { validateNumber } from "../../../helpers/validateNumber";
+
+import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
 import { BaseButton } from "../../BaseButton";
-import { BaseCheckbox } from "../../BaseCheckbox";
+
+import { RULES_TYPES_TO_FIELDS, RULES_TYPES } from "../constants";
+import { b } from "../index";
 
 type RulesSectionRulesProps = {
   color: string;
@@ -97,6 +99,9 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
     });
   };
 
+  const { color, level, network, status, KO } = props;
+  const uniqueElemKeyGetter = getUniqueElemKeyGetter(color + level + network + status + KO);
+
   return (
     <div className={b("rules")}>
       {rules.map((ruleRows, ruleIndex) => {
@@ -106,16 +111,20 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
 
         const isSaveBtnDisabled = getIsSaveBtnDisabled(ruleRows, values);
 
+        const uniqueRuleKeyGetter = uniqueElemKeyGetter("rule" + ruleIndex);
+
         return (
-          <div className={b("rule", { composite: isComposite })} key={ruleIndex}>
+          <div className={b("rule", { composite: isComposite })} key={uniqueRuleKeyGetter.key}>
             <div className={b("rule-stripe")} />
             {ruleRows.map((ruleRow, rowIndex) => {
               const { type: ruleType, values: ruleValues } = ruleRow;
               const fields = RULES_TYPES_TO_FIELDS[ruleType] as Field[];
               const isLastRow = rowIndex === ruleRows.length - 1;
 
+              const uniqueRowKeyGetter = uniqueRuleKeyGetter("row" + rowIndex);
+
               return (
-                <div className={b("rule-row")}>
+                <div className={b("rule-row")} key={uniqueRowKeyGetter.key}>
                   <Select
                     styles={specialSelectStyles}
                     options={RULES_TYPES?.map((type) => ({
@@ -132,6 +141,8 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
 
                     const isNum = elementType === "number";
                     const value = String(ruleValues?.[fieldIndex] || "");
+
+                    const uniqueFieldKeyGetter = uniqueRowKeyGetter("field" + fieldIndex);
 
                     if (field.options?.length) {
                       return (
@@ -150,6 +161,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                             handleValues(value, rowIndex, fieldIndex);
                           }}
                           isDisabled={!isEditable}
+                          key={uniqueFieldKeyGetter("select").key}
                         />
                       );
                     }
@@ -163,6 +175,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                         }}
                         placeholder={placeholder}
                         disabled={!isEditable}
+                        key={uniqueFieldKeyGetter("input").key}
                       />
                     );
                   })}

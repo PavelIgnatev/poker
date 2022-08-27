@@ -12,9 +12,9 @@ import { specialSelectStyles } from "../BaseSelect";
 import { ColorPalette } from "../ColorPalette";
 import { ElementsToggle, useElementsToggle } from "../ElementsToggle";
 import { LevelBlocks, useLevelBlocks } from "../LevelBlocks";
+import { RulesSectionRules } from "./__Rules";
 
 import "./index.scss";
-import { RulesSectionRules } from "./__Rules";
 
 type KOType = "KO" | "Freezout";
 type StatusType = "Normal" | "Turbo" | "SuperTurbo";
