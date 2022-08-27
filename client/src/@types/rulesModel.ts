@@ -19,6 +19,6 @@ export interface rulesModel {
   status: string;
   level: string;
   offpeak: boolean;
-  KO: boolean;
+  KO: string;
   network: string;
 }

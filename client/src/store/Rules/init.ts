@@ -11,13 +11,7 @@ const DEFAULT_ERROR_MESSAGE = "An error has occurred. You are denied access to t
 const configDomain = createDomain();
 
 export const getRulesRequest = configDomain.createEffect(
-  async (params: {
-    color: string;
-    level: string;
-    network: string;
-    status: string;
-    KO: boolean;
-  }) => {
+  async (params: { color: string; level: string; network: string; status: string; KO: string }) => {
     return await api.get<Array<rulesModel[]>>("/api/rules", params);
   },
 );

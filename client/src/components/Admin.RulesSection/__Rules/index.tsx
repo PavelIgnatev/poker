@@ -24,7 +24,7 @@ type RulesSectionRulesProps = {
   level: string;
   network: string;
   status: string;
-  KO: boolean;
+  KO: string;
   offpeak: boolean;
 };
 type valuesType = Array<Record<string, number | string>>;
@@ -119,6 +119,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
             {ruleRows.map((ruleRow, rowIndex) => {
               const { type: ruleType, values: ruleValues } = ruleRow;
               const fields = RULES_TYPES_TO_FIELDS[ruleType] as Field[];
+              const isOffpeak = fields.findIndex((rule) => rule.placeholder === "Guarantee") !== -1;
               const isLastRow = rowIndex === ruleRows.length - 1;
 
               const uniqueRowKeyGetter = uniqueRuleKeyGetter("row" + ruleType + rowIndex);
@@ -187,7 +188,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                       Х
                     </BaseButton>
                   )}
-                  {!isEditable && isLastRow && (
+                  {!isEditable && isLastRow && isOffpeak && (
                     <BaseButton
                       onClick={() => {
                         patchRulesRequest({
