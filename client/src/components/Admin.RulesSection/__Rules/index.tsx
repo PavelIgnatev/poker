@@ -121,7 +121,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
               const fields = RULES_TYPES_TO_FIELDS[ruleType] as Field[];
               const isLastRow = rowIndex === ruleRows.length - 1;
 
-              const uniqueRowKeyGetter = uniqueRuleKeyGetter("row" + rowIndex);
+              const uniqueRowKeyGetter = uniqueRuleKeyGetter("row" + ruleType + rowIndex);
 
               return (
                 <div className={b("rule-row")} key={uniqueRowKeyGetter.key}>
