@@ -20,13 +20,21 @@ app.listen(process.env.PORT || PORT, async () => {
   console.log("Сервер запущен", new Date());
   // const prevErrorTournaments = JSON.parse(await readFile(`src/store/errors/errorTournaments.json`));
   // sendStatistics(prevErrorTournaments);
-  // await updateServer();
+  // try {
+  //   await updateServer();
+  // } catch (error) {
+  //   console.log("При обновлении сервера произошла ошибка", error);
+  // }
 });
 
 const job = new CronJob(
   "0 0 * * *",
-  function () {
-    updateServer();
+  async function () {
+    try {
+      await updateServer();
+    } catch (error) {
+      console.log("При обновлении сервера произошла ошибка", error);
+    }
   },
   null,
   true,

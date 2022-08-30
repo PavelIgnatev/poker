@@ -10,6 +10,18 @@
     font-weight: 700;
   }
 
+  &__loader {
+    height: 120px;
+    margin-top: 64px;
+    position: relative;
+
+    &-title {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 100px);
+    }
+  }
+
   &__subtitle {
     display: block;
     margin-top: 20px;

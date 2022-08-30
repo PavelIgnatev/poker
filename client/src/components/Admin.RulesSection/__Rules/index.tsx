@@ -136,6 +136,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                     className={b("rule-row-select")}
                     isDisabled={!isEditable}
                     defaultValue={{ value: ruleType, label: ruleType }}
+                    key={String(Math.random()).substr(2, 12)}
                   />
                   {fields.map((field, fieldIndex) => {
                     const { type: elementType, placeholder, options } = field;
@@ -162,7 +163,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                             handleValues(value, rowIndex, fieldIndex);
                           }}
                           isDisabled={!isEditable}
-                          key={uniqueFieldKeyGetter("select").key}
+                          key={String(Math.random()).substr(2, 12)}
                         />
                       );
                     }

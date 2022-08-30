@@ -72,7 +72,9 @@ const collectionStatistics = async () => {
             .filter(
               (tournament) =>
                 new Date(
-                  new Date(Number(tournament["@date"] + "000")).toLocaleString("en-EN", {
+                  new Date(
+                    Number((tournament["@date"] ?? t["@scheduledStartDate"] ?? 0) + "000"),
+                  ).toLocaleString("en-EN", {
                     timeZone: "America/New_York",
                   }),
                 )
@@ -93,7 +95,14 @@ const collectionStatistics = async () => {
               const gap = gaps?.[level]?.[network]?.[statusGap]?.[bid];
               const realBid = gap ? gap : bid;
               const isStartDate = Number(t["@date"] ?? t["@scheduledStartDate"] ?? 0);
-              const time = getTimeByMS(Number(`${isStartDate - d}000`));
+              const time = new Date(Number(Number(`${isStartDate - d}000`)))
+                .toLocaleString("en-EN", {
+                  hour12: false,
+                  timeZone: "America/New_York",
+                  hour: "numeric",
+                  minute: "numeric",
+                })
+                .replace("24", "00");
 
               const abilityBid = ability2?.[network]?.[level]?.[currency]?.[realBid]?.[status] ?? 0;
 
@@ -110,7 +119,18 @@ const collectionStatistics = async () => {
               const realAbility = abilityBid + rulesAbility2;
 
               const startDate = Number(isStartDate * 1000);
-              const data = getDate(Number(`${isStartDate - d}000`)).split(", ");
+
+              const data = new Date(Number(Number(`${isStartDate - d}000`)))
+                .toLocaleString("en-EN", {
+                  hour12: false,
+                  timeZone: "America/New_York",
+                  day: "numeric",
+                  month: "short",
+                  hour: "numeric",
+                  minute: "numeric",
+                })
+                .replace(", 24", ", 00")
+                .split(", ");
 
               t["@ability"] = info ? info : "-";
               t["@abilityBid"] = realAbility ? realAbility : "-";
@@ -138,10 +158,11 @@ const collectionStatistics = async () => {
     await writeFile("src/store/config/config.json", JSON.stringify(config));
     try {
       await sendStatistics(errorTournaments);
+      console.log("Начинаю удалять папку дня ", date);
+      await deleteFolder(`src/store/copies/${date}`);
     } catch (error) {
       console.log(error);
     }
-    // deleteFolder(`src/store/copies/${date}`);
   } catch (error) {
     console.log("При сборе данных для письма произошла ошибка", error);
     console.log("Важно не забывать, что мы смотрим на 2 дня назад, так что возможно все заебись");

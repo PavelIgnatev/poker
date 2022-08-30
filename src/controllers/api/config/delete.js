@@ -7,11 +7,11 @@ module.exports = async (req, res) => {
   const config = await getConfig();
 
   if (password !== adminPassword) {
-    return res.status(403).send("Wrong password");
+    return res.status(403).send({ message: "Wrong password" });
   }
 
   if (!config[alias]) {
-    return res.status(404).send("No such alias");
+    return res.status(404).send({ message: "No such alias" });
   }
 
   delete config[alias];

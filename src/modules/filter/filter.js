@@ -16,6 +16,7 @@ const {
 const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
 const { isTurbo: isTurboS } = require("../../helpers/isTurbo.js");
 const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
+const { validateNumber } = require("../../helpers/validateNumber");
 
 /**
  * Возвращае true, если турнир прошел фильтрацию по правилам уровня
@@ -24,7 +25,7 @@ const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
  * @return {boolean} True, если турнир прошел фильтрацию по правилам уровня
  */
 
-const filter = (level, tournament) => {
+const filter = (ruleLevel, tournament) => {
   const name = tournament["@name"]?.toLowerCase(),
     network = getNetwork(tournament["@network"]),
     bid = Number(tournament["@usdBid"]),
@@ -49,53 +50,20 @@ const filter = (level, tournament) => {
   const isKo = tournament["@bounty"];
   const isNormal = !isTurbo && !isSuperTurbo;
 
+  const level = validateNumber(ruleLevel);
+  const effmu = ruleLevel.replace(level, "").replace("-", "");
+
   if (!name) return false;
 
-  if (FromToGt(1, 1111, 7000) && network === "WPN" && level === "7A" && isNormal && !isKo)
-    return false;
-  if (FromTo(1, 11111) && network === "WPN" && level === "7A" && isTurbo && !isKo) return false;
-  if (FromTo(1, 11111) && network === "PS.eu" && level === "7A" && isSuperTurbo && isKo)
-    return true;
-  if (
-    FromTo(1, 11111) &&
-    network === "IP" &&
-    level === "7A" &&
-    isNormal &&
-    isKo &&
-    FLAGS("sat") &&
-    network === "IP" &&
-    level === "7A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (FromTo(1, 111111) && network === "PS.es" && level === "7A" && isNormal && !isKo) return true;
-  if (FromTo(1, 11111) && network === "Party" && level === "7A" && isNormal && !isKo) return true;
-  if (FromTo(1, 111111) && network === "GG" && level === "7A" && isNormal && !isKo) return true;
-  if (FromTo(1, 11111) && network === "WNMX" && level === "7A" && isNormal && !isKo) return true;
-  if (FromTo(1, 11111) && network === "WPN" && level === "7A" && isNormal && !isKo) return true;
-  if (FromTo(1, 11111) && network === "WNMX" && level === "7A" && isTurbo && !isKo) return true;
-  if (FromTo(1, 111111) && network === "WNMX" && level === "7A" && isTurbo && isKo) return true;
-  if (FromTo(1, 111111) && network === "WNMX" && level === "7A" && isSuperTurbo && isKo)
-    return true;
-  if (FromTo(1, 111111) && network === "WNMX" && level === "7A" && isSuperTurbo && !isKo)
-    return true;
-  if (FromTo(1, 5) && network === "888" && level === "7A" && isNormal && !isKo) return true;
-  if (FromTo(1, 5) && network === "888" && level === "7A" && isNormal && isKo) return true;
-  if (FromTo(1, 11111) && network === "WNMX" && level === "7A" && isNormal && isKo) return true;
-  if (FromTo(1, 200) && network === "GG" && level === "7A" && isNormal && isKo) return true;
-  if (FromTo(1, 11111) && network === "Chico" && level === "7A" && isNormal && isKo) return true;
-  if (FromTo(1, 111111) && network === "Chico" && level === "7A" && isNormal && !isKo) return true;
-  if (FromTo(1, 11111111) && network === "Chico" && level === "7A" && isTurbo && !isKo) return true;
-  if (FromTo(1, 11111111) && network === "Chico" && level === "7A" && isSuperTurbo && !isKo)
-    return true;
-  if (FromTo(1, 1111111) && network === "Chico" && level === "7A" && isTurbo && isKo) return true;
-  if (FromTo(1, 111111) && network === "Chico" && level === "7A" && isSuperTurbo && isKo)
-    return true;
-  if (FromTo(1, 1111111) && network === "PS.eu" && level === "7A" && isNormal && isKo) return true;
-  if (FromTo(1, 1111111) && network === "PS.eu" && level === "7A" && isNormal && !isKo) return true;
-  if (FromTo(1, 111111) && network === "PS.eu" && level === "0A" && isNormal && isKo) return true;
-  if (FromTo(1, 111111) && network === "PS.eu" && level === "0A" && isNormal && !isKo) return true;
+  if (FromTo(1, 1111111) && network === "PS.eu") return true;
+  if (FromTo(1, 111111) && network === "IP") return true;
+  if (FromTo(1, 111111) && network === "Chico") return true;
+  if (FromTo(1, 111111) && network === "PS.es") return true;
+  if (FromTo(1, 111111) && network === "Party") return true;
+  if (FromTo(1, 111111) && network === "GG") return true;
+  if (FromTo(1, 111111) && network === "888") return true;
+  if (FromTo(1, 111111) && network === "WNMX") return true;
+  if (FromTo(1, 111111) && network === "WPN") return true;
 
   return false;
 };

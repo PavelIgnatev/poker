@@ -30,6 +30,7 @@ function renderRules(rules) {
   const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
   const { isTurbo: isTurboS } = require("../../helpers/isTurbo.js");
   const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
+  const {validateNumber} = require('../../helpers/validateNumber')
   
   /**
    * Возвращае true, если турнир прошел фильтрацию по правилам уровня
@@ -38,7 +39,7 @@ function renderRules(rules) {
    * @return {boolean} True, если турнир прошел фильтрацию по правилам уровня
    */
   
-  const filter = (level, tournament) => {
+  const filter = (ruleLevel, tournament) => {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
       bid = Number(tournament["@usdBid"]),
@@ -63,6 +64,9 @@ function renderRules(rules) {
     const isSuperTurbo = isSuperTurboS(tournament);
     const isKo = tournament["@bounty"];
     const isNormal = !isTurbo && !isSuperTurbo;
+
+    const level = validateNumber(ruleLevel);
+    const effmu = ruleLevel.replace(level, "").replace("-", "");
   
     if (!name) return false;
 

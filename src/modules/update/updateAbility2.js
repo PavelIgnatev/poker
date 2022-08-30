@@ -21,6 +21,11 @@ const updateAbility2 = async () => {
   const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
   const obj = {};
+  const obj2 = {};
+
+  const ability1 = JSON.parse(await readFile("src/store/ability1/ability1.json"));
+
+  console.log("Начинаю обход по уровням");
   levels.forEach((l) => {
     Object.values(state).forEach((tournaments) => {
       Object.values(tournaments).forEach((ft) => {
@@ -31,33 +36,59 @@ const updateAbility2 = async () => {
         const n = t["@name"]?.toLowerCase(); //name
         const c = t["@currency"]; //currency
         t["@usdBid"] = c === "CNY" ? b / lastValue : b;
+        const isStartDate = t["@date"] ?? 0;
+        const time = getTimeByMS(Number(`${isStartDate}000`));
 
-        if (!b || !r || !n || !c || !filter(l, t)) {
-          return;
-        }
+        (() => {
+          if (obj2?.[r]?.[l]?.[c]?.[b]?.[s]?.[t["@name"]]) {
+            return;
+          }
 
-        if (!obj) obj = {};
-        if (!obj[r]) obj[r] = {};
-        if (!obj[r][l]) obj[r][l] = {};
-        if (!obj[r][l][c]) obj[r][l][c] = {};
-        if (!obj[r][l][c][b]) obj[r][l][c][b] = {};
-        if (!obj[r][l][c][b][s]) obj[r][l][c][b][s] = {};
-        if (!obj[r][l][c][b][s][n]) obj[r][l][c][b][s][n] = [];
+          const ability2 = obj?.[r]?.[l]?.[c]?.[b]?.[s];
 
-        const result = {};
+          if (!b || !r || !n || !c || !ability2) {
+            return;
+          }
+          const ability = ability1?.[r]?.[time]?.[t["@bid"]]?.[n]?.["@avability"] ?? "-";
 
-        result["a"] = t["@avability"];
-        result["d"] = t["@duration"];
-        result["g"] = t["@guarantee"];
-        result["n"] = t["@name"];
-        result["b"] = t["@bid"];
-        result["p"] = t["@prizepool"];
-        result["s"] = getSheduledDate(t);
+          if (!obj2) obj2 = {};
+          if (!obj2[r]) obj2[r] = {};
+          if (!obj2[r][l]) obj2[r][l] = {};
+          if (!obj2[r][l][c]) obj2[r][l][c] = {};
+          if (!obj2[r][l][c][b]) obj2[r][l][c][b] = {};
+          if (!obj2[r][l][c][b][s]) obj2[r][l][c][b][s] = {};
+          obj2[r][l][c][b][s][t["@name"] + ` (A1: ${ability})(${time})`] = ability2;
+        })();
 
-        obj[r][l][c][b][s][n].push(result);
+        (() => {
+          if (!b || !r || !n || !c || !filter(l, t)) {
+            return;
+          }
+
+          if (!obj) obj = {};
+          if (!obj[r]) obj[r] = {};
+          if (!obj[r][l]) obj[r][l] = {};
+          if (!obj[r][l][c]) obj[r][l][c] = {};
+          if (!obj[r][l][c][b]) obj[r][l][c][b] = {};
+          if (!obj[r][l][c][b][s]) obj[r][l][c][b][s] = {};
+          if (!obj[r][l][c][b][s][n]) obj[r][l][c][b][s][n] = [];
+
+          const result = {};
+
+          result["a"] = t["@avability"];
+          result["d"] = t["@duration"];
+          result["g"] = t["@guarantee"];
+          result["n"] = t["@name"];
+          result["b"] = t["@bid"];
+          result["p"] = t["@prizepool"];
+          result["s"] = getSheduledDate(t);
+
+          obj[r][l][c][b][s][n].push(result);
+        })();
       });
     });
   });
+  console.log("Завершил обход по уровням");
 
   Object.keys(obj).forEach((r) => {
     Object.keys(obj[r]).forEach((l) => {
@@ -124,45 +155,6 @@ const updateAbility2 = async () => {
 
   // сохранием ability2WithoutName
   await updateCopies(obj, "ability2.json");
-
-  const obj2 = {};
-
-  const ability1 = JSON.parse(await readFile("src/store/ability1/ability1.json"));
-
-  levels.forEach((l) => {
-    Object.values(state).forEach((tournaments) => {
-      Object.values(tournaments).forEach((ft) => {
-        //Тут типо для всех турниров для правил, получаем абилити2 конкретного турнира
-        const t = getMoreProp(ft); //add properties for filter
-        const s = getStatus(t); //status
-        const b = getBid(l, t, gaps); //bid
-        const r = t["@network"]; //network - room
-        const n = t["@name"]?.toLowerCase(); //name
-        const c = t["@currency"]; //currency
-        const isStartDate = ft["@date"] ?? 0;
-        const time = getTimeByMS(Number(`${isStartDate}000`));
-
-        if (obj2?.[r]?.[l]?.[c]?.[b]?.[s]?.[t["@name"]]) {
-          return;
-        }
-
-        const ability2 = obj?.[r]?.[l]?.[c]?.[b]?.[s];
-
-        if (!b || !r || !n || !c || !ability2) {
-          return;
-        }
-        const ability = ability1?.[r]?.[time]?.[t["@bid"]]?.[n]?.["@avability"] ?? "-";
-
-        if (!obj2) obj2 = {};
-        if (!obj2[r]) obj2[r] = {};
-        if (!obj2[r][l]) obj2[r][l] = {};
-        if (!obj2[r][l][c]) obj2[r][l][c] = {};
-        if (!obj2[r][l][c][b]) obj2[r][l][c][b] = {};
-        if (!obj2[r][l][c][b][s]) obj2[r][l][c][b][s] = {};
-        obj2[r][l][c][b][s][t["@name"] + ` (A1: ${ability})(${time})`] = ability2;
-      });
-    });
-  });
 
   await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
 };

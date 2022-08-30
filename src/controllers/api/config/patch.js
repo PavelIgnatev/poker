@@ -5,11 +5,11 @@ module.exports = async (req, res) => {
   const { alias, config: newConfig, password } = req.body;
 
   if (!newConfig) {
-    return res.status(400).send("Config is required parameter");
+    return res.status(403).send({ message: "Config is required parameter" });
   }
 
   if (alias !== newConfig.alias) {
-    return res.status(400).send("You can't change alias field");
+    return res.status(403).send({ message: "You can't change alias field" });
   }
 
   const config = await getConfig();

@@ -6,7 +6,11 @@ module.exports = async (req, res) => {
 
   await saveSample({ count: Number(sample) });
 
-  updateServer();
+  try {
+    await updateServer();
+  } catch (error) {
+    console.log("При обновлении сервера произошла ошибка", error);
+  }
 
   res.status(200).send();
 };

@@ -12,6 +12,7 @@ import { ElementsToggle, useElementsToggle } from "../ElementsToggle";
 import { Ability2SectionRules } from "./__Rules";
 
 import "./index.scss";
+import { Loader } from "../Loader";
 
 // поработать над неймингом если есть желание
 type State = any;
@@ -31,6 +32,8 @@ export const Ability2Section = () => {
     fetchSettings();
   }, []);
 
+  const ability2Loading = useStore(fetchStateAbility2.pending);
+
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
   const { selectedElement: selectedEffmu, handleElementChange: handleEffmuChange } =
     useElementsToggle<Effmu>(EFFMU[0]);
@@ -48,12 +51,21 @@ export const Ability2Section = () => {
             onElementChange={handleEffmuChange}
             elements={EFFMU}
           />
-          <Ability2SectionRules
-            savedRules={savedRules}
-            state={state}
-            level={selectedLevel}
-            effmu={selectedEffmu}
-          />
+          {!ability2Loading ? (
+            <Ability2SectionRules
+              savedRules={savedRules}
+              state={state}
+              level={selectedLevel}
+              effmu={selectedEffmu}
+            />
+          ) : (
+            <div className={b("loader")}>
+              <Loader />
+              <span className={b("loader-title")}>
+                Maximum time - 1 minute (in case the sample value is 1-3)
+              </span>
+            </div>
+          )}
         </>
       )}
     </section>

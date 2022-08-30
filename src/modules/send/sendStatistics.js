@@ -12,7 +12,7 @@ const transporter = createTransport({
   },
 });
 
-const mailOptions = (mail, html, content) => {
+const mailOptions = (mails, html, content) => {
   const currentTime = new Date(
     new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
       timeZone: "America/New_York",
@@ -30,7 +30,7 @@ const mailOptions = (mail, html, content) => {
   //behaappy@ya.ru
   return {
     from: "as.dsa.20@mail.ru",
-    to: [mail],
+    to: mails,
     subject: `Erroneous tournaments for ${date}`,
     html,
     attachments: [
@@ -73,7 +73,7 @@ const sendMail = async (mail, tournaments, html) => {
 };
 
 const sendStatistics = async (errorTournaments) => {
-  console.log("Начинаю отправлять статистику по турнирам на почту");
+  console.log("Начинаю отправлять статистику по турнирам на почты игроков");
   const config = JSON.parse(await readFile("src/store/config/config.json"));
   const errorAliases = [];
   const aliases = Object.keys(errorTournaments);
@@ -94,13 +94,28 @@ const sendStatistics = async (errorTournaments) => {
 
     try {
       await sendMail(
-        mail,
+        [mail],
         Array.from(errorTournaments[alias]),
         `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
       );
     } catch {
       errorAliases.push(alias);
     }
+  }
+
+  console.log("Закончил отправлять статистику по турнирам на почты игроков");
+  console.log("Начинаю отправлять статистику по турнирам на почту админов");
+
+  try {
+    await sendMail(
+      ["palllkaignatev@yandex.ru, behaappy@ya.ru"],
+      Object.values(errorTournaments).flat(),
+      `<div>Invalid emails from players: ${errorAliases.join(", ")}</div>
+      <div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
+    );
+    console.log("Закончил отправлять статистику по турнирам на почту админов");
+  } catch (error) {
+    console.log("Отправка не письма на почту админов не удалась, произошла ошибка: ", error);
   }
 };
 
