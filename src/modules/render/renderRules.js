@@ -43,7 +43,7 @@ function renderRules(rules) {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
       bid = Number(tournament["@usdBid"]),
-      prizepool = Number(tournament["@prizepool"]),
+      prizepool = Number(tournament["@usdPrizepool"]),
       weekDay = tournament["@getWeekday"],
 
       FromTo = FromToQ(bid),

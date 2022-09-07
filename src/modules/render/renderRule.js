@@ -32,7 +32,7 @@ function renderRule(rule) {
     (level === "1" && ruleLevel.includes("-") ? "" : `&& level === '${level}'`) +
     (effMu !== "all" ? `&& effmu === '${effMu}'` : "") +
     (status !== "all" ? `&& is${status}` : "") +
-    (KO !== "all" ? `&& ${KO ? "isKo" : "!isKo"}` : "")
+    (KO !== "all" ? `&& ${KO === "KO" ? "isKo" : "!isKo"}` : "")
   );
 }
 

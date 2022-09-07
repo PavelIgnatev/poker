@@ -118,7 +118,7 @@ module.exports = async (req, res) => {
         if (network === "WPN" || network === "888" || network === "Chico") {
           const $ = tournament["@name"].split("$");
           if ($.length > 1) {
-            if (network === "Chico") {
+            if (network === "Chico" && !sat) {
               tournament["@guarantee"] = $[2]
                 ?.split(" ")?.[0]
                 ?.replace(",", "")
@@ -127,7 +127,7 @@ module.exports = async (req, res) => {
                 .replace("K", "000")
                 .replace("M", "000000")
                 .replace(".", "");
-            } else {
+            } else if ((network === "WPN" && !sat) || network === "888") {
               tournament["@guarantee"] = $[1].split(" ")[0].replace(")", "").replace(",", "");
             }
           }
@@ -152,6 +152,8 @@ module.exports = async (req, res) => {
           ? rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
           : 0;
 
+        const pp = prizepool > 0 ? prizepool : "-";
+
         return {
           ...tournament,
           "@date": isStartDate,
@@ -165,7 +167,7 @@ module.exports = async (req, res) => {
           "@sng": !!tournament["@gameClass"]?.includes("sng"),
           "@deepstack": !!tournament["@flags"]?.includes("D"),
           "@superturbo": !!superturbo,
-          "@prizepool": prizepool > 0 ? prizepool : "-",
+          "@prizepool": pp,
           "@network": network,
           "@ability": ability ? Number(ability) : "-",
           "@abilityBid": abilityBid ? Number(abilityBid) + Number(rulesAbility2) : "-",
@@ -177,6 +179,7 @@ module.exports = async (req, res) => {
           "@status": status,
           "@level": level,
           "@usdBid": currency === "CNY" ? bid / lastValue : bid,
+          "@usdPrizepool": currency === "CNY" && pp !== "-" ? pp / lastValue : pp,
         };
       });
 
@@ -188,7 +191,7 @@ module.exports = async (req, res) => {
       const turbo = tournament["@turbo"];
       const superturbo = tournament["@superturbo"];
       const level = tournament["@level"];
-      const prizepool = tournament["@prizepool"];
+      const prizepool = tournament["@usdPrizepool"];
       const startDate = tournament["@scheduledStartDate"];
 
       // фильтрация по дате
@@ -203,8 +206,8 @@ module.exports = async (req, res) => {
           : true;
 
       return (
-        tournament["@bid"] >= Number(moneyStart) &&
-        tournament["@bid"] <= Number(moneyEnd) &&
+        tournament["@usdBid"] >= Number(moneyStart) &&
+        tournament["@usdBid"] <= Number(moneyEnd) &&
         ((isKOQ != "false" && isNormalQ != "false" ? bounty && !turbo && !superturbo : false) ||
           (isKOQ != "false" && isTurboQ != "false" ? bounty && turbo : false) ||
           (isKOQ != "false" && isSTurboQ != "false" ? bounty && superturbo : false) ||

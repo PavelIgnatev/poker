@@ -10,52 +10,77 @@ function curry(func) {
   };
 }
 
+// FromTo = FromToQ(bid);
+// FromToName = FromToNameQ(name)(bid);
+// BidGt = BidGtQ(bid)(prizepool);
+// BidGtName = BidGtNameQ(name)(bid)(prizepool);
+// FromToGt = FromToGtQ(bid)(prizepool);
+// Ticket = TicketQ(name)(bid)(tournament["@tickets"] ?? 0);
+// Entrants = EntrantsQ(tournament?.["@totalEntrants"] ?? 0);
+// BidName = BidNameQ(name)(bid);
+// StartDay = StartDayQ(weekDay);
+// Name = NameQ(name);
+// NotName = NotNameQ(name);
+// FLAGS = FLAGSQ(tournament);
+
 //Ставка больше либо равно и ставка меньше либо равно
-const FromTo = curry((a, b, c) => a >= b && a <= c);
+const FromTo = curry(
+  (realBid, from, to) => Number(realBid) >= Number(from) && Number(realBid) <= Number(to),
+);
+
+//name.includes
+const Name = curry((name, str) => name.toLowerCase().includes(str.toLowerCase()));
 
 //Ставка больше либо равно и ставка меньше либо равно + name.includes
 const FromToName = curry(
-  (name, a, b, c, d) => a >= b && a <= c && name.toLowerCase().includes(d.toLowerCase()),
+  (name, realBid, from, to, str) => FromTo(realBid, from, to) && Name(name, str),
 );
 
 //Ставка равно, гарантия больше либо равно
-const BidGt = curry((a, b, c, d) => a == c && b >= d);
+const BidGt = curry(
+  (realBid, realPrizepool, bid, prizepool) =>
+    Number(bid) === Number(realBid) && Number(realPrizepool) >= Number(prizepool),
+);
 
 //Ставка равно, гарантия больше либо равно + name.includes
 const BidGtName = curry(
-  (name, a, b, c, d, e) => a == c && b >= d && name.toLowerCase().includes(e.toLowerCase()),
+  (name, realBid, realPrizepool, bid, prizepool, str) =>
+    BidGt(realBid, realPrizepool, bid, prizepool) && Name(name, str),
 );
 
 //тик равно, тикеты больше либо равно + name.includes
 const Ticket = curry(
-  (name, a, b, c, d, e) => a == c && b >= d && name.toLowerCase().includes(e.toLowerCase()),
+  (name, realBid, realTickets, bid, tickets, str) =>
+    BidGt(realBid, realTickets, bid, tickets) && Name(name, str),
 );
 
 //Ставка равно + name.includes
-const BidName = curry((name, a, b, e) => a == b && name.toLowerCase().includes(e.toLowerCase()));
-
-//name.includes
-const Name = curry((name, a) => name.toLowerCase().includes(a.toLowerCase()));
+const BidName = curry(
+  (name, realBid, bid, str) => Number(realBid) === Number(bid) && Name(name, str),
+);
 
 //!name.includes
-const NotName = curry((name, a) => !name.toLowerCase().includes(a.toLowerCase()));
+const NotName = curry((name, str) => !Name(name, str));
 
 //Ставка больше либо равно и ставка меньше либо равно, гарантия больше либо равно
-const FromToGt = curry((a, b, c, d, e) => a >= c && a <= d && b >= e);
+const FromToGt = curry(
+  (realBid, realPrizepool, from, to, prizepool) =>
+    FromTo(realBid, from, to) && Number(realPrizepool) >= Number(prizepool),
+);
 
 //Ставка больше либо равно и ставка меньше либо равно, гарантия больше либо равно
-const StartDay = curry((a, b) => a == b);
+const StartDay = curry((realDay, day) => String(realDay) === String(day));
 
 // Фильтр по флагу
-const FLAGS = curry((a, b) => {
-  const isNotRule = b?.includes("!");
-  const rule = a?.[`@${b.replace("!", "")}`] ?? false;
+const FLAGS = curry((tournament, flags) => {
+  const isNotRule = flags?.includes("!");
+  const rule = tournament?.[`@${flags.replace("!", "")}`] ?? false;
 
   return isNotRule ? !rule : rule;
 });
 
 // Фильтр по Entrants
-const Entrants = curry((a, b) => a >= b);
+const Entrants = curry((totalEntrants, entrants) => Number(totalEntrants) >= Number(entrants));
 
 module.exports = {
   curry,

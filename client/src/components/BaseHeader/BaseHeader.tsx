@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import cx from "classnames";
 import {
   $tournamentsSettings,
@@ -32,6 +32,10 @@ export const BaseHeader: FC = () => {
   const settingsModalRef = React.useRef<ModalRef>(null);
   const handleSettingsModalOpen = () => settingsModalRef.current?.open();
   const handleSettingsModalClose = () => settingsModalRef.current?.close();
+
+  useEffect(() => {
+    settingsModalRef.current?.open();
+  }, []);
 
   return (
     <header className={classes.header}>

@@ -6,6 +6,8 @@ const setupMiddlewares = require("./middlewares");
 const { apiRouter, mainRouter } = require("./routers");
 const app = express();
 const { updateServer } = require("./modules/update/updateServer");
+const { collectionStatistics } = require("./modules/collection/collectionStatistics");
+const { getRules, saveRules } = require("./utils/rules");
 
 // setup other
 setupMiddlewares(app);
@@ -25,6 +27,18 @@ app.listen(process.env.PORT || PORT, async () => {
   // } catch (error) {
   //   console.log("При обновлении сервера произошла ошибка", error);
   // }
+  // const rules = await getRules();
+  // const newRules = [];
+  // rules.map((rule) => {
+  //   const oneRule = rule[0];
+  //   if ((oneRule.color === "blue" || oneRule.color === "red") && oneRule.network === "WNMX") {
+  //     newRules.push([{ ...oneRule, network: "IP" }]);
+  //   }
+  //   if ((oneRule.color === "blue" || oneRule.color === "red") && oneRule.network === "WPN") {
+  //     newRules.push([{ ...oneRule, network: "Chico" }]);
+  //   }
+  // });
+  // await saveRules(rules.concat(newRules));
 });
 
 const job = new CronJob(

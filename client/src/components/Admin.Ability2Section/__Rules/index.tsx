@@ -68,15 +68,17 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
     ...selectedRules.map((rule) => ({ rowStatus: "saved", rule })),
   ];
 
+  console.log(rows);
+
   return (
     <div className={b("rules")}>
-      {rows.map(({ rowStatus, rule }) => {
+      {rows.map(({ rowStatus, rule }, index) => {
         const disabled = rowStatus !== "editable";
 
         const formData = { ...rule, ability2, level: levelPlusEffmu };
 
         return (
-          <div className={b("rules-row")} key={rule.network + rule.bid + rule.name}>
+          <div className={b("rules-row")} key={rule.network + rule.bid + rule.name + index}>
             <Select
               styles={specialSelectStyles}
               placeholder="Network"

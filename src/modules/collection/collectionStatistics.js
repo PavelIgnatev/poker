@@ -46,7 +46,11 @@ const collectionStatistics = async () => {
         try {
           result = await api.get(
             `https://www.sharkscope.com/api/pocarrleaderboard/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${Math.round(
-              +new Date(new Date(date).toLocaleString("en-EN", { timeZone: "America/New_York" })) /
+              +new Date(
+                new Date(date).toLocaleString("en-EN", {
+                  timeZone: "America/New_York",
+                }),
+              ) /
                 1000 +
                 86400 * 2,
             )}`,
@@ -64,6 +68,8 @@ const collectionStatistics = async () => {
         const tournaments =
           result?.PlayerResponse?.PlayerView?.PlayerGroup?.CompletedTournaments?.Tournament ?? [];
 
+        console.log(alias, "сыграл ", tournaments.length, " турниров");
+
         if (!tournaments?.length) {
           console.log("Игрок", alias, "без турниров", new Date());
         } else {
@@ -71,15 +77,14 @@ const collectionStatistics = async () => {
           Array.from(tournaments)
             .filter(
               (tournament) =>
-                new Date(
+                Number(
                   new Date(
-                    Number((tournament["@date"] ?? t["@scheduledStartDate"] ?? 0) + "000"),
+                    Number((tournament["@date"] ?? tournament["@scheduledStartDate"] ?? 0) + "000"),
                   ).toLocaleString("en-EN", {
+                    day: "numeric",
                     timeZone: "America/New_York",
                   }),
-                )
-                  .toLocaleDateString()
-                  .split(".")[0] == day,
+                ) === Number(day),
             )
             .forEach((ft) => {
               const d = Number(ft["@duration"] ?? 0);
@@ -93,6 +98,7 @@ const collectionStatistics = async () => {
               const statusGap = `${turbo ? "turbo" : "normal"}`;
               const status = getStatus(d);
               const gap = gaps?.[level]?.[network]?.[statusGap]?.[bid];
+
               const realBid = gap ? gap : bid;
               const isStartDate = Number(t["@date"] ?? t["@scheduledStartDate"] ?? 0);
               const time = new Date(Number(Number(`${isStartDate - d}000`)))
@@ -131,7 +137,7 @@ const collectionStatistics = async () => {
                 })
                 .replace(", 24", ", 00")
                 .split(", ");
-
+              const pp = t["@prizepool"] > 0 ? t["@prizepool"] : "-";
               t["@ability"] = info ? info : "-";
               t["@abilityBid"] = realAbility ? realAbility : "-";
               t["@getWeekday"] = isStartDate ? getWeekday(startDate) : "-";
@@ -144,6 +150,7 @@ const collectionStatistics = async () => {
               t["@level"] = level;
               t["@multientries"] = t?.["TournamentEntry"]?.["@multientries"] ?? 0;
               t["@usdBid"] = currency === "CNY" ? bid / lastValue : bid;
+              t["@usdPrizepool"] = currency === "CNY" && pp !== "-" ? pp / lastValue : pp;
 
               if (Number(bid) !== 0 && !filter(level, t)) {
                 if (!errorTournaments[alias]) errorTournaments[alias] = [];

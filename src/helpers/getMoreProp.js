@@ -19,11 +19,23 @@ const getMoreProp = (tournament) => {
   const bid = (stake + rake).toFixed(2);
   const sat = isSat(tournament);
 
-  //Фикс гарантии для WPN и 888Poker
-  if (network === "WPN" || network === "Chico" || network === "888") {
+  //Фикс гарантии для WPN и 888Poker и Chiko
+  if (network === "WPN" || network === "888" || network === "Chico") {
     const $ = tournament["@name"].split("$");
-    if ($.length > 1)
-      tournament["@guarantee"] = $[1].split(" ")[0].replace(")", "").replace(",", "");
+    if ($.length > 1) {
+      if (network === "Chico" && !sat) {
+        tournament["@guarantee"] = $[2]
+          ?.split(" ")?.[0]
+          ?.replace(",", "")
+          .replace(".5K", "500")
+          .replace("K", "000")
+          .replace("K", "000")
+          .replace("M", "000000")
+          .replace(".", "");
+      } else if ((network === "WPN" && !sat) || network === "888") {
+        tournament["@guarantee"] = $[1].split(" ")[0].replace(")", "").replace(",", "");
+      }
+    }
   }
 
   const prizepool = Math.round(
