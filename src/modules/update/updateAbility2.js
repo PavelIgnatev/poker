@@ -4,7 +4,6 @@ const { getStatus } = require("../../helpers/getStatus");
 const { getSheduledDate } = require("../../helpers/getSheduledDate");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
-const { updateCopies } = require("./updateCopies");
 const currency = require("node-currency");
 const { filter } = require("../filter/filter");
 
@@ -123,9 +122,6 @@ const updateAbility2 = async () => {
   });
 
   await writeFile("src/store/ability2/ability2WithoutName.json", JSON.stringify(obj));
-
-  // сохранием ability2WithoutName
-  await updateCopies(obj, "ability2.json");
 
   const obj2 = {};
 

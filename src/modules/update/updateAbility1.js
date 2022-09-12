@@ -1,6 +1,5 @@
 const { readFile, writeFile } = require("../../utils/promisify");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
-const { updateCopies } = require("./updateCopies");
 const { getNetwork } = require("../../helpers/getNetwork");
 
 const updateAbility1 = async () => {
@@ -59,8 +58,6 @@ const updateAbility1 = async () => {
     });
 
     await writeFile("src/store/ability1/ability1.json", JSON.stringify(obj));
-
-    await updateCopies(obj, "ability1.json");
   } catch (error) {
     console.log(error);
   }

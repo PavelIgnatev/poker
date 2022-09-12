@@ -2,46 +2,47 @@ const { updateFiltredTournaments } = require("../../modules/update/updateFiltred
 const { updateAbility1 } = require("../../modules/update/updateAbility1");
 const { updateAbility2 } = require("../../modules/update/updateAbility2");
 const { createdGap } = require("../../modules/created/createdGap");
-const { saveCopyRules } = require("../../modules/save/saveCopyRules");
-const { saveCopyConfig } = require("../../modules/save/saveCopyConfig");
-const { collectionStatistics } = require("../../modules/collection/collectionStatistics");
+const { updtateAllCopies } = require("./updateAllCopies");
+const { collectionStatistics } = require("../collection/collectionStatistics");
 
-const updateServer = () => {
+const updateServer = async () => {
   console.log("Сервер запущен", new Date());
-  console.log("Делаю запросы", new Date());
-  return updateFiltredTournaments()
-    .then(() => {
-      console.log("Начал собирать статистику по турнирам игроков за определенный день");
-      return collectionStatistics();
-    })
-    .then(() => {
-      console.log("Создаю объект промежутков");
-      return createdGap();
-    })
-    .then(() => {
-      console.log("Объект промежутков создан");
-      console.log(`Начал обновление древовидного стейта по турнирам`);
-      return updateAbility1();
-    })
-    .then(() => {
-      console.log(`Обновил древовидный стейт по турнирам`);
-      console.log(`Начал обновление стейта по уровням`);
-      return updateAbility2();
-    })
-    .then(() => {
-      console.log(`Завершил обновление стейта по уровням`);
-      console.log(`Начал копировать rules.json`);
-      return saveCopyRules();
-    })
-    .then(() => {
-      console.log(`Завершил копировать rules.json`);
-      console.log(`Начал копировать config.json`);
-      return saveCopyConfig();
-    })
-    .then(() => {
-      console.log(`Завершил копировать config.json`);
-    })
-    .catch((error) => console.log("Ошибка при обновлении сервера: ", error));
+
+  // Отправка писем
+  try {
+    console.log("Начинаю отправлять письма");
+    await collectionStatistics();
+  } catch (error) {
+    console.log("Ошибка при отправке писем: ", error);
+  }
+
+  // Обновление сервака
+  try {
+    console.log(`Начал обновление фильтрованного стейта`);
+    await updateFiltredTournaments();
+    console.log(`Завершил обновление фильтрованного стейта`);
+
+    console.log("Создаю объект промежутков");
+    await createdGap();
+    console.log("Объект промежутков создан");
+
+    console.log(`Начал обновление древовидного стейта по турнирам`);
+    await updateAbility1();
+    console.log(`Обновил древовидный стейт по турнирам`);
+
+    console.log(`Начал обновление стейта по уровням`);
+    await updateAbility2();
+    console.log(`Завершил обновление стейта по уровням`);
+  } catch (error) {
+    console.log("Ошибка при обновлении сервера: ", error);
+  }
+
+  // Обновление данных для писем на конркетный день
+  try {
+    await updtateAllCopies();
+  } catch (error) {
+    console.log("Ошибка при сохранении всех копий: ", error);
+  }
 };
 
 module.exports = { updateServer };
