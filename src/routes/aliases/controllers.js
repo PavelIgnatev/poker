@@ -1,6 +1,6 @@
-const { getConfig } = require("../../../utils/config");
+const { getConfig } = require("../../utils/config");
 
-module.exports = async (req, res) => {
+const get = async (req) => {
   const { level } = req.query;
   const numLevel = Number(level);
 
@@ -16,5 +16,7 @@ module.exports = async (req, res) => {
     });
   }
 
-  res.status(200).send(aliases);
+  return aliases;
 };
+
+module.exports = { get };

@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /client/node_modules
+
 src/store/
 /src/store
 ./src/store/
@@ -12,6 +13,7 @@ src/store/
 # testing
 /coverage
 .idea/
+/dist
 
 
 # misc

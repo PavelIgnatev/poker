@@ -1,7 +1,7 @@
 const { readFile } = require("../../utils/promisify");
 const { getRulesAbility2 } = require("../../utils/rules");
 
-module.exports = async (req, res) => {
+const getFormingAbility2 = async (req, res) => {
   const state = JSON.parse(await readFile("src/store/ability2/formingAbility2.json"));
   const settings = await getRulesAbility2();
 
@@ -38,3 +38,5 @@ module.exports = async (req, res) => {
     }),
   );
 };
+
+module.exports = { getFormingAbility2 };

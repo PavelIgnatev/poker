@@ -1,5 +1,5 @@
-const { updateRules } = require("../../modules/update/updateRules");
-const { savePreviewAbility2, getPreviewAbility2 } = require("../../utils/rules");
+const { getPreviewAbility2, savePreviewAbility2 } = require("../../../utils/rules");
+const { updateRules } = require("../../../modules/update/updateRules");
 
 module.exports = async (req, res) => {
   console.log("Начинаю обновлять настройки");

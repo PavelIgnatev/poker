@@ -1,4 +1,4 @@
-const { getPreviewAbility2 } = require("../../utils/rules");
+const { getPreviewAbility2 } = require("../../../utils/rules");
 
 module.exports = async (req, res) => {
   try {

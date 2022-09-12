@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"], // ?
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    // "noEmit": true, // TODO что это за зверь и почему он ломает tsc
+    "outDir": "./dist/",
+    "rootDir": "./src/",
+    "sourceMap": true,
+    "inlineSources": true // TODO на что влияет?
+  },
+  "include": ["src"],
+  "no-empty": false
+}

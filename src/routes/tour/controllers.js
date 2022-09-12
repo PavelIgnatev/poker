@@ -15,7 +15,7 @@ const { isRebuy } = require("../../helpers/isRebuy");
 const { isSat } = require("../../helpers/IsSat");
 const currency = require("node-currency");
 
-module.exports = async (req, res) => {
+const getTournaments = async (req, res) => {
   try {
     const {
       network,
@@ -227,4 +227,8 @@ module.exports = async (req, res) => {
     console.log(err);
     res.status(500).json([]);
   }
+};
+
+module.exports = {
+  getTournaments,
 };

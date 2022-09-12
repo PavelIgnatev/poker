@@ -5,7 +5,6 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "main": "index.js",
   "scripts": {
     "start": "concurrently -n server,client \"(npm run start:server)\" \"(npm run start:client)\"",
     "start:server": "nodemon ./src/server.js --ignore './src/store' --ignore ./client",
@@ -17,16 +16,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/autoload": "^5.4.0",
+    "@fastify/helmet": "^10.0.0",
+    "@fastify/http-proxy": "^8.2.2",
+    "@fastify/rate-limit": "^7.4.0",
+    "@fastify/static": "^6.5.0",
     "axios": "^0.23.0",
     "cors": "^2.8.5",
     "cors-anywhere": "^0.4.4",
     "cron": "^1.8.2",
     "exceljs": "^4.3.0",
-    "express": "^4.17.1",
-    "express-rate-limit": "^5.5.0",
-    "express-slow-down": "^1.4.0",
+    "fastify": "^4.5.3",
+    "fastify-swagger": "^5.2.0",
     "forever": "^4.0.1",
-    "http-proxy-middleware": "^2.0.1",
     "jsoneditor": "^9.5.11",
     "jsoneditor-react": "^3.1.2",
     "lodash": "^4.17.21",
@@ -39,9 +41,11 @@
     "pm2": "^5.2.0"
   },
   "devDependencies": {
+    "@fastify/swagger": "^7.5.1",
     "concurrently": "^7.3.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
+    "pino-pretty": "^9.1.0",
     "prettier": "2.7.1"
   },
   "lint-staged": {
