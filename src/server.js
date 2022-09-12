@@ -1,4 +1,5 @@
 const { PORT, isProduction } = require("./config");
+const CronJob = require("cron").CronJob;
 const { createFastifyInstance } = require("./createFastifyInstance");
 
 const start = async () => {
@@ -13,6 +14,20 @@ const start = async () => {
     await fastify.listen({ port: PORT });
 
     fastify.log.info(`Сервер запущен ${new Date().toISOString()}`);
+
+    try {
+      fastify.log.info(`Начинаю отправлять письма`);
+      await collectionStatistics();
+    } catch (error) {
+      fastify.log.info("Ошибка при отправке писем: ", error);
+    }
+
+    // Обновление копий
+    try {
+      await updtateAllCopies();
+    } catch (error) {
+      fastify.log.info("Ошибка при сохранении всех копий: ", error);
+    }
   } catch (err) {
     console.log(err);
 
@@ -24,34 +39,11 @@ const start = async () => {
 };
 start().catch();
 
-// const express = require("express");
-// const CronJob = require("cron").CronJob;
-//
-// const setupMiddlewares = require("./middlewares");
-// const { apiRouter, mainRouter } = require("./routers");
-// const app = express();
-// const { updateServer } = require("./modules/update/updateServer");
-//
-// // setup other
-// setupMiddlewares(app);
-//
-// // api routes
-// app.use("/api", apiRouter);
-//
-// // main routes
-// app.use("/", mainRouter);
-//
-// const job = new CronJob(
-//   "0 0 * * *",
-//   async function () {
-//     try {
-//       await updateServer();
-//     } catch (error) {
-//       console.log("При обновлении сервера произошла ошибка", error);
-//     }
-//   },
-//   null,
-//   true,
-//   "America/New_York",
-// );
-// job.start();
+const job = new CronJob("0 0 * * *", async function () {
+  try {
+    await updateServer();
+  } catch (error) {
+    console.log("При обновлении сервера произошла ошибка", error);
+  }
+});
+job.start();
