@@ -22,6 +22,7 @@
     "@fastify/rate-limit": "^7.4.0",
     "@fastify/static": "^6.5.0",
     "axios": "^0.23.0",
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "cors-anywhere": "^0.4.4",
     "cron": "^1.8.2",

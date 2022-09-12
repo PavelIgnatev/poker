@@ -1,6 +1,4 @@
 const { api } = require("../../api");
-const { getDate } = require("../../helpers/getDate");
-const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getWeekday } = require("../../helpers/getWeekday");
 const { readFile, writeFile } = require("../../utils/promisify");
@@ -13,9 +11,9 @@ const { sendStatistics } = require("../send/sendStatistics");
 
 const collectionStatistics = async () => {
   const errorTournaments = {};
-  const { lastValue } = await currency.getCurrency("usd-cny");
 
   try {
+    const { lastValue } = await currency.getCurrency("usd-cny");
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
         timeZone: "America/New_York",
@@ -152,7 +150,7 @@ const collectionStatistics = async () => {
               t["@usdBid"] = currency === "CNY" ? bid / lastValue : bid;
               t["@usdPrizepool"] = currency === "CNY" && pp !== "-" ? pp / lastValue : pp;
 
-              if (Number(bid) !== 0 && !filter(level, t)) {
+              if (Number(bid) !== 0 && !filter(level, t, true)) {
                 if (!errorTournaments[alias]) errorTournaments[alias] = [];
                 errorTournaments[alias].push(t);
               }

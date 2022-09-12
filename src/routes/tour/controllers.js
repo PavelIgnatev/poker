@@ -218,7 +218,7 @@ const getTournaments = async (req, res) => {
           (isFreezoutQ != "false" && isSTurboQ != "false" ? !bounty && superturbo : false)) &&
         isDateFiltred &&
         (prizepool ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
-        filter.filter(level, tournament)
+        filter.filter(level, tournament, true)
       );
     });
     console.log(result.length);
