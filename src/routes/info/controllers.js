@@ -13,7 +13,7 @@ const getFormingAbility2 = async (req, res) => {
 
   const stateAbility = JSON.parse(await readFile("src/store/ability2/ability2WithoutName.json"));
 
-  res.json(
+  res.send(
     state?.[network]?.[level]?.[currency]?.[realBid]?.[status]?.map((item) => {
       const abilityBid = stateAbility?.[network]?.[level]?.[currency]?.[realBid]?.[status];
       const time = item["s"]?.split(" ")?.[2];

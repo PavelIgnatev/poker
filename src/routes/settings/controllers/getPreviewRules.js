@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   try {
     const settings = await getPreviewAbility2();
 
-    res.json(settings);
+    res.send(settings);
   } catch (error) {
     console.log(error);
   }

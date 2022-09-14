@@ -55,7 +55,7 @@ const getTournaments = async (req, res) => {
     const { lastValue } = await currency.getCurrency("usd-cny");
     const configByAlias = config[alias];
 
-    if (!configByAlias) return res.json(result ?? []);
+    if (!configByAlias) return res.send(result ?? []);
 
     const { effmu, networks } = configByAlias;
 
@@ -74,7 +74,7 @@ const getTournaments = async (req, res) => {
     console.log("Сделал запрос");
 
     if (!result) {
-      return res.json([]);
+      return res.send([]);
     }
 
     result = Array.from(result.RegisteringTournaments.RegisteringTournament);
@@ -222,10 +222,10 @@ const getTournaments = async (req, res) => {
       );
     });
     console.log(result.length);
-    return res.json(result ?? []);
+    return res.send(result ?? []);
   } catch (err) {
     console.log(err);
-    res.status(500).json([]);
+    res.status(500).send([]);
   }
 };
 

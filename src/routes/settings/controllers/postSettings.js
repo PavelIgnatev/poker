@@ -52,9 +52,9 @@ module.exports = async (req, res) => {
     }
     console.log("Начал обновлять config правил");
     updateRules(prevAbility);
-    res.json(req.body);
+    res.send(req.body);
   } catch (error) {
-    res.status(500).json({});
+    res.status(500).send({});
     console.log(error);
   }
 };
