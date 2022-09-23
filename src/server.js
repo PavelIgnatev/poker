@@ -1,9 +1,7 @@
-const { PORT, isProduction } = require("./config/");
+const { PORT } = require("./config/");
 const CronJob = require("cron").CronJob;
-const { updtateAllCopies } = require("./modules/update/updateAllCopies");
-const { collectionStatistics } = require("./modules/collection/collectionStatistics");
 const { createFastifyInstance } = require("./createFastifyInstance");
-const { updateFiltredTournaments } = require("./modules/update/updateFiltredTournaments");
+const { updatePartServer } = require("./modules/update/updatePartServer");
 
 const start = async () => {
   try {
@@ -18,61 +16,23 @@ const start = async () => {
 
     fastify.log.info(`Сервер запущен ${new Date().toISOString()}`);
 
-    // Добавление нового дня
-    try {
-      console.log(`Начал обновление фильтрованного стейта`);
-      await updateFiltredTournaments();
-    } catch (error) {
-      console.log("Ошибка при добавлении нового дня на сервер: ", error);
-    }
-
-    // Отправка писем
-    try {
-      console.log("Начинаю отправлять письма");
-      await collectionStatistics();
-    } catch (error) {
-      console.log("Ошибка при отправке писем: ", error);
-    }
-
-    // Обновление копий
-    try {
-      await updtateAllCopies();
-    } catch (error) {
-      console.log("Ошибка при сохранении всех копий: ", error);
-    }
+    updatePartServer();
   } catch (err) {
     console.log(err);
-
-    if (isProduction) {
-      // здесь перезапуск сервера лучше сделать (либо ловить свыше, что сервер упал с таким-то кодом, и перезапускать)
-      process.exit(1);
-    }
+    process.exit(1);
   }
 };
+
 start().catch();
 
-const job = new CronJob("0 0 * * *", async function () {
-  // Добавление нового дня
-  try {
-    console.log(`Начал обновление фильтрованного стейта`);
-    await updateFiltredTournaments();
-  } catch (error) {
-    console.log("Ошибка при добавлении нового дня на сервер: ", error);
-  }
+process.on("unhandledRejection", (reason, promise) => {
+  log.error({ reason, promise }, "серверный процесс unhandledRejection");
+});
+process.on("uncaughtException", (err) => {
+  log.error({ err }, "серверный процесс uncaughtException");
+});
 
-  // Отправка писем
-  try {
-    console.log("Начинаю отправлять письма");
-    await collectionStatistics();
-  } catch (error) {
-    console.log("Ошибка при отправке писем: ", error);
-  }
-
-  // Обновление копий
-  try {
-    await updtateAllCopies();
-  } catch (error) {
-    console.log("Ошибка при сохранении всех копий: ", error);
-  }
+const job = new CronJob("0 0 * * *", function () {
+  updatePartServer();
 });
 job.start();

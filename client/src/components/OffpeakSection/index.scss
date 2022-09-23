@@ -7,7 +7,7 @@ $baseColor: #4a72ff;
 
   &__wrapper {
     display: flex;
-    height: 40px;
+    flex-direction: column;
 
     div {
       width: auto;
@@ -17,6 +17,11 @@ $baseColor: #4a72ff;
     label {
       margin-left: 0;
     }
+  }
+
+  &__line {
+    margin-top: 10px;
+    display: flex;
   }
 
   &__title {
@@ -40,9 +45,5 @@ $baseColor: #4a72ff;
     border-style: solid;
     border-width: 1px;
     padding-left: 8px;
-  }
-
-  &__button {
-    margin-left: 10px;
   }
 }

@@ -2,8 +2,8 @@ import { tournamentsSettingsProps } from "./types";
 import { createStore } from "effector";
 
 export const TIMEZONES = [
-  { value: "-28800000", label: "ET" },
-  { value: "0", label: "MSK" },
+  { value: "0", label: "EST" },
+  { value: "25200000", label: "MSK" },
 ];
 
 export const TIMERANGE = [
@@ -48,7 +48,7 @@ export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {
   time: TIMERANGE[1],
   timezone: TIMEZONES[0],
   timezoneTable: null,
-  prizepoolStart: 1,
+  prizepoolStart: 0,
   prizepoolEnd: 10000000,
   moneyStart: 1,
   moneyEnd: 10000,

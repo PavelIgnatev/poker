@@ -8,7 +8,8 @@ const currency = require("node-currency");
 const { filter } = require("../filter/filter");
 
 const updateAbility2 = async () => {
-  const { lastValue } = await currency.getCurrency("usd-cny");
+  // const { lastValue } = await currency.getCurrency("usd-cny");
+  const lastValue = 7;
   const levels = Array(17)
     .fill(null)
     .map((_, i) => [i + "A", i + "B"])
@@ -29,7 +30,7 @@ const updateAbility2 = async () => {
         const r = t["@network"]; //network - room
         const n = t["@name"]?.toLowerCase(); //name
         const c = t["@currency"]; //currency
-        const pp = t["@prizepool"] > 0 ? t["@prizepool"] : "-";
+        const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
         t["@usdBid"] = c === "CNY" ? b / lastValue : b;
         t["@usdPrizepool"] = c === "CNY" && pp !== "-" ? pp / lastValue : pp;
 

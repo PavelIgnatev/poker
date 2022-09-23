@@ -14,6 +14,7 @@ let filter = require("../../modules/filter/filter");
 const { isRebuy } = require("../../helpers/isRebuy");
 const { isSat } = require("../../helpers/IsSat");
 const currency = require("node-currency");
+const { getESTHours } = require("../../helpers/getESTHours");
 
 const getTournaments = async (req, res) => {
   try {
@@ -52,7 +53,8 @@ const getTournaments = async (req, res) => {
     filter = require("../../modules/filter/filter");
 
     const config = await getConfig();
-    const { lastValue } = await currency.getCurrency("usd-cny");
+    // const { lastValue } = await currency.getCurrency("usd-cny");
+    const lastValue = 7;
     const configByAlias = config[alias];
 
     if (!configByAlias) return res.send(result ?? []);
@@ -152,7 +154,7 @@ const getTournaments = async (req, res) => {
           ? rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
           : 0;
 
-        const pp = prizepool > 0 ? prizepool : "-";
+        const pp = prizepool >= 0 ? prizepool : "-";
 
         return {
           ...tournament,
@@ -217,7 +219,7 @@ const getTournaments = async (req, res) => {
           (isFreezoutQ != "false" && isTurboQ != "false" ? !bounty && turbo : false) ||
           (isFreezoutQ != "false" && isSTurboQ != "false" ? !bounty && superturbo : false)) &&
         isDateFiltred &&
-        (prizepool ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
+        (prizepool !== "-" ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
         filter.filter(level, tournament, true)
       );
     });

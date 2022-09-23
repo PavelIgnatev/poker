@@ -62,7 +62,7 @@ const getMoreProp = (tournament) => {
     "@sng": !!tournament["@gameClass"]?.includes("sng"),
     "@deepstack": !!tournament["@flags"]?.includes("D"),
     "@superturbo": !!isSuperTurbo(tournament),
-    "@prizepool": prizepool > 0 ? prizepool : "-",
+    "@prizepool": prizepool >= 0 ? prizepool : "-",
     "@network": network,
     "@duration": tournament["@duration"] ? getTimeBySec(tournament["@duration"]) : "-",
   };

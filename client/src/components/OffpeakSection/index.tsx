@@ -2,8 +2,10 @@ import b_ from "b_";
 import { useStore } from "effector-react";
 import {
   $offpeak,
-  handleChangeOffpeakFrom,
-  handleChangeOffpeakTo,
+  handleChangeOffpeakFromHour,
+  handleChangeOffpeakFromMinutes,
+  handleChangeOffpeakToHour,
+  handleChangeOffpeakToMinutes,
   postOffpeak,
 } from "../../store/Offpeak";
 import { BaseButton } from "../BaseButton";
@@ -20,21 +22,39 @@ export const OffpeakSection = () => {
     <section className={b()}>
       <h2 className={b("title")}>Offpeak:</h2>
       <div className={b("wrapper")}>
-        <BaseInputMask
-          value={offpeak.from}
-          handleChange={handleChangeOffpeakFrom}
-          placeholder="From"
-          className={b("input")}
-        />
-        <BaseInputMask
-          value={offpeak.to}
-          handleChange={handleChangeOffpeakTo}
-          placeholder="To"
-          className={b("input")}
-        />
-        <BaseButton onClick={() => postOffpeak(offpeak)} className={b("button")}>
-          SAVE
-        </BaseButton>
+        <div className={b("line")}>
+          <BaseInputMask
+            value={offpeak.fromHour}
+            handleChange={handleChangeOffpeakFromHour}
+            placeholder="Hour (from)"
+            className={b("input")}
+          />
+          <BaseInputMask
+            value={offpeak.fromMinutes}
+            handleChange={handleChangeOffpeakFromMinutes}
+            placeholder="Minutes (from)"
+            className={b("input")}
+          />
+        </div>
+        <div className={b("line")}>
+          <BaseInputMask
+            value={offpeak.toHour}
+            handleChange={handleChangeOffpeakToHour}
+            placeholder="Hour (to)"
+            className={b("input")}
+          />
+          <BaseInputMask
+            value={offpeak.toMinutes}
+            handleChange={handleChangeOffpeakToMinutes}
+            placeholder="Minutes (to)"
+            className={b("input")}
+          />
+        </div>
+        <div className={b("line")}>
+          <BaseButton onClick={() => postOffpeak(offpeak)} className={b("button")}>
+            SAVE
+          </BaseButton>
+        </div>
       </div>
     </section>
   );

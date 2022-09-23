@@ -13,14 +13,27 @@ export const postOffpeak = createEffect(
   async (offpeak: offpeakModel) => await api.postOffpeak(offpeak),
 );
 
-export const { handleChangeOffpeakFrom, handleChangeOffpeakTo } = createApi($offpeak, {
-  handleChangeOffpeakFrom: (offpeak, from: string) => ({
+export const {
+  handleChangeOffpeakFromHour,
+  handleChangeOffpeakToHour,
+  handleChangeOffpeakToMinutes,
+  handleChangeOffpeakFromMinutes,
+} = createApi($offpeak, {
+  handleChangeOffpeakFromHour: (offpeak, from: string) => ({
     ...offpeak,
-    from: String(Number(from) >= 24 ? 24 : from),
+    fromHour: String(Number(from) >= 24 ? 23 : from),
   }),
-  handleChangeOffpeakTo: (offpeak, to: string) => ({
+  handleChangeOffpeakToHour: (offpeak, to: string) => ({
     ...offpeak,
-    to: String(Number(to) >= 24 ? 24 : to),
+    toHour: String(Number(to) >= 24 ? 23 : to),
+  }),
+  handleChangeOffpeakFromMinutes: (offpeak, from: string) => ({
+    ...offpeak,
+    fromMinutes: String(Number(from) >= 60 ? 59 : from),
+  }),
+  handleChangeOffpeakToMinutes: (offpeak, to: string) => ({
+    ...offpeak,
+    toMinutes: String(Number(to) >= 60 ? 59 : to),
   }),
 });
 

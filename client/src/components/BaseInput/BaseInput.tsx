@@ -17,7 +17,7 @@ export const BaseInput: FC<BaseInputModel> = ({
           Number(/\d+/.test(String(Number(e.currentTarget.value))) ? e.target.value : value ?? 0),
           max,
         ),
-        1,
+        0,
       ),
     );
   };

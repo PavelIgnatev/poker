@@ -9,16 +9,15 @@ const { getNetwork } = require("./getNetwork");
 const isSat = (tournament) => {
   const name = tournament["@name"]?.toLowerCase();
   const network = getNetwork(tournament["@network"]);
-  let sat = !!tournament["@flags"]?.includes("SAT");
-  //   if (name === "$10 super sat to $1m global million$") {
-  //     console.log(sat);
-  //   }
+  let sat = network !== "WNMX" ? !!tournament["@flags"]?.includes("SAT") : false;
 
   if (!sat && name) {
     if (network === "GG") {
       sat =
         name.includes(" seats") ||
         name.includes("seats ") ||
+        name.includes(" seat") ||
+        name.includes("seat ") ||
         name.includes(" qualifier") ||
         name.includes("qualifier ") ||
         name.includes(" step") ||

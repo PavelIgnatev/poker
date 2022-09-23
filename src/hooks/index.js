@@ -13,7 +13,7 @@ module.exports = {
   useHooks: async (fastify) => {
     // цепляется на хук onRequest, можно заиспользовать вторым параметром при регистрации роута либо в reply.helmet();
     // так же можно отменить вторым параметром при регистрации роута
-    await fastify.register(fastifyHelmet, { hidePoweredBy: true });
+    await fastify.register(fastifyHelmet, { hidePoweredBy: true, contentSecurityPolicy: false });
 
     // хук onRequest
     await fastify.register(fastifyRateLimit, { max: 60, timeWindow: "1 minute" });
@@ -33,24 +33,15 @@ module.exports = {
           },
         },
       });
-    }
-
-    if (isProduction) {
-      /** посмотри вот эту хуйню
-
-      await fastify.register(fastifyStatic, { root: path.resolve(__dirname, "../../client/build") });
-
-      fastify.get("*", (req, reply) => {
-        // reply.sendFile - такого нет, но есть пакет,
-        // который его привносит
-        fastifySendFile(
-          reply,
-          "text/html",
-          path.resolve(__dirname, "../../client/build/index.html"),
-        );
+    } else {
+      fastify.register(fastifyStatic, {
+        root: path.join(__dirname, "../../client/build"),
       });
 
-      **/
+      const sendIndex = async (req, reply) => {
+        fastifySendFile(reply, "text/html", path.join(__dirname, "../../client/build/index.html"));
+      };
+      fastify.get("/admin", sendIndex).get("/info", sendIndex);
     }
 
     fastify.log.info("Хуки подключены");

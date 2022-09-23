@@ -1,8 +1,7 @@
-const { readFile } = require("fs");
-const path = require("path");
+const { fastifySendFile } = require("../../helpers/fastifySendFile");
 
 const getAbility2 = async (req, res) => {
-  res.send(JSON.parse(await readFile("src/store/ability2/ability2.json")));
+  fastifySendFile(res, "json", "src/store/ability2/ability2.json");
 };
 
 module.exports = { getAbility2 };

@@ -13,7 +13,8 @@ const collectionStatistics = async () => {
   const errorTournaments = {};
 
   try {
-    const { lastValue } = await currency.getCurrency("usd-cny");
+    // const { lastValue } = await currency.getCurrency("usd-cny");
+    const lastValue = 7;
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
         timeZone: "America/New_York",
@@ -135,7 +136,7 @@ const collectionStatistics = async () => {
                 })
                 .replace(", 24", ", 00")
                 .split(", ");
-              const pp = t["@prizepool"] > 0 ? t["@prizepool"] : "-";
+              const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
               t["@ability"] = info ? info : "-";
               t["@abilityBid"] = realAbility ? realAbility : "-";
               t["@getWeekday"] = isStartDate ? getWeekday(startDate) : "-";

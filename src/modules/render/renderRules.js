@@ -62,7 +62,7 @@ function renderRules(rules) {
       ability2 = tournament['@abilityBid'];
 
     const isTurbo = isTurboS(tournament);
-    const isOffpeak = isOffpeakQ(tournament);
+    const isOffpeak = isOffpeakQ(tournament, Number(tournament['@realDuration'] ?? 0) * 1000);
     const isSuperTurbo = isSuperTurboS(tournament);
     const isKo = tournament["@bounty"];
     const isNormal = !isTurbo && !isSuperTurbo;
@@ -72,7 +72,7 @@ function renderRules(rules) {
     const level = validateNumber(ruleLevel);
     const effmu = ruleLevel.replace(level, "").replace("-", "");
   
-    if (!name) return false;
+    if (!name || !bid) return false;
 
     ${rules
       .map((rule) => {

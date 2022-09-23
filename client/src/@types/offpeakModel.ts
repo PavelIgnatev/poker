@@ -1,4 +1,6 @@
 export interface offpeakModel {
-  from: string;
-  to: string;
+  fromHour: string;
+  fromMinutes: string;
+  toHour: string;
+  toMinutes: string;
 }
