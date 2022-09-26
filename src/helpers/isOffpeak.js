@@ -20,15 +20,20 @@ const isOffpeak = (tournament, duration = 0) => {
   const fromMinutes = Number(fromMinutesQ);
   const toHour = Number(toHourQ);
   const toMinutes = Number(toMinutesQ);
+  const fromMs = fromHour * 3600 + fromMinutes * 60;
+  const toMs = toHour * 3600 + toMinutes * 60;
 
   const start = new Date(2022, 4, 23, fromHour + 3, fromMinutes);
-  const current = new Date(2022, 4, 23 + (toHour <= fromHour ? 1 : 0), Number(hour) + 3, minutes);
+  const current = new Date(2022, 4, 23 + (toMs <= fromMs ? 1 : 0), Number(hour) + 3, minutes);
   const currentWithout1 = new Date(2022, 4, 23, Number(hour) + 3, minutes);
-  const end = new Date(2022, 4, 23 + (toHour <= fromHour ? 1 : 0), toHour + 3, toMinutes);
+  const end = new Date(2022, 4, 23 + (toMs <= fromMs ? 1 : 0), toHour + 3, toMinutes);
 
   const range = moment.range(start, end);
 
-  if (range.contains(current) || range.contains(currentWithout1)) {
+  if (
+    range.contains(current) ||
+    (range.contains(currentWithout1) && tournament["@level"] === "16B")
+  ) {
     return true;
   }
 
