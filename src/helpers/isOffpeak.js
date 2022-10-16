@@ -30,10 +30,7 @@ const isOffpeak = (tournament, duration = 0) => {
 
   const range = moment.range(start, end);
 
-  if (
-    range.contains(current) ||
-    (range.contains(currentWithout1) && tournament["@level"] === "16B")
-  ) {
+  if (range.contains(current) || range.contains(currentWithout1)) {
     return true;
   }
 

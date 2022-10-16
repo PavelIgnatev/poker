@@ -15,6 +15,7 @@ const { isRebuy } = require("../../helpers/isRebuy");
 const { isSat } = require("../../helpers/IsSat");
 const currency = require("node-currency");
 const { getESTHours } = require("../../helpers/getESTHours");
+const { isNormal } = require("../../helpers/isNormal");
 
 const getTournaments = async (req, res) => {
   try {
@@ -95,7 +96,7 @@ const getTournaments = async (req, res) => {
         const startDate = Number(isStartDate * 1000) + Number(timezone);
         const regDate = Number(isRegDate * 1000) + Number(timezone);
         const time = getTimeByMS(Number(`${isStartDate}000`));
-        const bounty = tournament["@flags"]?.includes("B");
+        const bounty = isNormal(tournament);
         const turbo = isTurbo(tournament);
         const superturbo = isSuperTurbo(tournament);
         const status = getStatus(tournament);

@@ -95,35 +95,11 @@ const collectionStatistics = async () => {
               const turbo = isTurbo(t);
               const bid = t["@bid"];
               const statusGap = `${turbo ? "turbo" : "normal"}`;
-              const status = getStatus(d);
+              const status = getStatus(t);
               const gap = gaps?.[level]?.[network]?.[statusGap]?.[bid];
 
               const realBid = gap ? gap : bid;
               const isStartDate = Number(t["@date"] ?? t["@scheduledStartDate"] ?? 0);
-              const time = new Date(Number(Number(`${isStartDate - d}000`)))
-                .toLocaleString("en-EN", {
-                  hour12: false,
-                  timeZone: "America/New_York",
-                  hour: "numeric",
-                  minute: "numeric",
-                })
-                .replace("24", "00");
-
-              const abilityBid = ability2?.[network]?.[level]?.[currency]?.[realBid]?.[status] ?? 0;
-
-              const rulesAbility2 = rules[network]?.[time]?.[level]?.[currency]?.[realBid]?.[
-                status
-              ]?.[t["@name"]]
-                ? rules[network]?.[time]?.[level]?.[currency]?.[realBid]?.[status]?.[t["@name"]]
-                : rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
-                ? rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
-                : 0;
-
-              const info = ability1?.[network]?.[time]?.[bid]?.[name]?.["@avability"];
-
-              const realAbility = abilityBid + rulesAbility2;
-
-              const startDate = Number(isStartDate * 1000);
 
               const data = new Date(Number(Number(`${isStartDate - d}000`)))
                 .toLocaleString("en-EN", {
@@ -136,6 +112,22 @@ const collectionStatistics = async () => {
                 })
                 .replace(", 24", ", 00")
                 .split(", ");
+
+              const abilityBid = ability2?.[network]?.[level]?.[currency]?.[realBid]?.[status] ?? 0;
+
+              const rulesAbility2 = rules[network]?.[data[1]]?.[level]?.[currency]?.[realBid]?.[
+                status
+              ]?.[t["@name"]]
+                ? rules[network]?.[data[1]]?.[level]?.[currency]?.[realBid]?.[status]?.[t["@name"]]
+                : rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
+                ? rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
+                : 0;
+
+              const realAbility = abilityBid + rulesAbility2;
+
+              const startDate = Number(isStartDate * 1000);
+
+              const info = ability1?.[network]?.[data[1]]?.[bid]?.[name]?.["@avability"];
               const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
               t["@ability"] = info ? info : "-";
               t["@abilityBid"] = realAbility ? realAbility : "-";

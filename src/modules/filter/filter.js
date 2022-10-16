@@ -15,6 +15,7 @@ const {
 } = require("../../helpers/curry");
 const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
 const { isTurbo: isTurboS } = require("../../helpers/isTurbo.js");
+const { isNormal: isNormalS } = require("../../helpers/isNormal");
 const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
 const { validateNumber } = require("../../helpers/validateNumber");
 
@@ -49,7 +50,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   const isTurbo = isTurboS(tournament);
   const isOffpeak = isOffpeakQ(tournament, Number(tournament["@realDuration"] ?? 0) * 1000);
   const isSuperTurbo = isSuperTurboS(tournament);
-  const isKo = tournament["@bounty"];
+  const isKo = isNormalS(tournament);
   const isNormal = !isTurbo && !isSuperTurbo;
   const isAbility1 = ability1 && ability1 !== "-";
   const isAbility2 = ability2 && ability2 !== "-";
@@ -75,48 +76,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(0, 4.5) &&
-    network === "PS.eu" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(0, 4.5) &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(0, 2.2) &&
     network === "PS.eu" &&
     level === "1" &&
@@ -132,69 +91,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(0, 4.5) &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(0, 1.5) &&
-    network === "PS.eu" &&
-    level === "0" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "0" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(45) &&
-    network === "PS.eu" &&
-    level === "0" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(0, 4.5) &&
-    network === "PS.eu" &&
-    level === "2" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "2" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "2" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(0, 2.2) &&
     network === "PS.eu" &&
     level === "2" &&
@@ -203,66 +99,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isGetTournaments &&
     FLAGS("rebuy") &&
     network === "PS.eu" &&
-    level === "2" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(0, 3.3) &&
-    network === "888" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(0, 3.3) &&
-    network === "888" &&
-    level === "2" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "2" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(0, 2) &&
-    network === "PS.es" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(0, 2) &&
-    network === "PS.es" &&
-    level === "2" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
     level === "2" &&
     effmu === "B" &&
     isNormal &&
@@ -315,48 +151,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(1, 4.5) &&
-    network === "PS.eu" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 4.5) &&
-    network === "PS.eu" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(1, 3.3) &&
     network === "PS.eu" &&
     level === "3" &&
@@ -403,36 +197,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromTo(1, 3) &&
-    network === "888" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 3) &&
-    network === "888" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 3) &&
     network === "PS.es" &&
     level === "3" &&
     effmu === "A" &&
@@ -487,96 +251,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "IP" &&
     level === "3" &&
     effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5) &&
-    network === "WNMX" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5) &&
-    network === "WNMX" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
     isNormal &&
     isGetTournaments
   )
@@ -654,96 +328,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(1, 5) &&
-    network === "Party" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5) &&
-    network === "Party" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 3) &&
-    network === "888" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 3) &&
-    network === "888" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 3) &&
-    network === "PS.es" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 3) &&
-    network === "PS.es" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(1, 7.5) &&
     network === "IP" &&
     level === "4" &&
@@ -822,21 +406,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     FromTo(1, 6.6) &&
     network === "WPN" &&
     level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "4" &&
     effmu === "A" &&
     isTurbo &&
     isGetTournaments &&
@@ -845,108 +414,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     level === "4" &&
     effmu === "A" &&
     isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5.5) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5.5) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5) &&
-    network === "Party" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5) &&
-    network === "Party" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
     isGetTournaments
   )
     return true;
@@ -1041,198 +508,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(1, 7.5) &&
-    network === "WNMX" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "WNMX" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5.5) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5.5) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5) &&
-    network === "Party" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5) &&
-    network === "Party" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6) &&
-    network === "888" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6) &&
-    network === "888" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(1, 5) &&
     network === "PS.es" &&
     level === "6" &&
@@ -1264,96 +539,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromTo(1, 7.5) &&
-    network === "IP" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "IP" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "WNMX" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "WNMX" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
     network === "PS.eu" &&
     level === "7" &&
     effmu === "A" &&
@@ -1363,48 +548,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "PS.eu" &&
     level === "7" &&
     effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
     isNormal &&
     isGetTournaments
   )
@@ -1419,339 +562,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     FLAGS("rebuy") &&
     network === "PS.eu" &&
     level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6) &&
-    network === "888" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6) &&
-    network === "888" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5) &&
-    network === "PS.es" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 5) &&
-    network === "PS.es" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "IP" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "IP" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "WNMX" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "WNMX" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 1.5) &&
-    network === "PS.eu" &&
-    level === "0" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "0" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(45) &&
-    network === "PS.eu" &&
-    level === "0" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6) &&
-    network === "888" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6) &&
-    network === "888" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "8" &&
     effmu === "B" &&
     isNormal &&
     isGetTournaments
@@ -1788,126 +598,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(1, 7.5) &&
-    network === "WNMX" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "WNMX" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "IP" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "IP" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 6.6) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(1, 12) &&
     network === "Chico" &&
     level === "4" &&
@@ -1918,198 +608,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "Chico" &&
     level === "4" &&
     effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 7.5) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "9" &&
-    effmu === "B" &&
     isNormal &&
     isGetTournaments
   )
@@ -2145,96 +643,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(1, 12) &&
     network === "WPN" &&
     level === "9" &&
@@ -2258,36 +666,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isGetTournaments &&
     FLAGS("rebuy") &&
     network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
     level === "9" &&
     effmu === "B" &&
     isNormal &&
@@ -2360,36 +738,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isGetTournaments &&
     FLAGS("rebuy") &&
     network === "PS.eu" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
     level === "10" &&
     effmu === "B" &&
     isNormal &&
@@ -2427,96 +775,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(1, 33) &&
     network === "Chico" &&
     level === "10" &&
@@ -2526,66 +784,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     FLAGS("rebuy") &&
     network === "Chico" &&
     level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "11" &&
     effmu === "A" &&
     isNormal &&
     isGetTournaments
@@ -2634,51 +832,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(1, 11) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(1, 13.2) &&
     network === "888" &&
     level === "11" &&
@@ -2702,156 +855,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isGetTournaments &&
     FLAGS("rebuy") &&
     network === "888" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
     level === "11" &&
     effmu === "B" &&
     isNormal &&
@@ -2931,216 +934,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 13.2) &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 13.2) &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromTo(1, 22) &&
     network === "PS.eu" &&
     level === "13" &&
@@ -3207,498 +1000,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     FLAGS("rebuy") &&
     network === "PS.eu" &&
     level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 13.2) &&
-    network === "888" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 13.2) &&
-    network === "888" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 22) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 22) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 22) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("sng") &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    Entrants(36) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 22) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 11) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 13.2) &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 13.2) &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 12) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 33) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "Chico" &&
-    level === "14" &&
     effmu === "B" &&
     isNormal &&
     isGetTournaments
@@ -3743,19 +1044,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isGetTournaments &&
     FLAGS("rebuy") &&
     network === "Party" &&
-    level === "15" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 13.2) &&
-    network === "888" &&
-    level === "15" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "888" &&
     level === "15" &&
     isNormal &&
     isGetTournaments
@@ -3842,66 +1130,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidName(11, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(11, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(11, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(11, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidName(33, "Bounty Builder") &&
     network === "PS.eu" &&
     level === "7" &&
@@ -3911,66 +1139,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     FLAGS("od") &&
     network === "PS.eu" &&
     level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(33, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(11, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(33, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(11, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "8" &&
     effmu === "A" &&
     isTurbo &&
     isGetTournaments
@@ -3987,96 +1155,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "PS.eu" &&
     level === "8" &&
     effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(11, 15000, "Saturday Rebuy") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(33, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(11, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(33, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(11, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments &&
-    FLAGS("od") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(11, 15000, "Saturday Rebuy") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments &&
-    FLAGS("rebuy") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
     isNormal &&
     isGetTournaments
   )
@@ -4285,15 +1363,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     level === "16" &&
     effmu === "A" &&
     isSuperTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromTo(1, 10000) &&
-    network === "IP" &&
-    level === "16" &&
-    effmu === "A" &&
-    isNormal &&
     isGetTournaments
   )
     return true;
@@ -4619,16 +1688,491 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidName(22, "DoubleDeuce") &&
-    network === "WPN" &&
-    level === "3" &&
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "IP" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "4" &&
     effmu === "A" &&
     isNormal &&
     isGetTournaments &&
     StartDay("Saturday") &&
-    network === "WPN" &&
-    level === "3" &&
+    network === "IP" &&
+    level === "4" &&
     effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "IP" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "IP" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "IP" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "IP" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "IP" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY 1E") &&
+    network === "WNMX" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY") &&
+    network === "WNMX" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY") &&
+    network === "WNMX" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY") &&
+    network === "WNMX" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY") &&
+    network === "WNMX" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY") &&
+    network === "WNMX" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Webnesday") &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "4" &&
     isNormal &&
     isGetTournaments
   )
@@ -4637,7 +2181,3857 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     BidName(10.5, "SundaySqueeze") &&
     network === "WPN" &&
     level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "1" &&
     effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY 1B") &&
+    network === "WNMX" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY 1C") &&
+    network === "WNMX" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY 1B") &&
+    network === "WNMX" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY 1C") &&
+    network === "WNMX" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    Name("Zodiac Bounty MILLION$ ¥210, ¥1M GTD [Stage 1]") &&
+    network === "GG" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Webnesday") &&
+    network === "WPN" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(265, "MillionDollarSunday") &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 13.2) &&
+    network === "888" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("!sat") &&
+    network === "888" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10000) &&
+    network === "PS.eu" &&
+    level === "16" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 22) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(36) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 8.8) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "B" &&
+    isSuperTurbo &&
+    !isKo &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "B" &&
+    isSuperTurbo &&
+    !isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "Party" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 8.8) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    isSuperTurbo &&
+    !isKo &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.eu" &&
+    level === "13" &&
+    isSuperTurbo &&
+    !isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 15000, "Saturday Rebuy") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "Party" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "Party" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "Party" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "Party" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 4875, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 6300, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(26, 2625, "$525 Bounty Hunters") &&
+    network === "GG" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(210, "MYSTERY BOUNTY") &&
+    network === "GG" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(125, 10500, "$1050 GGMasters High Rollers") &&
+    network === "GG" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 4875, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 6300, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(26, 2625, "$525 Bounty Hunters") &&
+    network === "GG" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(125, 10500, "$1050 GGMasters High Rollers") &&
+    network === "GG" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(210, "MYSTERY BOUNTY") &&
+    network === "GG" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(210, "MYSTERY BOUNTY") &&
+    network === "GG" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 4875, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 6300, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(26, 2625, "$525 Bounty Hunters") &&
+    network === "GG" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(125, 10500, "$1050 GGMasters High Rollers") &&
+    network === "GG" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 4875, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 6300, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(26, 2625, "$525 Bounty Hunters") &&
+    network === "GG" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(125, 10500, "$1050 GGMasters High Rollers") &&
+    network === "GG" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 4875, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 6300, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(26, 2625, "$525 Bounty Hunters") &&
+    network === "GG" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(125, 10500, "$1050 GGMasters High Rollers") &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 4875, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 6300, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(26, 2625, "$525 Bounty Hunters") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 13.2) &&
+    network === "888" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("!sat") &&
+    network === "888" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 13.2) &&
+    network === "888" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("!sat") &&
+    network === "888" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 13.2) &&
+    network === "888" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("!sat") &&
+    network === "888" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 13.2) &&
+    network === "888" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("!sat") &&
+    network === "888" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 13.2) &&
+    network === "888" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("!sat") &&
+    network === "888" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "15" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "PS.es" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "14" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "PS.es" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "13" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "PS.es" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "12" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "PS.es" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "11" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "PS.es" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "10" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "WNMX" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "WNMX" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "WNMX" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(50, 2000) &&
+    network === "WNMX" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(50, 2000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(50, 2000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(50, 2000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "WNMX" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "WNMX" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(50, 2000) &&
+    network === "WNMX" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(50, 2000) &&
+    network === "WNMX" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 250) &&
+    network === "WNMX" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "IP" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "IP" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "IP" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "IP" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "IP" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "IP" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "IP" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "IP" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "IP" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "IP" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "WPN" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "WPN" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "WPN" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 33) &&
+    network === "Chico" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 33) &&
+    network === "Chico" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "13" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 20000, "Sunday Major") &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 20000, "Sunday Major") &&
+    network === "Chico" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 33) &&
+    network === "Chico" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 20000, "Sunday Major") &&
+    network === "Chico" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 33) &&
+    network === "Chico" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 20000, "Sunday Major") &&
+    network === "Chico" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 7.5) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(36) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 15000, "Saturday Rebuy") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(33, "Bounty Builder") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isTurbo &&
+    isGetTournaments &&
+    FLAGS("od") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Bounty Builder") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isTurbo &&
+    isGetTournaments &&
+    FLAGS("od") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isTurbo &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 7.5) &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(36) &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(33, "Bounty Builder") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isTurbo &&
+    isGetTournaments &&
+    FLAGS("od") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Bounty Builder") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isTurbo &&
+    isGetTournaments &&
+    FLAGS("od") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(36) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Bounty Builder") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isTurbo &&
+    isGetTournaments &&
+    FLAGS("od") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(36) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 5.5) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Bounty Builder") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isTurbo &&
+    isGetTournaments &&
+    FLAGS("od") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 5.5) &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(36) &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "4" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "4" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 4.5) &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(36) &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "2" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(0, 4.5) &&
+    network === "PS.eu" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(36) &&
+    network === "PS.eu" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(5.5, 1090, "Sunday Million") &&
+    network === "PS.eu" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(0, 4.5) &&
+    network === "PS.eu" &&
+    level === "1" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "1" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(36) &&
+    network === "PS.eu" &&
+    level === "1" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(0, 1.5) &&
+    network === "PS.eu" &&
+    level === "0" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sng") &&
+    network === "PS.eu" &&
+    level === "0" &&
+    isNormal &&
+    isGetTournaments &&
+    Entrants(45) &&
+    network === "PS.eu" &&
+    level === "0" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "Party" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "Party" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 11) &&
+    network === "Party" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 5) &&
+    network === "Party" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 5) &&
+    network === "Party" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 5) &&
+    network === "Party" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Party" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "road") &&
+    network === "PS.eu" &&
+    level === "16" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6) &&
+    network === "888" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6) &&
+    network === "888" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6) &&
+    network === "888" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(22, 1090, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(16.5, 3270, "$109 Sunday Big Shot") &&
+    network === "888" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 50000, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "0" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 3) &&
+    network === "888" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 100000, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "0" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 15000, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 25000, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 15000, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "2" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 3) &&
+    network === "888" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 10000, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(0, 3) &&
+    network === "888" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "888" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 10000, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "4" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "12" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "13" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "14" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(11, "Road to the Sunday Million") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    isNormal &&
+    isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "9" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "PS.es" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "8" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 5) &&
+    network === "PS.es" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 5) &&
+    network === "PS.es" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(10, 1000, "€100 Sunday Special") &&
+    network === "PS.es" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 3) &&
+    network === "PS.es" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 3) &&
+    network === "PS.es" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(0, 2) &&
+    network === "PS.es" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "PS.es" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 4875, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 6300, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 4875, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 6300, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 4875, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 6300, "$315 GGMasters") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(30, 3000, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(20, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(15, 2250, "$150 GGMasters") &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "WNMX" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(50, 2000) &&
+    network === "WNMX" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 250) &&
+    network === "WNMX" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY 1E") &&
+    network === "WNMX" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY 1E") &&
+    network === "WNMX" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 7.5) &&
+    network === "WNMX" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 250) &&
+    network === "WNMX" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(50, 2000) &&
+    network === "WNMX" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(125, "MAIN EVENT - DAY 1E") &&
+    network === "WNMX" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 250) &&
+    network === "WNMX" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 7.5) &&
+    network === "WNMX" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 250) &&
+    network === "WNMX" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(30, 2000) &&
+    network === "WNMX" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 7.5) &&
+    network === "WNMX" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 250) &&
+    network === "WNMX" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 7.5) &&
+    network === "WNMX" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 250) &&
+    network === "WNMX" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 250) &&
+    network === "WNMX" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 5) &&
+    network === "WNMX" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WNMX" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 500) &&
+    network === "WNMX" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "2" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGt(10, 500) &&
+    network === "WNMX" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("sat") &&
+    network === "WNMX" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 10) &&
+    network === "IP" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "IP" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 7.5) &&
+    network === "IP" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "IP" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 7.5) &&
+    network === "IP" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "IP" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 7.5) &&
+    network === "IP" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "IP" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(30, "Big Weekly") &&
+    network === "IP" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6.6) &&
+    network === "WPN" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6.6) &&
+    network === "WPN" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "7" &&
     isNormal &&
     isGetTournaments
   )
@@ -4646,10 +6040,551 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     BidName(22, "DoubleDeuce") &&
     network === "WPN" &&
     level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6.6) &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6.6) &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "WPN" &&
+    level === "4" &&
     effmu === "A" &&
     isNormal &&
     isGetTournaments
   )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "DoubleDeuce") &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6.6) &&
+    network === "WPN" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "4" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6.6) &&
+    network === "WPN" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "WPN" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(10.5, "SundaySqueeze") &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "Chico" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "Chico" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "Chico" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "Chico" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 12) &&
+    network === "Chico" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 6.6) &&
+    network === "Chico" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments &&
+    FLAGS("rebuy") &&
+    network === "Chico" &&
+    level === "3" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "6" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "7" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "GG" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Webnesday") &&
+    network === "GG" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Saturday") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Friday") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Thursday") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Webnesday") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(50, "Day 1") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (BidName(50, "Day 1") && network === "GG" && level === "11" && isNormal && isGetTournaments)
+    return true;
+  if (BidName(50, "Day 1") && network === "GG" && level === "12" && isNormal && isGetTournaments)
+    return true;
+  if (BidName(50, "Day 1") && network === "GG" && level === "13" && isNormal && isGetTournaments)
+    return true;
+  if (BidName(50, "Day 1") && network === "GG" && level === "14" && isNormal && isGetTournaments)
+    return true;
+  if (BidName(50, "Day 1") && network === "GG" && level === "15" && isNormal && isGetTournaments)
     return true;
   if (FLAGS("rebuy") && network === "PS.eu") return false;
   if (FLAGS("od") && network === "PS.eu") return false;
@@ -4687,18 +6622,11 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (FLAGS("od") && network === "WPN") return false;
   if (FLAGS("sng") && network === "WPN") return false;
   if (FLAGS("sat") && network === "WPN") return false;
-  if (
-    Name("progressive") &&
-    network === "PS.eu" &&
-    level === "16" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return false;
   if (Name("[10 bb]") && network === "GG") return false;
   if (Name("Flip & Go") && network === "GG") return false;
   if (Name("All-In or Fold") && network === "GG" && level === "16" && effmu === "A") return false;
+  if (Name("Flipout") && network === "GG") return false;
+  if (Name("snap") && network === "888") return false;
   if (BidGt(11, 50000) && network === "PS.eu" && level === "0" && effmu === "A" && isNormal && isKo)
     return true;
   if (
@@ -4918,8 +6846,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isNormal &&
     !isKo
   )
-    return true;
-  if (FromTo(1, 11) && network === "GG" && level === "0" && effmu === "A" && isNormal && isKo)
     return true;
   if (BidGt(27, 70000) && network === "PS.eu" && level === "1" && effmu === "A" && isNormal && isKo)
     return true;
@@ -5230,15 +7156,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(4.5, 7.5, 7000) &&
-    network === "GG" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(8.8, 11, 40000) &&
     network === "GG" &&
     level === "1" &&
@@ -5298,204 +7215,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (BidGt(15, 40000) && network === "WNMX" && level === "1" && effmu === "B" && isNormal && !isKo)
-    return true;
-  if (
-    FromToGt(16, 24, 40000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 15000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.8, 11, 6000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(7.7, 8.4, 4000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.6, 7.6, 2000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 60000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 15000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 60000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 30000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.8, 11, 15000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(7.7, 8.4, 8000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.6, 7.6, 4000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 75000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 40000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.8, 11, 25000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(7.7, 8.4, 15000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.6, 7.6, 5000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 150000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 75000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.8, 11, 40000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(7.7, 8.4, 30000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.6, 7.6, 10000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
     return true;
   if (BidGt(33, 50000) && network === "PS.eu" && level === "2" && effmu === "A" && isNormal && isKo)
     return true;
@@ -5812,24 +7531,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(1050, 800000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(8.8, 11, 6000) &&
     network === "GG" &&
     level === "2" &&
@@ -5843,15 +7544,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "GG" &&
     level === "2" &&
     effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
     isNormal &&
     isKo
   )
@@ -5872,24 +7564,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "B" &&
     isNormal &&
     !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 8000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
   )
     return true;
   if (
@@ -6000,24 +7674,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isKo
   )
     return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Party" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 5000) &&
-    network === "Party" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
   if (BidGt(30, 50000) && network === "PS.es" && level === "2" && effmu === "A" && isNormal && isKo)
     return true;
   if (BidGt(20, 25000) && network === "PS.es" && level === "2" && effmu === "A" && isNormal && isKo)
@@ -6049,15 +7705,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "A" &&
     isNormal &&
     !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "Party" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
   )
     return true;
   if (
@@ -6145,79 +7792,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "888" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "888" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "888" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "888" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "888" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "888" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
   if (BidGt(50, 75000) && network === "WNMX" && level === "2" && effmu === "A" && isNormal && isKo)
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.es" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.es" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
     return true;
   if (BidGt(40, 35000) && network === "WNMX" && level === "2" && effmu === "A" && isNormal && isKo)
     return true;
@@ -6251,63 +7826,9 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    FromToGt(751, 1050, 400000) &&
-    network === "GG" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
   if (BidGt(20, 50000) && network === "WNMX" && level === "2" && effmu === "B" && isNormal && !isKo)
     return true;
-  if (
-    FromToGt(576, 750, 150000) &&
-    network === "GG" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
   if (BidGt(15, 30000) && network === "WNMX" && level === "2" && effmu === "B" && isNormal && !isKo)
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "GG" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "GG" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 5000) &&
-    network === "GG" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
     return true;
   if (
     FromToGt(751, 1050, 600000) &&
@@ -6364,177 +7885,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(50, 66, 300000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 50000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 30000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 10000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WNMX" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WNMX" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WNMX" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "WNMX" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
-    network === "WNMX" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WNMX" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 600000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 200000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 100000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 40000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 20000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 200000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(25, 33, 60000) &&
     network === "WPN" &&
     level === "2" &&
@@ -6548,15 +7898,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "WPN" &&
     level === "2" &&
     effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
     isNormal &&
     isKo
   )
@@ -6589,24 +7930,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(5.6, 7.6, 2000) &&
     network === "WPN" &&
     level === "2" &&
@@ -6625,28 +7948,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(751, 1050, 750000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(16, 24, 60000) &&
     network === "WPN" &&
     level === "2" &&
     effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 300000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
     isNormal &&
     !isKo
   )
@@ -6670,15 +7975,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(7.7, 8.4, 8000) &&
     network === "WPN" &&
     level === "2" &&
@@ -6688,37 +7984,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(5.6, 7.6, 4000) &&
     network === "WPN" &&
     level === "2" &&
     effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
     isNormal &&
     !isKo
   )
@@ -6891,51 +8160,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(1050, 600000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 8000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(1050, 750000) &&
     network === "PS.eu" &&
     level === "14" &&
@@ -6945,7 +8169,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(530, 300000) &&
     network === "PS.eu" &&
     level === "14" &&
     effmu === "A" &&
@@ -6954,25 +8178,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    BidGt(320, 120000) &&
     network === "PS.eu" &&
     level === "14" &&
     effmu === "A" &&
@@ -6990,7 +8196,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(530, 300000) &&
     network === "PS.eu" &&
     level === "14" &&
     effmu === "B" &&
@@ -7008,43 +8214,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 500000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(320, 150000) &&
     network === "PS.eu" &&
     level === "14" &&
     effmu === "B" &&
@@ -7113,33 +8283,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(55, 66, 500000) &&
     network === "Party" &&
     level === "3" &&
@@ -7155,15 +8298,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "A" &&
     isNormal &&
     !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 5000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
   )
     return true;
   if (
@@ -7203,7 +8337,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(530, 200000) &&
     network === "Party" &&
     level === "14" &&
     effmu === "A" &&
@@ -7212,7 +8346,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    BidGt(320, 120000) &&
     network === "Party" &&
     level === "14" &&
     effmu === "A" &&
@@ -7224,24 +8358,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     BidGt(16.5, 20000) &&
     network === "Party" &&
     level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Party" &&
-    level === "14" &&
     effmu === "A" &&
     isNormal &&
     !isKo
@@ -7283,7 +8399,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    BidGt(530, 250000) &&
     network === "Party" &&
     level === "14" &&
     effmu === "B" &&
@@ -7310,16 +8426,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    BidGt(320, 150000) &&
     network === "Party" &&
     level === "14" &&
     effmu === "B" &&
@@ -7346,25 +8453,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(1050, 1000000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 400000) &&
     network === "Party" &&
     level === "14" &&
     effmu === "B" &&
@@ -7374,34 +8463,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (BidGt(55, 150000) && network === "888" && level === "3" && effmu === "A" && isNormal && isKo)
     return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
   if (BidGt(44, 60000) && network === "888" && level === "3" && effmu === "A" && isNormal && isKo)
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
     return true;
   if (
     FromToGt(30, 33, 20000) &&
@@ -7414,61 +8476,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (BidGt(22, 5000) && network === "888" && level === "3" && effmu === "A" && isNormal && isKo)
     return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
   if (BidGt(55, 300000) && network === "888" && level === "3" && effmu === "A" && isNormal && !isKo)
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "888" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
     return true;
   if (BidGt(44, 100000) && network === "888" && level === "3" && effmu === "A" && isNormal && !isKo)
     return true;
@@ -7589,42 +8597,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(125, isOffpeak && isGetTournaments ? 0 : 5000) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(125, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(250, isOffpeak && isGetTournaments ? 0 : 75000) &&
     network === "PS.es" &&
     level === "14" &&
@@ -7635,15 +8607,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     BidGt(125, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 10000) &&
     network === "PS.es" &&
     level === "14" &&
     effmu === "B" &&
@@ -7670,259 +8633,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 400000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 150000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 5000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 250000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 275, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 400000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 1000000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 600000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 159, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(500, 200000) &&
     network === "WNMX" &&
     level === "14" &&
     effmu === "A" &&
@@ -7931,291 +8642,12 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(500, 150000) &&
     network === "WNMX" &&
     level === "14" &&
     effmu === "B" &&
     isNormal &&
     isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 135000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 85000) &&
-    network === "WNMX" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 200000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 750000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 300000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 400000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 1000000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 600000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
   )
     return true;
   if (
@@ -8282,51 +8714,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(80, 120, 750000) &&
-    network === "GG" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 550000) &&
-    network === "GG" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 250000) &&
-    network === "GG" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 100000) &&
-    network === "GG" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 27000) &&
-    network === "GG" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 12500) &&
     network === "GG" &&
     level === "3" &&
     effmu === "A" &&
@@ -8521,195 +8908,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(30, 40000) && network === "WNMX" && level === "3" && effmu === "B" && isNormal && !isKo)
     return true;
   if (
-    FromToGt(80, 120, 600000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 450000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 200000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 80000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 20000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 10000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 1200000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 800000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 400000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 40000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 15000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 300000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 40000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 25000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 600000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 200000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 80000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 30000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(320, 600000) &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(215, 500000) &&
     network === "PS.eu" &&
     level === "8" &&
@@ -8764,15 +8962,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(320, 1000000) &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(215, 750000) &&
     network === "PS.eu" &&
     level === "8" &&
@@ -8810,15 +8999,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     BidGt(55, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 36000) &&
     network === "PS.eu" &&
     level === "8" &&
     effmu === "A" &&
@@ -8962,15 +9142,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 36000) &&
-    network === "Party" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(109, 100000) &&
     network === "Party" &&
     level === "8" &&
@@ -9053,17 +9224,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "888" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(160, 150000) && network === "888" && level === "8" && effmu === "A" && isNormal && isKo)
     return true;
   if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    BidGt(160, 250000) &&
     network === "888" &&
     level === "8" &&
     effmu === "A" &&
@@ -9389,7 +9553,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    FromToGt(121, 150, 200000) &&
     network === "GG" &&
     level === "8" &&
     effmu === "A" &&
@@ -9398,7 +9562,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 350000) &&
+    FromToGt(121, 150, 350000) &&
     network === "GG" &&
     level === "8" &&
     effmu === "A" &&
@@ -9407,7 +9571,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    FromToGt(80, 120, 80000) &&
     network === "GG" &&
     level === "8" &&
     effmu === "A" &&
@@ -9416,7 +9580,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
+    FromToGt(80, 120, 125000) &&
     network === "GG" &&
     level === "8" &&
     effmu === "A" &&
@@ -9506,30 +9670,12 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, 100000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
     network === "GG" &&
     level === "8" &&
     effmu === "B" &&
     isNormal &&
     isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
   )
     return true;
   if (
@@ -9551,16 +9697,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(530, 300000) &&
     network === "PS.eu" &&
     level === "13" &&
     effmu === "A" &&
@@ -9578,7 +9715,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(320, 150000) &&
     network === "PS.eu" &&
     level === "13" &&
     effmu === "A" &&
@@ -9614,25 +9751,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 500000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 40000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(320, 200000) &&
     network === "PS.eu" &&
     level === "13" &&
     effmu === "A" &&
@@ -9677,34 +9796,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    BidGt(215, 75000) &&
     network === "PS.eu" &&
     level === "13" &&
     effmu === "B" &&
@@ -9731,34 +9823,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    BidGt(215, 150000) &&
     network === "PS.eu" &&
     level === "13" &&
     effmu === "B" &&
@@ -9785,30 +9850,12 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WNMX" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(100, isOffpeak && isGetTournaments ? 0 : 125000) &&
     network === "WNMX" &&
     level === "8" &&
     effmu === "A" &&
     isNormal &&
     !isKo
-  )
-    return true;
-  if (
-    BidGt(70, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WNMX" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
   )
     return true;
   if (
@@ -9886,141 +9933,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(256, 375, 700000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 1000000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 500000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 750000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(1050, 600000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 35000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(1050, 1000000) &&
     network === "Party" &&
     level === "13" &&
@@ -10030,277 +9942,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(530, isOffpeak && isGetTournaments ? 0 : 400000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 250000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 400000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 100000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 150000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(530, 400000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(320, 200000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 70000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(88, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(530, 600000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(320, 300000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(88, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(320, 150000) &&
     network === "888" &&
     level === "13" &&
     effmu === "A" &&
@@ -10336,7 +9978,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(320, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(320, 200000) &&
     network === "888" &&
     level === "13" &&
     effmu === "A" &&
@@ -10381,7 +10023,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    BidGt(250, 100000) &&
     network === "888" &&
     level === "13" &&
     effmu === "B" &&
@@ -10389,35 +10031,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isKo
   )
     return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "888" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(215, 50000) && network === "888" && level === "13" && effmu === "B" && isNormal && isKo)
     return true;
   if (
     BidGt(160, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "888" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "888" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(88, isOffpeak && isGetTournaments ? 0 : 5000) &&
     network === "888" &&
     level === "13" &&
     effmu === "B" &&
@@ -10435,7 +10052,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 175000) &&
+    BidGt(250, 175000) &&
     network === "888" &&
     level === "13" &&
     effmu === "B" &&
@@ -10444,7 +10061,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    BidGt(215, 75000) &&
     network === "888" &&
     level === "13" &&
     effmu === "B" &&
@@ -10498,15 +10115,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(250, isOffpeak && isGetTournaments ? 0 : 125000) &&
     network === "PS.es" &&
     level === "13" &&
@@ -10525,16 +10133,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    BidGt(250, 100000) &&
     network === "PS.es" &&
     level === "13" &&
     effmu === "B" &&
@@ -10561,7 +10160,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 175000) &&
+    BidGt(250, 175000) &&
     network === "PS.es" &&
     level === "13" &&
     effmu === "B" &&
@@ -10588,106 +10187,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(751, 1050, 600000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 400000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(751, 1050, 1000000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 600000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
     network === "GG" &&
     level === "13" &&
     effmu === "A" &&
@@ -10714,25 +10214,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    FromToGt(151, 255, 75000) &&
     network === "GG" &&
     level === "13" &&
     effmu === "B" &&
@@ -10759,7 +10241,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    FromToGt(151, 255, 150000) &&
     network === "GG" &&
     level === "13" &&
     effmu === "B" &&
@@ -10786,57 +10268,12 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(500, 150000) &&
     network === "WNMX" &&
     level === "13" &&
     effmu === "A" &&
     isNormal &&
     isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 135000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 85000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
   )
     return true;
   if (
@@ -10849,260 +10286,8 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 135000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(500, 500000) &&
     network === "WNMX" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 190000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 110000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 22000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WNMX" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 400000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 1000000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 600000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, 300000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 150000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, 500000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 300000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 24000) &&
-    network === "WPN" &&
     level === "13" &&
     effmu === "B" &&
     isNormal &&
@@ -11170,159 +10355,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "A" &&
     isNormal &&
     isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(320, 600000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(320, 1000000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(215, 500000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, 750000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 48000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 88000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 36000) &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
   )
     return true;
   if (
@@ -11442,15 +10474,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isKo
   )
     return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 36000) &&
-    network === "Party" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
   if (BidGt(250, 450000) && network === "888" && level === "9" && effmu === "A" && isNormal && isKo)
     return true;
   if (
@@ -11462,17 +10485,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "888" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(215, 200000) && network === "888" && level === "9" && effmu === "A" && isNormal && isKo)
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(215, 300000) &&
     network === "888" &&
     level === "9" &&
     effmu === "A" &&
@@ -11563,17 +10579,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "888" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(160, 150000) && network === "888" && level === "9" && effmu === "B" && isNormal && isKo)
     return true;
   if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    BidGt(160, 250000) &&
     network === "888" &&
     level === "9" &&
     effmu === "B" &&
@@ -11717,7 +10726,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(50, 40000) &&
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 40000) &&
     network === "PS.es" &&
     level === "9" &&
     effmu === "A" &&
@@ -11834,7 +10843,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    FromToGt(121, 150, 150000) &&
     network === "GG" &&
     level === "9" &&
     effmu === "A" &&
@@ -11843,7 +10852,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    FromToGt(121, 150, 250000) &&
     network === "GG" &&
     level === "9" &&
     effmu === "A" &&
@@ -11942,7 +10951,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    FromToGt(121, 150, 200000) &&
     network === "GG" &&
     level === "9" &&
     effmu === "B" &&
@@ -11951,7 +10960,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 350000) &&
+    FromToGt(121, 150, 350000) &&
     network === "GG" &&
     level === "9" &&
     effmu === "B" &&
@@ -11960,7 +10969,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    FromToGt(80, 120, 80000) &&
     network === "GG" &&
     level === "9" &&
     effmu === "B" &&
@@ -11969,7 +10978,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
+    FromToGt(80, 120, 125000) &&
     network === "GG" &&
     level === "9" &&
     effmu === "B" &&
@@ -12133,240 +11142,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (
     BidGt(70, isOffpeak && isGetTournaments ? 0 : 50000) &&
     network === "WNMX" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 500000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 750000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 400000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 500000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 700000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 1000000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 500000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 750000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
     level === "9" &&
     effmu === "B" &&
     isNormal &&
@@ -12998,204 +11773,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(30, 20000) && network === "WNMX" && level === "4" && effmu === "B" && isNormal && isKo)
     return true;
   if (
-    FromToGt(80, 120, 400000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 250000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 120000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 50000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 10000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 500000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 250000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 80000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 28000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 800000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 600000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 450000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 200000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 80000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 20000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 10000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 1200000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 800000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 400000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 40000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 16000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(109, 350000) &&
     network === "PS.eu" &&
     level === "5" &&
@@ -13538,10 +12115,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isKo
   )
     return true;
-  if (BidGt(50, 75000) && network === "PS.es" && level === "5" && effmu === "A" && isNormal && isKo)
-    return true;
-  if (BidGt(30, 10000) && network === "PS.es" && level === "5" && effmu === "A" && isNormal && isKo)
-    return true;
   if (
     BidGt(125, 500000) &&
     network === "PS.es" &&
@@ -13718,33 +12291,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(50, 66, 150000) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 60000) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 12500) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(80, 120, 800000) &&
     network === "GG" &&
     level === "5" &&
@@ -13787,15 +12333,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "B" &&
     isNormal &&
     !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 300000) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
   )
     return true;
   if (
@@ -13877,186 +12414,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(30, 20000) && network === "WNMX" && level === "5" && effmu === "B" && isNormal && !isKo)
     return true;
   if (
-    FromToGt(80, 120, 250000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 140000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 80000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 32000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 6000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 400000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 300000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 120000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 65000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 12000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 300000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 250000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 120000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 50000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 10000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 650000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 500000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 250000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 80000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 28000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(320, 400000) &&
     network === "PS.eu" &&
     level === "10" &&
@@ -14075,7 +12432,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(215, 200000) &&
     network === "PS.eu" &&
     level === "10" &&
     effmu === "A" &&
@@ -14084,7 +12441,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(215, 300000) &&
     network === "PS.eu" &&
     level === "10" &&
     effmu === "A" &&
@@ -14183,7 +12540,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 400000) &&
+    BidGt(215, 400000) &&
     network === "PS.eu" &&
     level === "10" &&
     effmu === "B" &&
@@ -14192,7 +12549,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 500000) &&
+    BidGt(215, 500000) &&
     network === "PS.eu" &&
     level === "10" &&
     effmu === "B" &&
@@ -14273,7 +12630,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(215, 200000) &&
     network === "Party" &&
     level === "10" &&
     effmu === "A" &&
@@ -14282,7 +12639,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(215, 300000) &&
     network === "Party" &&
     level === "10" &&
     effmu === "A" &&
@@ -14399,7 +12756,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(250, 300000) &&
     network === "888" &&
     level === "10" &&
     effmu === "A" &&
@@ -14408,7 +12765,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 400000) &&
+    BidGt(250, 400000) &&
     network === "888" &&
     level === "10" &&
     effmu === "A" &&
@@ -14417,7 +12774,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(215, 150000) &&
     network === "888" &&
     level === "10" &&
     effmu === "A" &&
@@ -14426,7 +12783,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    BidGt(215, 250000) &&
     network === "888" &&
     level === "10" &&
     effmu === "A" &&
@@ -14525,7 +12882,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(215, 200000) &&
     network === "888" &&
     level === "10" &&
     effmu === "B" &&
@@ -14534,7 +12891,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(215, 300000) &&
     network === "888" &&
     level === "10" &&
     effmu === "B" &&
@@ -14543,7 +12900,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    BidGt(160, 100000) &&
     network === "888" &&
     level === "10" &&
     effmu === "B" &&
@@ -14552,7 +12909,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(160, 150000) &&
     network === "888" &&
     level === "10" &&
     effmu === "B" &&
@@ -14777,7 +13134,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    FromToGt(151, 255, 200000) &&
     network === "GG" &&
     level === "10" &&
     effmu === "A" &&
@@ -14786,7 +13143,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    FromToGt(151, 255, 300000) &&
     network === "GG" &&
     level === "10" &&
     effmu === "A" &&
@@ -14795,7 +13152,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    FromToGt(121, 150, 120000) &&
     network === "GG" &&
     level === "10" &&
     effmu === "A" &&
@@ -14804,7 +13161,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    FromToGt(121, 150, 200000) &&
     network === "GG" &&
     level === "10" &&
     effmu === "A" &&
@@ -14912,7 +13269,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    FromToGt(121, 150, 150000) &&
     network === "GG" &&
     level === "10" &&
     effmu === "B" &&
@@ -14921,7 +13278,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    FromToGt(121, 150, 250000) &&
     network === "GG" &&
     level === "10" &&
     effmu === "B" &&
@@ -14930,7 +13287,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    FromToGt(80, 120, 80000) &&
     network === "GG" &&
     level === "10" &&
     effmu === "B" &&
@@ -14939,7 +13296,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    FromToGt(80, 120, 120000) &&
     network === "GG" &&
     level === "10" &&
     effmu === "B" &&
@@ -14984,7 +13341,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    BidGt(250, 250000) &&
     network === "WNMX" &&
     level === "10" &&
     effmu === "A" &&
@@ -14993,7 +13350,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 312000) &&
+    BidGt(250, 312000) &&
     network === "WNMX" &&
     level === "10" &&
     effmu === "A" &&
@@ -15002,7 +13359,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(200, 150000) &&
     network === "WNMX" &&
     level === "10" &&
     effmu === "A" &&
@@ -15011,7 +13368,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(200, 200000) &&
     network === "WNMX" &&
     level === "10" &&
     effmu === "A" &&
@@ -15092,15 +13449,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, 150000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(82, isOffpeak && isGetTournaments ? 0 : 100000) &&
     network === "PS.eu" &&
     level === "6" &&
@@ -15146,15 +13494,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, 250000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(82, isOffpeak && isGetTournaments ? 0 : 175000) &&
     network === "PS.eu" &&
     level === "6" &&
@@ -15191,55 +13530,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(256, 375, 300000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 500000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(109, 350000) &&
     network === "PS.eu" &&
     level === "6" &&
     effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 300000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
     isNormal &&
     isKo
   )
@@ -15272,15 +13566,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(33, isOffpeak && isGetTournaments ? 0 : 10000) &&
     network === "PS.eu" &&
     level === "6" &&
@@ -15299,198 +13584,9 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(109, 600000) &&
     network === "PS.eu" &&
     level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 175000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 45000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 320000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 500000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 750000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 400000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 500000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "WPN" &&
-    level === "10" &&
     effmu === "B" &&
     isNormal &&
     !isKo
@@ -15506,30 +13602,12 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(77, 88, isOffpeak && isGetTournaments ? 0 : 100000) &&
     network === "Party" &&
     level === "6" &&
     effmu === "A" &&
     isNormal &&
     isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
   )
     return true;
   if (
@@ -15561,24 +13639,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(77, 88, isOffpeak && isGetTournaments ? 0 : 175000) &&
-    network === "Party" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(55, 66, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "Party" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 50000) &&
     network === "Party" &&
     level === "6" &&
     effmu === "A" &&
@@ -16086,25 +14146,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 12000) &&
+    BidGt(215, 75000) &&
     network === "PS.eu" &&
     level === "12" &&
     effmu === "A" &&
@@ -16131,15 +14173,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(320, 300000) &&
     network === "PS.eu" &&
     level === "12" &&
@@ -16149,34 +14182,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(162, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    BidGt(215, 150000) &&
     network === "PS.eu" &&
     level === "12" &&
     effmu === "A" &&
@@ -16266,7 +14272,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(215, 150000) &&
     network === "PS.eu" &&
     level === "12" &&
     effmu === "B" &&
@@ -16329,7 +14335,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    BidGt(215, 250000) &&
     network === "PS.eu" &&
     level === "12" &&
     effmu === "B" &&
@@ -16374,7 +14380,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(215, 150000) &&
     network === "PS.eu" &&
     level === "11" &&
     effmu === "A" &&
@@ -16419,7 +14425,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    BidGt(215, 250000) &&
     network === "PS.eu" &&
     level === "11" &&
     effmu === "A" &&
@@ -16536,7 +14542,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(215, 200000) &&
     network === "PS.eu" &&
     level === "11" &&
     effmu === "B" &&
@@ -16590,7 +14596,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(215, 300000) &&
     network === "PS.eu" &&
     level === "11" &&
     effmu === "B" &&
@@ -16644,79 +14650,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 70000) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(77, 88, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(320, 300000) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Party" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(77, 88, isOffpeak && isGetTournaments ? 0 : 20000) &&
     network === "Party" &&
     level === "12" &&
     effmu === "A" &&
@@ -16734,7 +14668,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(215, 150000) &&
     network === "Party" &&
     level === "12" &&
     effmu === "B" &&
@@ -16743,7 +14677,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    FromToGt(121, 150, 40000) &&
     network === "Party" &&
     level === "12" &&
     effmu === "B" &&
@@ -16779,7 +14713,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(215, 200000) &&
     network === "Party" &&
     level === "12" &&
     effmu === "B" &&
@@ -16788,7 +14722,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    FromToGt(121, 150, 75000) &&
     network === "Party" &&
     level === "12" &&
     effmu === "B" &&
@@ -16824,7 +14758,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(215, 150000) &&
     network === "Party" &&
     level === "11" &&
     effmu === "A" &&
@@ -16833,7 +14767,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    FromToGt(121, 150, 40000) &&
     network === "Party" &&
     level === "11" &&
     effmu === "A" &&
@@ -16869,7 +14803,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(215, 200000) &&
     network === "Party" &&
     level === "11" &&
     effmu === "A" &&
@@ -16878,7 +14812,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    FromToGt(121, 150, 75000) &&
     network === "Party" &&
     level === "11" &&
     effmu === "A" &&
@@ -16986,51 +14920,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(88, isOffpeak && isGetTournaments ? 0 : 6000) &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(320, 300000) &&
     network === "888" &&
     level === "12" &&
@@ -17040,7 +14929,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 175000) &&
+    BidGt(250, 175000) &&
     network === "888" &&
     level === "12" &&
     effmu === "A" &&
@@ -17049,7 +14938,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    BidGt(215, 75000) &&
     network === "888" &&
     level === "12" &&
     effmu === "A" &&
@@ -17094,7 +14983,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(250, 200000) &&
     network === "888" &&
     level === "12" &&
     effmu === "B" &&
@@ -17103,7 +14992,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    BidGt(215, 100000) &&
     network === "888" &&
     level === "12" &&
     effmu === "B" &&
@@ -17111,14 +15000,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isKo
   )
     return true;
-  if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "888" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(160, 40000) && network === "888" && level === "12" && effmu === "B" && isNormal && isKo)
     return true;
   if (
     BidGt(109, isOffpeak && isGetTournaments ? 0 : 15000) &&
@@ -17148,7 +15030,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(250, 300000) &&
     network === "888" &&
     level === "12" &&
     effmu === "B" &&
@@ -17157,7 +15039,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(215, 150000) &&
     network === "888" &&
     level === "12" &&
     effmu === "B" &&
@@ -17166,7 +15048,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    BidGt(160, 60000) &&
     network === "888" &&
     level === "12" &&
     effmu === "B" &&
@@ -17202,7 +15084,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(250, 200000) &&
     network === "888" &&
     level === "11" &&
     effmu === "A" &&
@@ -17211,7 +15093,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    BidGt(215, 100000) &&
     network === "888" &&
     level === "11" &&
     effmu === "A" &&
@@ -17256,7 +15138,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(250, 300000) &&
     network === "888" &&
     level === "11" &&
     effmu === "A" &&
@@ -17265,7 +15147,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(215, 150000) &&
     network === "888" &&
     level === "11" &&
     effmu === "A" &&
@@ -17301,7 +15183,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    BidGt(250, 300000) &&
     network === "888" &&
     level === "11" &&
     effmu === "B" &&
@@ -17310,7 +15192,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(215, 150000) &&
     network === "888" &&
     level === "11" &&
     effmu === "B" &&
@@ -17318,14 +15200,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isKo
   )
     return true;
-  if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "888" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(160, 75000) && network === "888" && level === "11" && effmu === "B" && isNormal && isKo)
     return true;
   if (
     BidGt(109, isOffpeak && isGetTournaments ? 0 : 30000) &&
@@ -17355,7 +15230,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 400000) &&
+    BidGt(250, 400000) &&
     network === "888" &&
     level === "11" &&
     effmu === "B" &&
@@ -17364,7 +15239,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    BidGt(215, 250000) &&
     network === "888" &&
     level === "11" &&
     effmu === "B" &&
@@ -17373,7 +15248,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(160, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    BidGt(160, 100000) &&
     network === "888" &&
     level === "11" &&
     effmu === "B" &&
@@ -17544,33 +15419,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(125, 100000) &&
-    network === "PS.es" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.es" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 300000) &&
-    network === "PS.es" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(250, 300000) &&
     network === "PS.es" &&
     level === "11" &&
@@ -17661,25 +15509,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    FromToGt(151, 255, 75000) &&
     network === "GG" &&
     level === "12" &&
     effmu === "A" &&
@@ -17706,7 +15536,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    FromToGt(151, 255, 150000) &&
     network === "GG" &&
     level === "12" &&
     effmu === "A" &&
@@ -17715,7 +15545,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    FromToGt(121, 150, 50000) &&
     network === "GG" &&
     level === "12" &&
     effmu === "A" &&
@@ -17742,7 +15572,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    FromToGt(151, 255, 150000) &&
     network === "GG" &&
     level === "12" &&
     effmu === "B" &&
@@ -17751,7 +15581,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    FromToGt(121, 150, 40000) &&
     network === "GG" &&
     level === "12" &&
     effmu === "B" &&
@@ -17787,7 +15617,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    FromToGt(151, 255, 250000) &&
     network === "GG" &&
     level === "12" &&
     effmu === "B" &&
@@ -17796,7 +15626,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    FromToGt(121, 150, 75000) &&
     network === "GG" &&
     level === "12" &&
     effmu === "B" &&
@@ -17832,7 +15662,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    FromToGt(151, 255, 150000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "A" &&
@@ -17841,7 +15671,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    FromToGt(121, 150, 40000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "A" &&
@@ -17877,7 +15707,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    FromToGt(151, 255, 250000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "A" &&
@@ -17886,7 +15716,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    FromToGt(121, 150, 75000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "A" &&
@@ -17922,7 +15752,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    FromToGt(151, 255, 200000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "B" &&
@@ -17931,7 +15761,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    FromToGt(121, 150, 120000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "B" &&
@@ -17976,7 +15806,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    FromToGt(151, 255, 300000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "B" &&
@@ -17985,7 +15815,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    FromToGt(121, 150, 200000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "B" &&
@@ -18030,33 +15860,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 135000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(500, 500000) &&
     network === "WNMX" &&
     level === "12" &&
@@ -18066,142 +15869,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 190000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 110000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 22000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 180000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 110000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 225000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WNMX" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 180000) &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 110000) &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 225000) &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WNMX" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    BidGt(250, 250000) &&
     network === "WNMX" &&
     level === "11" &&
     effmu === "B" &&
@@ -18210,7 +15878,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(200, 150000) &&
     network === "WNMX" &&
     level === "11" &&
     effmu === "B" &&
@@ -18228,7 +15896,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 312000) &&
+    BidGt(250, 312000) &&
     network === "WNMX" &&
     level === "11" &&
     effmu === "B" &&
@@ -18237,7 +15905,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(200, 200000) &&
     network === "WNMX" &&
     level === "11" &&
     effmu === "B" &&
@@ -18249,384 +15917,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     BidGt(100, isOffpeak && isGetTournaments ? 0 : 80000) &&
     network === "WNMX" &&
     level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 200000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 400000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 300000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 500000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 300000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 45000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, 300000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 150000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, 500000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 300000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 200000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 400000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "12" &&
     effmu === "B" &&
     isNormal &&
     !isKo
@@ -18714,231 +16004,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(70, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WNMX" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WNMX" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(40, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WNMX" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 300000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 150000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(28, 33, isOffpeak && isGetTournaments ? 0 : 6000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 500000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 250000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 175000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(28, 33, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 250000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 140000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 32000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 6000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 400000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 300000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(109, 150000) &&
     network === "PS.eu" &&
     level === "7" &&
@@ -18984,15 +16049,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, 150000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(82, isOffpeak && isGetTournaments ? 0 : 100000) &&
     network === "PS.eu" &&
     level === "7" &&
@@ -19011,42 +16067,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 175000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(44, isOffpeak && isGetTournaments ? 0 : 25000) &&
     network === "PS.eu" &&
     level === "7" &&
@@ -19062,15 +16082,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "B" &&
     isNormal &&
     isKo
-  )
-    return true;
-  if (
-    BidGt(109, 250000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
   )
     return true;
   if (
@@ -19827,105 +16838,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, 250000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 100000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 400000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 150000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 300000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(80, 120, 150000) &&
     network === "WPN" &&
     level === "7" &&
@@ -19959,15 +16871,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "B" &&
     isNormal &&
     isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 500000) &&
-    network === "WPN" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
   )
     return true;
   if (
@@ -20026,204 +16929,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (BidGt(15, 40000) && network === "IP" && level === "1" && effmu === "B" && isNormal && !isKo)
     return true;
-  if (
-    FromToGt(16, 24, 40000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 15000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.8, 11, 6000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(7.7, 8.4, 4000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.6, 7.6, 2000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 60000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 15000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 60000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 30000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.8, 11, 15000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(7.7, 8.4, 8000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.6, 7.6, 4000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 75000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 40000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.8, 11, 25000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(7.7, 8.4, 15000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.6, 7.6, 5000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 150000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 75000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.8, 11, 40000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(7.7, 8.4, 30000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.6, 7.6, 10000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
   if (BidGt(50, 75000) && network === "IP" && level === "2" && effmu === "A" && isNormal && isKo)
     return true;
   if (BidGt(40, 35000) && network === "IP" && level === "2" && effmu === "A" && isNormal && isKo)
@@ -20249,177 +16954,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(15, 30000) && network === "IP" && level === "2" && effmu === "B" && isNormal && !isKo)
     return true;
   if (
-    FromToGt(50, 66, 300000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 50000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 30000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 10000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "IP" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "IP" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "IP" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "IP" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
-    network === "IP" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "IP" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 600000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 200000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 100000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(16, 24, 40000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(12, 15, 20000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 200000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(25, 33, 60000) &&
     network === "Chico" &&
     level === "2" &&
@@ -20433,15 +16967,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "Chico" &&
     level === "2" &&
     effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
     isNormal &&
     isKo
   )
@@ -20474,24 +16999,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(5.6, 7.6, 2000) &&
     network === "Chico" &&
     level === "2" &&
@@ -20510,28 +17017,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(751, 1050, 750000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(16, 24, 60000) &&
     network === "Chico" &&
     level === "2" &&
     effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 300000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
     isNormal &&
     !isKo
   )
@@ -20555,28 +17044,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(7.7, 8.4, 8000) &&
     network === "Chico" &&
     level === "2" &&
     effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
     isNormal &&
     !isKo
   )
@@ -20591,52 +17062,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(500, 200000) &&
     network === "IP" &&
     level === "14" &&
     effmu === "A" &&
@@ -20644,293 +17070,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 135000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 85000) &&
-    network === "IP" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 200000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 750000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 300000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 400000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 1000000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 600000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
+  if (BidGt(500, 150000) && network === "IP" && level === "14" && effmu === "B" && isNormal && isKo)
     return true;
   if (BidGt(70, 125000) && network === "IP" && level === "3" && effmu === "A" && isNormal && isKo)
     return true;
@@ -20959,186 +17099,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(40, 50000) && network === "IP" && level === "3" && effmu === "B" && isNormal && !isKo)
     return true;
   if (BidGt(30, 40000) && network === "IP" && level === "3" && effmu === "B" && isNormal && !isKo)
-    return true;
-  if (
-    FromToGt(80, 120, 600000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 450000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 200000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 80000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 20000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 10000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 1200000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 800000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 400000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 40000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 15000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 300000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 40000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 25000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 600000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 200000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 80000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 30000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
     return true;
   if (BidGt(200, 250000) && network === "IP" && level === "8" && effmu === "A" && isNormal && isKo)
     return true;
@@ -21238,533 +17198,13 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    FromToGt(256, 375, 700000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 1000000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 500000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 750000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 250000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 400000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 100000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 150000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(500, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 135000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 85000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
+  if (BidGt(500, 150000) && network === "IP" && level === "13" && effmu === "A" && isNormal && isKo)
     return true;
   if (BidGt(500, 300000) && network === "IP" && level === "13" && effmu === "B" && isNormal && isKo)
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 135000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(500, 500000) &&
     network === "IP" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 190000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 110000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 22000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "IP" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 600000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 400000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(751, 1050, 1000000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(576, 750, 600000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, 300000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 150000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, 500000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 300000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 24000) &&
-    network === "Chico" &&
     level === "13" &&
     effmu === "B" &&
     isNormal &&
@@ -21837,240 +17277,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    FromToGt(256, 375, 500000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 750000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 400000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 500000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 700000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 1000000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 500000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 750000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 350000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
   if (BidGt(100, 150000) && network === "IP" && level === "4" && effmu === "A" && isNormal && isKo)
     return true;
   if (BidGt(70, 100000) && network === "IP" && level === "4" && effmu === "A" && isNormal && isKo)
@@ -22106,204 +17312,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(30, 30000) && network === "IP" && level === "4" && effmu === "B" && isNormal && !isKo)
     return true;
   if (BidGt(30, 20000) && network === "IP" && level === "4" && effmu === "B" && isNormal && isKo)
-    return true;
-  if (
-    FromToGt(80, 120, 400000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 250000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 120000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 50000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 10000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 500000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 250000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 80000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 28000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 800000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 600000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 450000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 200000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 80000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 20000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 10000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 1200000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 800000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 400000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 40000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(17, 24, 16000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
     return true;
   if (BidGt(100, 125000) && network === "IP" && level === "5" && effmu === "A" && isNormal && isKo)
     return true;
@@ -22341,197 +17349,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (BidGt(30, 20000) && network === "IP" && level === "5" && effmu === "B" && isNormal && !isKo)
     return true;
-  if (
-    FromToGt(80, 120, 250000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(250, 250000) && network === "IP" && level === "10" && effmu === "A" && isNormal && isKo)
     return true;
   if (
-    FromToGt(67, 79, 140000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 80000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 32000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 6000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 400000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 300000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 120000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 65000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 12000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 300000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 250000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 120000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 50000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 10000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 650000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 500000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 250000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 80000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, 28000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "IP" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 312000) &&
+    BidGt(250, 312000) &&
     network === "IP" &&
     level === "10" &&
     effmu === "A" &&
@@ -22539,17 +17360,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "IP" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(200, 150000) && network === "IP" && level === "10" && effmu === "A" && isNormal && isKo)
     return true;
   if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(200, 200000) &&
     network === "IP" &&
     level === "10" &&
     effmu === "A" &&
@@ -22609,222 +17423,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (
     BidGt(100, isOffpeak && isGetTournaments ? 0 : 100000) &&
     network === "IP" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 300000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 500000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 300000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 45000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 500000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 750000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 400000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, 500000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
     level === "10" &&
     effmu === "B" &&
     isNormal &&
@@ -22892,33 +17490,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(500, 300000) && network === "IP" && level === "12" && effmu === "A" && isNormal && isKo)
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 135000) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(500, 500000) &&
     network === "IP" &&
     level === "12" &&
@@ -22928,61 +17499,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 190000) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 110000) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 22000) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 180000) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 110000) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "IP" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 225000) &&
+    BidGt(250, 225000) &&
     network === "IP" &&
     level === "12" &&
     effmu === "B" &&
@@ -22991,7 +17508,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(200, 150000) &&
     network === "IP" &&
     level === "12" &&
     effmu === "B" &&
@@ -23009,34 +17526,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 180000) &&
-    network === "IP" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 110000) &&
-    network === "IP" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "IP" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 225000) &&
+    BidGt(250, 225000) &&
     network === "IP" &&
     level === "11" &&
     effmu === "A" &&
@@ -23045,7 +17535,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(200, 150000) &&
     network === "IP" &&
     level === "11" &&
     effmu === "A" &&
@@ -23062,23 +17552,9 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "IP" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(250, 250000) && network === "IP" && level === "11" && effmu === "B" && isNormal && isKo)
     return true;
-  if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "IP" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
+  if (BidGt(200, 150000) && network === "IP" && level === "11" && effmu === "B" && isNormal && isKo)
     return true;
   if (
     BidGt(100, isOffpeak && isGetTournaments ? 0 : 40000) &&
@@ -23090,7 +17566,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(250, isOffpeak && isGetTournaments ? 0 : 312000) &&
+    BidGt(250, 312000) &&
     network === "IP" &&
     level === "11" &&
     effmu === "B" &&
@@ -23099,7 +17575,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(200, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    BidGt(200, 200000) &&
     network === "IP" &&
     level === "11" &&
     effmu === "B" &&
@@ -23111,384 +17587,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     BidGt(100, isOffpeak && isGetTournaments ? 0 : 80000) &&
     network === "IP" &&
     level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 200000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 400000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 300000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 500000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 300000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 45000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, 300000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 150000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(376, 575, 500000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 300000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 200000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(256, 375, 400000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "12" &&
     effmu === "B" &&
     isNormal &&
     !isKo
@@ -23546,204 +17644,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (
     BidGt(40, isOffpeak && isGetTournaments ? 0 : 20000) &&
     network === "IP" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 300000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 150000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(28, 33, isOffpeak && isGetTournaments ? 0 : 6000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 500000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 250000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 175000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(28, 33, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 250000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 140000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 32000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 6000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 400000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 300000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "Chico" &&
     level === "6" &&
     effmu === "B" &&
     isNormal &&
@@ -23867,105 +17767,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, 250000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 100000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 400000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 150000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 300000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(80, 120, 150000) &&
     network === "Chico" &&
     level === "7" &&
@@ -23999,15 +17800,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "B" &&
     isNormal &&
     isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 500000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo
   )
     return true;
   if (
@@ -24047,9 +17839,7595 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(1, 1111111, isOffpeak && isGetTournaments ? 0 : 10000000) &&
+    BidGt(1050, 600000) &&
     network === "PS.eu" &&
-    level === "16"
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(530, 200000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(320, 90000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(530, 400000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(320, 200000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(1050, 600000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(530, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(320, isOffpeak && isGetTournaments ? 0 : 90000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(530, 150000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(320, 90000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(530, 375000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(320, 200000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(320, isOffpeak && isGetTournaments ? 0 : 90000) &&
+    network === "Party" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "Party" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "Party" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(530, 400000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(1050, 750000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(530, 375000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(320, 120000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(530, 500000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(320, 200000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, 75000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(88, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(530, 375000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(320, 180000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(530, 750000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(320, 300000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(215, 150000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (NotName("109") && network === "Party" && level === "13" && effmu === "B" && isNormal && !isKo)
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(88, 20000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(215, 75000) &&
+    network === "Party" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Party" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(77, 88, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Party" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, 150000) &&
+    network === "Party" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Party" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Party" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(77, 88, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Party" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (BidGt(109, 0) && network === "Party" && level === "13" && effmu === "B" && isNormal && isKo)
+    return true;
+  if (BidGt(109, 0) && network === "Party" && level === "12" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (
+    FromToGt(751, 1050, 440000) &&
+    network === "GG" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 270000) &&
+    network === "GG" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, isOffpeak && isGetTournaments ? 0 : 145000) &&
+    network === "GG" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "GG" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "GG" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 450000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 250000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 150000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 60000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 650000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 350000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 200000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 100000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 700000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 450000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 250000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 125000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 900000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 550000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 300000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 150000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 750000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 400000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 250000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 125000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 550000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 300000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 150000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 30000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(84, 120, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(320, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "888" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "888" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "888" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(320, isOffpeak && isGetTournaments ? 0 : 90000) &&
+    network === "888" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "888" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "888" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(320, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "888" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "888" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "888" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(320, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "888" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "888" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "888" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (BidGt(109, 0) && network === "888" && level === "13" && effmu === "B" && isNormal && isKo)
+    return true;
+  if (BidGt(88, 0) && network === "888" && level === "13" && effmu === "B" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(250, 100000) &&
+    network === "888" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (BidGt(215, 50000) && network === "888" && level === "12" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(160, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "888" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (BidGt(109, 0) && network === "888" && level === "12" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (BidGt(88, 0) && network === "888" && level === "12" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "PS.es" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.es" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "PS.es" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(125, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.es" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.es" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(125, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "PS.es" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, 300000) &&
+    network === "PS.es" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(125, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.es" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.es" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(500, isOffpeak && isGetTournaments ? 0 : 190000) &&
+    network === "WNMX" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "WNMX" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WNMX" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(500, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "WNMX" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WNMX" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "WNMX" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(500, 125000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(500, 200000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WNMX" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, 50000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(500, 200000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, 80000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, 125000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, 75000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (BidGt(100, 0) && network === "WNMX" && level === "13" && effmu === "B" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(250, 200000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, 125000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WNMX" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, 125000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, 75000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (BidGt(100, 0) && network === "WNMX" && level === "12" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(250, 200000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, 125000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, 175000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, 100000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, 225000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, 150000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "WNMX" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, 175000) &&
+    network === "WNMX" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, 100000) &&
+    network === "WNMX" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "WNMX" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, 225000) &&
+    network === "WNMX" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, 150000) &&
+    network === "WNMX" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "WNMX" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(500, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "IP" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "IP" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "IP" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(500, isOffpeak && isGetTournaments ? 0 : 190000) &&
+    network === "IP" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "IP" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "IP" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (BidGt(500, 125000) && network === "IP" && level === "14" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "IP" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "IP" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "IP" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "IP" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(500, 200000) &&
+    network === "IP" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "IP" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "IP" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(250, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "IP" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "IP" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (BidGt(250, 50000) && network === "IP" && level === "13" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "IP" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(500, 200000) &&
+    network === "IP" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (BidGt(250, 80000) && network === "IP" && level === "13" && effmu === "A" && isNormal && !isKo)
+    return true;
+  if (
+    BidGt(200, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "IP" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (BidGt(250, 125000) && network === "IP" && level === "13" && effmu === "B" && isNormal && isKo)
+    return true;
+  if (BidGt(200, 75000) && network === "IP" && level === "13" && effmu === "B" && isNormal && isKo)
+    return true;
+  if (BidGt(100, 0) && network === "IP" && level === "13" && effmu === "B" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(250, 200000) &&
+    network === "IP" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, 125000) &&
+    network === "IP" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "IP" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (BidGt(250, 125000) && network === "IP" && level === "12" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (BidGt(200, 75000) && network === "IP" && level === "12" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (BidGt(100, 0) && network === "IP" && level === "12" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(250, 200000) &&
+    network === "IP" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(200, 125000) &&
+    network === "IP" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "IP" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (BidGt(250, 175000) && network === "IP" && level === "12" && effmu === "B" && isNormal && isKo)
+    return true;
+  if (BidGt(200, 100000) && network === "IP" && level === "12" && effmu === "B" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "IP" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (BidGt(250, 175000) && network === "IP" && level === "11" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (BidGt(200, 100000) && network === "IP" && level === "11" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "IP" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 525000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 340000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 145000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 700000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 475000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 190000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 95000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 525000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 350000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 150000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 60000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 700000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 500000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 200000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 100000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 250000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 125000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(84, 109, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 300000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 175000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(84, 109, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 250000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 125000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 300000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 175000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 200000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 100000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 400000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 200000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 200000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 150000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 40000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 400000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 200000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 75000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 300000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 200000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 120000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 500000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 300000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 300000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 200000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 120000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 500000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 300000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 500000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 400000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 150000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(55, 66, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 750000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 500000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 250000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 65000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 500000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 400000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 150000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(55, 66, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 750000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 500000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 250000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 65000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 700000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 500000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 80000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 1000000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 750000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 350000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 125000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 525000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 340000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 145000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 700000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 475000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 190000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, isOffpeak && isGetTournaments ? 0 : 95000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 525000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 350000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 150000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 60000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(751, 1050, 700000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(576, 750, 500000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 200000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 100000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 250000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 125000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(84, 109, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 300000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 175000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(84, 109, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 250000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 125000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(376, 575, 300000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 175000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 200000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 100000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 400000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 200000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 200000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 150000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 40000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 400000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 200000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 75000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 300000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 200000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 120000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 500000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 300000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 300000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 200000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 120000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 500000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 300000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 500000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 400000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 150000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 750000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 500000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 250000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 65000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 500000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 400000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 150000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 750000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 500000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 250000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 65000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(56, 66, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 700000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 500000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 80000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 1000000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 750000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 350000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 125000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(55, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(55, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(320, 1250000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(320, 800000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, 500000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 200000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 48000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(55, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, 750000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(162, isOffpeak && isGetTournaments ? 0 : 350000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 125000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 88000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(55, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "PS.eu" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, 300000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 175000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(55, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(33, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 320000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(55, isOffpeak && isGetTournaments ? 0 : 175000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(33, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(27, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 750000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 500000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 250000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 100000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 25000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 12500) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 1500000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 500000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 1000000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 150000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "Party" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "Party" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(55, 66, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Party" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Party" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 50000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 20000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (BidGt(50, 75000) && network === "PS.es" && level === "5" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (BidGt(30, 10000) && network === "PS.es" && level === "5" && effmu === "A" && isNormal && isKo)
+    return true;
+  if (
+    FromToGt(80, 120, 150000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 300000) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 150000) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 60000) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 12500) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 500000) &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 250000) &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 100000) &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 25000) &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 12500) &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(4.5, 7.5, 7500) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "WNMX" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(70, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WNMX" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(70, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "WNMX" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WNMX" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(40, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WNMX" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 700000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 500000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 1000000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 750000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 350000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 250000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 100000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 400000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 150000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 250000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 100000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 400000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 150000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 150000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 500000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 250000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 175000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 150000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 500000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 250000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 175000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 6000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 12000) &&
+    network === "WPN" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 250000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 140000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 32000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 6000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 400000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 65000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 12000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 300000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 650000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 500000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 28000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 300000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 250000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 120000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 50000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 10000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 650000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 500000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 250000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 80000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 28000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 400000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 250000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 120000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 50000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 10000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 800000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 500000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 250000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 80000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 28000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 600000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 450000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 200000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 80000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 20000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 10000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 1200000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 800000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 400000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 40000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 15000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 300000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 40000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 25000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 600000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 200000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 80000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 30000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 300000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 40000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 25000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 600000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 200000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 80000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 30000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 400000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 150000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 50000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 30000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 10000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 750000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 250000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 100000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 40000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 20000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 400000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 150000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 50000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 30000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 10000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 750000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 250000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 100000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 40000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 20000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 60000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 40000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 15000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.8, 11, 6000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(7.7, 8.4, 4000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.6, 7.4, 2000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 150000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 60000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 30000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.8, 11, 15000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(7.7, 8.4, 8000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.6, 7.6, 4000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 100000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 50000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.8, 11, 25000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(7.7, 8.4, 15000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(4.5, 7.5, 7500) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 200000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 100000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.8, 11, 40000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(7.7, 8.4, 30000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(4.5, 7.5, 15000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 700000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 500000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(256, 375, 1000000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(151, 255, 750000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 350000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 250000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 100000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 400000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 150000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 250000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 100000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 400000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 150000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 150000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 500000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 250000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 175000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 150000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 500000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 250000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 175000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 100000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 50000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 6000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 12000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 250000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 140000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 32000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 6000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 400000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 300000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 65000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 12000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 300000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 650000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 500000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 250000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, isOffpeak && isGetTournaments ? 0 : 28000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 300000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 250000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 120000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 50000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 10000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 650000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 500000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 250000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 80000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 28000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 400000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 250000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 120000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 50000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 10000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 800000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 500000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 250000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 80000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 28000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 600000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 450000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 200000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 80000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 20000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 10000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(80, 120, 1200000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(67, 79, 800000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 400000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 40000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 15000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 300000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 40000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 25000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 600000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 200000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 80000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 30000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 300000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 40000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 25000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 600000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 200000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 80000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(17, 24, 30000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 400000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 150000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 50000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 30000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 10000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 750000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 250000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 100000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 40000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 20000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 400000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 150000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 50000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 30000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 10000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 750000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 250000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 100000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 40000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 20000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 60000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 40000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 15000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.8, 11, 6000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(7.7, 8.4, 4000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.6, 7.6, 2000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(25, 33, 150000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 60000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 30000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.8, 11, 15000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(7.7, 8.4, 8000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.6, 7.6, 4000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 100000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 50000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.8, 11, 25000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(7.7, 8.4, 15000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(4.5, 7.5, 7500) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(16, 24, 200000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(12, 15, 100000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.8, 11, 40000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(7.7, 8.4, 30000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(4.5, 7.5, 15000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo
   )
     return true;
   if (
@@ -24082,35 +25460,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (BidGt(11, 40000) && network === "PS.eu" && level === "1" && effmu === "A" && isTurbo && !isKo)
     return true;
-  if (
-    BidGt(7.5, 22000) &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(5.5, 10000) &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(4.4, 6500) && network === "PS.eu" && level === "1" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(3.3, 5000) && network === "PS.eu" && level === "1" && effmu === "A" && isTurbo && !isKo)
-    return true;
   if (BidGt(7.5, 25000) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (BidGt(5.5, 14000) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (BidGt(4.4, 9000) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (BidGt(3.3, 5000) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo && isKo)
     return true;
   if (
     BidGt(7.5, 40000) &&
@@ -24120,26 +25470,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isTurbo &&
     !isKo
   )
-    return true;
-  if (
-    BidGt(5.5, 22000) &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(4.4, 13000) &&
-    network === "PS.eu" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(3.3, 6600) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo && !isKo)
     return true;
   if (
     FromToGt(10.75, 13, 35000) &&
@@ -24160,24 +25490,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 20000) &&
-    network === "GG" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 5000) &&
-    network === "GG" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(10.75, 13, 50000) &&
     network === "GG" &&
     level === "1" &&
@@ -24188,24 +25500,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(8.4, 10.5, 35000) &&
-    network === "GG" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 25000) &&
-    network === "GG" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 10000) &&
     network === "GG" &&
     level === "1" &&
     effmu === "A" &&
@@ -24260,24 +25554,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 20000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 5000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(10.75, 13, 50000) &&
     network === "WPN" &&
     level === "1" &&
@@ -24291,78 +25567,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "WPN" &&
     level === "1" &&
     effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 25000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 10000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 40000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 25000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 9000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 75000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 40000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 13000) &&
-    network === "WPN" &&
-    level === "1" &&
-    effmu === "B" &&
     isTurbo &&
     !isKo
   )
@@ -24419,10 +25623,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (BidGt(5.5, 7.5) && network === "PS.eu" && level === "2" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(4.4, 5000) && network === "PS.eu" && level === "2" && effmu === "A" && isTurbo && !isKo)
-    return true;
   if (
     BidGt(16.5, 50000) &&
     network === "PS.eu" &&
@@ -24454,55 +25654,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(11, 40000) && network === "PS.eu" && level === "2" && effmu === "B" && isTurbo && !isKo)
     return true;
   if (
-    BidGt(7.5, 22000) &&
-    network === "PS.eu" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(5.5, 10000) &&
-    network === "PS.eu" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(4.4, 6500) && network === "PS.eu" && level === "2" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (BidGt(3.3, 5000) && network === "PS.eu" && level === "2" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 6000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(55, isOffpeak && isGetTournaments ? 0 : 7500) &&
     network === "PS.eu" &&
     level === "15" &&
@@ -24517,33 +25668,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     level === "15" &&
     effmu === "A" &&
     isSuperTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(88, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "PS.eu" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
     !isKo
   )
     return true;
@@ -24576,15 +25700,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(8.4, 10.5, 20000) &&
-    network === "GG" &&
-    level === "2" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 10000) &&
     network === "GG" &&
     level === "2" &&
     effmu === "A" &&
@@ -24629,15 +25744,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 15000) &&
-    network === "GG" &&
-    level === "2" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(10.75, 13, 35000) &&
     network === "GG" &&
     level === "2" &&
@@ -24648,24 +25754,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(8.4, 10.5, 25000) &&
-    network === "GG" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 20000) &&
-    network === "GG" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 5000) &&
     network === "GG" &&
     level === "2" &&
     effmu === "B" &&
@@ -24691,24 +25779,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    FromToGt(5.25, 8.25, 25000) &&
-    network === "GG" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 10000) &&
-    network === "GG" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
   if (BidGt(20, 60000) && network === "PS.es" && level === "2" && effmu === "A" && isTurbo && isKo)
     return true;
   if (BidGt(10, 20000) && network === "PS.es" && level === "2" && effmu === "A" && isTurbo && isKo)
@@ -24717,25 +25787,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (BidGt(20, 80000) && network === "PS.es" && level === "2" && effmu === "A" && isTurbo && !isKo)
     return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Party" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
   if (BidGt(10, 25000) && network === "PS.es" && level === "2" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 37500) &&
-    network === "Party" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
     return true;
   if (BidGt(5, 7500) && network === "PS.es" && level === "2" && effmu === "A" && isTurbo && !isKo)
     return true;
@@ -24784,24 +25836,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "GG" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(21, 33, 100000) &&
     network === "WPN" &&
     level === "2" &&
@@ -24847,7 +25881,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    FromToGt(200, 300, 30000) &&
     network === "WPN" &&
     level === "15" &&
     effmu === "A" &&
@@ -24877,24 +25911,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     FromToGt(14, 20, 60000) &&
     network === "WPN" &&
     level === "2" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "15" &&
     effmu === "A" &&
     isTurbo &&
     !isKo
@@ -24946,24 +25962,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 20000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 5000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(10.75, 13, 50000) &&
     network === "WPN" &&
     level === "2" &&
@@ -24974,24 +25972,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(8.4, 10.5, 35000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 25000) &&
-    network === "WPN" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 10000) &&
     network === "WPN" &&
     level === "2" &&
     effmu === "B" &&
@@ -25116,78 +26096,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (BidGt(5.5, 5000) && network === "PS.eu" && level === "3" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 7000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 4000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(215, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(82, isOffpeak && isGetTournaments ? 0 : 14000) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 7500) &&
-    network === "PS.eu" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
     return true;
   if (BidGt(27, 100000) && network === "PS.eu" && level === "3" && effmu === "B" && isTurbo && isKo)
     return true;
@@ -25336,42 +26244,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(4.4, 5000) && network === "PS.eu" && level === "3" && effmu === "B" && isTurbo && !isKo)
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 37500) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Party" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(100, isOffpeak && isGetTournaments ? 0 : 10000) &&
     network === "PS.es" &&
     level === "14" &&
@@ -25389,168 +26261,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 5000) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.es" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "GG" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
   if (BidGt(20, 40000) && network === "PS.es" && level === "3" && effmu === "A" && isTurbo && isKo)
     return true;
   if (BidGt(10, 15000) && network === "PS.es" && level === "3" && effmu === "A" && isTurbo && isKo)
@@ -25558,10 +26268,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(20, 60000) && network === "PS.es" && level === "3" && effmu === "A" && isTurbo && !isKo)
     return true;
   if (BidGt(10, 20000) && network === "PS.es" && level === "3" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(20, 50000) && network === "PS.es" && level === "3" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (BidGt(10, 20000) && network === "PS.es" && level === "3" && effmu === "B" && isTurbo && isKo)
     return true;
   if (BidGt(20, 80000) && network === "PS.es" && level === "3" && effmu === "B" && isTurbo && !isKo)
     return true;
@@ -25604,15 +26310,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 8000) &&
-    network === "GG" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(21, 33, 100000) &&
     network === "GG" &&
     level === "3" &&
@@ -25641,15 +26338,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(8.4, 10.5, 20000) &&
-    network === "GG" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 10000) &&
     network === "GG" &&
     level === "3" &&
     effmu === "A" &&
@@ -25703,15 +26391,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 15000) &&
-    network === "GG" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(14, 20, 40000) &&
     network === "GG" &&
     level === "3" &&
@@ -25738,26 +26417,11 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isKo
   )
     return true;
-  if (
-    FromToGt(5.25, 8.25, 10000) &&
-    network === "GG" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
   if (BidGt(30, 75000) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo && isKo)
     return true;
   if (BidGt(20, 30000) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo && isKo)
     return true;
   if (BidGt(15, 10000) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (BidGt(30, 150000) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(20, 50000) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(15, 25000) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo && !isKo)
     return true;
   if (BidGt(30, 100000) && network === "WNMX" && level === "3" && effmu === "B" && isTurbo && isKo)
     return true;
@@ -25770,122 +26434,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(20, 80000) && network === "WNMX" && level === "3" && effmu === "B" && isTurbo && !isKo)
     return true;
   if (BidGt(15, 40000) && network === "WNMX" && level === "3" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(21, 33, 60000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 15000) && network === "WPN" && level === "3" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 12000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 10000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 80000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "WPN" && level === "3" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 25000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 75000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "WPN" && level === "3" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 20000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 50000) && network === "WPN" && level === "3" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 30000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 20000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 150000) &&
-    network === "WPN" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
     return true;
   if (
     BidGt(215, 1000000) &&
@@ -26197,24 +26745,11 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (BidGt(20, 10000) && network === "PS.es" && level === "8" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (BidGt(20, 20000) && network === "PS.es" && level === "8" && effmu === "B" && isTurbo && !isKo)
-    return true;
   if (
-    FromToGt(200, 300, 1000000) &&
-    network === "GG" &&
+    BidGt(20, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.es" &&
     level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 1500000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
+    effmu === "B" &&
     isTurbo &&
     !isKo
   )
@@ -26238,96 +26773,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, 250000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 400000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 150000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 200000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(121, 150, 500000) &&
     network === "GG" &&
     level === "8" &&
@@ -26338,60 +26783,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(121, 150, 750000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 250000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 400000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 150000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 250000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 200000) &&
     network === "GG" &&
     level === "8" &&
     effmu === "B" &&
@@ -26406,24 +26797,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "A" &&
     isTurbo &&
     isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
   )
     return true;
   if (
@@ -26442,42 +26815,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "A" &&
     isTurbo &&
     isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
   )
     return true;
   if (
@@ -26500,24 +26837,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     BidGt(82, isOffpeak && isGetTournaments ? 0 : 45000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 16000) &&
     network === "PS.eu" &&
     level === "13" &&
     effmu === "A" &&
@@ -26571,7 +26890,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    BidGt(109, 60000) &&
     network === "PS.eu" &&
     level === "13" &&
     effmu === "B" &&
@@ -26589,24 +26908,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 16000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(215, 200000) &&
     network === "PS.eu" &&
     level === "13" &&
@@ -26616,7 +26917,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    BidGt(109, 80000) &&
     network === "PS.eu" &&
     level === "13" &&
     effmu === "B" &&
@@ -26640,24 +26941,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "B" &&
     isTurbo &&
     isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 35000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 24000) &&
-    network === "PS.eu" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
   )
     return true;
   if (
@@ -26701,24 +26984,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "WNMX" &&
     level === "8" &&
     effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "Party" &&
-    level === "13" &&
-    effmu === "A" &&
     isTurbo &&
     !isKo
   )
@@ -26922,70 +27187,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 5000) &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 35000) &&
-    network === "PS.es" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    FromToGt(200, 300, 150000) &&
     network === "GG" &&
     level === "13" &&
     effmu === "A" &&
@@ -27000,51 +27202,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "B" &&
     isTurbo &&
     isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 250000) &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
   )
     return true;
   if (
@@ -27066,7 +27223,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    FromToGt(200, 300, 100000) &&
     network === "WPN" &&
     level === "13" &&
     effmu === "A" &&
@@ -27075,82 +27232,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    FromToGt(200, 300, 150000) &&
     network === "WPN" &&
     level === "13" &&
     effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "13" &&
-    effmu === "B" &&
     isTurbo &&
     !isKo
   )
@@ -27527,78 +27612,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, 175000) &&
-    network === "GG" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 250000) &&
-    network === "GG" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "GG" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 175000) &&
-    network === "GG" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 130000) &&
-    network === "GG" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "GG" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(200, 300, 1000000) &&
     network === "GG" &&
     level === "9" &&
@@ -27833,78 +27846,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, 140000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 200000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 1000000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 1500000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(121, 150, 500000) &&
     network === "WPN" &&
     level === "9" &&
@@ -27922,98 +27863,9 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    FromToGt(80, 120, 200000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 300000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 8000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
   if (BidGt(44, 120000) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
     return true;
   if (BidGt(33, 75000) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (BidGt(27, 55000) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (BidGt(22, 35000) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (
-    BidGt(16.5, 20000) &&
-    network === "PS.eu" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(11, 15000) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (BidGt(7.5, 7000) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
     return true;
   if (
     BidGt(44, 200000) &&
@@ -28226,15 +28078,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.26, 8.25, 7000) &&
-    network === "GG" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(34, 49, 200000) &&
     network === "GG" &&
     level === "4" &&
@@ -28325,15 +28168,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 8000) &&
-    network === "GG" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(21, 33, 100000) &&
     network === "GG" &&
     level === "4" &&
@@ -28369,15 +28203,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    FromToGt(5.25, 8.25, 10000) &&
-    network === "GG" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
   if (BidGt(40, 125000) && network === "WNMX" && level === "4" && effmu === "A" && isTurbo && isKo)
     return true;
   if (BidGt(30, 75000) && network === "WNMX" && level === "4" && effmu === "A" && isTurbo && isKo)
@@ -28398,158 +28223,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (BidGt(15, 25000) && network === "WNMX" && level === "4" && effmu === "B" && isTurbo && !isKo)
     return true;
-  if (
-    FromToGt(34, 49, 100000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 40000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 15000) && network === "WPN" && level === "4" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 12000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 10000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 150000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 60000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "WPN" && level === "4" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 20000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 60000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 15000) && network === "WPN" && level === "4" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 12000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 10000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 80000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "WPN" && level === "4" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 25000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "WPN" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
   if (BidGt(55, 200000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (BidGt(33, 75000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (BidGt(27, 55000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (BidGt(22, 35000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (
-    BidGt(16.5, 15000) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(11, 5000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
     return true;
   if (
     BidGt(55, 400000) &&
@@ -28569,45 +28243,9 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (BidGt(33, 90000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(27, 62000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(22, 50000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (
-    BidGt(16.5, 25000) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(11, 10000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(44, 120000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
-    return true;
   if (BidGt(44, 120000) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
     return true;
   if (BidGt(33, 75000) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (BidGt(27, 55000) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (BidGt(22, 35000) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (
-    BidGt(16.5, 20000) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(11, 15000) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (BidGt(7.5, 7000) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
     return true;
   if (
     BidGt(44, 200000) &&
@@ -28654,10 +28292,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(30, 75000) && network === "PS.es" && level === "5" && effmu === "A" && isTurbo && isKo)
     return true;
   if (BidGt(20, 30000) && network === "PS.es" && level === "5" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (BidGt(30, 90000) && network === "PS.es" && level === "5" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(20, 50000) && network === "PS.es" && level === "5" && effmu === "A" && isTurbo && !isKo)
     return true;
   if (BidGt(20, 30000) && network === "PS.es" && level === "5" && effmu === "B" && isTurbo && isKo)
     return true;
@@ -28761,35 +28395,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isKo
   )
     return true;
-  if (BidGt(15, 20000) && network === "GG" && level === "5" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 15000) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 12500) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.26, 8.25, 7000) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
   if (
     FromToGt(34, 49, 200000) &&
     network === "GG" &&
@@ -28801,35 +28406,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(21, 33, 75000) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 40000) && network === "GG" && level === "5" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 25000) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 20000) &&
-    network === "GG" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.26, 8.25, 10000) &&
     network === "GG" &&
     level === "5" &&
     effmu === "B" &&
@@ -28872,158 +28448,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(30, 125000) && network === "WNMX" && level === "5" && effmu === "B" && isTurbo && !isKo)
     return true;
   if (
-    FromToGt(50, 66, 150000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 100000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 40000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 300000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 50000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 12000) && network === "WPN" && level === "5" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 4000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 20000) && network === "WPN" && level === "5" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 8000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 100000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 40000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 15000) && network === "WPN" && level === "5" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 12000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 10000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 150000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 60000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "WPN" && level === "5" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 20000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "WPN" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(215, 400000) &&
     network === "PS.eu" &&
     level === "10" &&
@@ -29042,7 +28466,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(109, 150000) &&
     network === "PS.eu" &&
     level === "10" &&
     effmu === "A" &&
@@ -29051,7 +28475,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 225000) &&
+    BidGt(109, 225000) &&
     network === "PS.eu" &&
     level === "10" &&
     effmu === "A" &&
@@ -29070,78 +28494,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     BidGt(82, isOffpeak && isGetTournaments ? 0 : 160000) &&
-    network === "PS.eu" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "PS.eu" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 32000) &&
-    network === "PS.eu" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 18000) &&
-    network === "PS.eu" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 20000) &&
     network === "PS.eu" &&
     level === "10" &&
     effmu === "A" &&
@@ -29384,78 +28736,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 32000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(200, 300, 600000) &&
     network === "GG" &&
     level === "10" &&
@@ -29492,78 +28772,13 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, 175000) &&
-    network === "GG" &&
+    BidGt(70, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "WNMX" &&
     level === "10" &&
-    effmu === "B" &&
+    effmu === "A" &&
     isTurbo &&
     isKo
   )
-    return true;
-  if (
-    FromToGt(80, 120, 250000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 175000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 130000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(70, 75000) && network === "WNMX" && level === "10" && effmu === "A" && isTurbo && isKo)
     return true;
   if (
     BidGt(70, isOffpeak && isGetTournaments ? 0 : 100000) &&
@@ -29595,69 +28810,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(55, 150000) && network === "PS.eu" && level === "6" && effmu === "A" && isTurbo && isKo)
     return true;
   if (
-    FromToGt(200, 300, 400000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(22, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 600000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(55, 250000) &&
     network === "PS.eu" &&
     level === "6" &&
@@ -29670,114 +28822,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     BidGt(44, isOffpeak && isGetTournaments ? 0 : 150000) &&
     network === "PS.eu" &&
     level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 200000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 300000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(22, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "10" &&
     effmu === "A" &&
     isTurbo &&
     !isKo
@@ -29804,42 +28848,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 55000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(22, isOffpeak && isGetTournaments ? 0 : 35000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(11, isOffpeak && isGetTournaments ? 0 : 5000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(55, 400000) &&
     network === "PS.eu" &&
     level === "6" &&
@@ -29858,141 +28866,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 62000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(22, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(11, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 600000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 800000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 300000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 400000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 140000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 200000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "WPN" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(215, 150000) &&
     network === "PS.eu" &&
     level === "12" &&
@@ -30002,7 +28875,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    BidGt(109, 60000) &&
     network === "PS.eu" &&
     level === "12" &&
     effmu === "A" &&
@@ -30020,24 +28893,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 16000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(215, 200000) &&
     network === "PS.eu" &&
     level === "12" &&
@@ -30047,7 +28902,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    BidGt(109, 80000) &&
     network === "PS.eu" &&
     level === "12" &&
     effmu === "A" &&
@@ -30065,61 +28920,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 35000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 24000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 200000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(50, 66, 150000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
     network === "GG" &&
     level === "6" &&
     effmu === "A" &&
@@ -30137,16 +28938,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(67, 79, 300000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    BidGt(109, 100000) &&
     network === "PS.eu" &&
     level === "12" &&
     effmu === "B" &&
@@ -30156,33 +28948,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     BidGt(82, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 24000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 15000) &&
     network === "PS.eu" &&
     level === "12" &&
     effmu === "B" &&
@@ -30206,15 +28971,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "A" &&
     isTurbo &&
     !isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
   )
     return true;
   if (
@@ -30245,7 +29001,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(109, 150000) &&
     network === "PS.eu" &&
     level === "12" &&
     effmu === "B" &&
@@ -30257,87 +29013,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     BidGt(82, isOffpeak && isGetTournaments ? 0 : 109000) &&
     network === "PS.eu" &&
     level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 200000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.eu" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 5000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 400000) &&
-    network === "GG" &&
-    level === "6" &&
     effmu === "B" &&
     isTurbo &&
     !isKo
@@ -30380,15 +29055,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(34, 49, 90000) &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(215, 250000) &&
     network === "PS.eu" &&
     level === "11" &&
@@ -30398,7 +29064,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    BidGt(109, 100000) &&
     network === "PS.eu" &&
     level === "11" &&
     effmu === "A" &&
@@ -30416,42 +29082,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 24000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(215, 400000) &&
     network === "PS.eu" &&
     level === "11" &&
@@ -30461,7 +29091,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(109, 150000) &&
     network === "PS.eu" &&
     level === "11" &&
     effmu === "A" &&
@@ -30479,42 +29109,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(215, 400000) &&
     network === "PS.eu" &&
     level === "11" &&
@@ -30524,7 +29118,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    BidGt(109, 150000) &&
     network === "PS.eu" &&
     level === "11" &&
     effmu === "B" &&
@@ -30542,42 +29136,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 32000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 18000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(215, 600000) &&
     network === "PS.eu" &&
     level === "11" &&
@@ -30587,7 +29145,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(109, isOffpeak && isGetTournaments ? 0 : 225000) &&
+    BidGt(109, 225000) &&
     network === "PS.eu" &&
     level === "11" &&
     effmu === "B" &&
@@ -30600,60 +29158,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "PS.eu" &&
     level === "11" &&
     effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(55, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.es" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 35000) &&
-    network === "PS.es" &&
-    level === "12" &&
-    effmu === "A" &&
     isTurbo &&
     !isKo
   )
@@ -30776,43 +29280,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(200, 300, 250000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 50000) &&
     network === "GG" &&
     level === "12" &&
     effmu === "A" &&
@@ -30839,42 +29307,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 24000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(200, 300, 400000) &&
     network === "GG" &&
     level === "12" &&
@@ -30885,42 +29317,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(121, 150, 200000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
     network === "GG" &&
     level === "12" &&
     effmu === "B" &&
@@ -30947,42 +29343,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 24000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(200, 300, 400000) &&
     network === "GG" &&
     level === "11" &&
@@ -31001,42 +29361,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(200, 300, 400000) &&
     network === "GG" &&
     level === "11" &&
@@ -31047,42 +29371,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(121, 150, 200000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 32000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "B" &&
@@ -31101,42 +29389,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(121, 150, 300000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "GG" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
     network === "GG" &&
     level === "11" &&
     effmu === "B" &&
@@ -31212,96 +29464,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "WNMX" &&
     level === "11" &&
     effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 250000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 125000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 400000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 200000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "11" &&
-    effmu === "A" &&
     isTurbo &&
     !isKo
   )
@@ -31397,169 +29559,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(200, 300, 150000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 250000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 250000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 125000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 400000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 200000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(50, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "WNMX" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(40, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "WNMX" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
     network === "WNMX" &&
     level === "6" &&
     effmu === "A" &&
@@ -31642,168 +29642,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (
     BidGt(30, isOffpeak && isGetTournaments ? 0 : 100000) &&
     network === "WNMX" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 120000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 70000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 200000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 150000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 4000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 300000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WPN" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 8000) &&
-    network === "WPN" &&
     level === "6" &&
     effmu === "B" &&
     isTurbo &&
@@ -31932,51 +29770,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(55, 150000) && network === "PS.eu" && level === "7" && effmu === "B" && isTurbo && isKo)
     return true;
   if (
-    BidGt(44, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(22, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(55, 250000) &&
     network === "PS.eu" &&
     level === "7" &&
@@ -31995,42 +29788,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(33, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(27, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(22, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "PS.eu" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(30, isOffpeak && isGetTournaments ? 0 : 30000) &&
     network === "PS.es" &&
     level === "7" &&
@@ -32040,15 +29797,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGt(20, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "PS.es" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     BidGt(30, isOffpeak && isGetTournaments ? 0 : 50000) &&
     network === "PS.es" &&
     level === "7" &&
@@ -32078,141 +29826,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (
     BidGt(20, isOffpeak && isGetTournaments ? 0 : 20000) &&
     network === "PS.es" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(30, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "PS.es" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(20, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "PS.es" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 500000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 250000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 150000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 750000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 400000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 250000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 200000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 200000) &&
-    network === "GG" &&
     level === "7" &&
     effmu === "B" &&
     isTurbo &&
@@ -32226,42 +29839,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     effmu === "B" &&
     isTurbo &&
     isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(67, 79, 300000) &&
-    network === "GG" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
   )
     return true;
   if (
@@ -32302,24 +29879,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     BidGt(50, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "WNMX" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(40, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "WNMX" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
     network === "WNMX" &&
     level === "7" &&
     effmu === "B" &&
@@ -32563,24 +30122,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 20000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 5000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
     FromToGt(10.75, 13, 50000) &&
     network === "Chico" &&
     level === "1" &&
@@ -32594,78 +30135,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     network === "Chico" &&
     level === "1" &&
     effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 25000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 10000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 40000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 25000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 9000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 75000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 40000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 13000) &&
-    network === "Chico" &&
-    level === "1" &&
-    effmu === "B" &&
     isTurbo &&
     !isKo
   )
@@ -32707,16 +30176,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 10000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    FromToGt(200, 300, 30000) &&
     network === "Chico" &&
     level === "15" &&
     effmu === "A" &&
@@ -32752,24 +30212,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "15" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(10.75, 13, 35000) &&
     network === "Chico" &&
     level === "2" &&
@@ -32788,15 +30230,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(5.25, 8.25, 15000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(10.75, 13, 35000) &&
     network === "Chico" &&
     level === "2" &&
@@ -32807,24 +30240,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(8.4, 10.5, 25000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 20000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 5000) &&
     network === "Chico" &&
     level === "2" &&
     effmu === "B" &&
@@ -32843,24 +30258,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(8.4, 10.5, 35000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(5.25, 8.25, 25000) &&
-    network === "Chico" &&
-    level === "2" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(2.5, 5, 10000) &&
     network === "Chico" &&
     level === "2" &&
     effmu === "B" &&
@@ -32958,89 +30355,11 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     !isKo
   )
     return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "14" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
   if (BidGt(30, 75000) && network === "IP" && level === "3" && effmu === "A" && isTurbo && isKo)
     return true;
   if (BidGt(20, 30000) && network === "IP" && level === "3" && effmu === "A" && isTurbo && isKo)
     return true;
   if (BidGt(15, 10000) && network === "IP" && level === "3" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (BidGt(30, 150000) && network === "IP" && level === "3" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(20, 50000) && network === "IP" && level === "3" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (BidGt(15, 25000) && network === "IP" && level === "3" && effmu === "A" && isTurbo && !isKo)
     return true;
   if (BidGt(30, 100000) && network === "IP" && level === "3" && effmu === "B" && isTurbo && isKo)
     return true;
@@ -33053,122 +30372,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(20, 80000) && network === "IP" && level === "3" && effmu === "B" && isTurbo && !isKo)
     return true;
   if (BidGt(15, 40000) && network === "IP" && level === "3" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(21, 33, 60000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 15000) && network === "Chico" && level === "3" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 12000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 10000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 80000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "Chico" && level === "3" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 25000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 75000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "Chico" && level === "3" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 20000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 50000) && network === "Chico" && level === "3" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 30000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 20000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 150000) &&
-    network === "Chico" &&
-    level === "3" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
     return true;
   if (
     BidGt(50, isOffpeak && isGetTournaments ? 0 : 100000) &&
@@ -33261,24 +30464,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(200, 300, 1000000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 1500000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(121, 150, 500000) &&
     network === "Chico" &&
     level === "8" &&
@@ -33297,78 +30482,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, 200000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 300000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 8000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(121, 150, 500000) &&
     network === "Chico" &&
     level === "8" &&
@@ -33379,78 +30492,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(121, 150, 750000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 200000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 300000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 8000) &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 32000) &&
     network === "Chico" &&
     level === "8" &&
     effmu === "B" &&
@@ -33477,7 +30518,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    FromToGt(200, 300, 100000) &&
     network === "Chico" &&
     level === "13" &&
     effmu === "A" &&
@@ -33486,82 +30527,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    FromToGt(200, 300, 150000) &&
     network === "Chico" &&
     level === "13" &&
     effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(100, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 250000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "13" &&
-    effmu === "B" &&
     isTurbo &&
     !isKo
   )
@@ -33675,78 +30644,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, 140000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 200000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 1000000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 1500000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     FromToGt(121, 150, 500000) &&
     network === "Chico" &&
     level === "9" &&
@@ -33757,78 +30654,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     FromToGt(121, 150, 750000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 200000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 300000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 8000) &&
-    network === "Chico" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 30000) &&
     network === "Chico" &&
     level === "9" &&
     effmu === "B" &&
@@ -33855,140 +30680,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(20, 50000) && network === "IP" && level === "4" && effmu === "B" && isTurbo && !isKo)
     return true;
   if (BidGt(15, 25000) && network === "IP" && level === "4" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(34, 49, 100000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 40000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 15000) && network === "Chico" && level === "4" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 12000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 10000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 150000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 60000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "Chico" && level === "4" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 20000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 60000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 15000) && network === "Chico" && level === "4" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 12000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 10000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 80000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "Chico" && level === "4" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 25000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "Chico" &&
-    level === "4" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
     return true;
   if (BidGt(50, 150000) && network === "IP" && level === "5" && effmu === "A" && isTurbo && isKo)
     return true;
@@ -34025,158 +30716,13 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (BidGt(30, 125000) && network === "IP" && level === "5" && effmu === "B" && isTurbo && !isKo)
     return true;
   if (
-    FromToGt(50, 66, 150000) &&
-    network === "Chico" &&
-    level === "5" &&
+    BidGt(70, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "IP" &&
+    level === "10" &&
     effmu === "A" &&
     isTurbo &&
     isKo
   )
-    return true;
-  if (
-    FromToGt(34, 49, 100000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 40000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 300000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 120000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 50000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 12000) && network === "Chico" && level === "5" && effmu === "A" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 4000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 20000) && network === "Chico" && level === "5" && effmu === "A" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 8000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 100000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 40000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (BidGt(15, 15000) && network === "Chico" && level === "5" && effmu === "B" && isTurbo && isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 12000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 10000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, 150000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, 60000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(15, 30000) && network === "Chico" && level === "5" && effmu === "B" && isTurbo && !isKo)
-    return true;
-  if (
-    FromToGt(10.75, 13, 20000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(8.4, 10.5, 15000) &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (BidGt(70, 75000) && network === "IP" && level === "10" && effmu === "A" && isTurbo && isKo)
     return true;
   if (
     BidGt(70, isOffpeak && isGetTournaments ? 0 : 100000) &&
@@ -34199,186 +30745,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (
     BidGt(70, isOffpeak && isGetTournaments ? 0 : 150000) &&
     network === "IP" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 400000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 600000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 200000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 300000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 600000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 800000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 300000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 400000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 140000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, 200000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "10" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 65000) &&
-    network === "Chico" &&
     level === "10" &&
     effmu === "B" &&
     isTurbo &&
@@ -34458,349 +30824,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(200, 300, 250000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 125000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 400000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 200000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 400000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 200000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 600000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 300000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "11" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 150000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 250000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(52.5, 109, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 250000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 125000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 60000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(200, 300, 400000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(121, 150, 200000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(80, 120, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "12" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(50, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "IP" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(40, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "IP" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
     network === "IP" &&
     level === "6" &&
     effmu === "A" &&
@@ -34890,187 +30914,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(50, 66, 120000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 70000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 30000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 200000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 150000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 4000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 300000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 8000) &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
     BidGt(50, isOffpeak && isGetTournaments ? 0 : 125000) &&
-    network === "IP" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(40, isOffpeak && isGetTournaments ? 0 : 90000) &&
-    network === "IP" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
     network === "IP" &&
     level === "7" &&
     effmu === "B" &&
@@ -35106,8 +30950,3191 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WNMX" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(40, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "WNMX" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WNMX" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    network === "WNMX" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(40, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WNMX" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WNMX" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "IP" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(40, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "IP" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    network === "IP" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(40, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "IP" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "IP" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "IP" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(20, isOffpeak && isGetTournaments ? 0 : 0) &&
+    network === "PS.es" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(55, isOffpeak && isGetTournaments ? 0 : 4000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(55, isOffpeak && isGetTournaments ? 0 : 7500) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(82, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(215, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, 25000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(82, 10000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(55, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isSuperTurbo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "Party" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Party" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Party" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (FromTo(1, 33) && network === "PS.eu" && level === "13" && isTurbo) return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(27, 33, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(27, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(27, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(27, 33, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(27, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(27, 33, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(27, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(44, 55, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(27, 33, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(109, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Party" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, isOffpeak && isGetTournaments ? 0 : 45000) &&
+    network === "GG" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "GG" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 40000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 60000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 75000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 40000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 125000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 60000) &&
+    network === "GG" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 100000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(100, 150, 40000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(100, 150, 60000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 75000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 60000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 250000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 125000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 75000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 125000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 75000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 125000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 100000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 250000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.es" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "PS.es" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.es" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.es" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.es" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "PS.es" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.es" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.es" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.es" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "PS.es" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.es" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "PS.es" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.es" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "PS.es" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(100, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.es" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(50, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "PS.es" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 40000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 60000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 45000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 75000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(100, 150, 40000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 125000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(100, 150, 60000) &&
+    network === "WPN" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(100, 150, 40000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(100, 150, 60000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 250000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 125000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 60000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(57, 74, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 400000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 250000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 125000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 60000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 400000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 400000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 75000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 600000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 125000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 400000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 75000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 600000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 125000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 600000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 800000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 400000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 1000000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 500000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 100000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 1500000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 750000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 250000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WPN" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 45000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 40000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 60000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 75000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 40000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 125000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 60000) &&
+    network === "Chico" &&
+    level === "14" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(100, 150, 40000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(100, 150, 60000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 250000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 125000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 60000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 400000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "13" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 250000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 125000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 60000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 400000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 400000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 75000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 600000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 125000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "12" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 400000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 200000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 75000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 600000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 125000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 600000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 800000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 400000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "11" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 600000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 300000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 800000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 400000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 1000000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
     FromToGt(121, 150, 500000) &&
     network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 100000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(200, 300, 1500000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 750000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 25000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Chico" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 75000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 60000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(121, 150, 125000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 100000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(51, 74, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(33, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(27, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(22, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(33, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(27, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(22, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(44, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(33, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(27, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(22, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(33, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(27, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(22, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(27, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(22, isOffpeak && isGetTournaments ? 0 : 35000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(11, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(33, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(27, isOffpeak && isGetTournaments ? 0 : 62000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(22, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(16.5, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(11, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (BidGt(44, 120000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (BidGt(33, 75000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (BidGt(27, 50000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (BidGt(22, 35000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (
+    BidGt(16.5, 15000) &&
+    network === "PS.eu" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (BidGt(11, 5000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (
+    BidGt(33, 100000) &&
+    network === "PS.eu" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (BidGt(27, 62000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(22, 50000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (
+    BidGt(16.5, 25000) &&
+    network === "PS.eu" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (BidGt(11, 10000) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(27, 50000) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (BidGt(22, 35000) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (
+    BidGt(16.5, 20000) &&
+    network === "PS.eu" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (BidGt(11, 15000) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (BidGt(7.5, 7500) && network === "PS.eu" && level === "5" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (BidGt(27, 50000) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (BidGt(22, 35000) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (
+    BidGt(16.5, 20000) &&
+    network === "PS.eu" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (BidGt(11, 15000) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (BidGt(7.5, 7500) && network === "PS.eu" && level === "4" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (BidGt(5.5, 7500) && network === "PS.eu" && level === "2" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(4.4, 5000) && network === "PS.eu" && level === "2" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (
+    BidGt(7.5, 20000) &&
+    network === "PS.eu" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(5.5, 10000) &&
+    network === "PS.eu" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (BidGt(4.4, 7500) && network === "PS.eu" && level === "2" && effmu === "B" && isTurbo && !isKo)
+    return true;
+  if (BidGt(3.5, 5000) && network === "PS.eu" && level === "2" && effmu === "B" && isTurbo && !isKo)
+    return true;
+  if (
+    BidGt(7.5, 20000) &&
+    network === "PS.eu" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(5.5, 10000) &&
+    network === "PS.eu" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (BidGt(4.4, 7500) && network === "PS.eu" && level === "1" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(3.3, 5000) && network === "PS.eu" && level === "1" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(5.5, 15000) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (BidGt(4.4, 10000) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (BidGt(3.3, 5000) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (
+    BidGt(5.5, 20000) &&
+    network === "PS.eu" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(4.4, 15000) &&
+    network === "PS.eu" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (BidGt(3.3, 6000) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo && !isKo)
+    return true;
+  if (BidGt(20, 0) && network === "PS.es" && level === "8" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.es" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(20, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.es" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.es" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(20, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "PS.es" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.es" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(20, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.es" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 75000) &&
+    network === "PS.es" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(20, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    network === "PS.es" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "PS.es" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(20, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "PS.es" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(30, 100000) &&
+    network === "PS.es" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (BidGt(20, 50000) && network === "PS.es" && level === "5" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(20, 50000) && network === "PS.es" && level === "3" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (BidGt(10, 20000) && network === "PS.es" && level === "3" && effmu === "B" && isTurbo && isKo)
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "GG" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 100000) &&
+    network === "GG" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 250000) &&
+    network === "GG" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "GG" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "GG" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 250000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 400000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 200000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 300000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 400000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 200000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 300000) &&
+    network === "GG" &&
     level === "7" &&
     effmu === "A" &&
     isTurbo &&
@@ -35115,8 +34142,8 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, 200000) &&
-    network === "Chico" &&
+    FromToGt(50, 74, 125000) &&
+    network === "GG" &&
     level === "7" &&
     effmu === "A" &&
     isTurbo &&
@@ -35124,9 +34151,1501 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 80000) &&
-    network === "Chico" &&
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
     level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 400000) &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 200000) &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "GG" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 4000) &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 8000) &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 20000) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 15000) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 12500) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 7500) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 25000) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "GG" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 7500) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 8000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "GG" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 8000) &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 15000) &&
+    network === "GG" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "GG" &&
+    level === "2" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 15000) &&
+    network === "GG" &&
+    level === "2" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 20000) &&
+    network === "GG" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 5000) &&
+    network === "GG" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 25000) &&
+    network === "GG" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 10000) &&
+    network === "GG" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 20000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 5000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 25000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 10000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 50000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 35000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 15000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 100000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 50000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 25000) &&
+    network === "GG" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(40, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WNMX" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WNMX" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(40, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WNMX" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WNMX" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (BidGt(30, 120000) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(20, 50000) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(15, 25000) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (
+    BidGt(40, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "IP" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "IP" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(40, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "IP" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "IP" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (BidGt(30, 120000) && network === "IP" && level === "3" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(20, 50000) && network === "IP" && level === "3" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (BidGt(15, 25000) && network === "IP" && level === "3" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 100000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 250000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 250000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 400000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 200000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 150000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 4000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 250000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 8000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 62000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "WPN" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 50000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (BidGt(15, 15000) && network === "WPN" && level === "5" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (
+    FromToGt(10.75, 13, 5000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 150000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 62000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (BidGt(15, 25000) && network === "WPN" && level === "5" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (
+    FromToGt(10.75, 13, 10000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 50000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 20000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 15000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 12500) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 7500) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 200000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 75000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 25000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "WPN" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 50000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 20000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 15000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 12500) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 7500) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 200000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 75000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 25000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 75000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 20000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 15000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 12500) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 8000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 100000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 30000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "WPN" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 75000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 20000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 15000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 12500) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 8000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 100000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 30000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 100000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 25000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 200000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 60000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 35000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 25000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 15000) &&
+    network === "WPN" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 20000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 5000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 25000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 10000) &&
+    network === "WPN" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 20000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 5000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 25000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 10000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 50000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 35000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 15000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 100000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 50000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 25000) &&
+    network === "WPN" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 150000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 100000) &&
+    network === "Chico" &&
+    level === "9" &&
     effmu === "A" &&
     isTurbo &&
     isKo
@@ -35135,14 +35654,257 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (
     FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 40000) &&
     network === "Chico" &&
-    level === "7" &&
+    level === "9" &&
     effmu === "A" &&
     isTurbo &&
     isKo
   )
     return true;
   if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 8000) &&
+    FromToGt(75, 120, 250000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 80000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 250000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 400000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 200000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "9" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 250000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 250000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 200000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 300000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 125000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 400000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 74, 200000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 300000) &&
     network === "Chico" &&
     level === "7" &&
     effmu === "A" &&
@@ -35151,7 +35913,34 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(121, 150, 750000) &&
+    FromToGt(50, 74, 125000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(75, 120, 400000) &&
     network === "Chico" &&
     level === "7" &&
     effmu === "A" &&
@@ -35160,16 +35949,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(80, 120, 300000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    FromToGt(50, 74, 200000) &&
     network === "Chico" &&
     level === "7" &&
     effmu === "A" &&
@@ -35187,7 +35967,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 32000) &&
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
     network === "Chico" &&
     level === "7" &&
     effmu === "A" &&
@@ -35196,7 +35976,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(50, 66, 120000) &&
+    FromToGt(50, 66, 150000) &&
     network === "Chico" &&
     level === "7" &&
     effmu === "B" &&
@@ -35205,7 +35985,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 70000) &&
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
     network === "Chico" &&
     level === "7" &&
     effmu === "B" &&
@@ -35214,48 +35994,12 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 30000) &&
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
     network === "Chico" &&
     level === "7" &&
     effmu === "B" &&
     isTurbo &&
     isKo
-  )
-    return true;
-  if (
-    BidGt(15, isOffpeak && isGetTournaments ? 0 : 12000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    isKo
-  )
-    return true;
-  if (
-    FromToGt(50, 66, 200000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 50000) &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "B" &&
-    isTurbo &&
-    !isKo
   )
     return true;
   if (
@@ -35264,115 +36008,911 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     level === "7" &&
     effmu === "B" &&
     isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 4000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 250000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
     !isKo
   )
     return true;
   if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WNMX" &&
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    network === "Chico" &&
     level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 8000) &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(50, 66, 150000) &&
+    network === "Chico" &&
+    level === "6" &&
     effmu === "A" &&
     isTurbo &&
     isKo
   )
     return true;
   if (
-    BidGt(40, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "WNMX" &&
-    level === "7" &&
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 100000) &&
+    network === "Chico" &&
+    level === "6" &&
     effmu === "A" &&
     isTurbo &&
     isKo
   )
     return true;
   if (
-    BidGt(30, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "WNMX" &&
-    level === "7" &&
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 40000) &&
+    network === "Chico" &&
+    level === "6" &&
     effmu === "A" &&
     isTurbo &&
     isKo
   )
     return true;
   if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "WNMX" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(40, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "WNMX" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "WNMX" &&
-    level === "7" &&
-    effmu === "A" &&
-    isTurbo &&
-    !isKo
-  )
-    return true;
-  if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "IP" &&
-    level === "7" &&
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "Chico" &&
+    level === "6" &&
     effmu === "A" &&
     isTurbo &&
     isKo
   )
     return true;
   if (
-    BidGt(40, isOffpeak && isGetTournaments ? 0 : 75000) &&
-    network === "IP" &&
-    level === "7" &&
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 4000) &&
+    network === "Chico" &&
+    level === "6" &&
     effmu === "A" &&
     isTurbo &&
     isKo
   )
     return true;
   if (
-    BidGt(50, isOffpeak && isGetTournaments ? 0 : 150000) &&
-    network === "IP" &&
-    level === "7" &&
+    FromToGt(50, 66, 250000) &&
+    network === "Chico" &&
+    level === "6" &&
     effmu === "A" &&
     isTurbo &&
     !isKo
   )
     return true;
   if (
-    BidGt(40, isOffpeak && isGetTournaments ? 0 : 100000) &&
-    network === "IP" &&
-    level === "7" &&
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    network === "Chico" &&
+    level === "6" &&
     effmu === "A" &&
     isTurbo &&
     !isKo
   )
     return true;
   if (
-    BidGt(30, isOffpeak && isGetTournaments ? 0 : 40000) &&
-    network === "IP" &&
-    level === "7" &&
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 60000) &&
+    network === "Chico" &&
+    level === "6" &&
     effmu === "A" &&
     isTurbo &&
     !isKo
   )
     return true;
   if (
-    BidGt(30, isOffpeak && isGetTournaments ? 0 : 20000) &&
-    network === "IP" &&
-    level === "7" &&
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 20000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 8000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 120000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 50000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 15000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 5000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, isOffpeak && isGetTournaments ? 0 : 150000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, isOffpeak && isGetTournaments ? 0 : 62000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    BidGt(15, isOffpeak && isGetTournaments ? 0 : 25000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, isOffpeak && isGetTournaments ? 0 : 10000) &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "Chico" &&
+    level === "5" &&
     effmu === "A" &&
     isTurbo &&
     isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 50000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (BidGt(15, 15000) && network === "Chico" && level === "5" && effmu === "A" && isTurbo && isKo)
+    return true;
+  if (
+    FromToGt(10.75, 13, 5000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 150000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 62000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (BidGt(15, 25000) && network === "Chico" && level === "5" && effmu === "A" && isTurbo && !isKo)
+    return true;
+  if (
+    FromToGt(10.75, 13, 10000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 50000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 20000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 15000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 12500) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 7500) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 200000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 75000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 25000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "Chico" &&
+    level === "5" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 120000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 50000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 20000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 15000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 12500) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 7500) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(34, 49, 200000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 75000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 25000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 75000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 20000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 15000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 12500) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 8000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 100000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 30000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "Chico" &&
+    level === "4" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 75000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 20000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 15000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 12500) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 8000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 100000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 30000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 100000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 40000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 25000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 20000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(21, 33, 200000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(14, 20, 60000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(10.75, 13, 35000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 25000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 15000) &&
+    network === "Chico" &&
+    level === "3" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 10000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 15000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 20000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 5000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 25000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 10000) &&
+    network === "Chico" &&
+    level === "2" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 20000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 5000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 25000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 10000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "A" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 50000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 35000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 15000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    isKo
+  )
+    return true;
+  if (
+    FromToGt(8.4, 10.5, 100000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(5.26, 8.25, 50000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
+  )
+    return true;
+  if (
+    FromToGt(2.5, 5.25, 25000) &&
+    network === "Chico" &&
+    level === "1" &&
+    effmu === "B" &&
+    isTurbo &&
+    !isKo
   )
     return true;
   if (
@@ -35590,15 +37130,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGtName(33, 10000, "Speedway") &&
-    network === "PS.eu" &&
-    level === "4" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGtName(33, 10000, "Bounty Builder") &&
     network === "PS.eu" &&
     level === "4" &&
@@ -35662,15 +37193,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGtName(33, 10000, "Speedway") &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     FromToName(1, 16.5, "hot") &&
     network === "PS.eu" &&
     level === "5" &&
@@ -35689,15 +37211,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGtName(33, 10000, "Speedway") &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidName(27, "big") &&
     network === "PS.eu" &&
     level === "5" &&
@@ -35725,47 +37238,11 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToName(1, 22, "hot") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(33, 10000, "Speedway") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGt(8.88, 10000) &&
     network === "PS.eu" &&
     level === "6" &&
     effmu === "B" &&
     isSuperTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(33, 10000, "Speedway") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromToName(1, 27, "hot") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isTurbo &&
     isGetTournaments
   )
     return true;
@@ -35857,15 +37334,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidName(55, "Marathon") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidName(82, "Bounty Builder") &&
     network === "PS.eu" &&
     level === "8" &&
@@ -35881,24 +37349,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGtName(109, 12000, "Saturday KO") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(33, 10000, "Speedway") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGt(8.88, 5000) &&
     network === "PS.eu" &&
     level === "8" &&
@@ -35908,29 +37358,11 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    FromToName(1, 27, "hot") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGt(8.88, 0) &&
     network === "PS.eu" &&
     level === "8" &&
     effmu === "A" &&
     isSuperTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(55, "Marathon") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
     isGetTournaments
   )
     return true;
@@ -35944,51 +37376,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGtName(109, 12000, "Saturday KO") &&
-    network === "PS.eu" &&
-    level === "8" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 12000, "Saturday KO") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(82, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(55, "Marathon") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromToName(1, 27, "hot") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "A" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGt(8.88, 0) &&
     network === "PS.eu" &&
     level === "9" &&
@@ -35998,55 +37385,11 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidName(82, "Bounty Builder") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(55, "Marathon") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 12000, "Saturday KO") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    FromToName(1, 27, "hot") &&
-    network === "PS.eu" &&
-    level === "9" &&
-    effmu === "B" &&
-    isTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGt(8.88, 0) &&
     network === "PS.eu" &&
     level === "9" &&
     effmu === "B" &&
     isSuperTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 12000, "Saturday KO") &&
-    network === "PS.eu" &&
-    level === "10" &&
-    isNormal &&
     isGetTournaments
   )
     return true;
@@ -36084,8 +37427,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isGetTournaments
   )
     return true;
-  if (BidGt(8.88, 0) && network === "PS.eu" && level === "10" && isSuperTurbo && isGetTournaments)
-    return true;
   if (
     BidName(22, "Supersonic") &&
     network === "PS.eu" &&
@@ -36096,15 +37437,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidName(82, "Bigger") &&
-    network === "PS.eu" &&
-    level === "10" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGtName(109, 10000, "Sunday Wrap-Up") &&
     network === "PS.eu" &&
     level === "10" &&
@@ -36115,14 +37447,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (
     BidGtName(109, 10000, "Sunday Wrap-Up") &&
-    network === "PS.eu" &&
-    level === "11" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 12000, "Saturday KO") &&
     network === "PS.eu" &&
     level === "11" &&
     isNormal &&
@@ -36133,24 +37457,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     BidName(82, "Bounty Builder") &&
     network === "PS.eu" &&
     level === "11" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(82, "Bigger") &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(82, "big") &&
-    network === "PS.eu" &&
-    level === "11" &&
-    effmu === "A" &&
     isNormal &&
     isGetTournaments
   )
@@ -36181,8 +37487,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isTurbo &&
     isGetTournaments
   )
-    return true;
-  if (BidGt(8.88, 0) && network === "PS.eu" && level === "11" && isSuperTurbo && isGetTournaments)
     return true;
   if (
     BidName(22, "Supersonic") &&
@@ -36232,8 +37536,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isSuperTurbo &&
     isGetTournaments
   )
-    return true;
-  if (BidGt(8.88, 0) && network === "PS.eu" && level === "12" && isSuperTurbo && isGetTournaments)
     return true;
   if (
     FromToName(1, 44, "hot") &&
@@ -36310,16 +37612,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     isNormal &&
     isGetTournaments
   )
-    return true;
-  if (
-    BidName(22, "Supersonic") &&
-    network === "PS.eu" &&
-    level === "13" &&
-    isSuperTurbo &&
-    isGetTournaments
-  )
-    return true;
-  if (BidGt(8.88, 0) && network === "PS.eu" && level === "13" && isSuperTurbo && isGetTournaments)
     return true;
   if (
     FromToName(1, 82, "hot") &&
@@ -36612,16 +37904,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGtName(25, 10000, "GGMasters") &&
-    network === "GG" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGtName(150, 400000, "GGMasters") &&
     network === "GG" &&
     level === "6" &&
@@ -36802,16 +38084,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGtName(150, 150000, "GGMasters") &&
-    network === "GG" &&
-    level === "10" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGtName(55, 15000, "Fifty Stack") &&
     network === "GG" &&
     level === "10" &&
@@ -36902,36 +38174,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGtName(1050, 1000000, "GGMasters High Rollers") &&
-    network === "GG" &&
-    level === "12" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(1050, 750000, "GGMasters High Rollers") &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "B" &&
-    isNormal &&
-    !isKo &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidName(250, "Daily Main Event") &&
-    network === "GG" &&
-    level === "13" &&
-    effmu === "A" &&
-    isNormal &&
-    !isKo &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidName(250, "Daily Main Event") &&
     network === "GG" &&
     level === "14" &&
@@ -36951,73 +38193,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
-    BidGtName(109, 250000, "Main Event") &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 200000, "Main Event") &&
-    network === "Chico" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 200000, "Main Event") &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 75000, "Main Event") &&
-    network === "Chico" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 75000, "Main Event") &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "B" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 50000, "Main Event") &&
-    network === "Chico" &&
-    level === "7" &&
-    effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
     BidGtName(109, 50000, "Main Event") &&
     network === "Chico" &&
     level === "8" &&
     effmu === "A" &&
-    isNormal &&
-    isGetTournaments
-  )
-    return true;
-  if (
-    BidGtName(109, 50000, "Main Event") &&
-    network === "Chico" &&
-    level === "8" &&
-    effmu === "B" &&
     isNormal &&
     isGetTournaments
   )
@@ -37113,9 +38292,618 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   )
     return true;
   if (
+    BidName(215, "Super Tuesday") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments &&
+    Name("Edition") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(215, "Super Tuesday") &&
+    network === "PS.eu" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments &&
+    Name("Edition") &&
+    network === "PS.eu" &&
+    level === "14" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(215, "Super Tuesday") &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    Name("Edition") &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 10000, "Monday 6-Max") &&
+    network === "PS.eu" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 10000, "Monday 6-Max") &&
+    network === "PS.eu" &&
+    level === "12" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 10000, "Monday 6-Max") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 10000, "Monday 6-Max") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 12500, "Battle Royale") &&
+    network === "PS.eu" &&
+    level === "12" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 12500, "Battle Royale") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 12500, "Battle Royale") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 12500, "Battle Royale") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(1000, 400000, "Super Tuesday") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(1000, 300000, "Thursday Thrill") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(215, "Super Tuesday") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    Name("Edition") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(215, "Supersonic") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments &&
+    StartDay("Sunday") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(215, "Hot") &&
+    network === "PS.eu" &&
+    level === "15" &&
+    effmu === "A" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(22, "Mini Supersonic") &&
+    network === "PS.eu" &&
+    level === "13" &&
+    isSuperTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 8.8) &&
+    network === "PS.eu" &&
+    level === "13" &&
+    isSuperTurbo &&
+    !isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 8.8) &&
+    network === "PS.eu" &&
+    level === "12" &&
+    isSuperTurbo &&
+    !isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromTo(1, 8.8) &&
+    network === "PS.eu" &&
+    level === "14" &&
+    effmu === "B" &&
+    isSuperTurbo &&
+    !isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 12500, "Saturday KO") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments &&
+    Name("Edition") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(55, 10000, "Sunday Stack") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (FromTo(1, 8.8) && network === "PS.eu" && level === "11" && isSuperTurbo && isGetTournaments)
+    return true;
+  if (
+    BidGtName(109, 12500, "Saturday KO") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(55, 10000, "Sunday Stack") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(33, 10000, "Saturday Speedway") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    effmu === "B" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (FromTo(1, 8.8) && network === "PS.eu" && level === "10" && isSuperTurbo && isGetTournaments)
+    return true;
+  if (
+    BidName(250, "Daily Main Event") &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(1050, 1000000, "GGMasters High Rollers") &&
+    network === "GG" &&
+    level === "13" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(1050, 1000000, "GGMasters High Rollers") &&
+    network === "GG" &&
+    level === "12" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(150, 150000, "GGMasters") &&
+    network === "GG" &&
+    level === "10" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(82, "Bigger") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(82, "bigger") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(82, "Big") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(200, "Sunday Eliminator") &&
+    network === "PS.es" &&
+    level === "15" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
     BidGtName(66, 25000, "BIG10") &&
     network === "WPN" &&
     level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(162, "Daily Pacific Rim Special") &&
+    network === "PS.eu" &&
+    level === "10" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(162, "Daily Pacific Rim Special") &&
+    network === "PS.eu" &&
+    level === "11" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(162, "Bounty Builder") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(162, "Daily Pacific Rim Special") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 12500, "Saturday KO") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(82, "Bounty Builder") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(55, "Marathon") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(55, 10000, "Sunday Stack") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(33, 10000, "Saturday Speedway") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 12500, "Saturday KO") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidName(55, "Marathon") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(55, 10000, "Sunday Stack") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(33, 10000, "Saturday Speedway") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromToName(1, 27, "hot") &&
+    network === "PS.eu" &&
+    level === "8" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(33, 10000, "Saturday Speedway") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromToName(1, 27, "hot") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "A" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromToName(1, 22, "hot") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    effmu === "B" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(33, 10000, "Saturday Speedway") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(33, 10000, "Saturday Speedway") &&
+    network === "PS.eu" &&
+    level === "4" &&
+    effmu === "A" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 10000, "Mini Battle Royale") &&
+    network === "PS.eu" &&
+    level === "2" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 10000, "Mini Saturday KO") &&
+    network === "PS.eu" &&
+    level === "2" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 10000, "Mini Battle Royale") &&
+    network === "PS.eu" &&
+    level === "1" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(11, 10000, "Mini Saturday KO") &&
+    network === "PS.eu" &&
+    level === "1" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(150, 150000, "GGMasters") &&
+    network === "GG" &&
+    level === "9" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(55, 15000, "Fifty Stack") &&
+    network === "GG" &&
+    level === "9" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(25, 10000, "GGMasters") &&
+    network === "GG" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    !isKo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 75000, "Main Event") &&
+    network === "Chico" &&
+    level === "8" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 200000, "Main Event") &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 75000, "Main Event") &&
+    network === "Chico" &&
+    level === "7" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 200000, "Main Event") &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "A" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 250000, "Main Event") &&
+    network === "Chico" &&
+    level === "6" &&
+    effmu === "B" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    BidGtName(109, 250000, "Main Event") &&
+    network === "Chico" &&
+    level === "5" &&
+    isNormal &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromToName(1, 27, "hot") &&
+    network === "PS.eu" &&
+    level === "9" &&
+    isTurbo &&
+    isGetTournaments
+  )
+    return true;
+  if (
+    FromToGt(44, 53, isOffpeak && isGetTournaments ? 0 : 1000000) &&
+    network === "GG" &&
+    level === "16" &&
     effmu === "B" &&
     isNormal &&
     isGetTournaments
@@ -37125,19 +38913,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 3.3) && network === "GG" && level === "0" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 4.4) && network === "GG" && level === "0" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 5.5) && network === "PS.eu" && level === "1" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 2.2) && network === "PS.eu" && level === "1" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 12) && network === "888" && level === "1" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 3.3) && network === "888" && level === "1" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 5.5) && network === "GG" && level === "1" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 2.2) && network === "GG" && level === "1" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 10) && network === "IP" && level === "1" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 5) && network === "IP" && level === "1" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 5) && network === "WNMX" && level === "1" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "1" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 5.5) && network === "Chico" && level === "1" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 2.2) && network === "Chico" && level === "1" && effmu === "A" && isTurbo)
@@ -37145,16 +38924,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (FromTo(1, 2.2) && network === "WPN" && level === "1" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 5.5) && network === "WPN" && level === "1" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 5.5) && network === "PS.eu" && level === "1" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 2.2) && network === "PS.eu" && level === "1" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 12) && network === "888" && level === "1" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 3.3) && network === "888" && level === "1" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 4.4) && network === "GG" && level === "1" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "1" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 5) && network === "WNMX" && level === "1" && effmu === "B" && isTurbo) return true;
   if (FromTo(0, 5) && network === "IP" && level === "1" && effmu === "B" && isTurbo) return true;
   if (FromTo(0, 10) && network === "IP" && level === "1" && effmu === "B" && isNormal) return true;
   if (FromTo(0, 5.5) && network === "WPN" && level === "1" && effmu === "B" && isNormal)
@@ -37185,20 +38955,10 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(0, 2.2) && network === "PS.eu" && level === "2" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(0, 12) && network === "888" && level === "2" && effmu === "A" && isNormal) return true;
-  if (FromTo(0, 3.3) && network === "888" && level === "2" && effmu === "A" && isTurbo) return true;
-  if (FromTo(0, 12) && network === "888" && level === "2" && effmu === "B" && isNormal) return true;
-  if (FromTo(0, 3.3) && network === "888" && level === "2" && effmu === "B" && isTurbo) return true;
   if (FromTo(0, 11) && network === "GG" && level === "2" && effmu === "A" && isNormal) return true;
   if (FromTo(0, 5.25) && network === "GG" && level === "2" && effmu === "A" && isTurbo) return true;
   if (FromTo(0, 5.5) && network === "GG" && level === "2" && effmu === "B" && isNormal) return true;
   if (FromTo(0, 2.2) && network === "GG" && level === "2" && effmu === "B" && isTurbo) return true;
-  if (FromTo(0, 5) && network === "PS.es" && level === "2" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(0, 2) && network === "PS.es" && level === "2" && effmu === "A" && isTurbo) return true;
-  if (FromTo(0, 5) && network === "PS.es" && level === "2" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(0, 2) && network === "PS.es" && level === "2" && effmu === "B" && isTurbo) return true;
   if (FromTo(0, 20) && network === "WNMX" && level === "2" && effmu === "A" && isNormal)
     return true;
   if (FromTo(0, 10) && network === "WNMX" && level === "2" && effmu === "A" && isTurbo) return true;
@@ -37231,19 +38991,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 3.3) && network === "PS.eu" && level === "3" && effmu === "B" && isTurbo)
     return true;
-  if (
-    FromTo(1, 16.5) &&
-    network === "PS.eu" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal &&
-    FLAGS("deepstack") &&
-    network === "PS.eu" &&
-    level === "3" &&
-    effmu === "B" &&
-    isNormal
-  )
-    return true;
   if (FromTo(1, 11) && network === "Party" && level === "3" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 5.5) && network === "Party" && level === "3" && effmu === "A" && isTurbo)
@@ -37257,41 +39004,15 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (FromTo(1, 5.5) && network === "888" && level === "3" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 12) && network === "888" && level === "3" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 3.3) && network === "888" && level === "3" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "PS.es" && level === "3" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 5) && network === "PS.es" && level === "3" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "PS.es" && level === "3" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 5) && network === "PS.es" && level === "3" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 15) && network === "GG" && level === "3" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 5.25) && network === "GG" && level === "3" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 11) && network === "GG" && level === "3" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 5.25) && network === "GG" && level === "3" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "3" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "3" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "3" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "3" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "3" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "3" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "3" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "3" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 16.5) && network === "Chico" && level === "3" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 5.25) && network === "Chico" && level === "3" && effmu === "A" && isTurbo)
     return true;
-  if (FromTo(1, 16.5) && network === "Chico" && level === "3" && effmu === "B" && isNormal)
-    return true;
   if (FromTo(1, 5.25) && network === "Chico" && level === "3" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 16.5) && network === "WPN" && level === "3" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 5.25) && network === "WPN" && level === "3" && effmu === "B" && isTurbo)
-    return true;
   if (FromTo(1, 16.5) && network === "WPN" && level === "3" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 5.25) && network === "WPN" && level === "3" && effmu === "A" && isTurbo)
     return true;
   if (FromTo(1, 16.5) && network === "PS.eu" && level === "4" && effmu === "A" && isNormal)
     return true;
@@ -37329,80 +39050,26 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 16.5) && network === "Party" && level === "4" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 5.5) && network === "Party" && level === "4" && effmu === "A" && isTurbo)
-    return true;
   if (FromTo(1, 11) && network === "Party" && level === "4" && effmu === "B" && isNormal)
     return true;
-  if (FromTo(1, 5.5) && network === "Party" && level === "4" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 5.5) && network === "888" && level === "4" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 16.5) && network === "888" && level === "4" && effmu === "B" && isNormal)
     return true;
-  if (FromTo(1, 5.5) && network === "888" && level === "4" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "PS.es" && level === "4" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 5) && network === "PS.es" && level === "4" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "PS.es" && level === "4" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 5) && network === "PS.es" && level === "4" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 22) && network === "GG" && level === "4" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 5.25) && network === "GG" && level === "4" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 5.25) && network === "GG" && level === "4" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 15) && network === "GG" && level === "4" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "4" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 20) && network === "IP" && level === "4" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "4" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 10) && network === "IP" && level === "4" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "4" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 20) && network === "WNMX" && level === "4" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "4" && effmu === "B" && isNormal)
-    return true;
   if (FromTo(1, 10) && network === "WNMX" && level === "4" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 22) && network === "Chico" && level === "4" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 5.25) && network === "Chico" && level === "4" && effmu === "A" && isTurbo)
-    return true;
   if (FromTo(1, 16.5) && network === "Chico" && level === "4" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 5.25) && network === "Chico" && level === "4" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 5.25) && network === "WPN" && level === "4" && effmu === "B" && isTurbo)
     return true;
   if (FromTo(1, 16.5) && network === "WPN" && level === "4" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 22) && network === "WPN" && level === "4" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 5.25) && network === "WPN" && level === "4" && effmu === "A" && isTurbo)
-    return true;
   if (FromTo(1, 22) && network === "PS.eu" && level === "5" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 7.5) && network === "PS.eu" && level === "5" && effmu === "A" && isTurbo)
-    return true;
-  if (
-    FromTo(1, 27) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal &&
-    FLAGS("deepstack") &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "A" &&
-    isNormal
-  )
-    return true;
-  if (
-    FromTo(1, 27) &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal &&
-    FLAGS("deepstack") &&
-    network === "PS.eu" &&
-    level === "5" &&
-    effmu === "B" &&
-    isNormal
-  )
     return true;
   if (FromTo(1, 16.5) && network === "PS.eu" && level === "5" && effmu === "B" && isNormal)
     return true;
@@ -37410,11 +39077,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 27) && network === "Party" && level === "5" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 5.5) && network === "Party" && level === "5" && effmu === "A" && isTurbo)
-    return true;
   if (FromTo(1, 22) && network === "Party" && level === "5" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 5.5) && network === "Party" && level === "5" && effmu === "B" && isTurbo)
     return true;
   if (FromTo(1, 22) && network === "888" && level === "4" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 25) && network === "888" && level === "5" && effmu === "A" && isNormal) return true;
@@ -37428,67 +39091,29 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (FromTo(1, 10) && network === "PS.es" && level === "5" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 5) && network === "PS.es" && level === "5" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 22) && network === "GG" && level === "5" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 10.5) && network === "GG" && level === "5" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 22) && network === "GG" && level === "5" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 5.25) && network === "GG" && level === "5" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 30) && network === "IP" && level === "5" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "5" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 10) && network === "IP" && level === "5" && effmu === "A" && isSuperTurbo)
     return true;
   if (FromTo(1, 20) && network === "IP" && level === "5" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "5" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 30) && network === "WNMX" && level === "5" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "5" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 10) && network === "WNMX" && level === "5" && effmu === "A" && isSuperTurbo)
     return true;
   if (FromTo(1, 20) && network === "WNMX" && level === "5" && effmu === "B" && isNormal)
     return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "5" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 22) && network === "Chico" && level === "5" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 10.5) && network === "Chico" && level === "5" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 22) && network === "Chico" && level === "5" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 5.25) && network === "Chico" && level === "5" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 22) && network === "WPN" && level === "5" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 10.5) && network === "WPN" && level === "5" && effmu === "A" && isTurbo)
     return true;
   if (FromTo(1, 5.25) && network === "WPN" && level === "5" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 22) && network === "WPN" && level === "5" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 27) && network === "PS.eu" && level === "6" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 11) && network === "PS.eu" && level === "6" && effmu === "A" && isTurbo)
-    return true;
-  if (
-    FromTo(1, 27) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal &&
-    FLAGS("deepstack") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "A" &&
-    isNormal
-  )
-    return true;
-  if (
-    FromTo(1, 27) &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal &&
-    FLAGS("deepstack") &&
-    network === "PS.eu" &&
-    level === "6" &&
-    effmu === "B" &&
-    isNormal
-  )
     return true;
   if (FromTo(1, 22) && network === "PS.eu" && level === "6" && effmu === "B" && isNormal)
     return true;
@@ -37496,47 +39121,15 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 33) && network === "Party" && level === "6" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 5.5) && network === "Party" && level === "6" && effmu === "A" && isTurbo)
-    return true;
   if (FromTo(1, 27) && network === "Party" && level === "6" && effmu === "B" && isNormal)
     return true;
-  if (FromTo(1, 5.5) && network === "Party" && level === "6" && effmu === "B" && isTurbo)
-    return true;
   if (FromTo(1, 33) && network === "888" && level === "6" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 12) && network === "888" && level === "6" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 25) && network === "888" && level === "6" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 12) && network === "888" && level === "6" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "PS.es" && level === "6" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 10) && network === "PS.es" && level === "6" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 20) && network === "PS.es" && level === "6" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 10) && network === "PS.es" && level === "6" && effmu === "B" && isTurbo)
-    return true;
   if (FromTo(1, 27.5) && network === "GG" && level === "6" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 13) && network === "GG" && level === "6" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 22) && network === "GG" && level === "6" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 10.5) && network === "GG" && level === "6" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 30) && network === "IP" && level === "6" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "6" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "6" && effmu === "A" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 30) && network === "IP" && level === "6" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "6" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "6" && effmu === "B" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "6" && effmu === "B" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "6" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 30) && network === "WNMX" && level === "6" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 30) && network === "WNMX" && level === "6" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "6" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "6" && effmu === "A" && isSuperTurbo)
-    return true;
   if (FromTo(1, 27.5) && network === "Chico" && level === "6" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 13) && network === "Chico" && level === "6" && effmu === "A" && isTurbo)
@@ -37559,124 +39152,34 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 11) && network === "PS.eu" && level === "7" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 33) && network === "Party" && level === "7" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 11) && network === "Party" && level === "7" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "Party" && level === "7" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 11) && network === "Party" && level === "7" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "888" && level === "7" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 12) && network === "888" && level === "7" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 33) && network === "888" && level === "7" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 12) && network === "888" && level === "7" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 30) && network === "PS.es" && level === "7" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 10) && network === "PS.es" && level === "7" && effmu === "A" && isTurbo)
     return true;
   if (FromTo(1, 20) && network === "PS.es" && level === "7" && effmu === "B" && isNormal)
     return true;
-  if (FromTo(1, 10) && network === "PS.es" && level === "7" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "GG" && level === "7" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 13) && network === "GG" && level === "7" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 20) && network === "GG" && level === "7" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 33) && network === "GG" && level === "7" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 30) && network === "IP" && level === "7" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "7" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "7" && effmu === "A" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 30) && network === "IP" && level === "7" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "7" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "7" && effmu === "B" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 30) && network === "WNMX" && level === "7" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "7" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "7" && effmu === "A" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 30) && network === "WNMX" && level === "7" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "7" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "7" && effmu === "B" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "Chico" && level === "7" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 20) && network === "Chico" && level === "7" && effmu === "A" && isTurbo)
     return true;
   if (FromTo(1, 13) && network === "Chico" && level === "7" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 33) && network === "Chico" && level === "7" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 33) && network === "WPN" && level === "7" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 20) && network === "WPN" && level === "7" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 33) && network === "WPN" && level === "7" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 13) && network === "WPN" && level === "7" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 4.4) && network === "PS.eu" && level === "0" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 33) && network === "PS.eu" && level === "8" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 16.5) && network === "PS.eu" && level === "8" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 16.5) && network === "PS.eu" && level === "8" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "PS.eu" && level === "8" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 33) && network === "Party" && level === "8" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 11) && network === "Party" && level === "8" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "Party" && level === "8" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 11) && network === "Party" && level === "8" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "888" && level === "8" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 12) && network === "888" && level === "8" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 12) && network === "888" && level === "8" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 33) && network === "888" && level === "8" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 30) && network === "PS.es" && level === "8" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 20) && network === "PS.es" && level === "8" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 30) && network === "PS.es" && level === "8" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 10) && network === "PS.es" && level === "8" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 33) && network === "GG" && level === "8" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 20) && network === "GG" && level === "8" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "GG" && level === "8" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 33) && network === "GG" && level === "8" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 50) && network === "WNMX" && level === "8" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 30) && network === "WNMX" && level === "8" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "8" && effmu === "A" && isSuperTurbo)
-    return true;
   if (FromTo(1, 30) && network === "WNMX" && level === "8" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 20) && network === "WNMX" && level === "8" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "8" && effmu === "B" && isSuperTurbo)
-    return true;
   if (FromTo(1, 50) && network === "IP" && level === "8" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 30) && network === "IP" && level === "8" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "8" && effmu === "A" && isSuperTurbo)
-    return true;
   if (FromTo(1, 30) && network === "IP" && level === "8" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 20) && network === "IP" && level === "8" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "8" && effmu === "B" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "WPN" && level === "8" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 20) && network === "WPN" && level === "8" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 33) && network === "WPN" && level === "8" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 20) && network === "WPN" && level === "8" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 33) && network === "Chico" && level === "8" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 20) && network === "Chico" && level === "8" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "Chico" && level === "8" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 20) && network === "Chico" && level === "8" && effmu === "B" && isTurbo)
-    return true;
   if (FromTo(1, 44) && network === "PS.eu" && level === "9" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 22) && network === "PS.eu" && level === "9" && effmu === "A" && isTurbo)
@@ -37698,36 +39201,20 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 12) && network === "888" && level === "9" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 33) && network === "888" && level === "9" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 30) && network === "PS.es" && level === "9" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 20) && network === "PS.es" && level === "9" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 30) && network === "PS.es" && level === "9" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 20) && network === "PS.es" && level === "9" && effmu === "B" && isTurbo)
-    return true;
   if (FromTo(1, 50) && network === "GG" && level === "9" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 33) && network === "GG" && level === "9" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 20) && network === "GG" && level === "9" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 33) && network === "GG" && level === "9" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 70) && network === "IP" && level === "9" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 40) && network === "IP" && level === "9" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "9" && effmu === "A" && isSuperTurbo)
-    return true;
   if (FromTo(1, 50) && network === "IP" && level === "9" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 30) && network === "IP" && level === "9" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "IP" && level === "9" && effmu === "B" && isSuperTurbo)
-    return true;
   if (FromTo(1, 70) && network === "WNMX" && level === "9" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 40) && network === "WNMX" && level === "9" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "9" && effmu === "A" && isSuperTurbo)
-    return true;
   if (FromTo(1, 50) && network === "WNMX" && level === "9" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 30) && network === "WNMX" && level === "9" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 10) && network === "WNMX" && level === "9" && effmu === "B" && isSuperTurbo)
-    return true;
   if (FromTo(1, 55) && network === "WPN" && level === "9" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 33) && network === "WPN" && level === "9" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 33) && network === "WPN" && level === "9" && effmu === "B" && isNormal) return true;
@@ -37740,14 +39227,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 20) && network === "Chico" && level === "9" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 44) && network === "PS.eu" && level === "10" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 22) && network === "PS.eu" && level === "10" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 44) && network === "PS.eu" && level === "10" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 22) && network === "PS.eu" && level === "10" && effmu === "B" && isTurbo)
-    return true;
   if (FromTo(1, 44) && network === "Party" && level === "10" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 22) && network === "Party" && level === "10" && effmu === "A" && isTurbo)
@@ -37756,59 +39235,20 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 22) && network === "Party" && level === "10" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 44) && network === "888" && level === "10" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 16.5) && network === "888" && level === "10" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 44) && network === "888" && level === "10" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 16.5) && network === "888" && level === "10" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 30) && network === "PS.es" && level === "10" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 20) && network === "PS.es" && level === "10" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 30) && network === "PS.es" && level === "10" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 20) && network === "PS.es" && level === "10" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 50) && network === "GG" && level === "10" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 33) && network === "GG" && level === "10" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 33) && network === "GG" && level === "10" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 50) && network === "GG" && level === "10" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 70) && network === "WNMX" && level === "10" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 50) && network === "WNMX" && level === "10" && effmu === "A" && isTurbo)
     return true;
   if (FromTo(1, 15) && network === "WNMX" && level === "10" && effmu === "A" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 70) && network === "WNMX" && level === "10" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 40) && network === "WNMX" && level === "10" && effmu === "B" && isTurbo)
     return true;
   if (FromTo(1, 10) && network === "WNMX" && level === "10" && effmu === "B" && isSuperTurbo)
     return true;
-  if (FromTo(1, 70) && network === "IP" && level === "10" && effmu === "A" && isNormal) return true;
   if (FromTo(1, 50) && network === "IP" && level === "10" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 15) && network === "IP" && level === "10" && effmu === "A" && isSuperTurbo)
     return true;
-  if (FromTo(1, 70) && network === "IP" && level === "10" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 40) && network === "IP" && level === "10" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 10) && network === "IP" && level === "10" && effmu === "B" && isSuperTurbo)
     return true;
-  if (FromTo(1, 55) && network === "Chico" && level === "10" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 33) && network === "Chico" && level === "10" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 55) && network === "Chico" && level === "10" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 33) && network === "Chico" && level === "10" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 55) && network === "WPN" && level === "10" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 55) && network === "WPN" && level === "10" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 33) && network === "WPN" && level === "10" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 55) && network === "PS.eu" && level === "11" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 22) && network === "PS.eu" && level === "11" && effmu === "A" && isTurbo)
@@ -37819,63 +39259,31 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 66) && network === "Party" && level === "11" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 22) && network === "Party" && level === "11" && effmu === "A" && isTurbo)
-    return true;
   if (FromTo(1, 44) && network === "Party" && level === "11" && effmu === "B" && isNormal)
     return true;
-  if (FromTo(1, 22) && network === "Party" && level === "11" && effmu === "B" && isTurbo)
-    return true;
   if (FromTo(1, 55) && network === "888" && level === "11" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 16.5) && network === "888" && level === "11" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 16.5) && network === "888" && level === "11" && effmu === "B" && isTurbo)
     return true;
   if (FromTo(1, 44) && network === "888" && level === "11" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 50) && network === "PS.es" && level === "11" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 20) && network === "PS.es" && level === "11" && effmu === "A" && isTurbo)
-    return true;
   if (FromTo(1, 30) && network === "PS.es" && level === "11" && effmu === "B" && isNormal)
     return true;
-  if (FromTo(1, 20) && network === "PS.es" && level === "11" && effmu === "B" && isTurbo)
-    return true;
   if (FromTo(1, 66) && network === "GG" && level === "11" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 33) && network === "GG" && level === "11" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 33) && network === "GG" && level === "11" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 50) && network === "GG" && level === "11" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 70) && network === "IP" && level === "11" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 50) && network === "IP" && level === "11" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 20) && network === "IP" && level === "11" && effmu === "A" && isSuperTurbo)
     return true;
-  if (FromTo(1, 70) && network === "IP" && level === "11" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 50) && network === "IP" && level === "11" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 15) && network === "IP" && level === "11" && effmu === "B" && isSuperTurbo)
     return true;
-  if (FromTo(1, 70) && network === "WNMX" && level === "11" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 50) && network === "WNMX" && level === "11" && effmu === "A" && isTurbo)
-    return true;
   if (FromTo(1, 20) && network === "WNMX" && level === "11" && effmu === "A" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 70) && network === "WNMX" && level === "11" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 50) && network === "WNMX" && level === "11" && effmu === "B" && isTurbo)
     return true;
   if (FromTo(1, 15) && network === "WNMX" && level === "11" && effmu === "B" && isSuperTurbo)
     return true;
   if (FromTo(1, 66) && network === "WPN" && level === "11" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 33) && network === "WPN" && level === "11" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 55) && network === "WPN" && level === "11" && effmu === "B" && isNormal)
     return true;
-  if (FromTo(1, 33) && network === "WPN" && level === "11" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 66) && network === "Chico" && level === "11" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 33) && network === "Chico" && level === "11" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 33) && network === "Chico" && level === "11" && effmu === "B" && isTurbo)
     return true;
   if (FromTo(1, 55) && network === "Chico" && level === "11" && effmu === "B" && isNormal)
     return true;
@@ -37887,19 +39295,11 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 22) && network === "PS.eu" && level === "12" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 66) && network === "Party" && level === "12" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 33) && network === "Party" && level === "12" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(11, 66) && network === "Party" && level === "12" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 22) && network === "Party" && level === "12" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 55) && network === "888" && level === "12" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 22) && network === "888" && level === "12" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 55) && network === "888" && level === "12" && effmu === "B" && isNormal)
-    return true;
   if (FromTo(1, 16.5) && network === "888" && level === "12" && effmu === "B" && isTurbo)
     return true;
   if (FromTo(1, 50) && network === "PS.es" && level === "12" && effmu === "A" && isNormal)
@@ -37914,26 +39314,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (FromTo(1, 50) && network === "GG" && level === "12" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 33) && network === "GG" && level === "12" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 66) && network === "GG" && level === "12" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 70) && network === "WNMX" && level === "12" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 50) && network === "WNMX" && level === "12" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "12" && effmu === "A" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 70) && network === "WNMX" && level === "12" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 50) && network === "WNMX" && level === "12" && effmu === "B" && isTurbo)
-    return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "12" && effmu === "B" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 70) && network === "IP" && level === "12" && effmu === "A" && isNormal) return true;
-  if (FromTo(1, 50) && network === "IP" && level === "12" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "12" && effmu === "A" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 70) && network === "IP" && level === "12" && effmu === "B" && isNormal) return true;
-  if (FromTo(1, 50) && network === "IP" && level === "12" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "12" && effmu === "B" && isSuperTurbo)
-    return true;
   if (FromTo(1, 80) && network === "WPN" && level === "12" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 50) && network === "WPN" && level === "12" && effmu === "A" && isTurbo) return true;
@@ -37958,11 +39338,7 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 109) && network === "Party" && level === "13" && effmu === "A" && isNormal)
     return true;
-  if (FromTo(1, 33) && network === "Party" && level === "13" && effmu === "A" && isTurbo)
-    return true;
   if (FromTo(1, 77) && network === "Party" && level === "13" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 33) && network === "Party" && level === "13" && effmu === "B" && isTurbo)
     return true;
   if (FromTo(1, 109) && network === "888" && level === "13" && effmu === "A" && isNormal)
     return true;
@@ -37970,14 +39346,6 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
   if (FromTo(1, 55) && network === "888" && level === "13" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 22) && network === "888" && level === "13" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 50) && network === "PS.es" && level === "13" && effmu === "A" && isNormal)
-    return true;
-  if (FromTo(1, 30) && network === "PS.es" && level === "13" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 50) && network === "PS.es" && level === "13" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 30) && network === "PS.es" && level === "13" && effmu === "B" && isTurbo)
-    return true;
   if (FromTo(1, 110) && network === "GG" && level === "13" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 88) && network === "GG" && level === "13" && effmu === "A" && isTurbo) return true;
@@ -37987,23 +39355,15 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 70) && network === "WNMX" && level === "13" && effmu === "A" && isTurbo)
     return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "13" && effmu === "A" && isSuperTurbo)
-    return true;
   if (FromTo(1, 70) && network === "WNMX" && level === "13" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 50) && network === "WNMX" && level === "13" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 20) && network === "WNMX" && level === "13" && effmu === "B" && isSuperTurbo)
-    return true;
   if (FromTo(1, 100) && network === "IP" && level === "13" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 70) && network === "IP" && level === "13" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "13" && effmu === "A" && isSuperTurbo)
-    return true;
   if (FromTo(1, 70) && network === "IP" && level === "13" && effmu === "B" && isNormal) return true;
   if (FromTo(1, 50) && network === "IP" && level === "13" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 20) && network === "IP" && level === "13" && effmu === "B" && isSuperTurbo)
-    return true;
   if (FromTo(1, 110) && network === "WPN" && level === "13" && effmu === "A" && isNormal)
     return true;
   if (FromTo(1, 88) && network === "WPN" && level === "13" && effmu === "A" && isTurbo) return true;
@@ -38050,46 +39410,25 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 30) && network === "PS.es" && level === "14" && effmu === "B" && isTurbo)
     return true;
-  if (FromTo(1, 110) && network === "GG" && level === "14" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 110) && network === "GG" && level === "14" && effmu === "A" && isTurbo) return true;
-  if (FromTo(1, 110) && network === "GG" && level === "14" && effmu === "B" && isNormal)
-    return true;
-  if (FromTo(1, 110) && network === "GG" && level === "14" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 100) && network === "WNMX" && level === "14" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 100) && network === "WNMX" && level === "14" && effmu === "A" && isTurbo)
     return true;
   if (FromTo(1, 50) && network === "WNMX" && level === "14" && effmu === "A" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 100) && network === "WNMX" && level === "14" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 70) && network === "WNMX" && level === "14" && effmu === "B" && isTurbo)
     return true;
   if (FromTo(1, 20) && network === "WNMX" && level === "14" && effmu === "B" && isSuperTurbo)
     return true;
-  if (FromTo(1, 100) && network === "IP" && level === "14" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 100) && network === "IP" && level === "14" && effmu === "A" && isTurbo) return true;
   if (FromTo(1, 50) && network === "IP" && level === "14" && effmu === "A" && isSuperTurbo)
-    return true;
-  if (FromTo(1, 100) && network === "IP" && level === "14" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 70) && network === "IP" && level === "14" && effmu === "B" && isTurbo) return true;
   if (FromTo(1, 20) && network === "IP" && level === "14" && effmu === "B" && isSuperTurbo)
     return true;
-  if (FromTo(1, 110) && network === "WPN" && level === "14" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 110) && network === "WPN" && level === "14" && effmu === "A" && isTurbo)
     return true;
-  if (FromTo(1, 110) && network === "WPN" && level === "14" && effmu === "B" && isNormal)
-    return true;
   if (FromTo(1, 88) && network === "WPN" && level === "14" && effmu === "B" && isTurbo) return true;
-  if (FromTo(1, 110) && network === "Chico" && level === "14" && effmu === "A" && isNormal)
-    return true;
   if (FromTo(1, 110) && network === "Chico" && level === "14" && effmu === "A" && isTurbo)
-    return true;
-  if (FromTo(1, 110) && network === "Chico" && level === "14" && effmu === "B" && isNormal)
     return true;
   if (FromTo(1, 88) && network === "Chico" && level === "14" && effmu === "B" && isTurbo)
     return true;
@@ -38122,7 +39461,177 @@ const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     return true;
   if (FromTo(1, 10000) && network === "Chico" && level === "16" && effmu === "A" && isSuperTurbo)
     return true;
-  if (FromTo(1, 33) && network === "WPN" && level === "10" && effmu === "A" && isTurbo) return true;
+  if (FromTo(50, 55) && network === "WNMX" && level === "16" && effmu === "B" && isNormal)
+    return true;
+  if (FromTo(1, 44) && network === "PS.eu" && level === "10" && isNormal) return true;
+  if (FromTo(1, 22) && network === "PS.eu" && level === "10" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "Party" && level === "13" && isTurbo) return true;
+  if (FromTo(1, 66) && network === "Party" && level === "12" && isNormal) return true;
+  if (FromTo(1, 22) && network === "Party" && level === "11" && isTurbo) return true;
+  if (FromTo(1, 110) && network === "GG" && level === "14" && isNormal) return true;
+  if (FromTo(1, 88) && network === "GG" && level === "14" && effmu === "B" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "GG" && level === "11" && isTurbo) return true;
+  if (FromTo(1, 50) && network === "GG" && level === "10" && isNormal) return true;
+  if (FromTo(1, 33) && network === "GG" && level === "10" && isTurbo) return true;
+  if (FromTo(1, 55) && network === "888" && level === "12" && isNormal) return true;
+  if (FromTo(1, 16.5) && network === "888" && level === "11" && isTurbo) return true;
+  if (FromTo(1, 44) && network === "888" && level === "10" && isNormal) return true;
+  if (FromTo(1, 16.5) && network === "888" && level === "10" && isTurbo) return true;
+  if (FromTo(1, 50) && network === "PS.es" && level === "13" && isNormal) return true;
+  if (FromTo(1, 30) && network === "PS.es" && level === "13" && isTurbo) return true;
+  if (FromTo(1, 50) && network === "PS.es" && level === "12" && isNormal) return true;
+  if (FromTo(1, 20) && network === "PS.es" && level === "11" && isTurbo) return true;
+  if (FromTo(1, 30) && network === "PS.es" && level === "10" && isNormal) return true;
+  if (FromTo(1, 20) && network === "PS.es" && level === "10" && isTurbo) return true;
+  if (FromTo(1, 100) && network === "WNMX" && level === "14" && isNormal) return true;
+  if (FromTo(1, 20) && network === "WNMX" && level === "13" && isSuperTurbo) return true;
+  if (FromTo(1, 70) && network === "WNMX" && level === "12" && isNormal) return true;
+  if (FromTo(1, 50) && network === "WNMX" && level === "12" && isTurbo) return true;
+  if (FromTo(1, 20) && network === "WNMX" && level === "12" && isSuperTurbo) return true;
+  if (FromTo(1, 70) && network === "WNMX" && level === "11" && isNormal) return true;
+  if (FromTo(1, 50) && network === "WNMX" && level === "11" && isTurbo) return true;
+  if (FromTo(1, 70) && network === "WNMX" && level === "10" && isNormal) return true;
+  if (FromTo(1, 100) && network === "IP" && level === "14" && isNormal) return true;
+  if (FromTo(1, 20) && network === "IP" && level === "13" && isSuperTurbo) return true;
+  if (FromTo(1, 70) && network === "IP" && level === "12" && isNormal) return true;
+  if (FromTo(1, 50) && network === "IP" && level === "12" && isTurbo) return true;
+  if (FromTo(1, 20) && network === "IP" && level === "12" && isSuperTurbo) return true;
+  if (FromTo(1, 70) && network === "IP" && level === "11" && isNormal) return true;
+  if (FromTo(1, 50) && network === "IP" && level === "11" && isTurbo) return true;
+  if (FromTo(1, 70) && network === "IP" && level === "10" && isNormal) return true;
+  if (FromTo(1, 110) && network === "WPN" && level === "14" && isNormal) return true;
+  if (FromTo(1, 33) && network === "WPN" && level === "11" && isTurbo) return true;
+  if (FromTo(1, 55) && network === "WPN" && level === "10" && isNormal) return true;
+  if (FromTo(1, 33) && network === "WPN" && level === "10" && isTurbo) return true;
+  if (FromTo(1, 110) && network === "Chico" && level === "14" && isNormal) return true;
+  if (FromTo(1, 33) && network === "Chico" && level === "11" && isTurbo) return true;
+  if (FromTo(1, 55) && network === "Chico" && level === "10" && isNormal) return true;
+  if (FromTo(1, 33) && network === "Chico" && level === "10" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "PS.eu" && level === "8" && isNormal) return true;
+  if (FromTo(1, 16.5) && network === "PS.eu" && level === "8" && isTurbo) return true;
+  if (
+    FromTo(1, 27) &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal &&
+    FLAGS("deepstack") &&
+    network === "PS.eu" &&
+    level === "7" &&
+    effmu === "B" &&
+    isNormal
+  )
+    return true;
+  if (
+    FromTo(1, 27) &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal &&
+    FLAGS("deepstack") &&
+    network === "PS.eu" &&
+    level === "6" &&
+    isNormal
+  )
+    return true;
+  if (
+    FromTo(1, 27) &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal &&
+    FLAGS("deepstack") &&
+    network === "PS.eu" &&
+    level === "5" &&
+    isNormal
+  )
+    return true;
+  if (
+    FromTo(1, 16.5) &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isNormal &&
+    FLAGS("deepstack") &&
+    network === "PS.eu" &&
+    level === "3" &&
+    isNormal
+  )
+    return true;
+  if (FromTo(1, 2.2) && network === "PS.eu" && level === "1" && isTurbo) return true;
+  if (FromTo(1, 5.5) && network === "PS.eu" && level === "1" && isNormal) return true;
+  if (FromTo(1, 33) && network === "Party" && level === "8" && isNormal) return true;
+  if (FromTo(1, 11) && network === "Party" && level === "8" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "Party" && level === "7" && isNormal) return true;
+  if (FromTo(1, 11) && network === "Party" && level === "7" && isTurbo) return true;
+  if (FromTo(1, 5.5) && network === "Party" && level === "6" && isTurbo) return true;
+  if (FromTo(1, 5.5) && network === "Party" && level === "5" && isTurbo) return true;
+  if (FromTo(1, 5.5) && network === "Party" && level === "4" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "888" && level === "8" && isNormal) return true;
+  if (FromTo(1, 12) && network === "888" && level === "8" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "888" && level === "7" && isNormal) return true;
+  if (FromTo(1, 12) && network === "888" && level === "7" && isTurbo) return true;
+  if (FromTo(1, 12) && network === "888" && level === "6" && isTurbo) return true;
+  if (FromTo(1, 5.5) && network === "888" && level === "4" && isTurbo) return true;
+  if (FromTo(0, 12) && network === "888" && level === "2" && isNormal) return true;
+  if (FromTo(0, 3.3) && network === "888" && level === "2" && isTurbo) return true;
+  if (FromTo(1, 12) && network === "888" && level === "1" && isNormal) return true;
+  if (FromTo(1, 3.3) && network === "888" && level === "1" && isTurbo) return true;
+  if (FromTo(1, 30) && network === "PS.es" && level === "9" && isNormal) return true;
+  if (FromTo(1, 20) && network === "PS.es" && level === "9" && isTurbo) return true;
+  if (FromTo(1, 30) && network === "PS.es" && level === "8" && isNormal) return true;
+  if (FromTo(1, 10) && network === "PS.es" && level === "7" && isTurbo) return true;
+  if (FromTo(1, 20) && network === "PS.es" && level === "6" && isNormal) return true;
+  if (FromTo(1, 10) && network === "PS.es" && level === "6" && isTurbo) return true;
+  if (FromTo(1, 5) && network === "PS.es" && level === "4" && isTurbo) return true;
+  if (FromTo(1, 10) && network === "PS.es" && level === "4" && isNormal) return true;
+  if (FromTo(1, 10) && network === "PS.es" && level === "3" && isNormal) return true;
+  if (FromTo(1, 5) && network === "PS.es" && level === "3" && isTurbo) return true;
+  if (FromTo(0, 5) && network === "PS.es" && level === "2" && isNormal) return true;
+  if (FromTo(0, 2) && network === "PS.es" && level === "2" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "GG" && level === "8" && isNormal) return true;
+  if (FromTo(1, 20) && network === "GG" && level === "8" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "GG" && level === "7" && isNormal) return true;
+  if (FromTo(1, 22) && network === "GG" && level === "5" && isNormal) return true;
+  if (FromTo(1, 5.25) && network === "GG" && level === "4" && isTurbo) return true;
+  if (FromTo(1, 5.25) && network === "GG" && level === "3" && isTurbo) return true;
+  if (BidGt(1, 10) && network === "WNMX" && level === "9" && isSuperTurbo) return true;
+  if (FromTo(1, 10) && network === "WNMX" && level === "8" && isSuperTurbo) return true;
+  if (FromTo(1, 30) && network === "WNMX" && level === "7" && isNormal) return true;
+  if (FromTo(1, 20) && network === "WNMX" && level === "7" && isTurbo) return true;
+  if (FromTo(1, 10) && network === "WNMX" && level === "7" && isSuperTurbo) return true;
+  if (FromTo(1, 30) && network === "WNMX" && level === "6" && isNormal) return true;
+  if (FromTo(1, 20) && network === "WNMX" && level === "6" && isTurbo) return true;
+  if (FromTo(1, 10) && network === "WNMX" && level === "6" && isSuperTurbo) return true;
+  if (FromTo(1, 20) && network === "WNMX" && level === "5" && isTurbo) return true;
+  if (FromTo(1, 20) && network === "WNMX" && level === "4" && isNormal) return true;
+  if (FromTo(1, 20) && network === "WNMX" && level === "3" && isNormal) return true;
+  if (FromTo(1, 10) && network === "WNMX" && level === "3" && isTurbo) return true;
+  if (FromTo(1, 10) && network === "WNMX" && level === "1" && isNormal) return true;
+  if (FromTo(1, 5) && network === "WNMX" && level === "1" && isTurbo) return true;
+  if (FromTo(1, 10) && network === "IP" && level === "9" && isSuperTurbo) return true;
+  if (FromTo(1, 10) && network === "IP" && level === "8" && isSuperTurbo) return true;
+  if (FromTo(1, 30) && network === "IP" && level === "7" && isNormal) return true;
+  if (FromTo(1, 20) && network === "IP" && level === "7" && isTurbo) return true;
+  if (FromTo(1, 10) && network === "IP" && level === "7" && isSuperTurbo) return true;
+  if (FromTo(1, 30) && network === "IP" && level === "6" && isNormal) return true;
+  if (FromTo(1, 20) && network === "IP" && level === "6" && isTurbo) return true;
+  if (FromTo(1, 10) && network === "IP" && level === "6" && isSuperTurbo) return true;
+  if (FromTo(1, 20) && network === "IP" && level === "5" && isTurbo) return true;
+  if (FromTo(1, 20) && network === "IP" && level === "4" && isNormal) return true;
+  if (FromTo(1, 20) && network === "IP" && level === "3" && isNormal) return true;
+  if (FromTo(1, 10) && network === "IP" && level === "3" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "WPN" && level === "8" && isNormal) return true;
+  if (FromTo(1, 20) && network === "WPN" && level === "8" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "WPN" && level === "7" && isNormal) return true;
+  if (FromTo(1, 22) && network === "WPN" && level === "5" && isNormal) return true;
+  if (FromTo(1, 5.25) && network === "WPN" && level === "4" && isTurbo) return true;
+  if (FromTo(1, 11) && network === "WPN" && level === "3" && effmu === "B" && isNormal) return true;
+  if (FromTo(1, 5.25) && network === "WPN" && level === "3" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "Chico" && level === "8" && isNormal) return true;
+  if (FromTo(1, 20) && network === "Chico" && level === "8" && isTurbo) return true;
+  if (FromTo(1, 33) && network === "Chico" && level === "7" && isNormal) return true;
+  if (FromTo(1, 22) && network === "Chico" && level === "5" && isNormal) return true;
+  if (FromTo(1, 5.25) && network === "Chico" && level === "4" && isTurbo) return true;
+  if (FromTo(1, 11) && network === "Chico" && level === "3" && effmu === "B" && isNormal)
+    return true;
 
   if (isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2))
     return true;

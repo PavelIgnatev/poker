@@ -4,7 +4,7 @@ const { filterRules } = require("../helpers/filterRules");
 
 module.exports = {
   getRules: async () => JSON.parse(await readFile(rulesPath)),
-  saveRules: async (rules) => writeFile(rulesPath, JSON.stringify(rules)),
+  saveRules: async (rules) => writeFile(rulesPath, JSON.stringify(rules).replace("]]]", "]]")),
   getFiltredRules: async (color, level, network, status, KO) => {
     const rules = JSON.parse(await readFile(rulesPath));
 

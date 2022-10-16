@@ -15,7 +15,7 @@ const isTurbo = (tournament) => {
   const network = getNetwork(tournament["@network"]);
   const superturbo = isSuperTurbo(tournament);
   const sat = isSat(tournament);
-  if (sat && flags) flags = flags.replace("SAT", "");
+  if ((sat && flags) || flags?.includes("SAT")) flags = flags.replace("SAT", "");
 
   const turbo =
     (flags?.includes("T") ||

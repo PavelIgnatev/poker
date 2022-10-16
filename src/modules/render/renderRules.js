@@ -29,6 +29,7 @@ function renderRules(rules) {
   } = require("../../helpers/curry");
   const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
   const { isTurbo: isTurboS } = require("../../helpers/isTurbo.js");
+  const { isNormal: isNormalS } = require("../../helpers/isNormal")
   const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
   const {validateNumber} = require('../../helpers/validateNumber')
   
@@ -64,7 +65,7 @@ function renderRules(rules) {
     const isTurbo = isTurboS(tournament);
     const isOffpeak = isOffpeakQ(tournament, Number(tournament['@realDuration'] ?? 0) * 1000);
     const isSuperTurbo = isSuperTurboS(tournament);
-    const isKo = tournament["@bounty"];
+    const isKo = isNormalS(tournament);
     const isNormal = !isTurbo && !isSuperTurbo;
     const isAbility1 = ability1 && ability1 !== '-'
     const isAbility2 = ability2 && ability2 !== '-'

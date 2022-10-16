@@ -4,6 +4,7 @@ const { getNetwork } = require("./getNetwork");
 const { isSuperTurbo } = require("./isSuperTurbo");
 const { isRebuy } = require("./isRebuy");
 const { isSat } = require("./IsSat");
+const { isNormal } = require("./isNormal");
 
 /**
  * Возвращает объект, содержащий в себе большее количество свойств
@@ -58,7 +59,7 @@ const getMoreProp = (tournament) => {
     "@rebuy": rebuy,
     "@od": !!tournament["@flags"]?.includes("OD"),
     "@sat": !!sat,
-    "@bounty": !!tournament["@flags"]?.includes("B"),
+    "@bounty": isNormal(tournament),
     "@sng": !!tournament["@gameClass"]?.includes("sng"),
     "@deepstack": !!tournament["@flags"]?.includes("D"),
     "@superturbo": !!isSuperTurbo(tournament),
