@@ -7,6 +7,8 @@ import { $filtredTableState, fetchUserReposFx } from "../../store/Table";
 import { $config, getConfigRequest } from "../../store/Config";
 import { OnPasswordSubmit, PasswordSection } from "../../components/PasswordSection";
 
+import { TextTier } from "../../components/TextTier/TextTier";
+
 export const MainPage: FC = () => {
   const loading = useStore(fetchUserReposFx.pending);
   const tournaments = useStore($filtredTableState);
@@ -22,6 +24,7 @@ export const MainPage: FC = () => {
   return (
     <>
       <BaseHeader />
+      <TextTier effmu={config.effmu} />
       <BaseTable data={tournaments} loading={loading} />
     </>
   );
