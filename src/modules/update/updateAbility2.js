@@ -12,7 +12,7 @@ const updateAbility2 = async () => {
   const lastValue = 7;
   const levels = Array(17)
     .fill(null)
-    .map((_, i) => [i + "A", i + "B"])
+    .map((_, i) => [i + "A", i + "B", i + "C"])
     .flat();
 
   const state = JSON.parse(await readFile("src/store/tournaments/filtredTournaments.json"));

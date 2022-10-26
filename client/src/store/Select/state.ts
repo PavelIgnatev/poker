@@ -17,6 +17,7 @@ export const TIMERANGE = [
 export const EFFMU = [
   { value: "A", label: "A" },
   { value: "B", label: "B" },
+  { value: "C", label: "C" },
 ];
 
 export const NETWORKS = [

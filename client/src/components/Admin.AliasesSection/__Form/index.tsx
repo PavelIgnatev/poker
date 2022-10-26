@@ -32,7 +32,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
   const [alias, setAlias] = useState<string>("");
   const [mail, setMail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [effmu, setEffmu] = useState<"A" | "B">("A");
+  const [effmu, setEffmu] = useState<Effmu>("A");
   const adminPassword = useStore($password);
 
   const handleSubmit = async () => {
