@@ -4,6 +4,7 @@ import { Tbody } from "./Tbody/Tbody";
 import { Loader } from "../Loader/Loader";
 import classes from "./BaseTable.module.scss";
 import { tableCellModel } from "../../@types/tableCellModel";
+import { TextTier } from "../../components/TextTier/TextTier";
 
 type BaseTableProps = {
   data: tableCellModel[] | undefined;
@@ -29,6 +30,7 @@ export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
 
   return (
     <section className={classes.section}>
+      <TextTier />
       <table className={classes.table}>
         <Thead />
         <Tbody data={data} />
