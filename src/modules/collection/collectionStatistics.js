@@ -9,14 +9,14 @@ const { getStatus } = require("../../helpers/getStatus");
 const currency = require("node-currency");
 const { sendStatistics } = require("../send/sendStatistics");
 const { axios } = require("axios");
-const { getCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
+const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
 
 const collectionStatistics = async () => {
   const errorTournaments = {};
 
   try {
     // const { lastValue } = await currency.getCurrency("usd-cny");
-    const lastValue = await getCurrencyRate("CNY", "USD");
+    const lastValue = await parseCurrencyRate();
 
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {

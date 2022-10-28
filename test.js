@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { username_api_key, password_api_key } = require("./src/constants");
 
-const getCurrencyRate = async (from, to) => {
+const parseFirstAPI = async (to, from) => {
   const url = "https://xecdapi.xe.com/v1/convert_to.json/";
   return axios
     .get(url, {
@@ -16,11 +16,28 @@ const getCurrencyRate = async (from, to) => {
       },
     })
     .then((res) => res.data.from[0].mid)
-    .catch((rej) => rej);
+    .catch((rej) => rej.response);
 };
 
-async function main() {
-  let abc = await getCurrencyRate("CNY", "USD");
-  console.log(abc);
+const parseSecondAPI = async (currency) => {
+  const url = "https://cdn.cur.su/api/latest.json";
+  return axios
+    .get(url)
+    .then((res) => res.data.rates[currency])
+    .catch((rej) => rej.response);
+};
+
+async function getCurrencyRate() {
+  const firstReq = await parseFirstAPI("USD", "CNY");
+  const secondReq = await parseSecondAPI("CNY");
+
+  if (firstReq) {
+    console.log(firstReq + " first req");
+  } else if (secondReq) {
+    console.log(secondReq + " second req");
+  } else {
+    console.log("ERROR");
+  }
 }
-main();
+
+getCurrencyRate();
