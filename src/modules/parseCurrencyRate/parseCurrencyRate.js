@@ -2,10 +2,6 @@ const axios = require("axios");
 const { username_api_key, password_api_key } = require("../../constants");
 const fs = require("fs");
 
-const writeCurrency = (data) => {
-  fs.writeFile("../../store/currency/currency.json", { data: data });
-};
-
 const parseFirstAPI = async (to, from) => {
   const url = "https://xecdapi.xe.com/v1/convert_to.json/";
   return axios
@@ -35,14 +31,20 @@ async function parseCurrencyRate() {
   return parseFirstAPI("USD", "CNY")
     .catch(() => {
       console.log("Первое API сломано");
-
       return parseSecondAPI("CNY");
     })
     .catch(() => {
       console.log("Второе API сломано");
+      fs.readFile(__dirname + "/../../store/currency/currency.json", "utf-8", (error, data) =>
+        error ? console.log("Ошибка чтения файла", error) : JSON.parse(data),
+      );
     })
     .then((res) => {
-      writeCurrency(res);
+      fs.writeFile(
+        __dirname + "/../../store/currency/currency.json",
+        JSON.stringify({ data: res }),
+        (error) => (error ? console.log("Ошибка записи в файл", error) : null),
+      );
       return res;
     });
 }
