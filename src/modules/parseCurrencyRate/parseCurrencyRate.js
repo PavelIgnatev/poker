@@ -28,16 +28,14 @@ const parseSecondAPI = async (currency) => {
 };
 
 async function parseCurrencyRate() {
-  return parseFirstAPI("USD", "CNY")
+  return parseFirstAPI("USDDD", "CNY")
     .catch(() => {
       console.log("Первое API сломано");
-      return parseSecondAPI("CNY");
+      return parseSecondAPI("CNYYY");
     })
-    .catch(() => {
+    .catch(async () => {
       console.log("Второе API сломано");
-      fs.readFile(__dirname + "/../../store/currency/currency.json", "utf-8", (error, data) =>
-        error ? console.log("Ошибка чтения файла", error) : JSON.parse(data),
-      );
+      return await readFile();
     })
     .then((res) => {
       fs.writeFile(
@@ -48,6 +46,19 @@ async function parseCurrencyRate() {
       return res;
     });
 }
+
+const readFile = async () => {
+  const fileContent = await new Promise((resolve, reject) => {
+    return fs.readFile(__dirname + "/../../store/currency/currency.json", "utf8", (err, obj) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(JSON.parse(obj).data);
+    });
+  });
+  return fileContent;
+};
+
 (async () => {
   console.log(await parseCurrencyRate());
 })();
