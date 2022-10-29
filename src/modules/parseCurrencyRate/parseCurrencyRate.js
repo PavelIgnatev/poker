@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { username_api_key, password_api_key } = require("../../constants");
 const fs = require("fs");
+const { writeFile, readFile } = require("../../utils/promisify");
 
 const parseFirstAPI = async (to, from) => {
   const url = "https://xecdapi.xe.com/v1/convert_to.json/";
@@ -28,39 +29,20 @@ const parseSecondAPI = async (currency) => {
 };
 
 async function parseCurrencyRate() {
-  return parseFirstAPI("USDD", "CNY")
+  return parseFirstAPI("USD", "CNY")
     .catch(() => {
       console.log("Первое API сломано");
-      return parseSecondAPI("CNYYY");
+      return parseSecondAPI("CNY");
     })
     .catch(async () => {
       console.log("Второе API сломано");
-      return (await readFile()).data;
+      return JSON.parse(await readFile("src/store/currency/currency.json")).currency;
     })
+    .catch(() => console.log("JSON сломан"))
     .then((res) => {
-      fs.writeFile(
-        __dirname + "/../../store/currency/currency.json",
-        JSON.stringify({ data: res }),
-        (error) => (error ? console.log("Ошибка записи в файл", error) : null),
-      );
+      writeFile("src/store/currency/currency.json", JSON.stringify({ currency: res }));
       return res;
     });
 }
-
-const readFile = async () => {
-  const fileContent = await new Promise((resolve, reject) => {
-    return fs.readFile(__dirname + "/../../store/currency/currency.json", "utf8", (err, obj) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve(JSON.parse(obj));
-    });
-  });
-  return fileContent;
-};
-
-(async () => {
-  console.log(await parseCurrencyRate());
-})();
 
 module.exports = { parseCurrencyRate };
