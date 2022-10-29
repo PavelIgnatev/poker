@@ -28,14 +28,14 @@ const parseSecondAPI = async (currency) => {
 };
 
 async function parseCurrencyRate() {
-  return parseFirstAPI("USDDD", "CNY")
+  return parseFirstAPI("USDD", "CNY")
     .catch(() => {
       console.log("Первое API сломано");
       return parseSecondAPI("CNYYY");
     })
     .catch(async () => {
       console.log("Второе API сломано");
-      return await readFile();
+      return (await readFile()).data;
     })
     .then((res) => {
       fs.writeFile(
@@ -53,7 +53,7 @@ const readFile = async () => {
       if (err) {
         return reject(err);
       }
-      return resolve(JSON.parse(obj).data);
+      return resolve(JSON.parse(obj));
     });
   });
   return fileContent;
