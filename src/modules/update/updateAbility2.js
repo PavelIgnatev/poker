@@ -75,6 +75,10 @@ const updateAbility2 = async () => {
               }
             });
 
+            result = result
+              .sort((a, b) => Number(b["@date"] ?? 0) - Number(a["@date"] ?? 0))
+              .splice(0, 20);
+
             if (result.length) {
               obj[r][l][c][b][s] = result;
             } else {
