@@ -17,7 +17,7 @@ module.exports = {
 
     // хук onRequest
     await fastify.register(fastifyRateLimit, { max: 60, timeWindow: "1 minute" });
-
+    console.log(isProduction);
     if (!isProduction) {
       await fastify.register(fastifyHttpProxy, {
         upstream: "http://localhost:3001",

@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": ">=14.0.0"
+    "node": "14.0.0"
   },
   "scripts": {
-    "start": "concurrently -n server,client \"(npm run start:server)\" \"(npm run start:client)\"",
+    "start": "NODE_ENV=production node src/server.js",
     "start:server": "nodemon ./src/server.js --ignore './src/store' --ignore ./client",
     "start:client": "npm start --prefix client",
+    "start:prod": "NODE_ENV=production node src/server.js",
     "prettier": "prettier --config ./.prettierrc  --write .",
     "prepare": "husky install"
   },
