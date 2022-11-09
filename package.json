@@ -6,7 +6,7 @@
     "node": "14.0.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production node src/server.js",
+    "start": "concurrently -n server,client \"(npm run start:server)\" \"(npm run start:client)\"",
     "start:server": "nodemon ./src/server.js --ignore './src/store' --ignore ./client",
     "start:client": "npm start --prefix client",
     "start:prod": "NODE_ENV=production node src/server.js",

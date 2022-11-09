@@ -31,7 +31,6 @@ const collectionStatistics = async () => {
     const stateConfig = JSON.parse(await readFile(`${path}/config.json`));
     const ability1 = JSON.parse(await readFile(`${path}/ability1.json`));
     const ability2 = JSON.parse(await readFile(`${path}/ability2.json`));
-    const gaps = JSON.parse(await readFile("src/store/gaps/gap.json"));
     const rules = JSON.parse(await readFile(`${path}/rules.json`));
     const config = JSON.parse(await readFile(`src/store/config/config.json`));
 
@@ -95,13 +94,8 @@ const collectionStatistics = async () => {
               const network = t["@network"];
               const level = networks[network] + effmu;
               const currency = t["@currency"];
-              const turbo = isTurbo(t);
               const bid = t["@bid"];
-              const statusGap = `${turbo ? "turbo" : "normal"}`;
               const status = getStatus(t);
-              const gap = gaps?.[level]?.[network]?.[statusGap]?.[bid];
-
-              const realBid = gap ? gap : bid;
               const isStartDate = Number(t["@date"] ?? t["@scheduledStartDate"] ?? 0);
 
               const data = new Date(Number(Number(`${isStartDate - d}000`)))
@@ -116,14 +110,14 @@ const collectionStatistics = async () => {
                 .replace(", 24", ", 00")
                 .split(", ");
 
-              const abilityBid = ability2?.[network]?.[level]?.[currency]?.[realBid]?.[status] ?? 0;
+              const abilityBid = ability2?.[network]?.[level]?.[currency]?.[bid]?.[status] ?? 0;
 
-              const rulesAbility2 = rules[network]?.[data[1]]?.[level]?.[currency]?.[realBid]?.[
+              const rulesAbility2 = rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[
                 status
               ]?.[t["@name"]]
-                ? rules[network]?.[data[1]]?.[level]?.[currency]?.[realBid]?.[status]?.[t["@name"]]
-                : rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
-                ? rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
+                ? rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[status]?.[t["@name"]]
+                : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+                ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
                 : 0;
 
               const realAbility = abilityBid + rulesAbility2;

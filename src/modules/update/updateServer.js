@@ -1,7 +1,6 @@
 const { updateFiltredTournaments } = require("../../modules/update/updateFiltredTournaments");
 const { updateAbility1 } = require("../../modules/update/updateAbility1");
 const { updateAbility2 } = require("../../modules/update/updateAbility2");
-const { createdGap } = require("../../modules/created/createdGap");
 const { updtateAllCopies } = require("./updateAllCopies");
 const { collectionStatistics } = require("../collection/collectionStatistics");
 
@@ -21,10 +20,6 @@ const updateServer = async () => {
     console.log(`Начал обновление фильтрованного стейта`);
     await updateFiltredTournaments();
     console.log(`Завершил обновление фильтрованного стейта`);
-
-    console.log("Создаю объект промежутков");
-    await createdGap();
-    console.log("Объект промежутков создан");
 
     console.log(`Начал обновление древовидного стейта по турнирам`);
     await updateAbility1();

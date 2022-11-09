@@ -1,10 +1,8 @@
 const { readFile, writeFile } = require("../../utils/promisify");
-const { getBid } = require("../../helpers/getBid");
 const { getStatus } = require("../../helpers/getStatus");
 const { getSheduledDate } = require("../../helpers/getSheduledDate");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
-const currency = require("node-currency");
 const { filter } = require("../filter/filter");
 
 const updateAbility2 = async () => {
@@ -17,7 +15,6 @@ const updateAbility2 = async () => {
 
   const state = JSON.parse(await readFile("src/store/tournaments/filtredTournaments.json"));
   console.log("Длина стейта: ", Object.keys(state).length);
-  const gaps = JSON.parse(await readFile("src/store/gaps/gap.json"));
   const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
   const obj = {};
@@ -26,7 +23,7 @@ const updateAbility2 = async () => {
       Object.values(tournaments).forEach((ft) => {
         const t = getMoreProp(ft); //add properties for filter
         const s = getStatus(t); //status
-        const b = getBid(l, t, gaps); //bid
+        const b = tournament["@bid"]; //bid
         const r = t["@network"]; //network - room
         const n = t["@name"]?.toLowerCase(); //name
         const c = t["@currency"]; //currency
@@ -138,7 +135,7 @@ const updateAbility2 = async () => {
         //Тут типо для всех турниров для правил, получаем абилити2 конкретного турнира
         const t = getMoreProp(ft); //add properties for filter
         const s = getStatus(t); //status
-        const b = getBid(l, t, gaps); //bid
+        const b = tournament["@bid"]; //bid
         const r = t["@network"]; //network - room
         const n = t["@name"]?.toLowerCase(); //name
         const c = t["@currency"]; //currency

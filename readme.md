@@ -6,3 +6,4 @@
 "@network" -> "r"
 "@bid" -> "b"
 "@prizepool" -> "p"
+

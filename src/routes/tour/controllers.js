@@ -66,7 +66,6 @@ const getTournaments = async (req, res) => {
     const ability2WithoutName = JSON.parse(
       await readFile("src/store/ability2/ability2WithoutName.json"),
     );
-    const gaps = JSON.parse(await readFile("src/store/gaps/gap.json"));
     const rules = await getRulesAbility2();
     console.log("Начинаю делать запрос");
     let result = (
@@ -111,10 +110,7 @@ const getTournaments = async (req, res) => {
         const info = ability1?.[network]?.[time]?.[bid]?.[name];
         const ability = isMandatoryСonditions && info?.["@avability"];
         const duration = info?.["@duration"] ? Math.round(info?.["@duration"]) : null;
-        const statusGap = `${turbo ? "turbo" : "normal"}`;
-        const gap = gaps?.[level]?.[network]?.[statusGap]?.[bid];
-        const realBid = gap ? gap : bid;
-        const abilityBid = ability2WithoutName?.[network]?.[level]?.[currency]?.[realBid]?.[status];
+        const abilityBid = ability2WithoutName?.[network]?.[level]?.[currency]?.[bid]?.[status];
         const sat = isSat(tournament);
 
         //Фикс гарантии для WPN и 888Poker и Chiko
@@ -147,12 +143,12 @@ const getTournaments = async (req, res) => {
           ),
         );
 
-        const rulesAbility2 = rules[network]?.[time]?.[level]?.[currency]?.[realBid]?.[status]?.[
+        const rulesAbility2 = rules[network]?.[time]?.[level]?.[currency]?.[bid]?.[status]?.[
           tournament["@name"]
         ]
-          ? rules[network]?.[time]?.[level]?.[currency]?.[realBid]?.[status]?.[tournament["@name"]]
-          : rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
-          ? rules[network]?.["all"]?.[level]?.[currency]?.[realBid]?.[status]?.["all"]
+          ? rules[network]?.[time]?.[level]?.[currency]?.[bid]?.[status]?.[tournament["@name"]]
+          : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+          ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
           : 0;
 
         const pp = prizepool >= 0 ? prizepool : "-";
@@ -161,7 +157,7 @@ const getTournaments = async (req, res) => {
           ...tournament,
           "@date": isStartDate,
           "@bid": bid,
-          "@realBid": realBid,
+          "@realBid": bid,
           "@turbo": !!turbo,
           "@rebuy": !!rebuy,
           "@od": !!tournament["@flags"]?.includes("OD"),
