@@ -4,11 +4,12 @@ const { getSheduledDate } = require("../../helpers/getSheduledDate");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { filter } = require("../filter/filter");
+const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
 
 const updateAbility2 = async () => {
   // const { lastValue } = await currency.getCurrency("usd-cny");
-  const lastValue = 7;
-  const levels = Array(17)
+  const lastValue = await parseCurrencyRate();
+    const levels = Array(17)
     .fill(null)
     .map((_, i) => [i + "A", i + "B", i + "C"])
     .flat();
@@ -19,11 +20,12 @@ const updateAbility2 = async () => {
 
   const obj = {};
   levels.forEach((l) => {
+    console.log('Начал обновлять уровень ', l)
     Object.values(state).forEach((tournaments) => {
       Object.values(tournaments).forEach((ft) => {
         const t = getMoreProp(ft); //add properties for filter
         const s = getStatus(t); //status
-        const b = tournament["@bid"]; //bid
+        const b = t["@bid"]; //bid
         const r = t["@network"]; //network - room
         const n = t["@name"]?.toLowerCase(); //name
         const c = t["@currency"]; //currency
@@ -135,7 +137,7 @@ const updateAbility2 = async () => {
         //Тут типо для всех турниров для правил, получаем абилити2 конкретного турнира
         const t = getMoreProp(ft); //add properties for filter
         const s = getStatus(t); //status
-        const b = tournament["@bid"]; //bid
+        const b = t["@bid"]; //bid
         const r = t["@network"]; //network - room
         const n = t["@name"]?.toLowerCase(); //name
         const c = t["@currency"]; //currency

@@ -3,7 +3,7 @@ import { createStore } from "effector";
 
 export const TIMEZONES = [
   { value: "0", label: "EST" },
-  { value: "25200000", label: "MSK" },
+  { value: "28800000", label: "MSK" },
 ];
 
 export const TIMERANGE = [

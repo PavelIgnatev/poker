@@ -13,9 +13,8 @@ const { getRulesAbility2 } = require("../../utils/rules");
 let filter = require("../../modules/filter/filter");
 const { isRebuy } = require("../../helpers/isRebuy");
 const { isSat } = require("../../helpers/IsSat");
-const currency = require("node-currency");
-const { getESTHours } = require("../../helpers/getESTHours");
 const { isNormal } = require("../../helpers/isNormal");
+const { parseCurrencyRate } = require("../../modules/parseCurrencyRate/parseCurrencyRate");
 
 const getTournaments = async (req, res) => {
   try {
@@ -55,7 +54,7 @@ const getTournaments = async (req, res) => {
 
     const config = await getConfig();
     // const { lastValue } = await currency.getCurrency("usd-cny");
-    const lastValue = 7;
+    const lastValue = await parseCurrencyRate();
     const configByAlias = config[alias];
 
     if (!configByAlias) return res.send(result ?? []);

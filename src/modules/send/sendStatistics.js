@@ -25,7 +25,7 @@ const mailOptions = (mails, html, content) => {
   const filename = `${date}.xlsx`;
 
   //as.dsa.20@mail.ru
-  //tyR7ir6URiY$
+  //IaatYiI*p24O
 
   //behaappy@ya.ru
   return {
@@ -59,6 +59,7 @@ const sendMail = async (mail, tournaments, html) => {
     { header: "Prize", key: "@prize" },
     { header: "Guarantee", key: "@prizepool" },
     { header: "ReEntry", key: "@multientries" },
+    { header: "Entrants", key: "@totalEntrants" },
     { header: "A1", key: "@ability" },
     { header: "A2", key: "@abilityBid" },
   ];

@@ -2,6 +2,7 @@ const { PORT } = require("./config/");
 const CronJob = require("cron").CronJob;
 const { createFastifyInstance } = require("./createFastifyInstance");
 const { updatePartServer } = require("./modules/update/updatePartServer");
+const { updateServer } = require("./modules/update/updateServer");
 
 const start = async () => {
   try {
@@ -12,11 +13,11 @@ const start = async () => {
       return;
     }
 
-    await fastify.listen({ port: PORT });
+    await fastify.listen({ port: PORT, host: '0.0.0.0' });
 
     fastify.log.info(`Сервер запущен ${new Date().toISOString()}`);
 
-    // updatePartServer();
+    updateServer();
   } catch (err) {
     console.log(err);
     process.exit(1);
