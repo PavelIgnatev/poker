@@ -4,18 +4,14 @@ const { getWeekday } = require("../../helpers/getWeekday");
 const { readFile, writeFile } = require("../../utils/promisify");
 const { filter } = require("../filter/filter");
 const { deleteFolder } = require("../delete/deleteFolder");
-const { isTurbo } = require("../../helpers/isTurbo");
 const { getStatus } = require("../../helpers/getStatus");
-const currency = require("node-currency");
 const { sendStatistics } = require("../send/sendStatistics");
-const { axios } = require("axios");
 const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
 
 const collectionStatistics = async () => {
   const errorTournaments = {};
 
   try {
-    // const { lastValue } = await currency.getCurrency("usd-cny");
     const lastValue = await parseCurrencyRate();
 
     const currentTime = new Date(

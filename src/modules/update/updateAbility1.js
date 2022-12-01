@@ -35,8 +35,8 @@ const updateAbility1 = async () => {
         const abilities = obj[network][time][bid][name]["@avability"];
         const durations = obj[network][time][bid][name]["@duration"];
 
-        if (ability && abilities.length < 30) abilities.push(ability);
-        if (duration && durations.length < 30) durations.push(duration);
+        if (ability) abilities.push(ability);
+        if (duration) durations.push(duration);
       });
     });
 

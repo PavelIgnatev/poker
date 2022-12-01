@@ -3,14 +3,23 @@ const { updateAbility1 } = require("../../modules/update/updateAbility1");
 const { updateAbility2 } = require("../../modules/update/updateAbility2");
 const { updtateAllCopies } = require("./updateAllCopies");
 const { collectionStatistics } = require("../collection/collectionStatistics");
+const { saveRules, getRules } = require("../../utils/rules");
+const { writeFile } = require("../../utils/promisify");
+const { renderRules } = require("../../modules/render/renderRules");
 
 const updateServer = async () => {
   console.log("Сервер запущен", new Date());
 
+  const rules = await getRules();
+
+  await saveRules(rules);
+
+  await writeFile("src/modules/filter/filter.js", renderRules(rules));
+
   // Отправка писем
   try {
     console.log("Начинаю отправлять письма");
-    // await collectionStatistics();
+    await collectionStatistics();
   } catch (error) {
     console.log("Ошибка при отправке писем: ", error);
   }

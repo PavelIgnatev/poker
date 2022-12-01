@@ -53,7 +53,6 @@ const getTournaments = async (req, res) => {
     filter = require("../../modules/filter/filter");
 
     const config = await getConfig();
-    // const { lastValue } = await currency.getCurrency("usd-cny");
     const lastValue = await parseCurrencyRate();
     const configByAlias = config[alias];
 

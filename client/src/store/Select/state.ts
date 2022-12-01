@@ -1,10 +1,7 @@
 import { tournamentsSettingsProps } from "./types";
 import { createStore } from "effector";
 
-export const TIMEZONES = [
-  { value: "0", label: "EST" },
-  { value: "28800000", label: "MSK" },
-];
+export const TIMEZONES = [{ value: "28800000", label: "MSK" }];
 
 export const TIMERANGE = [
   { value: "600", label: "<10 minutes" },
@@ -63,5 +60,5 @@ export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {
 };
 
 export const $tournamentsSettings = createStore<tournamentsSettingsProps>(
-  DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS,
+  DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS
 );
