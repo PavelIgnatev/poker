@@ -36,8 +36,6 @@ const updateAbility2 = async () => {
           return;
         }
 
-        console.log(s)
-
         if (!obj) obj = {};
         if (!obj[r]) obj[r] = {};
         if (!obj[r][l]) obj[r][l] = {};
