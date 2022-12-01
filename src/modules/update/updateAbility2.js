@@ -8,7 +8,7 @@ const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
 
 const updateAbility2 = async () => {
   const lastValue = await parseCurrencyRate();
-  const levels = Array(17)
+    const levels = Array(17)
     .fill(null)
     .map((_, i) => [i + "A", i + "B", i + "C"])
     .flat();
@@ -19,7 +19,7 @@ const updateAbility2 = async () => {
 
   const obj = {};
   levels.forEach((l) => {
-    console.log("Начал обновлять уровень ", l);
+    console.log('Начал обновлять уровень ', l)
     Object.values(state).forEach((tournaments) => {
       Object.values(tournaments).forEach((ft) => {
         const t = getMoreProp(ft); //add properties for filter
@@ -73,18 +73,18 @@ const updateAbility2 = async () => {
               }
             });
 
-            // result = result
-            //   .sort((a, b) => Number(b["@date"] ?? 0) - Number(a["@date"] ?? 0))
-            //   .splice(0, 20);
+            result = result
+              .sort((a, b) => Number(b["@date"] ?? 0) - Number(a["@date"] ?? 0))
+              .splice(0, 20);
 
             if (result.length) {
               obj[r][l][c][b][s] = result;
             } else {
               delete obj[r][l][c][b][s];
               if (!Object.keys(obj[r][l][c][b]).length) {
-                delete obj[r][l][c][b];
+                // delete obj[r][l][c][b];
                 if (!Object.keys(obj[r][l][c]).length) {
-                  delete obj[r][l][c];
+                  // delete obj[r][l][c];
                 }
               }
             }

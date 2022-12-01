@@ -62,7 +62,8 @@ const { getNetwork } = require("../../helpers/getNetwork");
     if (!name || !bid) return false;
 
     if((FromTo(1,111111))
-    && network === 'PS.eu'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return true;
+    && network === 'PS.eu'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return true;if((FromTo(1,1111111))
+    && network === 'PS.eu'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) return true;
 
     if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return true 
     
