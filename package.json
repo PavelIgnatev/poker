@@ -6,7 +6,7 @@
     "node": "14.0.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production node src/server.js",
+    "start": "node src/server.js",
     "start:dev": "concurrently -n server,client \"(npm run start:server)\" \"(npm run start:client)\"",
     "start:server": "node --max-old-space-size=4096 ./src/server.js",
     "start:client": "npm start --prefix client",
