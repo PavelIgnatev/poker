@@ -4,9 +4,6 @@
 /node_modules
 /client/node_modules
 
-src/store/
-/src/store
-./src/store/
 /client/build
 /.pnp
 .pnp.js
