@@ -2,7 +2,7 @@ const { api } = require("../../api");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getWeekday } = require("../../helpers/getWeekday");
 const { readFile, writeFile } = require("../../utils/promisify");
-const { filter } = require("../filter/filter");
+let filter = require("../filter/filter");
 const { deleteFolder } = require("../delete/deleteFolder");
 const { getStatus } = require("../../helpers/getStatus");
 const { sendStatistics } = require("../send/sendStatistics");
@@ -10,6 +10,9 @@ const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
 
 const collectionStatistics = async () => {
   const errorTournaments = {};
+
+  delete require.cache[require.resolve("./filter/filter")];
+  filter = require("./filter/filter");
 
   try {
     const lastValue = await parseCurrencyRate();
@@ -136,7 +139,7 @@ const collectionStatistics = async () => {
               t["@usdBid"] = currency === "CNY" ? bid / lastValue : bid;
               t["@usdPrizepool"] = currency === "CNY" && pp !== "-" ? pp / lastValue : pp;
 
-              if (Number(bid) !== 0 && !filter(level, t, true)) {
+              if (Number(bid) !== 0 && !filter.filter(level, t, true)) {
                 if (!errorTournaments[alias]) errorTournaments[alias] = [];
                 errorTournaments[alias].push(t);
               }

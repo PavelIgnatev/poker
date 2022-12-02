@@ -3,12 +3,15 @@ const { getStatus } = require("../../helpers/getStatus");
 const { getSheduledDate } = require("../../helpers/getSheduledDate");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
-const { filter } = require("../filter/filter");
+let  filter  = require("../filter/filter");
 const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
 
 const updateAbility2 = async () => {
+  delete require.cache[require.resolve("../filter/filter")];
+  filter = require("../filter/filter");
+
   const lastValue = await parseCurrencyRate();
-    const levels = Array(17)
+  const levels = Array(17)
     .fill(null)
     .map((_, i) => [i + "A", i + "B", i + "C"])
     .flat();
@@ -19,7 +22,7 @@ const updateAbility2 = async () => {
 
   const obj = {};
   levels.forEach((l) => {
-    console.log('Начал обновлять уровень ', l)
+    console.log("Начал обновлять уровень ", l);
     Object.values(state).forEach((tournaments) => {
       Object.values(tournaments).forEach((ft) => {
         const t = getMoreProp(ft); //add properties for filter
@@ -32,7 +35,7 @@ const updateAbility2 = async () => {
         t["@usdBid"] = c === "CNY" ? b / lastValue : b;
         t["@usdPrizepool"] = c === "CNY" && pp !== "-" ? pp / lastValue : pp;
 
-        if (!b || !r || !n || !c || !filter(l, t)) {
+        if (!b || !r || !n || !c || !filter.filter(l, t)) {
           return;
         }
 
@@ -73,10 +76,7 @@ const updateAbility2 = async () => {
               }
             });
 
-            result = result
-              .sort((a, b) => Number(b["@date"] ?? 0) - Number(a["@date"] ?? 0))
-              .splice(0, 20);
-
+            // result = result
             if (result.length) {
               obj[r][l][c][b][s] = result;
             } else {
@@ -93,6 +93,8 @@ const updateAbility2 = async () => {
       });
     });
   });
+
+  console.log(obj);
 
   await writeFile("src/store/ability2/formingAbility2.json", JSON.stringify(obj));
 
