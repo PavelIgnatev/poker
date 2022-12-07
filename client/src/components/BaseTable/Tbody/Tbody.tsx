@@ -1,11 +1,12 @@
 import { FC, useState } from "react";
+import cx from 'classnames'
 import { tableCellModel } from "../../../@types/tableCellModel";
 import classes from "../BaseTable.module.scss";
 
 type TbodyProps = {
   sortedKey: string | null;
   data: Array<Record<string, any>>;
-  isReverse:boolean;
+  isReverse: boolean;
 
 };
 
@@ -26,15 +27,15 @@ export const Tbody: FC<TbodyProps> = ({ data, sortedKey, isReverse }) => {
         const isNumberDataA = !isNaN(numberDataA)
         const isNumberDataB = !isNaN(numberDataB)
 
-        if(isNumberDataA && isNumberDataB) {
-          return isReverse? numberDataB - numberDataA: numberDataA - numberDataB;
+        if (isNumberDataA && isNumberDataB) {
+          return isReverse ? numberDataB - numberDataA : numberDataA - numberDataB;
         }
         if (dataA < dataB) {
-          return isReverse ? 1 : -1 
+          return isReverse ? 1 : -1
         }
         if (dataA > dataB) {
-          return isReverse ? -1 : 1 
-          
+          return isReverse ? -1 : 1
+
         }
         return 0
       }).map((item, index: number) => {
@@ -47,17 +48,18 @@ export const Tbody: FC<TbodyProps> = ({ data, sortedKey, isReverse }) => {
           status: item["@status"],
         };
 
+
         return (
           <tr className={classes.tr} key={index}>
-            <td className={classes.td}>{item["@scheduledStartDate"]}</td>
-            <td className={classes.td}>{item["@lateRegEndDate"] ?? "-"}</td>
-            <td className={classes.td}>{item["@network"]}</td>
-            <td className={classes.td}>{item["@name"]}</td>
-            <td className={classes.td}>{item["@bid"]}</td>
-            <td className={classes.td}>{item["@prizepool"]}</td>
-            <td className={classes.td}>{item["@ability"]}</td>
+            <td className={classes.td} style={{ backgroundColor: item.color, marginBottom: '1px' }}>{item["@scheduledStartDate"]}</td>
+            <td className={classes.td} style={{ backgroundColor: item.color, marginBottom: '1px' }}>{item["@lateRegEndDate"] ?? "-"}</td>
+            <td className={classes.td} style={{ backgroundColor: item.color, marginBottom: '1px' }}>{item["@network"]}</td>
+            <td className={classes.td} style={{ backgroundColor: item.color, marginBottom: '1px' }}>{item["@name"]}</td>
+            <td className={classes.td} style={{ backgroundColor: item.color, marginBottom: '1px' }}>{item["@bid"]}</td>
+            <td className={classes.td} style={{ backgroundColor: item.color, marginBottom: '1px' }}>{item["@prizepool"]}</td>
+            <td className={classes.td} style={{ backgroundColor: item.color, marginBottom: '1px' }}>{item["@ability"]}</td>
             <td
-              className={classes.td}
+              className={classes.td} style={{ backgroundColor: item.color, marginBottom: '1px' }}
               onClick={() => {
                 if (window.location.pathname !== "/info" && item["@abilityBid"] !== "-") {
                   window.open(`/info?${new URLSearchParams(param).toString()}`);
@@ -66,7 +68,7 @@ export const Tbody: FC<TbodyProps> = ({ data, sortedKey, isReverse }) => {
             >
               {item["@abilityBid"]}
             </td>
-            <td className={classes.td}>{item["@duration"]}</td>
+            <td className={classes.td} style={{ backgroundColor: item.color, marginBottom: '1px' }}>{item["@duration"]}</td>
           </tr>
         );
       })}

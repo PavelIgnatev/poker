@@ -218,7 +218,20 @@ const getTournaments = async (req, res) => {
         (prizepool !== "-" ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
         filter.filter(level, tournament, true)
       );
-    });
+    }).map(tournament => {
+      const ability1 = tournament['@ability'];
+      const ability2 = tournament['@abilityBid'];
+      const isAbility1 = ability1 && ability1 !== '-'
+      const isAbility2 = ability2 && ability2 !== '-'
+      const isAbility = isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)
+      let color = 'rgba(235,137,68,0.5)'
+      if(!isAbility) {
+        color = 'rgba(235,96,96,0.5)'
+      } if(ability2 - ability1 >= 5) {
+        color = 'rgba(98,179,82,0.5)'
+      } 
+      return {...tournament, color}
+    })
     console.log(result.length);
     return res.send(result ?? []);
   } catch (err) {
