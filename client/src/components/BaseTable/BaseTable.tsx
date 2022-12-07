@@ -1,16 +1,18 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Thead } from "./Thead";
 import { Tbody } from "./Tbody/Tbody";
 import { Loader } from "../Loader/Loader";
 import classes from "./BaseTable.module.scss";
-import { tableCellModel } from "../../@types/tableCellModel";
+// import { tableCellModel } from "../../@types/tableCellModel";
 
 type BaseTableProps = {
-  data: tableCellModel[] | undefined;
+  data?: Array<Record<string, any>>;
   loading: boolean;
 };
 
 export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
+  const [sortedKey, setSortedKey] = useState<string | null>(null);
+  const [isReverse, setIsReverse] = useState(false)
   if (loading)
     return (
       <section className={classes.section}>
@@ -26,12 +28,12 @@ export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
         Select the options you are interested in and click the "Update" button
       </section>
     );
-
+  console.log(isReverse)
   return (
     <section className={classes.section}>
-      <table className={classes.table}>
-        <Thead />
-        <Tbody data={data} />
+      <table id="grid" className={classes.table}>
+        <Thead setSortedKey={setSortedKey} sortedKey={sortedKey} setIsReverse={setIsReverse}/>
+        <Tbody data={data} sortedKey={sortedKey} isReverse={isReverse} />
       </table>
     </section>
   );

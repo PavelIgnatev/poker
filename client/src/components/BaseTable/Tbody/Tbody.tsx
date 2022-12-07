@@ -1,15 +1,43 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { tableCellModel } from "../../../@types/tableCellModel";
 import classes from "../BaseTable.module.scss";
 
 type TbodyProps = {
-  data: tableCellModel[] | undefined;
+  sortedKey: string | null;
+  data: Array<Record<string, any>>;
+  isReverse:boolean;
+
 };
 
-export const Tbody: FC<TbodyProps> = ({ data }) => {
+export const Tbody: FC<TbodyProps> = ({ data, sortedKey, isReverse }) => {
+  console.log(data);
   return (
     <tbody className={classes.tbody}>
-      {data?.map((item: tableCellModel, index: number) => {
+      {data.slice(0).sort((a, b) => {
+        if (!sortedKey) {
+          return 0;
+        }
+        const dataA = String(a[sortedKey] ?? '').toLowerCase();
+        const dataB = String(b[sortedKey] ?? '').toLowerCase();
+
+        const numberDataA = Number(dataA);
+        const numberDataB = Number(dataB);
+
+        const isNumberDataA = !isNaN(numberDataA)
+        const isNumberDataB = !isNaN(numberDataB)
+
+        if(isNumberDataA && isNumberDataB) {
+          return isReverse? numberDataB - numberDataA: numberDataA - numberDataB;
+        }
+        if (dataA < dataB) {
+          return isReverse ? 1 : -1 
+        }
+        if (dataA > dataB) {
+          return isReverse ? -1 : 1 
+          
+        }
+        return 0
+      }).map((item, index: number) => {
         const param = {
           timezone: item["@timezone"],
           network: item["@network"],

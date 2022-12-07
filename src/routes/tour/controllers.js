@@ -172,6 +172,7 @@ const getTournaments = async (req, res) => {
           "@getWeekday": isStartDate ? getWeekday(startDate) : "-",
           "@scheduledStartDate": isStartDate ? getDate(startDate) : "-",
           "@lateRegEndDate": isRegDate ? getDate(regDate) : "-",
+          "@numberLateRegEndDate": regDate,
           "@timezone": timezone,
           "@status": status,
           "@level": level,

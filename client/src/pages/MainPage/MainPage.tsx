@@ -18,7 +18,7 @@ export const MainPage: FC = () => {
   if (!config) {
     return <PasswordSection onSubmit={handlePasswordSubmit} />;
   }
-
+  
   return (
     <>
       <BaseHeader />
