@@ -6,7 +6,7 @@ let filter = require("../filter/filter");
 const { deleteFolder } = require("../delete/deleteFolder");
 const { getStatus } = require("../../helpers/getStatus");
 const { sendStatistics } = require("../send/sendStatistics");
-const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
+// const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
 
 const collectionStatistics = async () => {
   const errorTournaments = {};
@@ -15,8 +15,8 @@ const collectionStatistics = async () => {
   filter = require("./filter/filter");
 
   try {
-    const lastValue = await parseCurrencyRate();
-
+    const lastValue = JSON.parse(await readFile("src/store/currency/currency.json")).currency;
+    // console.log(lastValue)
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
         timeZone: "America/New_York",

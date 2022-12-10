@@ -11,5 +11,6 @@ export const DEFAULT_EDITABLE_CONFIG: ConfigModel = {
   effmu: "A",
   // todo чекнуть на баги
   password: "",
+  timezone: "MSK",
 };
 export const $editableConfig = createStore<ConfigModel>(DEFAULT_EDITABLE_CONFIG);

@@ -14,7 +14,7 @@ let filter = require("../../modules/filter/filter");
 const { isRebuy } = require("../../helpers/isRebuy");
 const { isSat } = require("../../helpers/IsSat");
 const { isNormal } = require("../../helpers/isNormal");
-const { parseCurrencyRate } = require("../../modules/parseCurrencyRate/parseCurrencyRate");
+// const { parseCurrencyRate } = require("../../modules/parseCurrencyRate/parseCurrencyRate");
 
 const getTournaments = async (req, res) => {
   try {
@@ -53,7 +53,7 @@ const getTournaments = async (req, res) => {
     filter = require("../../modules/filter/filter");
 
     const config = await getConfig();
-    const lastValue = await parseCurrencyRate();
+    const lastValue = JSON.parse(await readFile("src/store/currency/currency.json")).currency;
     const configByAlias = config[alias];
 
     if (!configByAlias) return res.send(result ?? []);
@@ -219,16 +219,20 @@ const getTournaments = async (req, res) => {
         filter.filter(level, tournament, true)
       );
     }).map(tournament => {
-      const ability1 = tournament['@ability'];
-      const ability2 = tournament['@abilityBid'];
+      const ability1 = tournament['@ability'] === '-' ? 0 : tournament['@ability'];
+      const ability2 = tournament['@abilityBid'] === '-' ? 0 : tournament['@abilityBid'];
       const isAbility1 = ability1 && ability1 !== '-'
       const isAbility2 = ability2 && ability2 !== '-'
-      const isAbility = isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)
-      let color = 'rgba(235,137,68,0.5)'
-      if(!isAbility) {
-        color = 'rgba(235,96,96,0.5)'
-      } if(ability2 - ability1 >= 5) {
-        color = 'rgba(98,179,82,0.5)'
+      // const isAbility = isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)
+      let color;
+      if(ability2 === ability1 || !isAbility2 || !isAbility1) {
+        color = 'rgba(2235,96,96,0.5)' // красный
+      } 
+      if((Math.abs(ability2 - ability1) >= 1) && (Math.abs(ability2 - ability1) <= 3)) {
+        color = 'rgba(247,255,105,0.5)' // желтый
+      } 
+      if(Math.abs(ability2 - ability1) >= 4) {
+        color = 'rgba(98,179,82,0.5)' // зеленый
       } 
       return {...tournament, color}
     })

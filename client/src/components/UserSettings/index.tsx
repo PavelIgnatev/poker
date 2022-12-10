@@ -26,7 +26,7 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
   const [progress, setProgress] = React.useState(false);
 
   const editableConfig = useStore($editableConfig);
-  const { mail, effmu, alias, networks, password: newPassword } = editableConfig;
+  const { mail, effmu, alias, networks, password: newPassword, timezone } = editableConfig;
 
   const password = useStore($password);
 
@@ -50,6 +50,7 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
         effmu,
         alias,
         password: isAdminPage ? newPassword : config.password,
+        timezone,
       },
       password,
     });

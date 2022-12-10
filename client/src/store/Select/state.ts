@@ -1,7 +1,12 @@
 import { tournamentsSettingsProps } from "./types";
 import { createStore } from "effector";
 
-export const TIMEZONES = [{ value: "28800000", label: "MSK" }];
+export const TIMEZONES = [
+  { value: "28800000", label: "MSK" },
+  { value: "28800000", label: "CST" },
+  { value: "28800000", label: "CET" },
+  { value: "28800000", label: "EST" },
+];
 
 export const TIMERANGE = [
   { value: "600", label: "<10 minutes" },

@@ -5,7 +5,7 @@ import Select from "react-select";
 import { getAliasesRequest } from "../../../store/Alias";
 import { postConfigRequest } from "../../../store/Config";
 import { $password } from "../../../store/Password";
-import { EFFMU } from "../../../store/Select";
+import { EFFMU,TIMEZONES } from "../../../store/Select";
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
 
@@ -15,7 +15,7 @@ interface AliasesSectionFormProps {
 
 import { b } from "../index";
 import { SelectOption } from "../../../@types/selectsModel";
-import { Effmu } from "../../../@types/common";
+import { Effmu, Timezones } from "../../../@types/common";
 import { BaseButton } from "../../BaseButton";
 
 const selectStyles = {
@@ -32,6 +32,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
   const [alias, setAlias] = useState<string>("");
   const [mail, setMail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [timezone, setTimezone] = useState<Timezones>("MSK");
   const [effmu, setEffmu] = useState<Effmu>("A");
   const adminPassword = useStore($password);
 
@@ -43,6 +44,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
         effmu,
         mail,
         password,
+        timezone
       },
       password: adminPassword,
     });
@@ -51,6 +53,9 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
     setMail("");
     setPassword("");
     setEffmu("A");
+    setTimezone("MSK");
+    // console.log(timezone)
+    // console.log(effmu)
   };
 
   return (
@@ -79,6 +84,14 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
         defaultValue={EFFMU[0]}
         // @ts-ignore react-select конечно молодец, но типы и стили ужасны
         onChange={(option: SelectOption<Effmu>) => setEffmu(option.value)}
+        styles={selectStyles}
+      />
+      <Select
+        options={TIMEZONES}
+        placeholder="Timezones"
+        defaultValue={TIMEZONES[0]}
+        // @ts-ignore react-select конечно молодец, но типы и стили ужасны
+        onChange={(option: SelectOption<Timezones>) => setTimezone(option.label)}
         styles={selectStyles}
       />
       <BaseButton className={b("alias-form-button")} onClick={handleSubmit} green>

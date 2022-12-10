@@ -1,5 +1,7 @@
 export type Effmu = "A" | "B" | "C" | "all";
 
+export type Timezones = "MSK" | "CET" | "CST" | "EST";
+
 export type Network = string;
 
 export type Level = number;
