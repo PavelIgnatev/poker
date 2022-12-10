@@ -19,7 +19,7 @@ const updateServer = async () => {
   // Отправка писем
   try {
     console.log("Начинаю отправлять письма");
-    // await collectionStatistics();
+    await collectionStatistics();
   } catch (error) {
     console.log("Ошибка при отправке писем: ", error);
   }
