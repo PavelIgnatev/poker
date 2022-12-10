@@ -17,7 +17,7 @@ const start = async () => {
 
     fastify.log.info(`Сервер запущен ${new Date().toISOString()}`);
 
-    updateServer();
+    // updateServer();
   } catch (err) {
     console.log(err);
     process.exit(1);

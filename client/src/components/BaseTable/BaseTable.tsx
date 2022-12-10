@@ -1,9 +1,8 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Thead } from "./Thead";
 import { Tbody } from "./Tbody/Tbody";
 import { Loader } from "../Loader/Loader";
 import classes from "./BaseTable.module.scss";
-// import { tableCellModel } from "../../@types/tableCellModel";
 
 type BaseTableProps = {
   data?: Array<Record<string, any>>;
@@ -12,7 +11,7 @@ type BaseTableProps = {
 
 export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
   const [sortedKey, setSortedKey] = useState<string | null>(null);
-  const [isReverse, setIsReverse] = useState(false)
+  const [isReverse, setIsReverse] = useState(false);
   if (loading)
     return (
       <section className={classes.section}>
@@ -20,7 +19,8 @@ export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
       </section>
     );
 
-  if (!data?.length) return <section className={classes.nodata}>Nothing found</section>;
+  if (!data?.length)
+    return <section className={classes.nodata}>Nothing found</section>;
 
   if (!data)
     return (
@@ -28,11 +28,15 @@ export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
         Select the options you are interested in and click the "Update" button
       </section>
     );
-  console.log(isReverse)
+
   return (
     <section className={classes.section}>
       <table id="grid" className={classes.table}>
-        <Thead setSortedKey={setSortedKey} sortedKey={sortedKey} setIsReverse={setIsReverse}/>
+        <Thead
+          setSortedKey={setSortedKey}
+          sortedKey={sortedKey}
+          setIsReverse={setIsReverse}
+        />
         <Tbody data={data} sortedKey={sortedKey} isReverse={isReverse} />
       </table>
     </section>

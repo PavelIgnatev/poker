@@ -1,5 +1,5 @@
 import b_ from "b_";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 
 import { Effmu } from "../../@types/common";
@@ -21,21 +21,36 @@ type StatusType = "Normal" | "Turbo" | "SuperTurbo" | "all";
 type ColorsType = "blue" | "red" | "brown" | "black" | "green" | "orange";
 const KO: KOType[] = ["KO", "Freezout", "all"];
 const Status: StatusType[] = ["Normal", "Turbo", "SuperTurbo", "all"];
-const Colors: ColorsType[] = ["blue", "red", "brown", "black", "green", "orange"];
+const Colors: ColorsType[] = [
+  "blue",
+  "red",
+  "brown",
+  "black",
+  "green",
+  "orange",
+];
 
 export const b = b_.with("rules-section");
 
 export const RulesSection = () => {
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
-  const { selectedElement: selectedEffmu, handleElementChange: handleEffmuChange } =
-    useElementsToggle<Effmu | "all">(EFFMU[0]);
+  const {
+    selectedElement: selectedEffmu,
+    handleElementChange: handleEffmuChange,
+  } = useElementsToggle<Effmu | "all">(EFFMU[0]);
   const { selectedElement: selectedKO, handleElementChange: handleKOChange } =
     useElementsToggle<KOType>(KO[0]);
-  const { selectedElement: selectedStatus, handleElementChange: handleStatusChange } =
-    useElementsToggle<StatusType>(Status[0]);
-  const { selectedElement: selectedColor, handleElementChange: handleColorChange } =
-    useElementsToggle<ColorsType>(Colors[0]);
-  const [selectedNetwork, setSelectedNetwork] = useState(SHORT_NETWORKS[0].value);
+  const {
+    selectedElement: selectedStatus,
+    handleElementChange: handleStatusChange,
+  } = useElementsToggle<StatusType>(Status[0]);
+  const {
+    selectedElement: selectedColor,
+    handleElementChange: handleColorChange,
+  } = useElementsToggle<ColorsType>(Colors[0]);
+  const [selectedNetwork, setSelectedNetwork] = useState(
+    SHORT_NETWORKS[0].value
+  );
   const handleNetworkChange = (option: SelectOption<string>) =>
     setSelectedNetwork(option.value ?? SHORT_NETWORKS[0].value);
   const level = selectedLevel + selectedEffmu;
@@ -49,12 +64,16 @@ export const RulesSection = () => {
       status: selectedStatus,
       KO: selectedKO,
     });
-  }, [selectedLevel, selectedColor, selectedEffmu, selectedNetwork, selectedStatus, selectedKO]);
+  }, [selectedLevel, selectedColor, selectedEffmu, selectedNetwork, selectedStatus, selectedKO, level]);
 
   return (
     <section className={b()}>
       <span className={b("title")}>Rules for levels:</span>
-      <LevelBlocks selectedLevel={selectedLevel} onLevelChange={handleLevelChange} withAllLevels />
+      <LevelBlocks
+        selectedLevel={selectedLevel}
+        onLevelChange={handleLevelChange}
+        withAllLevels
+      />
       {selectedLevel !== null && (
         <>
           {!isAllLevels ? (

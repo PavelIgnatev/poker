@@ -12,8 +12,6 @@ const updateServer = async () => {
 
   const rules = await getRules();
 
-  console.log(rules)
-
   await writeFile("src/modules/filter/filter.js", renderRules(rules));
 
   // Отправка писем

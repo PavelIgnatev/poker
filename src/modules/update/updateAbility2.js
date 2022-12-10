@@ -94,8 +94,6 @@ const updateAbility2 = async () => {
     });
   });
 
-  console.log(obj);
-
   await writeFile("src/store/ability2/formingAbility2.json", JSON.stringify(obj));
 
   Object.keys(obj).forEach((r) => {

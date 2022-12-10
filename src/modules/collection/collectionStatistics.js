@@ -11,12 +11,11 @@ const { sendStatistics } = require("../send/sendStatistics");
 const collectionStatistics = async () => {
   const errorTournaments = {};
 
-  delete require.cache[require.resolve("./filter/filter")];
-  filter = require("./filter/filter");
+  delete require.cache[require.resolve("../filter/filter")];
+  filter = require("../filter/filter");
 
   try {
     const lastValue = JSON.parse(await readFile("src/store/currency/currency.json")).currency;
-    // console.log(lastValue)
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
         timeZone: "America/New_York",

@@ -1,6 +1,6 @@
 import { createStore } from "effector";
+
 import { tableCellModel } from "../../@types/tableCellModel";
-import { $editableConfig } from "../Config";
 import { $tournamentsSettings } from "../Select";
 
 export const $tableState = createStore<tableCellModel[] | null>(null);
@@ -19,5 +19,5 @@ export const $filtredTableState = $tableState.map((el) =>
     return dateStart <= dateEnd
       ? dateStart <= res && res <= r
       : !(dateStart > res && res > dateEnd);
-  }),
+  })
 );

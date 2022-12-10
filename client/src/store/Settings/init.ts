@@ -1,3 +1,4 @@
+import { SavedRules } from "./../../components/Admin.Ability2Section/index";
 import { settingsModel } from "./../../@types/settingsModel";
 import { createEffect, createStore } from "effector";
 import api from "../../api";
@@ -13,9 +14,15 @@ export const fetchStateAbility2 = createEffect(async () => {
   return result;
 });
 
-export const $prevSettings = createStore([]).on(fetchSettings.doneData, (_, user) => user);
+export const $prevSettings = createStore<SavedRules>({}).on(
+  fetchSettings.doneData,
+  (_, user) => user
+);
 
-export const $state = createStore({}).on(fetchStateAbility2.doneData, (_, user) => user);
+export const $state = createStore({}).on(
+  fetchStateAbility2.doneData,
+  (_, user) => user
+);
 
 export const postFetchSettings = createEffect(async (json: any) => {
   const result = await api.addSettings(json);

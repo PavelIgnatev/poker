@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Select from "react-select";
 
 import { getSelectOptionsFromKeys } from "../../../helpers/getSelectOptionsFromKeys";
@@ -21,10 +21,16 @@ interface Props {
 }
 
 type HandleSaveFn = (value: string) => void;
-const handleOnSelectChange = (handleSaveFn: HandleSaveFn) => (option: SelectOption<string>) =>
-  handleSaveFn(option?.value ?? "");
+const handleOnSelectChange =
+  (handleSaveFn: HandleSaveFn) => (option: SelectOption<string>) =>
+    handleSaveFn(option?.value ?? "");
 
-export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effmu }) => {
+export const Ability2SectionRules: FC<Props> = ({
+  savedRules,
+  state,
+  level,
+  effmu,
+}) => {
   const levelPlusEffmu = level + effmu;
   const selectedRules = savedRules[levelPlusEffmu] || [];
 
@@ -37,7 +43,9 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
 
   const ability2 =
     state[network]?.[levelPlusEffmu]?.[currency]?.[bid]?.[status]?.[
-      Object.keys(state[network]?.[levelPlusEffmu]?.[currency]?.[bid]?.[status] ?? [])[0]
+      Object.keys(
+        state[network]?.[levelPlusEffmu]?.[currency]?.[bid]?.[status] ?? []
+      )[0]
     ] ?? 0;
 
   const allNetworks = state;
@@ -68,8 +76,6 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
     ...selectedRules.map((rule) => ({ rowStatus: "saved", rule })),
   ];
 
-  console.log(rows);
-
   return (
     <div className={b("rules")}>
       {rows.map(({ rowStatus, rule }, index) => {
@@ -78,7 +84,10 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
         const formData = { ...rule, ability2, level: levelPlusEffmu };
 
         return (
-          <div className={b("rules-row")} key={rule.network + rule.bid + rule.name + index}>
+          <div
+            className={b("rules-row")}
+            key={rule.network + rule.bid + rule.name + index}
+          >
             <Select
               styles={specialSelectStyles}
               placeholder="Network"
@@ -86,7 +95,9 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
               // @ts-ignore
               onChange={handleOnSelectChange(setNetwork)}
               className={b("rules-select", { network: true })}
-              defaultValue={rule.network && { value: rule.network, label: rule.network }}
+              defaultValue={
+                rule.network && { value: rule.network, label: rule.network }
+              }
               isDisabled={disabled}
             />
             <Select
@@ -96,7 +107,9 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
               // @ts-ignore
               onChange={handleOnSelectChange(setCurrency)}
               className={b("rules-select", { currency: true })}
-              defaultValue={rule.currency && { value: rule.currency, label: rule.currency }}
+              defaultValue={
+                rule.currency && { value: rule.currency, label: rule.currency }
+              }
               isDisabled={disabled || !rule.network}
             />
             <Select
@@ -116,7 +129,9 @@ export const Ability2SectionRules: FC<Props> = ({ savedRules, state, level, effm
               // @ts-ignore
               onChange={handleOnSelectChange(setStatus)}
               className={b("rules-select", { status: true })}
-              defaultValue={rule.status && { value: rule.status, label: rule.status }}
+              defaultValue={
+                rule.status && { value: rule.status, label: rule.status }
+              }
               isDisabled={disabled || !rule.bid}
             />
             <Select

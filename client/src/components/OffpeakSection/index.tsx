@@ -11,9 +11,9 @@ import {
 import { BaseButton } from "../BaseButton";
 import { BaseInputMask } from "../BaseInputMask";
 
-export const b = b_.with("offpeak-section");
-
 import "./index.scss";
+
+export const b = b_.with("offpeak-section");
 
 export const OffpeakSection = () => {
   const offpeak = useStore($offpeak);
@@ -51,7 +51,10 @@ export const OffpeakSection = () => {
           />
         </div>
         <div className={b("line")}>
-          <BaseButton onClick={() => postOffpeak(offpeak)} className={b("button")}>
+          <BaseButton
+            onClick={() => postOffpeak(offpeak)}
+            className={b("button")}
+          >
             SAVE
           </BaseButton>
         </div>

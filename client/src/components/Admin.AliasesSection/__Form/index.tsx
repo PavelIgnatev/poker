@@ -1,22 +1,21 @@
 import { useStore } from "effector-react";
-import { FC, FormEvent, useState } from "react";
+import { FC, useState } from "react";
 import Select from "react-select";
+
+import { SelectOption } from "../../../@types/selectsModel";
+import { Effmu, Timezones } from "../../../@types/common";
 
 import { getAliasesRequest } from "../../../store/Alias";
 import { postConfigRequest } from "../../../store/Config";
 import { $password } from "../../../store/Password";
-import { EFFMU,TIMEZONES } from "../../../store/Select";
+import { EFFMU, TIMEZONES } from "../../../store/Select";
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
-
+import { BaseButton } from "../../BaseButton";
+import { b } from "../index";
 interface AliasesSectionFormProps {
   selectedLevel: number | null;
 }
-
-import { b } from "../index";
-import { SelectOption } from "../../../@types/selectsModel";
-import { Effmu, Timezones } from "../../../@types/common";
-import { BaseButton } from "../../BaseButton";
 
 const selectStyles = {
   ...specialSelectStyles,
@@ -28,7 +27,9 @@ const selectStyles = {
   }),
 };
 
-export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel }) => {
+export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
+  selectedLevel,
+}) => {
   const [alias, setAlias] = useState<string>("");
   const [mail, setMail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -44,7 +45,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
         effmu,
         mail,
         password,
-        timezone
+        timezone,
       },
       password: adminPassword,
     });
@@ -54,8 +55,6 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
     setPassword("");
     setEffmu("A");
     setTimezone("MSK");
-    // console.log(timezone)
-    // console.log(effmu)
   };
 
   return (
@@ -91,10 +90,17 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({ selectedLevel 
         placeholder="Timezones"
         defaultValue={TIMEZONES[0]}
         // @ts-ignore react-select конечно молодец, но типы и стили ужасны
-        onChange={(option: SelectOption<Timezones>) => setTimezone(option.label)}
+        onChange={(option: SelectOption<Timezones>) =>
+          // @ts-ignore react-select конечно молодец, но типы и стили ужасны
+          setTimezone(option.label)
+        }
         styles={selectStyles}
       />
-      <BaseButton className={b("alias-form-button")} onClick={handleSubmit} green>
+      <BaseButton
+        className={b("alias-form-button")}
+        onClick={handleSubmit}
+        green
+      >
         Add
       </BaseButton>
     </div>

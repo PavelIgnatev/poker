@@ -1,13 +1,13 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import cx from "classnames";
+import { useStore } from "effector-react";
+
 import {
   $tournamentsSettings,
   editableTournamentsSettings,
   NETWORKS,
   TIMERANGE,
-  TIMEZONES,
 } from "../../store/Select";
-import { useStore } from "effector-react";
 import { BaseSelect } from "../BaseSelect/BaseSelect";
 import { BaseSelectMulti } from "../BaseSelectMulti/BaseSelectMulti";
 import { BaseInput } from "../BaseInput/BaseInput";
@@ -17,8 +17,6 @@ import { ComponentCategory } from "../ComponentCategory";
 import { BaseButton } from "../BaseButton";
 import { fetchUserReposFx } from "../../store/Table";
 import { $config } from "../../store/Config";
-
-import { ModalRef } from "../Modal";
 
 import classes from "./BaseHeader.module.scss";
 

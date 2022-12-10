@@ -25,7 +25,7 @@ export const AliasesSection = () => {
     } else if (selectedLevel !== null) {
       getAliasesRequest(selectedLevel);
     }
-  }, [selectedLevel]);
+  }, [selectedLevel, isAllLevels]);
 
   // крч добавляем юзеров асинхронно - и запрос шлем и сами добавляем, если ошибка - убираем его
   // с удалением то же самое
@@ -34,7 +34,11 @@ export const AliasesSection = () => {
   return (
     <section className={b()}>
       <h2 className={b("title")}>Aliases by level:</h2>
-      <LevelBlocks selectedLevel={selectedLevel} onLevelChange={handleLevelChange} withAllLevels />
+      <LevelBlocks
+        selectedLevel={selectedLevel}
+        onLevelChange={handleLevelChange}
+        withAllLevels
+      />
       {selectedLevel !== null && (
         <div className={b("content-wrapper")}>
           <div className={b("subtitle-wrapper")}>

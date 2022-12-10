@@ -6,13 +6,12 @@ import { BaseTable } from "../../components/BaseTable";
 import { tableCellModel } from "../../@types/tableCellModel";
 
 export const InfoPage: FC = () => {
-  // TO-DO должен быть createEffect так-то хули тут useEffect
   const [result, setResult] = useState<tableCellModel[] | undefined>(undefined);
 
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  const params = Object.fromEntries(urlSearchParams.entries());
-
   useEffect(() => {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+
     const fetchData = async () => {
       const data = await api.get<tableCellModel[]>("/api/info", params);
 

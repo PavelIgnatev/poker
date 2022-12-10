@@ -1,10 +1,15 @@
 import b_ from "b_";
 import { useStore } from "effector-react";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { Effmu, LevelPlusEffmu, Rule } from "../../@types/common";
 import { EFFMU } from "../../constants";
-import { $prevSettings, $state, fetchSettings, fetchStateAbility2 } from "../../store/Settings";
+import {
+  $prevSettings,
+  $state,
+  fetchSettings,
+  fetchStateAbility2,
+} from "../../store/Settings";
 
 import { LevelBlocks, useLevelBlocks } from "../LevelBlocks";
 import { ElementsToggle, useElementsToggle } from "../ElementsToggle";
@@ -23,8 +28,7 @@ export type SavedRules = {
 export const b = b_.with("ability-2-section");
 
 export const Ability2Section = () => {
-  // @ts-ignore блять пиздец нахуй блять что тут с типами и неймингом
-  const savedRules = useStore($prevSettings) as SavedRules;
+  const savedRules = useStore($prevSettings);
   const state = useStore($state) as State;
 
   useEffect(() => {
@@ -35,13 +39,18 @@ export const Ability2Section = () => {
   const ability2Loading = useStore(fetchStateAbility2.pending);
 
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
-  const { selectedElement: selectedEffmu, handleElementChange: handleEffmuChange } =
-    useElementsToggle<Effmu>(EFFMU[0]);
+  const {
+    selectedElement: selectedEffmu,
+    handleElementChange: handleEffmuChange,
+  } = useElementsToggle<Effmu>(EFFMU[0]);
 
   return (
     <section className={b()}>
       <span className={b("title")}>Rules Ability 2:</span>
-      <LevelBlocks selectedLevel={selectedLevel} onLevelChange={handleLevelChange} />
+      <LevelBlocks
+        selectedLevel={selectedLevel}
+        onLevelChange={handleLevelChange}
+      />
       {selectedLevel !== null && (
         <>
           <span className={b("subtitle")}>Rules for {selectedLevel} level</span>

@@ -1,5 +1,5 @@
 import { offpeakModel } from "../../@types/offpeakModel";
-import { createEffect, createApi, sample } from "effector";
+import { createEffect, createApi } from "effector";
 import api from "../../api";
 import { $offpeak } from "./state";
 

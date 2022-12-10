@@ -4,9 +4,9 @@ import { $sample, handleChangeSample, postSample } from "../../store/Sample";
 import { BaseButton } from "../BaseButton";
 import { BaseInputNumber } from "../BaseInputNumber";
 
-export const b = b_.with("sample-section");
-
 import "./index.scss";
+
+export const b = b_.with("sample-section");
 
 export const SampleSection = () => {
   const sample = useStore($sample);
@@ -21,7 +21,10 @@ export const SampleSection = () => {
           placeholder="Sample"
           className={b("input")}
         />
-        <BaseButton onClick={() => postSample({ sample })} className={b("button")}>
+        <BaseButton
+          onClick={() => postSample({ sample })}
+          className={b("button")}
+        >
           SAVE
         </BaseButton>
       </div>
