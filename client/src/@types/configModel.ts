@@ -1,4 +1,4 @@
-import { Effmu, Networks,Timezones } from "./common";
+import { Effmu, Networks } from "./common";
 
 export interface ConfigModel {
   alias: string;
@@ -6,7 +6,7 @@ export interface ConfigModel {
   effmu: Effmu;
   mail: string;
   password: string;
-  timezone: Timezones;
+  timezone: string;
 }
 
 export interface defaultConfigModel {
@@ -15,5 +15,5 @@ export interface defaultConfigModel {
   effmu: Effmu;
   mail: string;
   password: string;
-  timezone: Timezones;
+  timezone: string;
 }

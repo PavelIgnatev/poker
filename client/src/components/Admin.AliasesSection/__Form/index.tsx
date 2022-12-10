@@ -33,7 +33,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
   const [alias, setAlias] = useState<string>("");
   const [mail, setMail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [timezone, setTimezone] = useState<Timezones>("MSK");
+  const [timezone, setTZone] = useState<string>("");
   const [effmu, setEffmu] = useState<Effmu>("A");
   const adminPassword = useStore($password);
 
@@ -49,12 +49,14 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
       },
       password: adminPassword,
     });
+
     await getAliasesRequest(selectedLevel ?? 16);
+
     setAlias("");
     setMail("");
     setPassword("");
     setEffmu("A");
-    setTimezone("MSK");
+    setTZone("MSK");
   };
 
   return (
@@ -81,7 +83,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         options={EFFMU}
         placeholder="Effmu"
         defaultValue={EFFMU[0]}
-        // @ts-ignore react-select конечно молодец, но типы и стили ужасны
+        // @ts-ignore
         onChange={(option: SelectOption<Effmu>) => setEffmu(option.value)}
         styles={selectStyles}
       />
@@ -89,11 +91,8 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         options={TIMEZONES}
         placeholder="Timezones"
         defaultValue={TIMEZONES[0]}
-        // @ts-ignore react-select конечно молодец, но типы и стили ужасны
-        onChange={(option: SelectOption<Timezones>) =>
-          // @ts-ignore react-select конечно молодец, но типы и стили ужасны
-          setTimezone(option.label)
-        }
+        // @ts-ignore
+        onChange={(option: SelectOption<Timezones>) => setTZone(option.label)}
         styles={selectStyles}
       />
       <BaseButton
