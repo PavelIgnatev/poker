@@ -10,7 +10,6 @@ const getESTHours = (tournament, duration = 0) => {
 
   return new Date(Number(startDate)).toLocaleString("en-EN", {
     hour12: false,
-    timeZone: "America/New_York",
     hour: "numeric",
     minute: "numeric",
   });

@@ -8,7 +8,6 @@ const getTimeByMS = (timestamp) => {
   return new Date(Number(timestamp))
     .toLocaleString("en-EN", {
       hour12: false,
-      timeZone: "America/New_York",
       hour: "numeric",
       minute: "numeric",
     })

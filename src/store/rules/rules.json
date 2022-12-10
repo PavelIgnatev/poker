@@ -1,1 +1,1 @@
-[[{"type":"FromTo","values":["1","109"],"color":"blue","level":"1A","network":"PS.eu","status":"Turbo","KO":"KO","offpeak":false}],[{"type":"FromTo","values":["0","109"],"color":"blue","level":"-1all","network":"PS.eu","status":"all","KO":"KO","offpeak":false}],[{"type":"FromTo","values":["0","109"],"color":"blue","level":"0all","network":"PS.eu","status":"all","KO":"KO","offpeak":false}]]
+[[{"type":"BidGt","values":["109","100000"],"color":"blue","level":"6all","network":"PS.eu","status":"all","KO":"all","offpeak":true}]]

@@ -221,21 +221,21 @@ const getTournaments = async (req, res) => {
         );
       })
       .map((tournament) => {
-        const ability1 = tournament["@ability"] === "-" ? 0 : tournament["@ability"];
-        const ability2 = tournament["@abilityBid"] === "-" ? 0 : tournament["@abilityBid"];
+        const ability1 = tournament["@ability"];
+        const ability2 = tournament["@abilityBid"];
         const isAbility1 = ability1 && ability1 !== "-";
         const isAbility2 = ability2 && ability2 !== "-";
-        // const isAbility = isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)
-        let color;
-        if (ability2 === ability1 || !isAbility2 || !isAbility1) {
-          color = "rgba(2235,96,96,0.5)"; // красный
-        }
-        if (Math.abs(ability2 - ability1) >= 1 && Math.abs(ability2 - ability1) <= 3) {
-          color = "rgba(247,255,105,0.5)"; // желтый
-        }
-        if (Math.abs(ability2 - ability1) >= 4) {
+        let color = "rgba(2235,96,96,0.5)";
+        if (ability2 - ability1 >= 4) {
           color = "rgba(98,179,82,0.5)"; // зеленый
         }
+        else if (ability2 - ability1 >= 1 && ability2 - ability1 <= 3) {
+          color = "rgba(247,255,105,0.5)"; // желтый
+        }
+        // if (ability2 === ability1 || !isAbility2 || !isAbility1 || (ability1 - ability2) < 0 ) {
+        //   color = "rgba(2235,96,96,0.5)"; // красный
+        // }
+
         return { ...tournament, color };
       });
     console.log(result.length);

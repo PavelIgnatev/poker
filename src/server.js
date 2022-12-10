@@ -1,6 +1,10 @@
 const { PORT } = require("./config/");
 const { createFastifyInstance } = require("./createFastifyInstance");
 const { crons } = require("./modules/crons/crons");
+const { updatePartServer } = require("./modules/update/updatePartServer");
+const { updateServer } = require("./modules/update/updateServer");
+
+process.env.TZ = 'UTC'
 
 const start = async () => {
   try {
@@ -10,7 +14,7 @@ const start = async () => {
       console.error("Fastify не создался");
       return;
     }
-
+    
     await fastify.listen({ port: PORT, host: "0.0.0.0" });
 
     fastify.log.info(`Сервер запущен ${new Date().toISOString()}`);

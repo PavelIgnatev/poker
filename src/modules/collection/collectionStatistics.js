@@ -19,7 +19,6 @@ const collectionStatistics = async () => {
     const lastValue = await getCurrencyRate();
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
-        timeZone: "America/New_York",
       }),
     );
     const year = currentTime.getFullYear();
@@ -48,7 +47,6 @@ const collectionStatistics = async () => {
             `https://www.sharkscope.com/api/pocarrleaderboard/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${Math.round(
               +new Date(
                 new Date(date).toLocaleString("en-EN", {
-                  timeZone: "America/New_York",
                 }),
               ) /
                 1000 +
@@ -82,7 +80,6 @@ const collectionStatistics = async () => {
                     Number((tournament["@date"] ?? tournament["@scheduledStartDate"] ?? 0) + "000"),
                   ).toLocaleString("en-EN", {
                     day: "numeric",
-                    timeZone: "America/New_York",
                   }),
                 ) === Number(day),
             )
@@ -100,7 +97,6 @@ const collectionStatistics = async () => {
               const data = new Date(Number(Number(`${isStartDate - d}000`)))
                 .toLocaleString("en-EN", {
                   hour12: false,
-                  timeZone: "America/New_York",
                   day: "numeric",
                   month: "short",
                   hour: "numeric",

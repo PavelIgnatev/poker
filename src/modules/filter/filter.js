@@ -61,10 +61,8 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return false;
 
-    if((FromTo(1,109))
-    && network === 'PS.eu'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo) return true;if((FromTo(0,109))
-    && network === 'PS.eu'&& isKo) return true;if((FromTo(0,109))
-    && network === 'PS.eu'&& level === '0'&& isKo) return true;
+    if((BidGt(109,isOffpeak && isGetTournaments ? 0 : 100000))
+    && network === 'PS.eu'&& level === '6') return true;
 
     if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return true 
     
