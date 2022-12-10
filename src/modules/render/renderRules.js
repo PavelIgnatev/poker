@@ -1,3 +1,4 @@
+const { minifyFile } = require("../../helpers/minifyFile");
 const { renderCheck } = require("./renderCheck");
 const { renderCheckFalse } = require("./renderCheckFalse");
 const { renderRule } = require("./renderRule");
@@ -10,9 +11,9 @@ function customSort(a, s) {
   });
 }
 
-function renderRules(rules) {
+async function renderRules(rules) {
   customSort(rules, ["green", "orange", "blue", "red", "brown", "black"]);
-  return `const { getNetwork } = require("../../helpers/getNetwork");
+  return await minifyFile(`const { getNetwork } = require("../../helpers/getNetwork");
   const {
     FromTo: FromToQ,
     FromToName: FromToNameQ,
@@ -92,6 +93,6 @@ function renderRules(rules) {
   
   module.exports = {
     filter,
-  };`;
+  };`);
 }
 module.exports = { renderRules };

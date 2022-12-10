@@ -12,7 +12,7 @@ const updateServer = async () => {
 
   const rules = await getRules();
 
-  await writeFile("src/modules/filter/filter.js", renderRules(rules));
+  await writeFile("src/modules/filter/filter.js", await renderRules(rules));
 
   // Отправка писем
   try {
