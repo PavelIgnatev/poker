@@ -1,7 +1,7 @@
 import { createApi } from "effector";
 import { MultiValue, SingleValue } from "react-select";
 import { selectModel } from "../../@types/selectsModel";
-import { $tournamentsSettings } from "./state";
+import { $tournamentsSettings, TIMEZONES } from "./state";
 
 export const editableTournamentsSettings = createApi($tournamentsSettings, {
   handleChangeNetwork: (setting, network: MultiValue<selectModel>) => ({
@@ -11,10 +11,6 @@ export const editableTournamentsSettings = createApi($tournamentsSettings, {
   handleChangeTime: (setting, time: SingleValue<selectModel>) => ({
     ...setting,
     time,
-  }),
-  handleChangeTimezone: (setting, timezone: SingleValue<selectModel>) => ({
-    ...setting,
-    timezone,
   }),
   handleChangeTimezonetable: (setting, timezoneTable: string) => ({
     ...setting,
@@ -63,5 +59,9 @@ export const editableTournamentsSettings = createApi($tournamentsSettings, {
   handleChangeNormal: (setting, normal: boolean) => ({
     ...setting,
     normal,
+  }),
+  handleChangeTimezone: (setting, timezone: typeof TIMEZONES[0]) => ({
+    ...setting,
+    timezone,
   }),
 });

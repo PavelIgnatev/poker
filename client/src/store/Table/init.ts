@@ -11,17 +11,19 @@ export const fetchUserReposFx = createEffect(async () => {
   const tournamentsSettings = $tournamentsSettings.getState();
   const config = $config.getState();
 
+  console.log(config)
+
   try {
     const result = await api.get<tableCellModel[]>("/api/tour", {
       ...tournamentsSettings,
       network: tournamentsSettings.network?.map((elem) => elem.value).join(","),
-      timezone: 28800000,
+      timezone: config?.timezone,
       time: tournamentsSettings.time?.value ?? 0,
       alias: config?.alias,
     });
 
     editableTournamentsSettings.handleChangeTimezonetable(
-      tournamentsSettings?.timezone?.label ?? "",
+      tournamentsSettings?.timezone?.label ?? ""
     );
 
     return result;

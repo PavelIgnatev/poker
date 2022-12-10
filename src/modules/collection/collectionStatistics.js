@@ -2,11 +2,12 @@ const { api } = require("../../api");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getWeekday } = require("../../helpers/getWeekday");
 const { readFile, writeFile } = require("../../utils/promisify");
-let filter = require("../filter/filter");
 const { deleteFolder } = require("../delete/deleteFolder");
 const { getStatus } = require("../../helpers/getStatus");
 const { sendStatistics } = require("../send/sendStatistics");
-// const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
+const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
+
+let filter = require("../filter/filter");
 
 const collectionStatistics = async () => {
   const errorTournaments = {};
@@ -15,7 +16,7 @@ const collectionStatistics = async () => {
   filter = require("../filter/filter");
 
   try {
-    const lastValue = JSON.parse(await readFile("src/store/currency/currency.json")).currency;
+    const lastValue = await getCurrencyRate();
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
         timeZone: "America/New_York",

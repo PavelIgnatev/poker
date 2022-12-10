@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Select from "react-select";
 
 import { Effmu } from "../../../@types/common";
@@ -9,7 +9,11 @@ import MailIcon from "../../../assets/icons/mail.svg";
 import SettingsIcon from "../../../assets/icons/settings.png";
 import EyeIcon from "../../../assets/icons/eye.svg";
 import { editableConfigEvents } from "../../../store/Config";
-import { EFFMU } from "../../../store/Select";
+import {
+  editableTournamentsSettings,
+  EFFMU,
+  TIMEZONES,
+} from "../../../store/Select";
 
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
@@ -31,22 +35,44 @@ const selectStyles = {
   }),
 };
 
+const nativeSelectStyles = {
+  ...specialSelectStyles,
+  control: (provided: object, state: any) => ({
+    ...specialSelectStyles.control(provided, state),
+    fontWeight: 700,
+    fontSize: "20px",
+    width: "150px",
+  }),
+};
+
 const b = b_.with("user-settings-info");
 
 export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
-  const { effmu, alias, mail, password } = config;
+  const { effmu, alias, mail, password, timezone } = config;
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => setShowPassword((p) => !p);
 
-  const defaultEffMuOption = EFFMU.find((option) => option.value === effmu) || EFFMU[0];
+  const defaultEffMuOption =
+    EFFMU.find((option) => option.value === effmu) || EFFMU[0];
+  const defaultTimezoneOption =
+    TIMEZONES.find((option) => option.value === timezone) || TIMEZONES[0];
 
-  const handleEmailChange = (email: string) => editableConfigEvents.handleChangeMail(email);
+  const handleEmailChange = (email: string) =>
+    editableConfigEvents.handleChangeMail(email);
   const handlePasswordChange = (password: string) =>
     editableConfigEvents.handleChangePassword(password);
   const handleEffMuChange = (option: SelectOption<Effmu>) =>
     editableConfigEvents.handleChangeEffmu(option.value);
+  const handleTimezoneChange = (option: SelectOption<typeof TIMEZONES[0]>) =>
+    editableConfigEvents.handleTimezoneChange(option.value as any);
 
   const whichAccount = isAdminPage ? "this" : "your";
+
+  useEffect(() => {
+    console.log(defaultTimezoneOption);
+
+    editableTournamentsSettings.handleChangeTimezone(defaultTimezoneOption);
+  }, [defaultTimezoneOption]);
 
   return (
     <div className={b()}>
@@ -57,8 +83,13 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
         {!isAdminPage && (
           <span className={b("header-password")}>
             <b>Password:</b>
-            <div className={b("header-password-block")} onClick={toggleShowPassword}>
-              <span className={b("header-password-text", { hidden: !showPassword })}>
+            <div
+              className={b("header-password-block")}
+              onClick={toggleShowPassword}
+            >
+              <span
+                className={b("header-password-text", { hidden: !showPassword })}
+              >
                 {showPassword ? password : "****"}
               </span>
               <img className={b("header-password-img")} src={EyeIcon} alt="" />
@@ -72,10 +103,21 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           <Select
             options={EFFMU}
             defaultValue={defaultEffMuOption}
-            // @ts-ignore все работает че дурной жалуется
+            // @ts-ignore
             onChange={handleEffMuChange}
             className={b("input", { effmu: true })}
             styles={selectStyles}
+          />
+        </div>
+        <div className={b("timezones-wrapper")}>
+        <b className={b("label")}>Timezone</b>
+          <Select
+            options={TIMEZONES}
+            defaultValue={defaultTimezoneOption}
+            // @ts-ignore
+            onChange={handleTimezoneChange}
+            className={b("input", { timezone: true })}
+            styles={nativeSelectStyles}
           />
         </div>
         <div className={b("email-wrapper")}>
@@ -105,14 +147,15 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
         </div>
         <div className={b("additional-info-line")}>
           <img src={MailIcon} alt="mail" />
-          Previously played tournaments that do not comply with the team's rules will be sent to
+          Previously played tournaments that do not comply with the team's rules
+          will be sent to
           {whichAccount} email every day
         </div>
         {!isAdminPage && (
           <div className={b("additional-info-line")}>
             <img src={SettingsIcon} alt="levels" />
-            To change the level of {whichAccount} account on a particular network, contact the
-            administrators
+            To change the level of {whichAccount} account on a particular
+            network, contact the administrators
           </div>
         )}
       </div>

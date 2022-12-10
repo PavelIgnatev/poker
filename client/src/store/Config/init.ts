@@ -7,7 +7,8 @@ import { ErrNot } from "../../components/NotificationService";
 import { $config, $editableConfig, DEFAULT_EDITABLE_CONFIG } from "./state";
 import { Effmu, Level, Network } from "../../@types/common";
 
-const DEFAULT_ERROR_MESSAGE = "An error has occurred. You are denied access to the service.";
+const DEFAULT_ERROR_MESSAGE =
+  "An error has occurred. You are denied access to the service.";
 
 const configDomain = createDomain();
 
@@ -18,7 +19,7 @@ export const { clearConfig } = createApi($config, {
 export const getConfigRequest = configDomain.createEffect(
   async (params: { alias: string; password: string }) => {
     return await api.get<ConfigModel>("/api/config", params);
-  },
+  }
 );
 
 export const postConfigRequest = configDomain.createEffect(
@@ -26,26 +27,34 @@ export const postConfigRequest = configDomain.createEffect(
     const { config, password } = params;
 
     await api.postConfigRequest(config, password);
-  },
+  }
 );
 
 export const patchConfigRequest = configDomain.createEffect(
-  async ({ alias, config, password }: { alias: string; config: ConfigModel; password: string }) => {
+  async ({
+    alias,
+    config,
+    password,
+  }: {
+    alias: string;
+    config: ConfigModel;
+    password: string;
+  }) => {
     await api.patchConfigRequest(alias, config, password);
     await getConfigRequest({ alias, password: config.password });
-  },
+  }
 );
 
 export const deleteConfigRequest = configDomain.createEffect(
   async (params: { alias: string; password: string }) => {
     await api.deleteConfig(params);
     clearConfig();
-  },
+  }
 );
 
 configDomain.onCreateEffect((effect) => {
   effect.fail.watch(({ error }: { error: any }) =>
-    ErrNot(error?.response?.data?.message || DEFAULT_ERROR_MESSAGE),
+    ErrNot(error?.response?.data?.message || DEFAULT_ERROR_MESSAGE)
   );
 });
 
@@ -61,7 +70,10 @@ export const editableConfigEvents = createApi($editableConfig, {
     ...config,
     effmu,
   }),
-  handleChangeLevel: (config, { network, level }: { network: Network; level: Level }) => ({
+  handleChangeLevel: (
+    config,
+    { network, level }: { network: Network; level: Level }
+  ) => ({
     ...config,
     networks: { ...config.networks, [network]: level },
   }),
@@ -69,6 +81,7 @@ export const editableConfigEvents = createApi($editableConfig, {
     ...config,
     password,
   }),
+  handleTimezoneChange: (config, timezone) => ({ ...config, timezone }),
 });
 
 $config.on(getConfigRequest.doneData, (_, config) => config);

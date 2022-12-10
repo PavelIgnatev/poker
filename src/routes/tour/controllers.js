@@ -10,11 +10,12 @@ const { getStatus } = require("../../helpers/getStatus");
 const { getConfig } = require("../../utils/config");
 const { isSuperTurbo } = require("../../helpers/isSuperTurbo");
 const { getRulesAbility2 } = require("../../utils/rules");
-let filter = require("../../modules/filter/filter");
 const { isRebuy } = require("../../helpers/isRebuy");
 const { isSat } = require("../../helpers/IsSat");
 const { isNormal } = require("../../helpers/isNormal");
-// const { parseCurrencyRate } = require("../../modules/parseCurrencyRate/parseCurrencyRate");
+const { getCurrencyRate } = require("../../modules/currencyRate/getCurrencyRate");
+
+let filter = require("../../modules/filter/filter");
 
 const getTournaments = async (req, res) => {
   try {
@@ -22,7 +23,6 @@ const getTournaments = async (req, res) => {
       network,
       time,
       alias,
-      timezone,
       moneyStart,
       moneyEnd,
       KO: isKOQ,
@@ -53,12 +53,12 @@ const getTournaments = async (req, res) => {
     filter = require("../../modules/filter/filter");
 
     const config = await getConfig();
-    const lastValue = JSON.parse(await readFile("src/store/currency/currency.json")).currency;
+    const lastValue = await getCurrencyRate();
     const configByAlias = config[alias];
 
     if (!configByAlias) return res.send(result ?? []);
 
-    const { effmu, networks } = configByAlias;
+    const { effmu, networks, timezone } = configByAlias;
 
     const ability1 = JSON.parse(await readFile("src/store/ability1/ability1.json"));
     const ability2WithoutName = JSON.parse(
@@ -184,58 +184,60 @@ const getTournaments = async (req, res) => {
     console.log("Промапил данные");
     console.log(result.length);
 
-    result = result.filter((tournament) => {
-      const bounty = tournament["@bounty"];
-      const turbo = tournament["@turbo"];
-      const superturbo = tournament["@superturbo"];
-      const level = tournament["@level"];
-      const prizepool = tournament["@usdPrizepool"];
-      const startDate = tournament["@scheduledStartDate"];
+    result = result
+      .filter((tournament) => {
+        const bounty = tournament["@bounty"];
+        const turbo = tournament["@turbo"];
+        const superturbo = tournament["@superturbo"];
+        const level = tournament["@level"];
+        const prizepool = tournament["@usdPrizepool"];
+        const startDate = tournament["@scheduledStartDate"];
 
-      // фильтрация по дате
-      const hours = startDate?.split(", ")?.[1]?.split(":")?.[0];
-      const isDateFiltred =
-        startDate !== "-"
-          ? dateStart <= dateEnd
-            ? dateStart <= hours && hours <= dateEnd === "00" && dateStart <= dateEnd
-              ? "24"
-              : dateEnd
-            : !(dateStart > hours && hours > dateEnd)
-          : true;
+        // фильтрация по дате
+        const hours = startDate?.split(", ")?.[1]?.split(":")?.[0];
+        const isDateFiltred =
+          startDate !== "-"
+            ? dateStart <= dateEnd
+              ? dateStart <= hours && hours <= dateEnd === "00" && dateStart <= dateEnd
+                ? "24"
+                : dateEnd
+              : !(dateStart > hours && hours > dateEnd)
+            : true;
 
-      return (
-        tournament["@usdBid"] >= Number(moneyStart) &&
-        tournament["@usdBid"] <= Number(moneyEnd) &&
-        ((isKOQ != "false" && isNormalQ != "false" ? bounty && !turbo && !superturbo : false) ||
-          (isKOQ != "false" && isTurboQ != "false" ? bounty && turbo : false) ||
-          (isKOQ != "false" && isSTurboQ != "false" ? bounty && superturbo : false) ||
-          (isFreezoutQ != "false" && isNormalQ != "false"
-            ? !bounty && !turbo && !superturbo
-            : false) ||
-          (isFreezoutQ != "false" && isTurboQ != "false" ? !bounty && turbo : false) ||
-          (isFreezoutQ != "false" && isSTurboQ != "false" ? !bounty && superturbo : false)) &&
-        isDateFiltred &&
-        (prizepool !== "-" ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
-        filter.filter(level, tournament, true)
-      );
-    }).map(tournament => {
-      const ability1 = tournament['@ability'] === '-' ? 0 : tournament['@ability'];
-      const ability2 = tournament['@abilityBid'] === '-' ? 0 : tournament['@abilityBid'];
-      const isAbility1 = ability1 && ability1 !== '-'
-      const isAbility2 = ability2 && ability2 !== '-'
-      // const isAbility = isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)
-      let color;
-      if(ability2 === ability1 || !isAbility2 || !isAbility1) {
-        color = 'rgba(2235,96,96,0.5)' // красный
-      } 
-      if((Math.abs(ability2 - ability1) >= 1) && (Math.abs(ability2 - ability1) <= 3)) {
-        color = 'rgba(247,255,105,0.5)' // желтый
-      } 
-      if(Math.abs(ability2 - ability1) >= 4) {
-        color = 'rgba(98,179,82,0.5)' // зеленый
-      } 
-      return {...tournament, color}
-    })
+        return (
+          tournament["@usdBid"] >= Number(moneyStart) &&
+          tournament["@usdBid"] <= Number(moneyEnd) &&
+          ((isKOQ != "false" && isNormalQ != "false" ? bounty && !turbo && !superturbo : false) ||
+            (isKOQ != "false" && isTurboQ != "false" ? bounty && turbo : false) ||
+            (isKOQ != "false" && isSTurboQ != "false" ? bounty && superturbo : false) ||
+            (isFreezoutQ != "false" && isNormalQ != "false"
+              ? !bounty && !turbo && !superturbo
+              : false) ||
+            (isFreezoutQ != "false" && isTurboQ != "false" ? !bounty && turbo : false) ||
+            (isFreezoutQ != "false" && isSTurboQ != "false" ? !bounty && superturbo : false)) &&
+          isDateFiltred &&
+          (prizepool !== "-" ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) &&
+          filter.filter(level, tournament, true)
+        );
+      })
+      .map((tournament) => {
+        const ability1 = tournament["@ability"] === "-" ? 0 : tournament["@ability"];
+        const ability2 = tournament["@abilityBid"] === "-" ? 0 : tournament["@abilityBid"];
+        const isAbility1 = ability1 && ability1 !== "-";
+        const isAbility2 = ability2 && ability2 !== "-";
+        // const isAbility = isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)
+        let color;
+        if (ability2 === ability1 || !isAbility2 || !isAbility1) {
+          color = "rgba(2235,96,96,0.5)"; // красный
+        }
+        if (Math.abs(ability2 - ability1) >= 1 && Math.abs(ability2 - ability1) <= 3) {
+          color = "rgba(247,255,105,0.5)"; // желтый
+        }
+        if (Math.abs(ability2 - ability1) >= 4) {
+          color = "rgba(98,179,82,0.5)"; // зеленый
+        }
+        return { ...tournament, color };
+      });
     console.log(result.length);
     return res.send(result ?? []);
   } catch (err) {

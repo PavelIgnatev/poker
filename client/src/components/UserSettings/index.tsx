@@ -5,7 +5,11 @@ import b_ from "b_";
 import CloseIcon from "../../assets/icons/close.svg";
 import { $password } from "../../store/Password";
 import { ConfigModel } from "../../@types/configModel";
-import { $editableConfig, editableConfigEvents, patchConfigRequest } from "../../store/Config";
+import {
+  $editableConfig,
+  editableConfigEvents,
+  patchConfigRequest,
+} from "../../store/Config";
 
 import { BaseButton } from "../BaseButton";
 
@@ -26,7 +30,7 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
   const [progress, setProgress] = React.useState(false);
 
   const editableConfig = useStore($editableConfig);
-  const { mail, effmu, alias, networks, password: newPassword, timezone } = editableConfig;
+  const { alias, networks, password: newPassword, ...props } = editableConfig;
 
   const password = useStore($password);
 
@@ -45,12 +49,10 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
     await patchConfigRequest({
       alias,
       config: {
+        ...props,
         networks: isAdminPage ? networks : config.networks,
-        mail,
-        effmu,
-        alias,
         password: isAdminPage ? newPassword : config.password,
-        timezone,
+        alias,
       },
       password,
     });
@@ -68,7 +70,11 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
         <UserSettingsTable networks={networks} canChangeLevels={isAdminPage} />
         <div className={b("content-main-block")}>
           <UserSettingsInfo config={editableConfig} isAdminPage={isAdminPage} />
-          <BaseButton onClick={handleSubmit} className={b("save-button")} disabled={progress}>
+          <BaseButton
+            onClick={handleSubmit}
+            className={b("save-button")}
+            disabled={progress}
+          >
             Save changes
           </BaseButton>
         </div>

@@ -31,7 +31,7 @@ export const Thead = ({
     <thead className={classes.thead}>
       <tr className={classes.tr}>
         <th className={classes.th} onClick={() => handleClick("@date")}>
-          Start{" "}
+          Start
           {tournamentsSettings.timezoneTable
             ? `(${tournamentsSettings.timezoneTable})`
             : ""}

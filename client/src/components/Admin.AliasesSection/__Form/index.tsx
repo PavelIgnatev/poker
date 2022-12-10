@@ -2,8 +2,7 @@ import { useStore } from "effector-react";
 import { FC, useState } from "react";
 import Select from "react-select";
 
-import { SelectOption } from "../../../@types/selectsModel";
-import { Effmu, Timezones } from "../../../@types/common";
+import { Effmu } from "../../../@types/common";
 
 import { getAliasesRequest } from "../../../store/Alias";
 import { postConfigRequest } from "../../../store/Config";
@@ -27,13 +26,23 @@ const selectStyles = {
   }),
 };
 
+const nativeSelectStyles = {
+  ...specialSelectStyles,
+  control: (provided: object, state: any) => ({
+    ...specialSelectStyles.control(provided, state),
+    fontWeight: 700,
+    fontSize: "20px",
+    width: "150px",
+  }),
+};
+
 export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
   selectedLevel,
 }) => {
   const [alias, setAlias] = useState<string>("");
   const [mail, setMail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [timezone, setTZone] = useState<string>("");
+  const [timezone, setTZone] = useState<string>("0");
   const [effmu, setEffmu] = useState<Effmu>("A");
   const adminPassword = useStore($password);
 
@@ -56,7 +65,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
     setMail("");
     setPassword("");
     setEffmu("A");
-    setTZone("MSK");
+    setTZone(TIMEZONES[0].value);
   };
 
   return (
@@ -83,17 +92,15 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         options={EFFMU}
         placeholder="Effmu"
         defaultValue={EFFMU[0]}
-        // @ts-ignore
-        onChange={(option: SelectOption<Effmu>) => setEffmu(option.value)}
+        onChange={(option) => setEffmu(option?.value as any)}
         styles={selectStyles}
       />
       <Select
         options={TIMEZONES}
         placeholder="Timezones"
         defaultValue={TIMEZONES[0]}
-        // @ts-ignore
-        onChange={(option: SelectOption<Timezones>) => setTZone(option.label)}
-        styles={selectStyles}
+        onChange={(option) => setTZone(option?.value ?? "0")}
+        styles={nativeSelectStyles}
       />
       <BaseButton
         className={b("alias-form-button")}

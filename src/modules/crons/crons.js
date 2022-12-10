@@ -1,6 +1,6 @@
 const { CronJob } = require("cron");
 
-const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
+const { parseCurrencyRate } = require("../currencyRate/parseCurrencyRate");
 const { updatePartServer } = require("../update/updatePartServer");
 
 const crons = () => {

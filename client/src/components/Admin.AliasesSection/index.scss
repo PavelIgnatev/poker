@@ -30,7 +30,7 @@
   &__alias-form {
     margin-top: 20px;
     display: flex;
-    max-width: 952px;
+    max-width: 1200px;
     width: 100%;
     gap: 20px;
 
@@ -46,7 +46,7 @@
     }
 
     &-select {
-      span[aria-relevant="additions text"] + div {
+      span[aria-relevant="additions text"]+div {
         font-size: 18px;
         border: 0;
         background: #f5f8ff;

@@ -3,14 +3,15 @@ const { getStatus } = require("../../helpers/getStatus");
 const { getSheduledDate } = require("../../helpers/getSheduledDate");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
-let  filter  = require("../filter/filter");
-const { parseCurrencyRate } = require("../parseCurrencyRate/parseCurrencyRate");
+const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
+
+let filter = require("../filter/filter");
 
 const updateAbility2 = async () => {
   delete require.cache[require.resolve("../filter/filter")];
   filter = require("../filter/filter");
 
-  const lastValue = await parseCurrencyRate();
+  const lastValue = await getCurrencyRate();
   const levels = Array(17)
     .fill(null)
     .map((_, i) => [i + "A", i + "B", i + "C"])
