@@ -27,10 +27,10 @@ module.exports = async (req, res) => {
     return res.status(403).send({ message: "Alias is already in use" });
   }
 
-  config[alias] = { alias, effmu, mail, networks: {}, password, timezone };
+  config[alias] = { alias, mail, networks: {}, password, timezone };
 
   networks.forEach((network) => {
-    config[alias].networks[network] = level;
+    config[alias].networks[network] = { level, effmu };
   });
 
   await saveConfig(config);

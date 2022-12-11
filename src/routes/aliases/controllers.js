@@ -10,7 +10,8 @@ const get = async (req) => {
 
   if (!isNaN(numLevel)) {
     aliases = aliases.filter((alias) => {
-      const levels = Object.values(config[alias].networks);
+      console.log(Object.values(config[alias].networks))
+      const levels = Object.values(config[alias].networks).map((network)=> network.level);
 
       return levels.includes(numLevel);
     });

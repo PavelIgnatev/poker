@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import Select from "react-select";
 
-import { Effmu } from "../../../@types/common";
 import { SelectOption } from "../../../@types/selectsModel";
 import { ConfigModel } from "../../../@types/configModel";
 import InfoIcon from "../../../assets/icons/info.svg";
@@ -11,7 +10,6 @@ import EyeIcon from "../../../assets/icons/eye.svg";
 import { editableConfigEvents } from "../../../store/Config";
 import {
   editableTournamentsSettings,
-  EFFMU,
   TIMEZONES,
 } from "../../../store/Select";
 
@@ -24,16 +22,6 @@ interface Props {
   config: ConfigModel;
   isAdminPage?: boolean;
 }
-
-const selectStyles = {
-  ...specialSelectStyles,
-  control: (provided: object, state: any) => ({
-    ...specialSelectStyles.control(provided, state),
-    fontWeight: 700,
-    fontSize: "22px",
-    width: "90px",
-  }),
-};
 
 const nativeSelectStyles = {
   ...specialSelectStyles,
@@ -48,12 +36,10 @@ const nativeSelectStyles = {
 const b = b_.with("user-settings-info");
 
 export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
-  const { effmu, alias, mail, password, timezone } = config;
+  const { alias, mail, password, timezone } = config;
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => setShowPassword((p) => !p);
 
-  const defaultEffMuOption =
-    EFFMU.find((option) => option.value === effmu) || EFFMU[0];
   const defaultTimezoneOption =
     TIMEZONES.find((option) => option.value === timezone) || TIMEZONES[0];
 
@@ -61,16 +47,12 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
     editableConfigEvents.handleChangeMail(email);
   const handlePasswordChange = (password: string) =>
     editableConfigEvents.handleChangePassword(password);
-  const handleEffMuChange = (option: SelectOption<Effmu>) =>
-    editableConfigEvents.handleChangeEffmu(option.value);
   const handleTimezoneChange = (option: SelectOption<typeof TIMEZONES[0]>) =>
     editableConfigEvents.handleTimezoneChange(option.value as any);
 
   const whichAccount = isAdminPage ? "this" : "your";
 
   useEffect(() => {
-    console.log(defaultTimezoneOption);
-
     editableTournamentsSettings.handleChangeTimezone(defaultTimezoneOption);
   }, [defaultTimezoneOption]);
 
@@ -98,17 +80,6 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
         )}
       </div>
       <div className={b("settings")}>
-        <div className={b("effmu-wrapper")}>
-          <b className={b("label")}>Eff mu</b>
-          <Select
-            options={EFFMU}
-            defaultValue={defaultEffMuOption}
-            // @ts-ignore
-            onChange={handleEffMuChange}
-            className={b("input", { effmu: true })}
-            styles={selectStyles}
-          />
-        </div>
         <div className={b("timezones-wrapper")}>
         <b className={b("label")}>Timezone</b>
           <Select

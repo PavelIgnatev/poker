@@ -4,7 +4,12 @@ export type Network = string;
 
 export type Level = number;
 
-export type Networks = Record<Network, Level>;
+export type NetworkLevels = {
+  level: Level;
+  effmu: Effmu;
+}
+
+export type Networks = Record<Network, NetworkLevels>;
 
 export type Rule = {
   network: Network;

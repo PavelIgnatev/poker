@@ -4,6 +4,8 @@ const { checkPassword } = require("../../../utils/passwords");
 module.exports = async (req, res) => {
   const { alias, config: newConfig, password } = req.body;
 
+  console.log(newConfig);
+  
   if (!newConfig) {
     return res.status(403).send({ message: "Config is required parameter" });
   }

@@ -49,8 +49,8 @@ const collectionStatistics = async () => {
                 new Date(date).toLocaleString("en-EN", {
                 }),
               ) /
-                1000 +
-                86400 * 2,
+              1000 +
+              86400 * 2,
             )}`,
           );
         } catch (error) {
@@ -88,7 +88,8 @@ const collectionStatistics = async () => {
               const t = getMoreProp(ft);
               const name = t["@name"]?.toLowerCase();
               const network = t["@network"];
-              const level = networks[network] + effmu;
+              const { level: networksLevel, effmu } = networks[network];
+              const level = networksLevel + effmu;
               const currency = t["@currency"];
               const bid = t["@bid"];
               const status = getStatus(t);
@@ -112,8 +113,8 @@ const collectionStatistics = async () => {
               ]?.[t["@name"]]
                 ? rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[status]?.[t["@name"]]
                 : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                : 0;
+                  ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+                  : 0;
 
               const realAbility = abilityBid + rulesAbility2;
 

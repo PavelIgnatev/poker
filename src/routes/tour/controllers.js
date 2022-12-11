@@ -58,7 +58,7 @@ const getTournaments = async (req, res) => {
 
     if (!configByAlias) return res.send(result ?? []);
 
-    const { effmu, networks, timezone } = configByAlias;
+    const { networks, timezone } = configByAlias;
 
     const ability1 = JSON.parse(await readFile("src/store/ability1/ability1.json"));
     const ability2WithoutName = JSON.parse(
@@ -83,7 +83,8 @@ const getTournaments = async (req, res) => {
       .sort((a, b) => (a["@scheduledStartDate"] ?? 0) - (b["@scheduledStartDate"] ?? 0))
       .map((tournament) => {
         const network = getNetwork(tournament["@network"]);
-        const level = networks[network] + effmu;
+        const { level: networksLevel, effmu } = networks[network]
+        const level = networksLevel + effmu
         const name = tournament["@name"]?.toLowerCase();
         const stake = Number(tournament["@stake"] ?? 0);
         const rake = Number(tournament["@rake"] ?? 0);
@@ -135,9 +136,9 @@ const getTournaments = async (req, res) => {
             Number(tournament["@guarantee"] ?? 0),
             Number(tournament["@prizePool"] ?? 0),
             (Number(tournament["@entrants"] ?? 0) + Number(tournament["@reEntries"] ?? 0)) *
-              Number(tournament["@stake"] ?? 0),
+            Number(tournament["@stake"] ?? 0),
             (Number(tournament["@totalEntrants"] ?? 0) + Number(tournament["@reEntries"] ?? 0)) *
-              Number(tournament["@stake"] ?? 0),
+            Number(tournament["@stake"] ?? 0),
           ),
         );
 
@@ -146,8 +147,8 @@ const getTournaments = async (req, res) => {
         ]
           ? rules[network]?.[time]?.[level]?.[currency]?.[bid]?.[status]?.[tournament["@name"]]
           : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-          ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-          : 0;
+            ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+            : 0;
 
         const pp = prizepool >= 0 ? prizepool : "-";
 

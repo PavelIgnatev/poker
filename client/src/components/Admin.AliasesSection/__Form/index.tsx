@@ -2,29 +2,19 @@ import { useStore } from "effector-react";
 import { FC, useState } from "react";
 import Select from "react-select";
 
-import { Effmu } from "../../../@types/common";
-
 import { getAliasesRequest } from "../../../store/Alias";
 import { postConfigRequest } from "../../../store/Config";
 import { $password } from "../../../store/Password";
-import { EFFMU, TIMEZONES } from "../../../store/Select";
+import { TIMEZONES } from "../../../store/Select";
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
 import { BaseButton } from "../../BaseButton";
+
 import { b } from "../index";
+
 interface AliasesSectionFormProps {
   selectedLevel: number | null;
 }
-
-const selectStyles = {
-  ...specialSelectStyles,
-  control: (provided: object, state: any) => ({
-    ...specialSelectStyles.control(provided, state),
-    fontWeight: 700,
-    fontSize: "20px",
-    width: "90px",
-  }),
-};
 
 const nativeSelectStyles = {
   ...specialSelectStyles,
@@ -43,7 +33,6 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
   const [mail, setMail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [timezone, setTZone] = useState<string>("0");
-  const [effmu, setEffmu] = useState<Effmu>("A");
   const adminPassword = useStore($password);
 
   const handleSubmit = async () => {
@@ -51,7 +40,6 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
       config: {
         alias,
         level: selectedLevel ?? 16,
-        effmu,
         mail,
         password,
         timezone,
@@ -64,7 +52,6 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
     setAlias("");
     setMail("");
     setPassword("");
-    setEffmu("A");
     setTZone(TIMEZONES[0].value);
   };
 
@@ -88,13 +75,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         placeholder="Mail"
         className={b("alias-form-input")}
       />
-      <Select
-        options={EFFMU}
-        placeholder="Effmu"
-        defaultValue={EFFMU[0]}
-        onChange={(option) => setEffmu(option?.value as any)}
-        styles={selectStyles}
-      />
+
       <Select
         options={TIMEZONES}
         placeholder="Timezones"

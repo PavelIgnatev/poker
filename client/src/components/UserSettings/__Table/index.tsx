@@ -2,9 +2,9 @@ import b_ from "b_";
 import { FC } from "react";
 import Select from "react-select";
 
-import { Networks } from "../../../@types/common";
+import { Effmu, Networks } from "../../../@types/common";
 import { SelectOption } from "../../../@types/selectsModel";
-import { LEVELS_ARRAY } from "../../../constants";
+import { EFFMU, LEVELS_ARRAY } from "../../../constants";
 import { editableConfigEvents } from "../../../store/Config";
 
 import { specialSelectStyles } from "../../BaseSelect";
@@ -37,18 +37,29 @@ const levelsOptions: SelectOption<number>[] = LEVELS_ARRAY.map((level) => ({
   label: level,
 }));
 
+const effmuOptions: SelectOption<Effmu>[] = EFFMU.map((effmu) => ({
+  value: effmu,
+  label: effmu,
+}));
+
+
 export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
   return (
     <div className={b({ "select-in-cells": canChangeLevels })}>
       <div className={b("row", { headline: true })}>
         <div className={b("cell")}>Network</div>
         <div className={b("cell")}>Level</div>
+        <div className={b("cell")}>Eff mu</div>
+
       </div>
       {Object.keys(networks).map((network) => {
-        const level = networks[network];
+        const {level, effmu} = networks[network];
         const defaultOption = levelsOptions.find((option) => option.value === level);
+        const defaultEffmuOption = effmuOptions.find((option) => option.value === effmu); 
         const handleLevelChange = (option: SelectOption<number>) =>
           editableConfigEvents.handleChangeLevel({ network, level: option.value });
+        const handleEffmuChange = (option: SelectOption<Effmu>) =>
+          editableConfigEvents.handleChangeEffmu({ network, effmu: option.value });
 
         return (
           <div className={b("row")} key={network}>
@@ -64,8 +75,18 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
                   styles={selectStyles}
                 />
               ) : (
-                networks[network]
+                networks[network].level
               )}
+            </div>
+            <div className={b("cell")}>
+              <Select
+                options={effmuOptions}
+                defaultValue={defaultEffmuOption}
+                // @ts-ignore все работает
+                onChange={handleEffmuChange}
+                className={b("input", { select: true })}
+                styles={selectStyles}
+              />
             </div>
           </div>
         );

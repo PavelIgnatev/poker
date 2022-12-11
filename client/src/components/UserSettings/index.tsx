@@ -50,7 +50,7 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
       alias,
       config: {
         ...props,
-        networks: isAdminPage ? networks : config.networks,
+        networks,
         password: isAdminPage ? newPassword : config.password,
         alias,
       },

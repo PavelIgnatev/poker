@@ -15,7 +15,7 @@ import { BaseInputMask } from "../BaseInputMask";
 import { ComponentCategory } from "../ComponentCategory";
 import { BaseButton } from "../BaseButton";
 import { fetchUserReposFx } from "../../store/Table";
-import { $config } from "../../store/Config";
+import { $config, getConfigRequest } from "../../store/Config";
 import profileSrc from "../../assets/icons/Profile.svg";
 
 import { Modal, ModalRef } from "../Modal";
@@ -29,7 +29,11 @@ export const BaseHeader: FC = () => {
   const config = useStore($config);
 
   const settingsModalRef = React.useRef<ModalRef>(null);
-  const handleSettingsModalOpen = () => settingsModalRef.current?.open();
+  const handleSettingsModalOpen = async () => {
+    // вот тут запрос
+    await getConfigRequest({ alias: config?.alias ?? '', password: config?.password ?? '' });
+    settingsModalRef.current?.open()
+  };
   const handleSettingsModalClose = () => settingsModalRef.current?.close();
 
   useEffect(() => {
