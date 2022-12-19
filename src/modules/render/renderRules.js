@@ -29,7 +29,7 @@ async function renderRules(rules) {
     FLAGS: FLAGSQ,
   } = require("../../helpers/curry");
   const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
-  const { isTurbo: isTurboS } = require("../../helpers/isTurbo.js");
+  const { isTurbo: isTurboS } = require("../../helpers/isTurbo");
   const { isNormal: isNormalS } = require("../../helpers/isNormal")
   const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
   const {validateNumber} = require('../../helpers/validateNumber')

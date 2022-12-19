@@ -14,8 +14,11 @@ module.exports = async (req, res) => {
     rules.splice(index, 1);
   }
 
+  const rulesContent = await renderRules(rules);
+
   await saveRules(rules);
-  await writeFile("src/modules/filter/filter.js", await renderRules(rules));
+  await writeFile("src/modules/filter/filter.js", rulesContent);
+  await writeFile("client/src/modules/filter/filter.js", rulesContent);
 
   res.status(200).send(rules);
 };

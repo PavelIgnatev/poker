@@ -16,7 +16,10 @@ module.exports = async (req, res) => {
 
   await saveRules(rules);
 
-  await writeFile("src/modules/filter/filter.js", await renderRules(rules));
+  const rulesContent = await renderRules(rules);
+
+  await writeFile("src/modules/filter/filter.js", rulesContent);
+  await writeFile("client/src/modules/filter/filter.js", rulesContent);
 
   res.status(200).send(rules);
 };

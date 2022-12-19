@@ -1,4 +1,6 @@
 export interface tableCellModel {
+  "@entrants": number;
+  "@prizePool": number;
   "@currentEntrants": string;
   "@lastUpdateTime": string;
   "@reEntries": string;
@@ -19,15 +21,27 @@ export interface tableCellModel {
   "@state": string;
   "@structure": string;
   "@totalEntrants": string;
-  "@prizepool": number;
-  "@bid": number;
-  "@turbo": boolean;
+  "@prizepool": string | number;
   "@ko"?: boolean;
-  "@ability": string;
-  "@abilityBid": string;
+  "@ability": number | string;
+  "@abilityBid": number | string;
   "@duration": string;
-  "@timezone": string;
+  "@timezone": string | undefined;
   "@level": string;
   "@status": string;
-  "@realBid": string;
+  "@date": number;
+  "@bid": number;
+  "@realBid": number; 
+  "@turbo": boolean; 
+  "@rebuy": boolean; 
+  "@od": boolean; 
+  "@bounty": boolean; 
+  "@sat": boolean; 
+  "@sng": boolean; 
+  "@deepstack": boolean;
+  "@superturbo": boolean;
+  "@getWeekday": string;
+  "@numberLateRegEndDate": number;
+  "@usdBid": number;
+  "@usdPrizepool": string | number;
 }

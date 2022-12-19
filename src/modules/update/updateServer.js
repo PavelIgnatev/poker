@@ -11,8 +11,10 @@ const updateServer = async () => {
   console.log("Сервер запущен", new Date());
 
   const rules = await getRules();
+  const rulesContent = await renderRules(rules);
 
-  await writeFile("src/modules/filter/filter.js", await renderRules(rules));
+  await writeFile("src/modules/filter/filter.js", rulesContent);
+  await writeFile("client/src/modules/filter/filter.js", rulesContent);
 
   // Отправка писем
   try {
