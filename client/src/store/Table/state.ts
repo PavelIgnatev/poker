@@ -64,11 +64,11 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const name = tournament["@name"]?.toLowerCase();
     const stake = Number(tournament["@stake"] ?? 0);
     const rake = Number(tournament["@rake"] ?? 0);
-    const bid = Number((stake + rake).toFixed(2));
-    const isStartDate = Number(tournament["@scheduledStartDate"] ?? 0);
-    const isRegDate = Number(tournament["@lateRegEndDate"] ?? 0);
-    const startDate = Number(isStartDate * 1000) + Number(timezone);
-    const regDate = Number(isRegDate * 1000) + Number(timezone);
+    const bid = (stake + rake).toFixed(2);
+    const isStartDate = tournament["@scheduledStartDate"] ?? 0;
+    const isRegDate = tournament["@lateRegEndDate"] ?? 0;
+    const startDate = Number(isStartDate) * 1000 + Number(timezone);
+    const regDate = Number(isRegDate) * 1000 + Number(timezone);
     const time = getTimeByMS(Number(`${isStartDate}000`));
     const bounty = isNormal(tournament);
     const turbo = isTurbo(tournament);
@@ -90,6 +90,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const abilityBid =
       ability2?.[network]?.[level]?.[currency]?.[bid]?.[status];
     const sat = isSat(tournament);
+
+    console.log(isStartDate);
 
     //Фикс гарантии для WPN и 888Poker и Chiko
     if (network === "WPN" || network === "888" || network === "Chico") {
@@ -164,7 +166,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@timezone": timezone,
       "@status": status,
       "@level": level,
-      "@usdBid": currency === "CNY" ? bid / lastValue : bid,
+      "@usdBid": currency === "CNY" ? Number(bid) / lastValue : bid,
       "@usdPrizepool": currency === "CNY" && pp !== "-" ? pp / lastValue : pp,
     };
   });
@@ -232,6 +234,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       ? dateStart <= res && res <= r
       : !(dateStart > res && res > dateEnd);
   });
+
+  console.log(tournaments);
 
   return tournaments;
 });
