@@ -90,7 +90,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const abilityBid =
       ability2?.[network]?.[level]?.[currency]?.[bid]?.[status];
     const sat = isSat(tournament);
-    console.log("abilty1" + ability1, "abilty2" + ability2);
+
     //Фикс гарантии для WPN и 888Poker и Chiko
     if (network === "WPN" || network === "888" || network === "Chico") {
       const $ = tournament["@name"].split("$");

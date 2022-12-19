@@ -14,11 +14,11 @@ module.exports = async (req, res) => {
     return res.status(403).send({ message: 'Config" parameter is required' });
   }
 
-  const { alias, level, effmu, mail, password, timezone } = newConfig;
-  if (!mail || level === null || !effmu || !alias || !password || !timezone) {
-    return res
-      .status(403)
-      .send({ message: "All parameters are required (mail, level, effmu, alias, password, timezone)" });
+  const { alias, level, mail, password, timezone } = newConfig;
+  if (!mail || level === null || !alias || !password || !timezone) {
+    return res.status(403).send({
+      message: "All parameters are required (mail, level, alias, password, timezone)",
+    });
   }
 
   const config = await getConfig();
@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
   config[alias] = { alias, mail, networks: {}, password, timezone };
 
   networks.forEach((network) => {
-    config[alias].networks[network] = { level, effmu };
+    config[alias].networks[network] = { level, effmu: "A" };
   });
 
   await saveConfig(config);

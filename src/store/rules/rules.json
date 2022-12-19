@@ -1,1 +1,1 @@
-[[{"type":"FromTo","values":["0","1000"],"color":"blue","level":"1A","network":"PS.eu","status":"all","KO":"all","offpeak":false}]]
+[[{"type":"FromTo","values":["0","1000"],"color":"blue","level":"1A","network":"PS.eu","status":"all","KO":"all","offpeak":false}],[{"type":"FromTo","values":["0","999999999999"],"color":"blue","level":"1all","network":"PS.eu","status":"all","KO":"all","offpeak":false}],[{"type":"FromTo","values":["0","99999999999999"],"color":"blue","level":"2all","network":"PS.eu","status":"all","KO":"all","offpeak":false}]]
