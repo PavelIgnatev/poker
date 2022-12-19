@@ -1,14 +1,15 @@
 const moment = require("moment");
 const MomentRange = require("moment-range");
 
-import { getESTHours } from './getESTHours';
-import { tableCellModel } from './../@types/tableCellModel';
+import { getESTHours } from "./getESTHours";
+import { tableCellModel } from "./../@types/tableCellModel";
+import { $store } from "../store/Store";
 
 MomentRange.extendMoment(moment);
 
+export const isOffpeak = (tournament: tableCellModel, duration = 0) => {
+  const { offpeak } = $store.getState();
 
-export const isOffpeak = (tournament:tableCellModel, duration = 0) => {
-  const offpeak = {} as any;
   const [hour, minutes] = getESTHours(tournament, duration).split(":");
 
   const {
@@ -26,9 +27,27 @@ export const isOffpeak = (tournament:tableCellModel, duration = 0) => {
   const toMs = toHour * 3600 + toMinutes * 60;
 
   const start = new Date(2022, 4, 23, fromHour + 3, fromMinutes);
-  const current = new Date(2022, 4, 23 + (toMs <= fromMs ? 1 : 0), Number(hour) + 3, Number(minutes));
-  const currentWithout1 = new Date(2022, 4, 23, Number(hour) + 3, Number(minutes));
-  const end = new Date(2022, 4, 23 + (toMs <= fromMs ? 1 : 0), toHour + 3, toMinutes);
+  const current = new Date(
+    2022,
+    4,
+    23 + (toMs <= fromMs ? 1 : 0),
+    Number(hour) + 3,
+    Number(minutes)
+  );
+  const currentWithout1 = new Date(
+    2022,
+    4,
+    23,
+    Number(hour) + 3,
+    Number(minutes)
+  );
+  const end = new Date(
+    2022,
+    4,
+    23 + (toMs <= fromMs ? 1 : 0),
+    toHour + 3,
+    toMinutes
+  );
 
   const range = moment.range(start, end);
 

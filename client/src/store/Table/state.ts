@@ -1,24 +1,28 @@
-import { getDate } from './../../helpers/getDate';
-import { getWeekday } from './../../helpers/getWeekday';
-import { getTimeBySec } from './../../helpers/getTimeBySec';
-import { isSat } from './../../helpers/isSat';
-import { isRebuy } from './../../helpers/isRebuy';
-import { getStatus } from './../../helpers/getStatus';
-import { isSuperTurbo } from './../../helpers/isSuperTurbo';
-import { isTurbo } from './../../helpers/isTurbo';
-import { isNormal } from './../../helpers/isNormal';
-import { getTimeByMS } from './../../helpers/getTimeByMS';
+import { getDate } from "./../../helpers/getDate";
+import { getWeekday } from "./../../helpers/getWeekday";
+import { getTimeBySec } from "./../../helpers/getTimeBySec";
+import { isSat } from "./../../helpers/isSat";
+import { isRebuy } from "./../../helpers/isRebuy";
+import { getStatus } from "./../../helpers/getStatus";
+import { isSuperTurbo } from "./../../helpers/isSuperTurbo";
+import { isTurbo } from "./../../helpers/isTurbo";
+import { isNormal } from "./../../helpers/isNormal";
+import { getTimeByMS } from "./../../helpers/getTimeByMS";
 import { createStore } from "effector";
 
 import { tableCellModel } from "../../@types/tableCellModel";
 import { $tournamentsSettings } from "../Select";
 
-import { getNetwork } from './../../helpers/getNetwork';
-import { $config } from '../Config';
+import { getNetwork } from "./../../helpers/getNetwork";
+import { $config } from "../Config";
+import api from "../../api";
+import { $store } from "../Store";
 
 let filter = require("../../modules/filter/filter.js");
 
-export const $tableState = createStore<tableCellModel[] | null | undefined>(null);
+export const $tableState = createStore<tableCellModel[] | null | undefined>(
+  null
+);
 
 export const $filtredTableState = $tableState.map((tournaments) => {
   if (!tournaments) {
@@ -30,9 +34,11 @@ export const $filtredTableState = $tableState.map((tournaments) => {
   filter = require("../../modules/filter/filter.js");
 
   const config = $config.getState();
-  const { 
-    moneyStart, 
-    moneyEnd, 
+  const { ability1, ability2, rules, currency: lastValue } = $store.getState();
+
+  const {
+    moneyStart,
+    moneyEnd,
     KO: isKOQ,
     turbo: isTurboQ,
     superTurbo: isSTurboQ,
@@ -43,21 +49,18 @@ export const $filtredTableState = $tableState.map((tournaments) => {
   } = $tournamentsSettings.getState();
   const { networks, timezone } = config ?? {};
 
-  const ability1 = {} as any;
-  const ability2 = {} as any;
-  const rules = {} as any;
-  const lastValue = 7;
-
-  
-
   // сортировка по времени старта турнира
-  tournaments = tournaments.sort((a, b) => (Number(a["@scheduledStartDate"] ?? 0)) - (Number(b["@scheduledStartDate"] ?? 0)))
+  tournaments = tournaments.sort(
+    (a, b) =>
+      Number(a["@scheduledStartDate"] ?? 0) -
+      Number(b["@scheduledStartDate"] ?? 0)
+  );
 
   // мапим все данные о турнирах
   tournaments = tournaments.map((tournament) => {
     const network = getNetwork(tournament["@network"]);
-    const { level: networksLevel = 1, effmu = "A" } = networks?.[network] ?? {}
-    const level = networksLevel + effmu
+    const { level: networksLevel = 1, effmu = "A" } = networks?.[network] ?? {};
+    const level = networksLevel + effmu;
     const name = tournament["@name"]?.toLowerCase();
     const stake = Number(tournament["@stake"] ?? 0);
     const rake = Number(tournament["@rake"] ?? 0);
@@ -81,10 +84,13 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const isMandatoryСonditions = isNL && isH && !rebuy && !od && !sng;
     const info = ability1?.[network]?.[time]?.[bid]?.[name];
     const ability = isMandatoryСonditions && info?.["@avability"];
-    const duration = info?.["@duration"] ? Math.round(info?.["@duration"]) : null;
-    const abilityBid = ability2?.[network]?.[level]?.[currency]?.[bid]?.[status];
+    const duration = info?.["@duration"]
+      ? Math.round(info?.["@duration"])
+      : null;
+    const abilityBid =
+      ability2?.[network]?.[level]?.[currency]?.[bid]?.[status];
     const sat = isSat(tournament);
-
+    console.log("abilty1" + ability1, "abilty2" + ability2);
     //Фикс гарантии для WPN и 888Poker и Chiko
     if (network === "WPN" || network === "888" || network === "Chico") {
       const $ = tournament["@name"].split("$");
@@ -98,7 +104,10 @@ export const $filtredTableState = $tableState.map((tournaments) => {
             .replace("M", "000000")
             .replace(".", "");
         } else if ((network === "WPN" && !sat) || network === "888") {
-          tournament["@guarantee"] = $[1].split(" ")[0].replace(")", "").replace(",", "");
+          tournament["@guarantee"] = $[1]
+            .split(" ")[0]
+            .replace(")", "")
+            .replace(",", "");
         }
       }
     }
@@ -107,20 +116,24 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       Math.max(
         Number(tournament["@guarantee"] ?? 0),
         Number(tournament["@prizePool"] ?? 0),
-        (Number(tournament["@entrants"] ?? 0) + Number(tournament["@reEntries"] ?? 0)) *
-        Number(tournament["@stake"] ?? 0),
-        (Number(tournament["@totalEntrants"] ?? 0) + Number(tournament["@reEntries"] ?? 0)) *
-        Number(tournament["@stake"] ?? 0),
-      ),
+        (Number(tournament["@entrants"] ?? 0) +
+          Number(tournament["@reEntries"] ?? 0)) *
+          Number(tournament["@stake"] ?? 0),
+        (Number(tournament["@totalEntrants"] ?? 0) +
+          Number(tournament["@reEntries"] ?? 0)) *
+          Number(tournament["@stake"] ?? 0)
+      )
     );
 
-    const rulesAbility2 = rules[network]?.[time]?.[level]?.[currency]?.[bid]?.[status]?.[
-      tournament["@name"]
-    ]
-      ? rules[network]?.[time]?.[level]?.[currency]?.[bid]?.[status]?.[tournament["@name"]]
+    const rulesAbility2 = rules[network]?.[time]?.[level]?.[currency]?.[bid]?.[
+      status
+    ]?.[tournament["@name"]]
+      ? rules[network]?.[time]?.[level]?.[currency]?.[bid]?.[status]?.[
+          tournament["@name"]
+        ]
       : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-        ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-        : 0;
+      ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+      : 0;
 
     const pp = prizepool >= 0 ? prizepool : "-";
 
@@ -140,7 +153,9 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@prizepool": pp,
       "@network": network,
       "@ability": ability ? Number(ability) : "-",
-      "@abilityBid": abilityBid ? Number(abilityBid) + Number(rulesAbility2) : "-",
+      "@abilityBid": abilityBid
+        ? Number(abilityBid) + Number(rulesAbility2)
+        : "-",
       "@duration": duration ? getTimeBySec(duration) : "-",
       "@getWeekday": isStartDate ? getWeekday(startDate) : "-",
       "@scheduledStartDate": isStartDate ? getDate(startDate) : "-",
@@ -152,32 +167,41 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@usdBid": currency === "CNY" ? bid / lastValue : bid,
       "@usdPrizepool": currency === "CNY" && pp !== "-" ? pp / lastValue : pp,
     };
-  })
+  });
 
   // фильтр по параметрам
-  tournaments = tournaments
-    .filter((tournament) => {
-      const bounty = tournament["@bounty"];
-      const turbo = tournament["@turbo"];
-      const superturbo = tournament["@superturbo"];
-      const level = tournament["@level"];
-      const prizepool = tournament["@usdPrizepool"];
-      
-      return (
-        tournament["@usdBid"] >= Number(moneyStart) &&
-        tournament["@usdBid"] <= Number(moneyEnd) &&
-        ((isKOQ !== false && isNormalQ !== false ? bounty && !turbo && !superturbo : false) ||
-          (isKOQ !== false && isTurboQ !== false ? bounty && turbo : false) ||
-          (isKOQ !== false && isSTurboQ !== false ? bounty && superturbo : false) ||
-          (isFreezoutQ !== false && isNormalQ !== false
-            ? !bounty && !turbo && !superturbo
-            : false) ||
-          (isFreezoutQ !== false && isTurboQ !== false ? !bounty && turbo : false) ||
-          (isFreezoutQ !== false && isSTurboQ !== false ? !bounty && superturbo : false)) &&
-        (prizepool !== "-" ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd : true) && 
-        filter.filter(level, tournament, true)
-      );
-    })
+  tournaments = tournaments.filter((tournament) => {
+    const bounty = tournament["@bounty"];
+    const turbo = tournament["@turbo"];
+    const superturbo = tournament["@superturbo"];
+    const level = tournament["@level"];
+    const prizepool = tournament["@usdPrizepool"];
+
+    return (
+      tournament["@usdBid"] >= Number(moneyStart) &&
+      tournament["@usdBid"] <= Number(moneyEnd) &&
+      ((isKOQ !== false && isNormalQ !== false
+        ? bounty && !turbo && !superturbo
+        : false) ||
+        (isKOQ !== false && isTurboQ !== false ? bounty && turbo : false) ||
+        (isKOQ !== false && isSTurboQ !== false
+          ? bounty && superturbo
+          : false) ||
+        (isFreezoutQ !== false && isNormalQ !== false
+          ? !bounty && !turbo && !superturbo
+          : false) ||
+        (isFreezoutQ !== false && isTurboQ !== false
+          ? !bounty && turbo
+          : false) ||
+        (isFreezoutQ !== false && isSTurboQ !== false
+          ? !bounty && superturbo
+          : false)) &&
+      (prizepool !== "-"
+        ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd
+        : true) &&
+      filter.filter(level, tournament, true)
+    );
+  });
 
   // определение цвета турнира
   tournaments = tournaments.map((tournament) => {
@@ -187,14 +211,12 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
     if (ability2 - ability1 >= 4) {
       color = "rgba(98,179,82,0.5)"; // зеленый
-    }
-    else if (ability2 - ability1 >= 1 && ability2 - ability1 <= 3) {
+    } else if (ability2 - ability1 >= 1 && ability2 - ability1 <= 3) {
       color = "rgba(247,255,105,0.5)"; // желтый
     }
 
     return { ...tournament, color };
   });
-
 
   // фильтр по времени "от"-"до"
   tournaments = tournaments.filter((item) => {
@@ -209,9 +231,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     return dateStart <= dateEnd
       ? dateStart <= res && res <= r
       : !(dateStart > res && res > dateEnd);
-  })
-
+  });
 
   return tournaments;
-}
-);
+});

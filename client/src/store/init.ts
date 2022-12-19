@@ -7,3 +7,4 @@ import "./Alias";
 import "./Sample";
 import "./Offpeak";
 import "./Rules";
+import "./Store";
