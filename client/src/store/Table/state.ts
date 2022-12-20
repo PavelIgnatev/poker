@@ -15,8 +15,8 @@ import { $tournamentsSettings } from "../Select";
 
 import { getNetwork } from "./../../helpers/getNetwork";
 import { $config } from "../Config";
-import api from "../../api";
 import { $store } from "../Store";
+import { toNamespacedPath } from "node:path/posix";
 
 let filter = require("../../modules/filter/filter.js");
 
@@ -35,7 +35,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
   const config = $config.getState();
   const { ability1, ability2, rules, currency: lastValue } = $store.getState();
-
+  console.log(ability1)
   const {
     moneyStart,
     moneyEnd,
@@ -84,14 +84,13 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const isMandatoryСonditions = isNL && isH && !rebuy && !od && !sng;
     const info = ability1?.[network]?.[time]?.[bid]?.[name];
     const ability = isMandatoryСonditions && info?.["@avability"];
+    console.log(network, time, bid, name)
     const duration = info?.["@duration"]
       ? Math.round(info?.["@duration"])
       : null;
     const abilityBid =
       ability2?.[network]?.[level]?.[currency]?.[bid]?.[status];
     const sat = isSat(tournament);
-
-    console.log(isStartDate);
 
     //Фикс гарантии для WPN и 888Poker и Chiko
     if (network === "WPN" || network === "888" || network === "Chico") {
@@ -120,10 +119,10 @@ export const $filtredTableState = $tableState.map((tournaments) => {
         Number(tournament["@prizePool"] ?? 0),
         (Number(tournament["@entrants"] ?? 0) +
           Number(tournament["@reEntries"] ?? 0)) *
-          Number(tournament["@stake"] ?? 0),
+        Number(tournament["@stake"] ?? 0),
         (Number(tournament["@totalEntrants"] ?? 0) +
           Number(tournament["@reEntries"] ?? 0)) *
-          Number(tournament["@stake"] ?? 0)
+        Number(tournament["@stake"] ?? 0)
       )
     );
 
@@ -131,11 +130,11 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       status
     ]?.[tournament["@name"]]
       ? rules[network]?.[time]?.[level]?.[currency]?.[bid]?.[status]?.[
-          tournament["@name"]
-        ]
+      tournament["@name"]
+      ]
       : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-      ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-      : 0;
+        ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+        : 0;
 
     const pp = prizepool >= 0 ? prizepool : "-";
 
@@ -154,7 +153,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@superturbo": !!superturbo,
       "@prizepool": pp,
       "@network": network,
-      "@ability": ability ? Number(ability) : "-",
+      "@ability": ability ? ability : "-",
       "@abilityBid": abilityBid
         ? Number(abilityBid) + Number(rulesAbility2)
         : "-",
@@ -235,7 +234,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       : !(dateStart > res && res > dateEnd);
   });
 
-  console.log(tournaments);
 
   return tournaments;
 });

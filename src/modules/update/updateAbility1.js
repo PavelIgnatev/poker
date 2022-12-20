@@ -18,7 +18,7 @@ const updateAbility1 = async () => {
         const rake = Number(tournament["@rake"] ?? 0);
         const bid = (stake + rake).toFixed(2);
         const time = getTimeByMS(Number(`${tournament["@date"]}000`));
-
+        
         if (!name || !network || !bid || !time || name?.includes("global million")) {
           return;
         }
@@ -56,7 +56,7 @@ const updateAbility1 = async () => {
         });
       });
     });
-
+    console.log("abracadabra")
     await writeFile("src/store/ability1/ability1.json", JSON.stringify(obj));
   } catch (error) {
     console.log(error);

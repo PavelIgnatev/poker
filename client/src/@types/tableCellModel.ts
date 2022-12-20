@@ -30,7 +30,7 @@ export interface tableCellModel {
   "@level": string;
   "@status": string;
   "@date": number | string;
-  "@bid": number | string;
+  "@bid": string;
   "@realBid": number | string;
   "@turbo": boolean;
   "@rebuy": boolean;

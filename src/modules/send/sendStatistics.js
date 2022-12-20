@@ -15,6 +15,7 @@ const transporter = createTransport({
 const mailOptions = (mails, html, content) => {
   const currentTime = new Date(
     new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
+      timeZone: 'UTC'
     }),
   );
   const year = currentTime.getFullYear();

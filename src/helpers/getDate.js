@@ -12,6 +12,7 @@ const getDate = (date) => {
       month: "short",
       hour: "numeric",
       minute: "numeric",
+      timeZone: 'UTC'
     })
     .replace(", 24", ", 00");
 };

@@ -12,6 +12,7 @@ const getESTHours = (tournament, duration = 0) => {
     hour12: false,
     hour: "numeric",
     minute: "numeric",
+    timeZone: 'UTC'
   });
 };
 

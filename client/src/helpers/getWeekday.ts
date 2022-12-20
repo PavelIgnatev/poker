@@ -1,7 +1,8 @@
 
-export const getWeekday = (date:number) => {
-    return new Date(Number(date)).toLocaleString("en-EN", {
+export const getWeekday = (date:any) => {
+    return new Date(date).toLocaleString("en-EN", {
       weekday: "long",
+      timeZone: 'UTC'
     });
   };
   

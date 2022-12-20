@@ -10,6 +10,7 @@ const getTimeByMS = (timestamp) => {
       hour12: false,
       hour: "numeric",
       minute: "numeric",
+      timeZone: 'UTC'
     })
     .replace("24", "00");
 };

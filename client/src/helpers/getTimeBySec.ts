@@ -1,5 +1,5 @@
 import { tableCellModel } from './../@types/tableCellModel';
-export const getTimeBySec = (timestamp:number) => {
+export const getTimeBySec = (timestamp:any) => {
     let hours = Math.floor(timestamp / 60 / 60);
     let minutes = Math.floor(timestamp / 60) - hours * 60;
     let seconds = timestamp % 60;
