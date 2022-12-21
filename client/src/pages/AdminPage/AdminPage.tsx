@@ -10,7 +10,10 @@ import {
 } from "../../components/PasswordSection";
 import { getSample } from "../../store/Sample";
 import { SampleSection } from "../../components/SampleSection";
-import { $isValidAdminPassword, validateAdminPasswordRequest } from "../../store/Password";
+import {
+  $isValidAdminPassword,
+  validateAdminPasswordRequest,
+} from "../../store/Password";
 import { OffpeakSection } from "../../components/OffpeakSection";
 import { getOffpeak } from "../../store/Offpeak";
 import { RulesSection } from "../../components/Admin.RulesSection";
@@ -27,12 +30,19 @@ export const AdminPage: FC = () => {
     validateAdminPasswordRequest(password);
 
   if (!isAdmin) {
-    return <PasswordSection onSubmit={handlePasswordSubmit} type={PasswordSectionType.ADMIN} />;
+    return (
+      <PasswordSection
+        onSubmit={handlePasswordSubmit}
+        type={PasswordSectionType.ADMIN}
+      />
+    );
   }
 
   return (
     <>
-      <section style={{ marginTop: "20px", color: "#FF4242", fontSize: "18px" }}>
+      <section
+        style={{ marginTop: "20px", color: "#FF4242", fontSize: "18px" }}
+      >
         Welcome to <strong>Admin Panel</strong>
       </section>
       <SampleSection />

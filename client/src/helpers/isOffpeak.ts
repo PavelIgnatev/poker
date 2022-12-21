@@ -1,9 +1,9 @@
-const moment = require("moment");
-const MomentRange = require("moment-range");
-
 import { getESTHours } from "./getESTHours";
 import { tableCellModel } from "./../@types/tableCellModel";
 import { $store } from "../store/Store";
+
+const moment = require("moment");
+const MomentRange = require("moment-range");
 
 MomentRange.extendMoment(moment);
 

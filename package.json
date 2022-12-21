@@ -6,7 +6,7 @@
     "node": "14.21.1"
   },
   "scripts": {
-    "start": "pm2 kill && pm2 start ecosystem.config.js --env production && pm2 logs",
+    "start": "pm2 kill",
     "start:dev": "concurrently -n server,client \"(npm run start:server)\" \"(npm run start:client)\"",
     "start:server": "node --max-old-space-size=4096 ./src/server.js",
     "start:client": "npm start --prefix client",

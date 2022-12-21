@@ -1,3 +1,5 @@
+import { createStore } from "effector";
+
 import { getDate } from "./../../helpers/getDate";
 import { getWeekday } from "./../../helpers/getWeekday";
 import { getTimeBySec } from "./../../helpers/getTimeBySec";
@@ -8,7 +10,7 @@ import { isSuperTurbo } from "./../../helpers/isSuperTurbo";
 import { isTurbo } from "./../../helpers/isTurbo";
 import { isNormal } from "./../../helpers/isNormal";
 import { getTimeByMS } from "./../../helpers/getTimeByMS";
-import { createStore } from "effector";
+import filter from "../../modules/filter/filter.js";
 
 import { tableCellModel } from "../../@types/tableCellModel";
 import { $tournamentsSettings } from "../Select";
@@ -16,9 +18,6 @@ import { $tournamentsSettings } from "../Select";
 import { getNetwork } from "./../../helpers/getNetwork";
 import { $config } from "../Config";
 import { $store } from "../Store";
-import { toNamespacedPath } from "node:path/posix";
-
-let filter = require("../../modules/filter/filter.js");
 
 export const $tableState = createStore<tableCellModel[] | null | undefined>(
   null
@@ -29,13 +28,9 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     return [];
   }
 
-  // берем саму актуальную копию файла filter
-  delete require.cache[require.resolve("../../modules/filter/filter.js")];
-  filter = require("../../modules/filter/filter.js");
-
   const config = $config.getState();
   const { ability1, ability2, rules, currency: lastValue } = $store.getState();
-  console.log(ability1)
+
   const {
     moneyStart,
     moneyEnd,
@@ -84,7 +79,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const isMandatoryСonditions = isNL && isH && !rebuy && !od && !sng;
     const info = ability1?.[network]?.[time]?.[bid]?.[name];
     const ability = isMandatoryСonditions && info?.["@avability"];
-    console.log(network, time, bid, name)
+
     const duration = info?.["@duration"]
       ? Math.round(info?.["@duration"])
       : null;
@@ -119,10 +114,10 @@ export const $filtredTableState = $tableState.map((tournaments) => {
         Number(tournament["@prizePool"] ?? 0),
         (Number(tournament["@entrants"] ?? 0) +
           Number(tournament["@reEntries"] ?? 0)) *
-        Number(tournament["@stake"] ?? 0),
+          Number(tournament["@stake"] ?? 0),
         (Number(tournament["@totalEntrants"] ?? 0) +
           Number(tournament["@reEntries"] ?? 0)) *
-        Number(tournament["@stake"] ?? 0)
+          Number(tournament["@stake"] ?? 0)
       )
     );
 
@@ -130,11 +125,11 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       status
     ]?.[tournament["@name"]]
       ? rules[network]?.[time]?.[level]?.[currency]?.[bid]?.[status]?.[
-      tournament["@name"]
-      ]
+          tournament["@name"]
+        ]
       : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-        ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-        : 0;
+      ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+      : 0;
 
     const pp = prizepool >= 0 ? prizepool : "-";
 
@@ -233,7 +228,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       ? dateStart <= res && res <= r
       : !(dateStart > res && res > dateEnd);
   });
-
 
   return tournaments;
 });

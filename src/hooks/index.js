@@ -16,7 +16,7 @@ module.exports = {
     await fastify.register(fastifyHelmet, { hidePoweredBy: true, contentSecurityPolicy: false });
 
     // хук onRequest
-    await fastify.register(fastifyRateLimit, { max: 60, timeWindow: "1 minute" });
+    await fastify.register(fastifyRateLimit, { max: 600, timeWindow: "1 minute" });
     console.log(`Приложение запущено в ${isProduction ? "production" : "developer"} режиме`);
     if (!isProduction) {
       await fastify.register(fastifyHttpProxy, {
