@@ -14,6 +14,8 @@ const start = async () => {
       console.error("Fastify не создался");
       return;
     }
+
+    updateServer()
     
     await fastify.listen({ port: PORT, host: "0.0.0.0" });
 

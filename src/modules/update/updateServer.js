@@ -1,11 +1,11 @@
-const { updateFiltredTournaments } = require("../../modules/update/updateFiltredTournaments");
 const { updateAbility1 } = require("../../modules/update/updateAbility1");
 const { updateAbility2 } = require("../../modules/update/updateAbility2");
 const { updtateAllCopies } = require("./updateAllCopies");
 const { collectionStatistics } = require("../collection/collectionStatistics");
-const { saveRules, getRules } = require("../../utils/rules");
+const { getRules } = require("../../utils/rules");
 const { writeFile } = require("../../utils/promisify");
 const { renderRules } = require("../../modules/render/renderRules");
+const { updateTournaments } = require("./updateTournaments");
 
 const updateServer = async () => {
   console.log("Сервер запущен", new Date());
@@ -26,8 +26,8 @@ const updateServer = async () => {
 
   // Обновление сервака
   try {
-    console.log(`Начал обновление фильтрованного стейта`);
-    await updateFiltredTournaments();
+    console.log(`Начал обновление папки дней`);
+    await updateTournaments();
     console.log(`Завершил обновление фильтрованного стейта`);
 
     console.log(`Начал обновление древовидного стейта по турнирам`);

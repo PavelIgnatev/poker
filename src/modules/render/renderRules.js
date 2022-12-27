@@ -13,7 +13,7 @@ function customSort(a, s) {
 
 async function renderRules(rules) {
   customSort(rules, ["green", "orange", "blue", "red", "brown", "black"]);
-  return await minifyFile(`const { getNetwork } = require("../../helpers/getNetwork");
+  return await `const { getNetwork } = require("../../helpers/getNetwork");
   const {
     FromTo: FromToQ,
     FromToName: FromToNameQ,
@@ -93,6 +93,6 @@ async function renderRules(rules) {
   
   module.exports = {
     filter,
-  };`);
+  };`;
 }
 module.exports = { renderRules };

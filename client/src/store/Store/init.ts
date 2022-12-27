@@ -1,5 +1,4 @@
-import { log } from "console";
-import { createDomain, createApi } from "effector";
+import { createDomain } from "effector";
 
 import api from "../../api";
 

@@ -1,11 +1,12 @@
 const { readFile, writeFile } = require("../../utils/promisify");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { getNetwork } = require("../../helpers/getNetwork");
+const { getTournaments } = require("../../helpers/getTournaments");
 
 const updateAbility1 = async () => {
   try {
-    const state = JSON.parse(await readFile("src/store/tournaments/tournaments.json"));
-    console.log("Длина стейта: ", Object.keys(state).length);
+    const { tournaments: state } = getTournaments();
+
     const obj = {};
 
     Object.values(state).forEach((tournamentsByDay) => {
@@ -18,7 +19,7 @@ const updateAbility1 = async () => {
         const rake = Number(tournament["@rake"] ?? 0);
         const bid = (stake + rake).toFixed(2);
         const time = getTimeByMS(Number(`${tournament["@date"]}000`));
-        
+
         if (!name || !network || !bid || !time || name?.includes("global million")) {
           return;
         }
@@ -56,7 +57,7 @@ const updateAbility1 = async () => {
         });
       });
     });
-    console.log("abracadabra")
+
     await writeFile("src/store/ability1/ability1.json", JSON.stringify(obj));
   } catch (error) {
     console.log(error);

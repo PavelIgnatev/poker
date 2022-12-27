@@ -1,12 +1,13 @@
-const { updateFiltredTournaments } = require("../../modules/update/updateFiltredTournaments");
+
 const { updtateAllCopies } = require("./updateAllCopies");
 const { collectionStatistics } = require("../collection/collectionStatistics");
+const { updateTournaments } = require("./updateTournaments");
 
 const updatePartServer = async () => {
   // Добавление нового дня
   try {
-    console.log(`Начал обновление фильтрованного стейта`);
-    await updateFiltredTournaments();
+    console.log(`Начал обновление папки days`);
+    await updateTournaments();
   } catch (error) {
     console.log("Ошибка при добавлении нового дня на сервер: ", error);
   }

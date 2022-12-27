@@ -6,6 +6,7 @@ const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
 
 let filter = require("../filter/filter");
+const { getTournaments } = require("../../helpers/getTournaments");
 
 const updateAbility2 = async () => {
   delete require.cache[require.resolve("../filter/filter")];
@@ -17,8 +18,8 @@ const updateAbility2 = async () => {
     .map((_, i) => [i + "A", i + "B", i + "C"])
     .flat();
 
-  const state = JSON.parse(await readFile("src/store/tournaments/filtredTournaments.json"));
-  console.log("Длина стейта: ", Object.keys(state).length);
+  const { filtredTournaments: state } = getTournaments();
+
   const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
   const obj = {};
