@@ -1,4 +1,4 @@
-const config = require("../../store/rules/config.json");
+const nativeConfig = require("../../store/rules/config.json");
 
 const validateNumber = (value) => {
   return value
@@ -9,6 +9,7 @@ const validateNumber = (value) => {
 
 function renderRule(rule) {
   const { type, values, offpeak, network, level: ruleLevel, KO, status, color } = rule;
+  const config = JSON.parse(nativeConfig);
   const indexPrizepool = config[type].findIndex((rule) => rule.placeholder === "Guarantee");
 
   values[indexPrizepool] = offpeak

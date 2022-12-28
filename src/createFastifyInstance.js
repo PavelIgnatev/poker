@@ -1,5 +1,4 @@
 const fastifyCreator = require("fastify");
-
 const fastifyAutoload = require("@fastify/autoload");
 
 const path = require("path");
@@ -31,6 +30,7 @@ module.exports = {
         },
         plugins: [],
       },
+      bodyLimit: 104857600
     });
 
     // подключаем хуки
