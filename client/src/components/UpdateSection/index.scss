@@ -1,0 +1,23 @@
+$baseColor: green;
+
+.update-section {
+  color: $baseColor;
+  font-size: 20px;
+  margin-top: 28px;
+
+  &__title {
+    margin-bottom: 20px;
+
+    font-size: 1.2em;
+
+    &_red {
+      color: red;
+    }
+  }
+
+  &__button {
+    font-size: 0.8em;
+    height: 60px;
+    width: 120px;
+  }
+}

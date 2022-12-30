@@ -209,6 +209,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       color = "rgba(98,179,82,0.5)"; // зеленый
     } else if (ability2 - ability1 >= 1 && ability2 - ability1 <= 3) {
       color = "rgba(247,255,105,0.5)"; // желтый
+    } else if (tournament["@abilityBid"] === "-" || tournament["@ability"] === "-" || !ability2 || !ability1) {
+      color = "rgb(238 236 255)";
     }
 
     return { ...tournament, color };

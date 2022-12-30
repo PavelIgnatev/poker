@@ -8,10 +8,7 @@ import MailIcon from "../../../assets/icons/mail.svg";
 import SettingsIcon from "../../../assets/icons/settings.png";
 import EyeIcon from "../../../assets/icons/eye.svg";
 import { editableConfigEvents } from "../../../store/Config";
-import {
-  editableTournamentsSettings,
-  TIMEZONES,
-} from "../../../store/Select";
+import { editableTournamentsSettings, TIMEZONES } from "../../../store/Select";
 
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
@@ -59,29 +56,37 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   return (
     <div className={b()}>
       <div className={b("header")}>
-        <span className={b("header-alias")}>
-          <b>Alias:</b> {alias}
-        </span>
-        {!isAdminPage && (
-          <span className={b("header-password")}>
-            <b>Password:</b>
-            <div
-              className={b("header-password-block")}
-              onClick={toggleShowPassword}
-            >
-              <span
-                className={b("header-password-text", { hidden: !showPassword })}
-              >
-                {showPassword ? password : "****"}
-              </span>
-              <img className={b("header-password-img")} src={EyeIcon} alt="" />
-            </div>
+        <div className={b("header-conent")}>
+          <span className={b("header-alias")}>
+            <b>Alias:</b> {alias}
           </span>
-        )}
+          {!isAdminPage && (
+            <span className={b("header-password")}>
+              <b>Password:</b>
+              <div
+                className={b("header-password-block")}
+                onClick={toggleShowPassword}
+              >
+                <span
+                  className={b("header-password-text", {
+                    hidden: !showPassword,
+                  })}
+                >
+                  {showPassword ? password : "****"}
+                </span>
+                <img
+                  className={b("header-password-img")}
+                  src={EyeIcon}
+                  alt=""
+                />
+              </div>
+            </span>
+          )}
+        </div>
       </div>
       <div className={b("settings")}>
         <div className={b("timezones-wrapper")}>
-        <b className={b("label")}>Timezone</b>
+          <b className={b("label")}>Timezone</b>
           <Select
             options={TIMEZONES}
             defaultValue={defaultTimezoneOption}
@@ -129,6 +134,11 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
             network, contact the administrators
           </div>
         )}
+      </div>
+      <div className={b("effmu-content")}>
+        <div className={b("effmu", { type: "a" })}>A ($0-$12.5k)</div>
+        <div className={b("effmu", { type: "b" })}>B ($12501-$25k)</div>
+        <div className={b("effmu", { type: "c" })}>C ($25001+)</div>
       </div>
     </div>
   );

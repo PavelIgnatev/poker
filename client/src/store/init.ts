@@ -8,3 +8,4 @@ import "./Sample";
 import "./Offpeak";
 import "./Rules";
 import "./Store";
+import './Update'

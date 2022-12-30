@@ -1,3 +1,4 @@
+import { getStoreRequest } from './../Store/init';
 import { createEffect } from "effector";
 
 import { tableCellModel } from "../../@types/tableCellModel";
@@ -9,6 +10,7 @@ import api from "../../api";
 
 export const fetchUserReposFx = createEffect(async () => {
   const tournamentsSettings = $tournamentsSettings.getState();
+  await getStoreRequest();
 
   try {
     return await api.get<tableCellModel[]>("/api/tour", {

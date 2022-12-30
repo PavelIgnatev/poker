@@ -9,6 +9,7 @@ import {
   PasswordSection,
 } from "../../components/PasswordSection";
 import { useIntervalWorker } from "../../hooks/useIntervalWorker";
+import { BaseFooter } from "../../components/BaseFooter";
 
 export const MainPage = () => {
   const loading = useStore(fetchUserReposFx.pending);
@@ -26,13 +27,19 @@ export const MainPage = () => {
     getConfigRequest({ alias: login, password });
 
   if (!config) {
-    return <PasswordSection onSubmit={handlePasswordSubmit} />;
+    return (
+      <>
+        <PasswordSection onSubmit={handlePasswordSubmit} />
+        <BaseFooter />
+      </>
+    );
   }
 
   return (
     <>
       <BaseHeader />
       <BaseTable data={tournaments} loading={loading} />
+      <BaseFooter />
     </>
   );
 };

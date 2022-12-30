@@ -1,18 +1,26 @@
 const { CronJob } = require("cron");
 
 const { parseCurrencyRate } = require("../currencyRate/parseCurrencyRate");
-const { updatePartServer } = require("../update/updatePartServer");
+const { updateServer } = require("../update/updateServer");
+const { writeFile } = require("../../utils/promisify");
 
 const crons = () => {
-  const updatePartServerCron = new CronJob("0 0 * * *", function () {
-    updatePartServer();
+  // при инициализации сервера чтобы isUpdated переходило в false
+  writeFile("src/store/update/update.json", JSON.stringify({ isUpdated: false }));
+
+  const updateServerCron = new CronJob("0 0 * * *", function () {
+    if (global.app.server.address().port === 81) {
+      updateServer();
+    }
   });
 
   const updateCNYCourseCron = new CronJob("0 */30 * * * *", function () {
-    parseCurrencyRate();
+    if (global.app.server.address().port === 81) {
+      parseCurrencyRate();
+    }
   });
 
-  updatePartServerCron.start();
+  updateServerCron.start();
   updateCNYCourseCron.start();
 };
 

@@ -1,0 +1,26 @@
+.footer {
+  margin-top: 10px;
+  background: #f5f8ff;
+
+}
+
+.content {
+  padding: 15px 50px;
+  text-align: center;
+  background: #f5f8ff;
+  background: #f5f8ff;
+  width: 100%;
+
+  font-weight: 500;
+}
+
+.a {
+  font-weight: 700;
+  color: #4a72ff;
+
+  text-decoration: none;
+
+  &:hover {
+    color: #3157de;
+  }
+}

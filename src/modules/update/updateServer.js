@@ -3,12 +3,21 @@ const { updateAbility2 } = require("../../modules/update/updateAbility2");
 const { updtateAllCopies } = require("./updateAllCopies");
 const { collectionStatistics } = require("../collection/collectionStatistics");
 const { getRules } = require("../../utils/rules");
-const { writeFile } = require("../../utils/promisify");
+const { writeFile, readFile } = require("../../utils/promisify");
 const { renderRules } = require("../../modules/render/renderRules");
 const { updateTournaments } = require("./updateTournaments");
 
 const updateServer = async () => {
-  console.log("Сервер запущен", new Date());
+  const updateUrl = "src/store/update/update.json";
+
+  const { isUpdated } = JSON.parse(await readFile(updateUrl));
+
+  if(isUpdated) {
+    console.log('Сервер уже обновляется')
+    return 
+  }
+
+  await writeFile(updateUrl, JSON.stringify({ isUpdated: true, timestamp: Date.now() }));
 
   const rules = await getRules();
   const rulesContent = await renderRules(rules);
@@ -47,6 +56,8 @@ const updateServer = async () => {
   } catch (error) {
     console.log("Ошибка при сохранении всех копий: ", error);
   }
+
+  await writeFile(updateUrl, JSON.stringify({ isUpdated: false }));
 };
 
 module.exports = { updateServer };

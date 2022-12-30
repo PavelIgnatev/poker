@@ -113,7 +113,18 @@
   flex: 1;
 
   &__header {
+    display: flex;
     margin-bottom: 36px;
+  }
+
+  &__effmu {
+    margin: 10px;
+    font-size: 0.85em;
+    line-height: 1.1em;
+    color: #4a72ff;
+    &-content {
+      margin-top: 28px;
+    }
   }
 
   &__header-alias {
@@ -207,6 +218,7 @@
 
   &__additional-info-line {
     display: flex;
+    align-items: center;
     margin-top: 28px;
   }
 }

@@ -17,14 +17,17 @@ import {
 import { OffpeakSection } from "../../components/OffpeakSection";
 import { getOffpeak } from "../../store/Offpeak";
 import { RulesSection } from "../../components/Admin.RulesSection";
+import { getUpdate } from "../../store/Update";
+import { UpdateSection } from "../../components/UpdateSection";
 
 export const AdminPage: FC = () => {
   const isAdmin = useStore($isValidAdminPassword);
 
   useEffect(() => {
     getSample();
+    getUpdate();
     getOffpeak();
-  }, []);
+  }, [isAdmin]);
 
   const handlePasswordSubmit: OnPasswordSubmit = ({ password }) =>
     validateAdminPasswordRequest(password);
@@ -45,6 +48,7 @@ export const AdminPage: FC = () => {
       >
         Welcome to <strong>Admin Panel</strong>
       </section>
+      <UpdateSection />
       <SampleSection />
       <OffpeakSection />
       <RulesSection />

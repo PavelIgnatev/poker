@@ -1,0 +1,1 @@
+export { BaseFooter } from "./BaseFooter";

@@ -30,7 +30,7 @@ module.exports = {
         },
         plugins: [],
       },
-      bodyLimit: 104857600
+      bodyLimit: 104857600,
     });
 
     // подключаем хуки

@@ -4,9 +4,9 @@ const { getSheduledDate } = require("../../helpers/getSheduledDate");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
-
-let filter = require("../filter/filter");
 const { getTournaments } = require("../../helpers/getTournaments");
+let filter = require("../filter/filter");
+const { sendZeroAbility2 } = require("../send/sendZeroAbility2");
 
 const updateAbility2 = async () => {
   delete require.cache[require.resolve("../filter/filter")];
@@ -19,6 +19,7 @@ const updateAbility2 = async () => {
     .flat();
 
   const { filtredTournaments: state } = getTournaments();
+  const ability2ZeroState = new Set();
 
   const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
@@ -78,18 +79,7 @@ const updateAbility2 = async () => {
               }
             });
 
-            // result = result
-            if (result.length) {
-              obj[r][l][c][b][s] = result;
-            } else {
-              delete obj[r][l][c][b][s];
-              if (!Object.keys(obj[r][l][c][b]).length) {
-                // delete obj[r][l][c][b];
-                if (!Object.keys(obj[r][l][c]).length) {
-                  // delete obj[r][l][c];
-                }
-              }
-            }
+            obj[r][l][c][b][s] = result;
           });
         });
       });
@@ -150,8 +140,9 @@ const updateAbility2 = async () => {
         }
 
         const ability2 = obj?.[r]?.[l]?.[c]?.[b]?.[s];
+        const realAbility2 = Array.isArray(ability2) ? "0" : ability2;
 
-        if (!b || !r || !n || !c || !ability2) {
+        if (!b || !r || !n || !c) {
           return;
         }
         const ability = ability1?.[r]?.[time]?.[t["@bid"]]?.[n]?.["@avability"] ?? "-";
@@ -162,10 +153,17 @@ const updateAbility2 = async () => {
         if (!obj2[r][l][c]) obj2[r][l][c] = {};
         if (!obj2[r][l][c][b]) obj2[r][l][c][b] = {};
         if (!obj2[r][l][c][b][s]) obj2[r][l][c][b][s] = {};
-        obj2[r][l][c][b][s][t["@name"] + ` (A1: ${ability})(${time})`] = ability2;
+
+        if (realAbility2 === "0") {
+          ability2ZeroState.add(`network-${r};level-${l};currency:${c};bid:${b};name: ${t["@name"]}(A1: ${ability})(${time})`);
+        }
+
+        obj2[r][l][c][b][s][t["@name"] + ` (A1: ${ability})(${time})`] = realAbility2;
       });
     });
   });
+
+  await sendZeroAbility2([...ability2ZeroState].join('\n'))
 
   await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
 };

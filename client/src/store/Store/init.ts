@@ -17,5 +17,3 @@ export const getStoreRequest = storeDomain.createEffect(async () => {
 });
 
 $store.on(getStoreRequest.doneData, (_, store) => store);
-
-getStoreRequest();
