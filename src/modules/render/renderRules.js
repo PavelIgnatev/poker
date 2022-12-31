@@ -34,13 +34,6 @@ async function renderRules(rules) {
   const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
   const {validateNumber} = require('../../helpers/validateNumber')
   
-  /**
-   * Возвращае true, если турнир прошел фильтрацию по правилам уровня
-   * @param {string} level Конкретный уровень
-   * @param {Object} tournament Экземпляр объекта tournament
-   * @return {boolean} True, если турнир прошел фильтрацию по правилам уровня
-   */
-  
   const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
@@ -74,7 +67,7 @@ async function renderRules(rules) {
     const level = validateNumber(ruleLevel);
     const effmu = ruleLevel.replace(level, "").replace("-", "");
   
-    if (!name || !bid) return false;
+    if (!name || !bid) return { valid: false, guarantee: 0, rules: false };
 
     ${rules
       .map((rule) => {
@@ -82,13 +75,13 @@ async function renderRules(rules) {
           return renderCheckFalse(rule.map(renderRule).join(" && "));
         }
 
-        return renderCheck(rule.map(renderRule).join(" && "));
+        return renderCheck(rule, rule.map(renderRule).join(" && "));
       })
       .join("")}
 
-    if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return true 
+    if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 0 } 
     
-    return false;
+    return { valid: false, guarantee: 0, rules: false };
   };
   
   module.exports = {

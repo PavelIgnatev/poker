@@ -44,4 +44,5 @@ export interface tableCellModel {
   "@numberLateRegEndDate": number;
   "@usdBid": number | string;
   "@usdPrizepool": string | number;
+  valid: boolean;
 }

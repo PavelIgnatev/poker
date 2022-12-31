@@ -140,7 +140,7 @@ const collectionStatistics = async () => {
               t["@usdBid"] = currency === "CNY" ? bid / lastValue : bid;
               t["@usdPrizepool"] = currency === "CNY" && pp !== "-" ? pp / lastValue : pp;
 
-              if (Number(bid) !== 0 && !filter.filter(level, t, true)) {
+              if (Number(bid) !== 0 && !filter.filter(level, t, true).valid) {
                 if (!errorTournaments[alias]) errorTournaments[alias] = [];
                 errorTournaments[alias].push(t);
               }

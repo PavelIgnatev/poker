@@ -43,7 +43,7 @@ const sendZeroAbility2 = async (tournamentNames) => {
   console.log("Начинаю отправлять турниры, которые имеют нулевое абилити2");
 
   try {
-    await sendMail(["palllkaignatev@ya.ru"], `<div style="white-space: pre-wrap;">${tournamentNames}</div>`);
+    await sendMail(["behaappy@ya.ru,palllkaignatev@ya.ru,pocarr.offstake@gmail.com"], `<div style="white-space: pre-wrap;">${tournamentNames}</div>`);
   } catch {
     console.log('При отправке произошла ошибка')
   }

@@ -170,7 +170,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const bounty = tournament["@bounty"];
     const turbo = tournament["@turbo"];
     const superturbo = tournament["@superturbo"];
-    const level = tournament["@level"];
     const prizepool = tournament["@usdPrizepool"];
 
     return (
@@ -194,26 +193,43 @@ export const $filtredTableState = $tableState.map((tournaments) => {
           : false)) &&
       (prizepool !== "-"
         ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd
-        : true) &&
-      filter.filter(level, tournament, true)
+        : true)
     );
   });
 
   // определение цвета турнира
   tournaments = tournaments.map((tournament) => {
+    const level = tournament["@level"];
+    const { valid, guarantee, rules } = filter.filter(level, tournament, true);
     const ability1 = Number(tournament["@ability"]);
     const ability2 = Number(tournament["@abilityBid"]);
+    const prizepool = Number(
+      tournament["@prizepool"] === "-" || !tournament["@prizepool"]
+        ? 1
+        : tournament["@prizepool"]
+    );
+
     let color = "rgba(2235,96,96,0.5)";
 
-    if (ability2 - ability1 >= 4) {
-      color = "rgba(98,179,82,0.5)"; // зеленый
-    } else if (ability2 - ability1 >= 1 && ability2 - ability1 <= 3) {
+    if (ability2 - ability1 >= 1 && ability2 - ability1 <= 3) {
       color = "rgba(247,255,105,0.5)"; // желтый
-    } else if (tournament["@abilityBid"] === "-" || tournament["@ability"] === "-" || !ability2 || !ability1) {
-      color = "rgb(238 236 255)";
+    } 
+    if (
+      tournament["@abilityBid"] === "-" ||
+      tournament["@ability"] === "-" ||
+      !ability2 ||
+      !ability1
+    ) {
+      color = "rgb(238 236 255)"; // обычный цвет
+    } 
+    if (
+      ability2 - ability1 >= 4 ||
+      (rules &&  prizepool / Number(guarantee) >= 1.5)
+    ) {
+      color = "rgba(98,179,82,0.5)"; // зеленый
     }
 
-    return { ...tournament, color };
+    return { ...tournament, color, valid };
   });
 
   // фильтр по времени "от"-"до"
@@ -221,14 +237,17 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const startDate = item?.["@scheduledStartDate"] ?? "-";
     const { dateStart, dateEnd } = $tournamentsSettings.getState();
 
+    if(!item.valid) return false
     if (startDate === "-") return true;
 
     const res = startDate?.split(", ")?.[1]?.split(":")?.[0];
     const r = dateEnd === "00" && dateStart <= dateEnd ? "24" : dateEnd;
 
-    return dateStart <= dateEnd
-      ? dateStart <= res && res <= r
-      : !(dateStart > res && res > dateEnd);
+    return (
+      (dateStart <= dateEnd
+        ? dateStart <= res && res <= r
+        : !(dateStart > res && res > dateEnd))
+    );
   });
 
   return tournaments;

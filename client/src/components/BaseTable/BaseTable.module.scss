@@ -3,9 +3,7 @@
   border-collapse: collapse;
   min-width: 100%;
   grid-template-columns:
-    minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(200px, 2fr)
-    minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 0.5fr) minmax(50px, 0.5fr)
-    minmax(100px, 1fr);
+    minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(200px, 2fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 0.5fr) minmax(50px, 0.5fr) minmax(100px, 1fr);
 }
 
 .thead,
@@ -37,9 +35,11 @@
   border: 0px;
   border-collapse: collapse;
   color: white;
+
   &:first-child {
     border-top-left-radius: 8px;
   }
+
   &:last-child {
     border-top-right-radius: 8px;
   }
@@ -48,15 +48,18 @@
 .tbody {
   .tr {
     padding: 8px;
+
     .td {
       background: #fbfbfbef;
     }
+
     &:nth-child(2n) {
       .td {
         background: #e2e0f0;
       }
     }
   }
+
   .td {
     color: rgb(38, 37, 37);
     min-height: 40px;
@@ -66,19 +69,41 @@
     text-align: center;
     justify-content: center;
   }
+
   .tr:last-child {
     .td {
       &:first-child {
         border-bottom-left-radius: 8px;
       }
+
       &:last-child {
         border-bottom-right-radius: 8px;
       }
     }
   }
 }
+
 .section {
   min-height: 200px;
   position: relative;
   flex: 1;
+}
+
+.select {
+  margin-bottom: 10px;
+}
+
+.effmu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0px;
+  height: 55px;
+  position: sticky;
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  background-color: white;
+  padding: 5px 0;
+  margin-bottom: 10px;
 }

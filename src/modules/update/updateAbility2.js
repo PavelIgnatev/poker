@@ -38,7 +38,7 @@ const updateAbility2 = async () => {
         t["@usdBid"] = c === "CNY" ? b / lastValue : b;
         t["@usdPrizepool"] = c === "CNY" && pp !== "-" ? pp / lastValue : pp;
 
-        if (!b || !r || !n || !c || !filter.filter(l, t)) {
+        if (!b || !r || !n || !c || !filter.filter(l, t).valid) {
           return;
         }
 
@@ -154,8 +154,8 @@ const updateAbility2 = async () => {
         if (!obj2[r][l][c][b]) obj2[r][l][c][b] = {};
         if (!obj2[r][l][c][b][s]) obj2[r][l][c][b][s] = {};
 
-        if (realAbility2 === "0") {
-          ability2ZeroState.add(`network-${r};level-${l};currency:${c};bid:${b};name: ${t["@name"]}(A1: ${ability})(${time})`);
+        if (realAbility2 === "0" && Number(b) > 10) {
+          ability2ZeroState.add(`level-${l};network-${r};currency:${c};bid:${b};status:${s}`);
         }
 
         obj2[r][l][c][b][s][t["@name"] + ` (A1: ${ability})(${time})`] = realAbility2;
