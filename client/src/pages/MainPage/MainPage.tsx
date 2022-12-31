@@ -18,10 +18,10 @@ export const MainPage = () => {
   const config = useStore($config);
   const { setIntervalWorker } = useIntervalWorker();
 
-  // выкидываем из сессии каждый час
+  // выкидываем из сессии каждые 12 часов
   setIntervalWorker(() => {
     window.location.reload();
-  }, 60 * 60 * 1000);
+  }, 12 * 60 * 60 * 1000);
 
   const handlePasswordSubmit: OnPasswordSubmit = ({ password, login }) =>
     getConfigRequest({ alias: login, password });

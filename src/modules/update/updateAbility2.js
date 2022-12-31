@@ -162,8 +162,12 @@ const updateAbility2 = async () => {
       });
     });
   });
+  
+  const zeroAbility2 = [...ability2ZeroState];
 
-  await sendZeroAbility2([...ability2ZeroState].join('\n'))
+  if (zeroAbility2.length) {
+    await sendZeroAbility2([...ability2ZeroState].join("\n"));
+  }
 
   await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
 };

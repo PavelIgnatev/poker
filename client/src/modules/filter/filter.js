@@ -54,8 +54,8 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return { valid: false, guarantee: 0, rules: false };
 
-    if((BidGt(33,15000))
-    && network === 'PS.eu'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 15000 };
+    if((FromTo(1,109))
+    && network === 'PS.eu'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 0 };
 
     if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 0 } 
     
