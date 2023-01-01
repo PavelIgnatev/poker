@@ -35,7 +35,7 @@ class Api extends ConfigApi {
     return await axios.delete(`/api/rules`, { data });
   }
   async postUpdate() {
-    return await axios.post(`http://localhost:81/api/update`);
+    return await axios.post(`/api/update`);
   }
 }
 

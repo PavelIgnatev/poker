@@ -1,8 +1,8 @@
-const { default: axios } = require("axios");
+const { updateServer } = require("../../../modules/update/updateServer");
 
 module.exports = async (req, res) => {
   try {
-    await axios('http://localhost:81/api/full-update');
+    updateServer();
   } catch (error) {
     console.log(error);
   }
