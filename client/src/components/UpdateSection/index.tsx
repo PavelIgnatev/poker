@@ -15,7 +15,7 @@ export const UpdateSection = () => {
 
   const handleClick = useCallback(() => {
     postUpdate();
-    // window.location.reload();
+    window.location.reload();
   }, []);
 
   return (

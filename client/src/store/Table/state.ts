@@ -224,7 +224,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     } 
     if (
       ability2 - ability1 >= 4 ||
-      (rules &&  prizepool / Number(guarantee) >= 1.5)
+      (rules &&  prizepool / Number(guarantee) > 1.5)
     ) {
       color = "rgba(98,179,82,0.5)"; // зеленый
     }
