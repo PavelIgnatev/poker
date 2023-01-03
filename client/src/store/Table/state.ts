@@ -200,20 +200,21 @@ export const $filtredTableState = $tableState.map((tournaments) => {
   // определение цвета турнира
   tournaments = tournaments.map((tournament) => {
     const level = tournament["@level"];
-    const { valid, guarantee, rules } = filter.filter(level, tournament, true);
+    const {
+      valid,
+      guarantee = 1,
+      rules,
+    } = filter.filter(level, tournament, true);
     const ability1 = Number(tournament["@ability"]);
     const ability2 = Number(tournament["@abilityBid"]);
-    const prizepool = Number(
-      tournament["@prizepool"] === "-" || !tournament["@prizepool"]
-        ? 1
-        : tournament["@prizepool"]
-    );
+    const usdPrizepool = tournament["@usdPrizepool"];
+    const prizepool = Number(usdPrizepool === "-" ? 1 : usdPrizepool);
 
     let color = "rgba(2235,96,96,0.5)";
 
     if (ability2 - ability1 >= 1 && ability2 - ability1 <= 3) {
       color = "rgba(247,255,105,0.5)"; // желтый
-    } 
+    }
     if (
       tournament["@abilityBid"] === "-" ||
       tournament["@ability"] === "-" ||
@@ -221,10 +222,10 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       !ability1
     ) {
       color = "rgb(238 236 255)"; // обычный цвет
-    } 
+    }
     if (
       ability2 - ability1 >= 4 ||
-      (rules &&  prizepool / Number(guarantee) > 1.5)
+      (rules && prizepool / Number(guarantee) >= 1.5)
     ) {
       color = "rgba(98,179,82,0.5)"; // зеленый
     }
@@ -237,17 +238,15 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const startDate = item?.["@scheduledStartDate"] ?? "-";
     const { dateStart, dateEnd } = $tournamentsSettings.getState();
 
-    if(!item.valid) return false
+    if (!item.valid) return false;
     if (startDate === "-") return true;
 
     const res = startDate?.split(", ")?.[1]?.split(":")?.[0];
     const r = dateEnd === "00" && dateStart <= dateEnd ? "24" : dateEnd;
 
-    return (
-      (dateStart <= dateEnd
-        ? dateStart <= res && res <= r
-        : !(dateStart > res && res > dateEnd))
-    );
+    return dateStart <= dateEnd
+      ? dateStart <= res && res <= r
+      : !(dateStart > res && res > dateEnd);
   });
 
   return tournaments;
