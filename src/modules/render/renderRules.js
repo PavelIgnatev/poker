@@ -69,7 +69,7 @@ async function renderRules(rules) {
     const level = validateNumber(ruleLevel);
     const effmu = ruleLevel.replace(level, "").replace("-", "");
   
-    if (!name || !bid) return { valid: false, guarantee: 0, rules: false };
+    if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
     ${nativeRules
       .map((rule) => {
@@ -81,9 +81,9 @@ async function renderRules(rules) {
       })
       .join("")}
 
-    if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 0 } 
+    if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 1 } 
     
-    return { valid: false, guarantee: 0, rules: false };
+    return { valid: false, guarantee: 1, rules: false };
   };
   
   module.exports = {

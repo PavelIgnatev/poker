@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 function renderCheck(rules, ruleString) {
-  let maxGuarantee = 0;
+  let maxGuarantee = 1;
 
   rules.map((rule) => {
     const { type, values } = rule;
