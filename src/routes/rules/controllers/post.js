@@ -1,6 +1,5 @@
 const { getRules, saveRules } = require("../../../utils/rules");
 const { renderRules } = require("../../../modules/render/renderRules");
-const { writeFile } = require("../../../utils/promisify");
 const { findInArray } = require("../../../helpers/findInArray");
 
 module.exports = async (req, res) => {
@@ -14,12 +13,9 @@ module.exports = async (req, res) => {
   }
 
   rules.push(bodyRules);
-  const rulesContent = await renderRules(rules);
 
-  await saveRules(rules);
-
-  await writeFile("src/modules/filter/filter.js", rulesContent);
-  await writeFile("client/src/modules/filter/filter.js", rulesContent);
+  await saveRules([...rules]);
+  await renderRules(rules);
 
   res.status(200).send(rules);
 };

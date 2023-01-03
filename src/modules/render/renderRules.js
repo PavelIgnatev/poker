@@ -1,4 +1,5 @@
 const { minifyFile } = require("../../helpers/minifyFile");
+const { writeFile } = require("../../utils/promisify");
 const { renderCheck } = require("./renderCheck");
 const { renderCheckFalse } = require("./renderCheckFalse");
 const { renderRule } = require("./renderRule");
@@ -12,8 +13,9 @@ function customSort(a, s) {
 }
 
 async function renderRules(rules) {
-  customSort(rules, ["green", "orange", "blue", "red", "brown", "black"]);
-  return await `const { getNetwork } = require("../../helpers/getNetwork");
+  const nativeRules = [...rules]
+  customSort(nativeRules, ["green", "orange", "blue", "red", "brown", "black"]);
+  const result = `const { getNetwork } = require("../../helpers/getNetwork");
   const {
     FromTo: FromToQ,
     FromToName: FromToNameQ,
@@ -69,7 +71,7 @@ async function renderRules(rules) {
   
     if (!name || !bid) return { valid: false, guarantee: 0, rules: false };
 
-    ${rules
+    ${nativeRules
       .map((rule) => {
         if (rule[0].color === "orange") {
           return renderCheckFalse(rule.map(renderRule).join(" && "));
@@ -87,5 +89,7 @@ async function renderRules(rules) {
   module.exports = {
     filter,
   };`;
+  await writeFile("src/modules/filter/filter.js", result);
+  await writeFile("client/src/modules/filter/filter.js", result);
 }
 module.exports = { renderRules };

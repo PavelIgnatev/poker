@@ -1,6 +1,5 @@
 const { getRules, saveRules } = require("../../../utils/rules");
 const { renderRules } = require("../../../modules/render/renderRules");
-const { writeFile } = require("../../../utils/promisify");
 const { findInArray } = require("../../../helpers/findInArray");
 
 module.exports = async (req, res) => {
@@ -15,11 +14,7 @@ module.exports = async (req, res) => {
   rules[index].map((rule) => (rule.offpeak = offpeak));
 
   await saveRules(rules);
-
-  const rulesContent = await renderRules(rules);
-
-  await writeFile("src/modules/filter/filter.js", rulesContent);
-  await writeFile("client/src/modules/filter/filter.js", rulesContent);
+  await renderRules(rules);
 
   res.status(200).send(rules);
 };

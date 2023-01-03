@@ -20,10 +20,7 @@ const updateServer = async () => {
   await writeFile(updateUrl, JSON.stringify({ isUpdated: true, timestamp: Date.now() }));
 
   const rules = await getRules();
-  const rulesContent = await renderRules(rules);
-
-  await writeFile("src/modules/filter/filter.js", rulesContent);
-  await writeFile("client/src/modules/filter/filter.js", rulesContent);
+  await renderRules(rules);
 
   // Отправка писем
   try {
