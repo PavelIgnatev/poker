@@ -38,7 +38,7 @@ const updateAbility2 = async () => {
         t["@usdBid"] = c === "CNY" ? b / lastValue : b;
         t["@usdPrizepool"] = c === "CNY" && pp !== "-" ? pp / lastValue : pp;
 
-        if (!b || !r || !n || !c || !filter.filter(l, t).valid) {
+        if (!b || !r || !n || !c) {
           return;
         }
 
@@ -50,6 +50,9 @@ const updateAbility2 = async () => {
         if (!obj[r][l][c][b][s]) obj[r][l][c][b][s] = {};
         if (!obj[r][l][c][b][s][n]) obj[r][l][c][b][s][n] = [];
 
+        if (!filter.filter(l, t).valid) {
+          return;
+        }
         const result = {};
 
         result["a"] = t["@avability"];
@@ -96,26 +99,16 @@ const updateAbility2 = async () => {
     Object.keys(obj[r]).forEach((l) => {
       Object.keys(obj[r][l]).forEach((c) => {
         //Тут типо среднее значение для каких-то турниров
+        Object.keys(obj[r][l][c]).forEach((b) => {
+          Object.keys(obj[r][l][c][b]).forEach((s) => {
+            const v = obj[r][l][c][b][s];
+            const length = v.length;
 
-        if (!Object.keys(obj[r][l][c]).length) {
-          delete obj[r][l][c];
-        } else {
-          Object.keys(obj[r][l][c]).forEach((b) => {
-            if (!Object.keys(obj[r][l][c][b]).length) {
-              delete obj[r][l][c][b];
-            } else {
-              Object.keys(obj[r][l][c][b]).forEach((s) => {
-                const v = obj[r][l][c][b][s];
-                const length = v.length;
+            const a = Math.round(v.reduce((r, i) => r + +i["a"], 0) / length);
 
-                const a = Math.round(v.reduce((r, i) => r + +i["a"], 0) / length);
-                if (a) {
-                  obj[r][l][c][b][s] = a;
-                }
-              });
-            }
+            obj[r][l][c][b][s] = a;
           });
-        }
+        });
       });
     });
   });
@@ -149,6 +142,7 @@ const updateAbility2 = async () => {
         if (!b || !r || !n || !c) {
           return;
         }
+
         const ability = ability1?.[r]?.[time]?.[t["@bid"]]?.[n]?.["@avability"] ?? "-";
 
         if (!obj2) obj2 = {};
@@ -166,7 +160,7 @@ const updateAbility2 = async () => {
       });
     });
   });
-  
+
   const zeroAbility2 = [...ability2ZeroState];
 
   if (zeroAbility2.length) {
