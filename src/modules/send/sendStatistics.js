@@ -108,12 +108,12 @@ const sendStatistics = async (errorTournaments) => {
   console.log("Начинаю отправлять статистику по турнирам на почту админов");
 
   try {
-    // await sendMail(
-    //   ["pocarr.offstake@gmail.com,palllkaignatev@yandex.ru, behaappy@ya.ru, pocarr.ru@gmail.com"],
-    //   Object.values(errorTournaments).flat(),
-    //   `<div>Invalid emails from players: ${errorAliases.join(", ")}</div>
-    //   <div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
-    // );
+    await sendMail(
+      ["pocarr.offstake@gmail.com,palllkaignatev@yandex.ru, behaappy@ya.ru, pocarr.ru@gmail.com"],
+      Object.values(errorTournaments).flat(),
+      `<div>Invalid emails from players: ${errorAliases.join(", ")}</div>
+      <div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
+    );
     console.log("Закончил отправлять статистику по турнирам на почту админов");
   } catch (error) {
     console.log("Отправка не письма на почту админов не удалась, произошла ошибка: ", error);

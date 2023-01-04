@@ -39,7 +39,7 @@ const collectionStatistics = async () => {
 
         if (!configByAlias) return;
 
-        const { effmu, networks } = configByAlias;
+        const { networks } = configByAlias;
 
         let result;
 
@@ -57,7 +57,7 @@ const collectionStatistics = async () => {
           );
         } catch (error) {
           console.log(error);
-          if (config[alias]) delete config[alias];
+          console.log(`Алиас ${alias} вызвал ошибку шарскопа`);
         }
 
         if (result?.ErrorResponse?.Error?.$ === "Player group not found.") {
