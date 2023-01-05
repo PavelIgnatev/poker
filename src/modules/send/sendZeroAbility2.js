@@ -1,6 +1,4 @@
 const { createTransport } = require("nodemailer");
-const { readFile } = require("../../utils/promisify");
-const Excel = require("exceljs");
 
 const transporter = createTransport({
   host: "smtp.mail.ru",
@@ -35,17 +33,20 @@ const mailOptions = (mails, html) => {
   };
 };
 
-const sendMail = async (mail, html) => {
-  await transporter.sendMail(mailOptions(mail, html));
+const sendMail = (mail, html) => {
+  return transporter.sendMail(mailOptions(mail, html));
 };
 
 const sendZeroAbility2 = async (tournamentNames) => {
   console.log("Начинаю отправлять турниры, которые имеют нулевое абилити2");
 
   try {
-    await sendMail(["behaappy@ya.ru,palllkaignatev@ya.ru,pocarr.offstake@gmail.com"], `<div style="white-space: pre-wrap;">${tournamentNames}</div>`);
-  } catch {
-    console.log('При отправке произошла ошибка')
+    await sendMail(
+      ["behaappy@ya.ru,palllkaignatev@ya.ru,pocarr.offstake@gmail.com"],
+      `<div style="white-space: pre-wrap;">${tournamentNames}</div>`,
+    );
+  } catch (error) {
+    console.log("При отправке произошла ошибка", error);
   }
 };
 

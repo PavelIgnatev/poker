@@ -104,9 +104,13 @@ const updateAbility2 = async () => {
             const v = obj[r][l][c][b][s];
             const length = v.length;
 
-            const a = Math.round(v.reduce((r, i) => r + +i["a"], 0) / length);
+            const a = Math.round(v.reduce((r, i) => r + +i["a"], 0) / length) || 0;
 
             obj[r][l][c][b][s] = a;
+
+            if (!a && Number(b) > 10) {
+              ability2ZeroState.add(`level-${l};network-${r};currency:${c};bid:${b};status:${s}`);
+            }
           });
         });
       });
@@ -132,12 +136,7 @@ const updateAbility2 = async () => {
         const isStartDate = ft["@date"] ?? 0;
         const time = getTimeByMS(Number(`${isStartDate}000`));
 
-        if (obj2?.[r]?.[l]?.[c]?.[b]?.[s]?.[t["@name"]]) {
-          return;
-        }
-
         const ability2 = obj?.[r]?.[l]?.[c]?.[b]?.[s];
-        const realAbility2 = Array.isArray(ability2) ? "0" : ability2;
 
         if (!b || !r || !n || !c) {
           return;
@@ -152,11 +151,7 @@ const updateAbility2 = async () => {
         if (!obj2[r][l][c][b]) obj2[r][l][c][b] = {};
         if (!obj2[r][l][c][b][s]) obj2[r][l][c][b][s] = {};
 
-        if (realAbility2 === "0" && Number(b) > 10) {
-          ability2ZeroState.add(`level-${l};network-${r};currency:${c};bid:${b};status:${s}`);
-        }
-
-        obj2[r][l][c][b][s][t["@name"] + ` (A1: ${ability})(${time})`] = realAbility2;
+        obj2[r][l][c][b][s][t["@name"] + ` (A1: ${ability})(${time})`] = ability2;
       });
     });
   });

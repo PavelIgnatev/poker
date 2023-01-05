@@ -133,6 +133,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
     const pp = prizepool >= 0 ? prizepool : "-";
 
+    console.log(abilityBid, rulesAbility2)
+
     return {
       ...tournament,
       "@date": isStartDate,
@@ -149,9 +151,10 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@prizepool": pp,
       "@network": network,
       "@ability": ability ? ability : "-",
-      "@abilityBid": abilityBid
-        ? Number(abilityBid) + Number(rulesAbility2)
-        : "-",
+      "@abilityBid":
+        typeof abilityBid === "number"
+          ? Number(abilityBid) + Number(rulesAbility2)
+          : "-",
       "@duration": duration ? getTimeBySec(duration) : "-",
       "@getWeekday": isStartDate ? getWeekday(startDate) : "-",
       "@scheduledStartDate": isStartDate ? getDate(startDate) : "-",
