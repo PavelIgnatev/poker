@@ -180,6 +180,7 @@
 
   &__settings {
     display: flex;
+    flex-direction: column;
   }
 
   &__label {
@@ -193,8 +194,17 @@
   }
 
   &__email-wrapper {
-    margin-left: 24px;
+    margin-top: 12px;
     flex: 1;
+  }
+
+  &__settings-wrapper {
+    flex: 1;
+    display: flex;
+  }
+
+  &__effmu-wrapper {
+    margin-right: 24px;
   }
 
   &__input {
@@ -203,6 +213,7 @@
     &__text {
       font-size: 0.83em;
     }
+
   }
 
   &__additional-info {

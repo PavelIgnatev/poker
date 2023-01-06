@@ -133,8 +133,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
     const pp = prizepool >= 0 ? prizepool : "-";
 
-    console.log(abilityBid, rulesAbility2)
-
     return {
       ...tournament,
       "@date": isStartDate,

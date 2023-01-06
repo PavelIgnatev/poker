@@ -8,7 +8,11 @@ import MailIcon from "../../../assets/icons/mail.svg";
 import SettingsIcon from "../../../assets/icons/settings.png";
 import EyeIcon from "../../../assets/icons/eye.svg";
 import { editableConfigEvents } from "../../../store/Config";
-import { editableTournamentsSettings, TIMEZONES } from "../../../store/Select";
+import {
+  editableTournamentsSettings,
+  TIMEZONES,
+  EFFMU,
+} from "../../../store/Select";
 
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
@@ -45,7 +49,9 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   const handlePasswordChange = (password: string) =>
     editableConfigEvents.handleChangePassword(password);
   const handleTimezoneChange = (option: SelectOption<typeof TIMEZONES[0]>) =>
-    editableConfigEvents.handleTimezoneChange(option.value as any);
+    editableConfigEvents.handleTimezoneChange(option.value);
+  const handleAllEffmuChange = (option: SelectOption<typeof EFFMU[0]>) =>
+    editableConfigEvents.handleChangeEffmuAll(option.value);
 
   const whichAccount = isAdminPage ? "this" : "your";
 
@@ -85,16 +91,29 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
         </div>
       </div>
       <div className={b("settings")}>
-        <div className={b("timezones-wrapper")}>
-          <b className={b("label")}>Timezone</b>
-          <Select
-            options={TIMEZONES}
-            defaultValue={defaultTimezoneOption}
-            // @ts-ignore
-            onChange={handleTimezoneChange}
-            className={b("input", { timezone: true })}
-            styles={nativeSelectStyles}
-          />
+        <div className={b("settings-wrapper")}>
+          <div className={b("effmu-wrapper")}>
+            <b className={b("label")}>Effmu All</b>
+            <Select
+              options={EFFMU}
+              // @ts-ignore
+              onChange={handleAllEffmuChange}
+              className={b("input", { effmu: true })}
+              styles={nativeSelectStyles}
+              placeholder="Effmu all"
+            />
+          </div>
+          <div className={b("timezones-wrapper")}>
+            <b className={b("label")}>Timezone</b>
+            <Select
+              options={TIMEZONES}
+              defaultValue={defaultTimezoneOption}
+              // @ts-ignore
+              onChange={handleTimezoneChange}
+              className={b("input", { timezone: true })}
+              styles={nativeSelectStyles}
+            />
+          </div>
         </div>
         <div className={b("email-wrapper")}>
           <b className={b("label")}>E-mail</b>

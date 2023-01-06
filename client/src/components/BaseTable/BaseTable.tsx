@@ -1,10 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { Thead } from "./Thead";
 import { Tbody } from "./Tbody/Tbody";
 import { Loader } from "../Loader/Loader";
-import { BaseSelect } from "../BaseSelect";
-import { EFFMU } from "../../store/Select";
+
 import classes from "./BaseTable.module.scss";
+import { useStore } from "effector-react";
+import { $config } from "../../store/Config";
 
 type Effmu = "A" | "B" | "C";
 
@@ -20,9 +21,20 @@ type BaseTableProps = {
 };
 
 export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
-  const [sortedKey, setSortedKey] = useState<string | null>(null);
+  const [sortedKey, setSortedKey] = useState<string | null>("@date");
   const [isReverse, setIsReverse] = useState(false);
-  const [effmu, setEffmu] = useState<Effmu | null>(null);
+  const { networks = {} } = useStore($config) ?? {};
+
+  const effmu = useMemo(
+    () =>
+      Object.keys(networks).reduce(
+        (acc, network) =>
+          acc > networks[network].effmu ? acc : networks[network].effmu,
+        "A"
+      ),
+    [networks]
+  ) as Effmu;
+
   if (loading)
     return (
       <section className={classes.section}>
@@ -42,18 +54,13 @@ export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
 
   return (
     <section className={classes.section}>
-      <BaseSelect
-        options={EFFMU}
-        placeholder="Select the effmu value you are interested in to get information"
-        onChange={(e) => setEffmu((e?.value) as Effmu)}
-        className={classes.select}
-      />
       {effmu && <div className={classes.effmu}>{textTierOptions[effmu]}</div>}
       <table id="grid" className={classes.table}>
         <Thead
           setSortedKey={setSortedKey}
           sortedKey={sortedKey}
           setIsReverse={setIsReverse}
+          isReverse={isReverse}
         />
         <Tbody data={data} sortedKey={sortedKey} isReverse={isReverse} />
       </table>

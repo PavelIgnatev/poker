@@ -7,10 +7,8 @@ export const $config = createStore<ConfigModel | null>(null);
 
 export const DEFAULT_EDITABLE_CONFIG: ConfigModel = {
   alias: "",
-  // @ts-ignore шатал я рот этого тайпскрипта, todo ему нужен конфиг, пропускающий []
-  networks: [],
+  networks: {},
   mail: "",
-  effmu: "A",
   password: "",
   timezone: TIMEZONES[0].value,
 };

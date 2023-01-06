@@ -41,7 +41,6 @@ export const patchConfigRequest = configDomain.createEffect(
     password: string;
   }) => {
     await api.patchConfigRequest(alias, config, password);
-    console.log(config  )
     await getConfigRequest({ alias, password: config.password });
   }
 );
@@ -72,21 +71,36 @@ export const editableConfigEvents = createApi($editableConfig, {
     { network, effmu }: { network: Network; effmu: Effmu }
   ) => ({
     ...config,
-    networks: { ...config.networks, [network]: {...config.networks[network], effmu} },
+    networks: {
+      ...config.networks,
+      [network]: { ...config.networks[network], effmu },
+    },
   }),
   handleChangeLevel: (
     config,
     { network, level }: { network: Network; level: Level }
   ) => ({
     ...config,
-    networks: { ...config.networks, [network]: {...config.networks[network], level} },
-  })
-,
+    networks: {
+      ...config.networks,
+      [network]: { ...config.networks[network], level },
+    },
+  }),
   handleChangePassword: (config, password: string) => ({
     ...config,
     password,
   }),
   handleTimezoneChange: (config, timezone) => ({ ...config, timezone }),
+  handleChangeEffmuAll: (config, effmu) => ({
+    ...config,
+    networks: Object.keys(config.networks).reduce(
+      (acc, network) => ({
+        ...acc,
+        [network]: { ...config.networks[network], effmu },
+      }),
+      {}
+    ),
+  }),
 });
 
 $config.on(getConfigRequest.doneData, (_, config) => config);

@@ -23,11 +23,14 @@
 }
 
 .thead .th {
+  user-select: none;
+
   cursor: pointer;
+  position: relative;
   top: 0;
   position: sticky;
   background: rgb(57, 99, 162);
-  height: 50px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +46,48 @@
   &:last-child {
     border-top-right-radius: 8px;
   }
+
+  &::before,
+  &::after {
+    content: '\003E';
+
+    font-size: 18px;
+
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 0;
+  }
+
+  &::before {
+    transform: rotate(90deg);
+    bottom: 7px;
+  }
+
+  &::after {
+    transform: rotate(270deg);
+    top: 7px;
+  }
 }
+
+.active {
+  &::before {
+    color: #22e02e;
+  }
+
+  &.reverse {
+    &::before {
+      color: white;
+    }
+
+    &::after {
+      color: #22e02e;
+    }
+  }
+}
+
 
 .tbody {
   .tr {

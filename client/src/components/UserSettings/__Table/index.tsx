@@ -42,7 +42,6 @@ const effmuOptions: SelectOption<Effmu>[] = EFFMU.map((effmu) => ({
   label: effmu,
 }));
 
-
 export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
   return (
     <div className={b({ "select-in-cells": canChangeLevels })}>
@@ -50,16 +49,25 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
         <div className={b("cell")}>Network</div>
         <div className={b("cell")}>Level</div>
         <div className={b("cell")}>Eff mu</div>
-
       </div>
       {Object.keys(networks).map((network) => {
-        const {level, effmu} = networks[network];
-        const defaultOption = levelsOptions.find((option) => option.value === level);
-        const defaultEffmuOption = effmuOptions.find((option) => option.value === effmu); 
+        const { level, effmu } = networks[network];
+        const defaultOption = levelsOptions.find(
+          (option) => option.value === level
+        );
+        const defaultEffmuOption = effmuOptions.find(
+          (option) => option.value === effmu
+        );
         const handleLevelChange = (option: SelectOption<number>) =>
-          editableConfigEvents.handleChangeLevel({ network, level: option.value });
+          editableConfigEvents.handleChangeLevel({
+            network,
+            level: option.value,
+          });
         const handleEffmuChange = (option: SelectOption<Effmu>) =>
-          editableConfigEvents.handleChangeEffmu({ network, effmu: option.value });
+          editableConfigEvents.handleChangeEffmu({
+            network,
+            effmu: option.value,
+          });
 
         return (
           <div className={b("row")} key={network}>
