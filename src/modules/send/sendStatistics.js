@@ -25,7 +25,7 @@ const mailOptions = (mails, html, content) => {
   const filename = `${date}.xlsx`;
 
   //as.dsa.20@mail.ru
-  //IaatYiI*p24O
+  //Iy*YDrUhtc32
 
   //behaappy@ya.ru
   return {

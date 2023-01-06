@@ -56,7 +56,6 @@ const collectionStatistics = async () => {
             )}`,
           );
         } catch (error) {
-          console.log(error);
           console.log(`Алиас ${alias} вызвал ошибку шарскопа`);
         }
 
