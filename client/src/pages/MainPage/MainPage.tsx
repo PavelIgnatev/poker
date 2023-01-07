@@ -11,17 +11,20 @@ import {
 import { useIntervalWorker } from "../../hooks/useIntervalWorker";
 import { BaseFooter } from "../../components/BaseFooter";
 
+
 export const MainPage = () => {
   const loading = useStore(fetchUserReposFx.pending);
   const tournaments = useStore($filtredTableState);
 
   const config = useStore($config);
+
   const { setIntervalWorker } = useIntervalWorker();
 
   // выкидываем из сессии каждые 12 часов
   setIntervalWorker(() => {
     window.location.reload();
   }, 12 * 60 * 60 * 1000);
+
 
   const handlePasswordSubmit: OnPasswordSubmit = ({ password, login }) =>
     getConfigRequest({ alias: login, password });

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import Select from "react-select";
 
 import { SelectOption } from "../../../@types/selectsModel";
@@ -18,7 +18,10 @@ import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
 
 import b_ from "b_";
+import { useElementsToggle } from "../../ElementsToggle";
+import { ColorPalette } from "../../ColorPalette";
 
+type ColorsType = "green" | "yellow" | "red" | "rgb(152, 183, 201)";
 interface Props {
   config: ConfigModel;
   isAdminPage?: boolean;
@@ -36,13 +39,73 @@ const nativeSelectStyles = {
 
 const b = b_.with("user-settings-info");
 
+const LevelInfo = {
+  0: { A: "$0-$400", B: "$401-$800", C: "$801+" },
+  1: { A: "$0-$1k", B: "$1001-$2k", C: "$2001+" },
+  2: { A: "$0-$1.5k", B: "$1501-$3k", C: "$3001+" },
+  3: {
+    A: "$0-$2.5k",
+    B: "$2501-$5k",
+    C: "$5001+",
+  },
+  4: {
+    A: "$0-$4k",
+    B: "$4001-$8k",
+    C: "$8001+",
+  },
+  5: {
+    A: "$0-$5k",
+    B: "$5001-$10k",
+    C: "$10001+",
+  },
+  6: {
+    A: "$0-$7k",
+    B: "$7001-$14k",
+    C: "$14001+",
+  },
+  7: { A: "$0-$7.5k", B: "$7501-$15k", C: "$15001+" },
+  8: { A: "$0-$8k", B: "$8001-$16k", C: "$16001+" },
+  9: {
+    A: "$0-$10k",
+    B: "$10001-$20k",
+    C: "$20001+",
+  },
+  10: {
+    A: "$0-$12.5k",
+    B: "$12501-$25k",
+    C: "$25001+",
+  },
+  11: {
+    A: "$0-$15k",
+    B: "$15001-$30k",
+    C: "$30001+",
+  },
+  12: { A: "$0-$20k", B: "$20001-$40k", C: "$40001+" },
+  13: { A: "$0-$25k", B: "$25001-$50k", C: "$50001+" },
+  14: { A: "$0-$30k", B: "$30001-$60k", C: "$60001+" },
+  15: { A: "No Stips", B: "No Stips", C: "No Stips" },
+};
+
+const Colors: ColorsType[] = ["green", "yellow", "red", "rgb(152, 183, 201)"];
+const ColorsInfo: Record<ColorsType, string> = {
+  green: "Good",
+  yellow: "Normal, you can play",
+  red: "You can play, but difficult",
+  "rgb(152, 183, 201)": "You can play, but there is no information",
+};
+
 export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
-  const { alias, mail, password, timezone } = config;
+  const { alias, mail, password, timezone, networks } = config;
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => setShowPassword((p) => !p);
 
   const defaultTimezoneOption =
     TIMEZONES.find((option) => option.value === timezone) || TIMEZONES[0];
+
+  const {
+    selectedElement: selectedColor,
+    handleElementChange: handleColorChange,
+  } = useElementsToggle<ColorsType>(Colors[0]);
 
   const handleEmailChange = (email: string) =>
     editableConfigEvents.handleChangeMail(email);
@@ -54,6 +117,18 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
     editableConfigEvents.handleChangeEffmuAll(option.value);
 
   const whichAccount = isAdminPage ? "this" : "your";
+
+  const levels = useMemo(() => {
+    const levels = Object.keys(networks).map(
+      (network) => networks[network].level
+    );
+
+    return levels
+      .filter(function (item, level) {
+        return levels.indexOf(item) === level;
+      })
+      .slice(0, 3);
+  }, [networks]) as Array<keyof typeof LevelInfo>;
 
   useEffect(() => {
     editableTournamentsSettings.handleChangeTimezone(defaultTimezoneOption);
@@ -155,9 +230,29 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
         )}
       </div>
       <div className={b("effmu-content")}>
-        <div className={b("effmu", { type: "a" })}>A ($0-$12.5k)</div>
-        <div className={b("effmu", { type: "b" })}>B ($12501-$25k)</div>
-        <div className={b("effmu", { type: "c" })}>C ($25001+)</div>
+        {levels.map((level) => (
+          <div key={level}>
+            <b className={b("label", { content: true })}>Level {level}:</b>
+            <div className={b("effmu", { type: "a" })}>
+              A {LevelInfo[level]["A"]}
+            </div>
+            <div className={b("effmu", { type: "b" })}>
+              B {LevelInfo[level]["B"]}
+            </div>
+            <div className={b("effmu", { type: "c" })}>
+              C {LevelInfo[level]["C"]}
+            </div>
+          </div>
+        ))}
+      </div>
+      <ColorPalette
+        selectedElement={selectedColor}
+        onElementChange={handleColorChange}
+        elements={Colors}
+        mix={b("color-pallete")}
+      />
+      <div className={b("additional-info", { color: true })}>
+        {ColorsInfo[selectedColor]}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { Loader } from "../Loader/Loader";
 import classes from "./BaseTable.module.scss";
 import { useStore } from "effector-react";
 import { $config } from "../../store/Config";
+import { TextTier } from "../TextTier";
 
 type Effmu = "A" | "B" | "C";
 
@@ -54,7 +55,8 @@ export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
 
   return (
     <section className={classes.section}>
-      {effmu && <div className={classes.effmu}>{textTierOptions[effmu]}</div>}
+      <TextTier effmu={effmu} />
+
       <table id="grid" className={classes.table}>
         <Thead
           setSortedKey={setSortedKey}

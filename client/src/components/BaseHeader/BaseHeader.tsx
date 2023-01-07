@@ -25,6 +25,7 @@ import { UserSettings } from "../UserSettings";
 
 export const BaseHeader: FC = () => {
   const tournamentsSettings = useStore($tournamentsSettings);
+  const loading = useStore(fetchUserReposFx.pending);
 
   const config = useStore($config);
 
@@ -196,7 +197,7 @@ export const BaseHeader: FC = () => {
           </ComponentCategory>
         </div>
         <div className={classes.content}>
-          <BaseButton onClick={fetchUserReposFx} className={classes.button}>
+          <BaseButton disabled={loading} onClick={fetchUserReposFx} className={classes.button}>
             Games search
           </BaseButton>
         </div>
