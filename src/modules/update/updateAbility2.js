@@ -17,7 +17,6 @@ const updateAbility2 = async () => {
     .fill(null)
     .map((_, i) => [i + "A", i + "B", i + "C"])
     .flat();
-
   const { filtredTournaments: state } = getTournaments();
   const ability2ZeroState = new Set();
 
@@ -42,6 +41,8 @@ const updateAbility2 = async () => {
           return;
         }
 
+        const { rules, valid, color, guarantee } = filter.filter(l, t);
+
         if (!obj) obj = {};
         if (!obj[r]) obj[r] = {};
         if (!obj[r][l]) obj[r][l] = {};
@@ -50,8 +51,10 @@ const updateAbility2 = async () => {
         if (!obj[r][l][c][b][s]) obj[r][l][c][b][s] = {};
         if (!obj[r][l][c][b][s][n]) obj[r][l][c][b][s][n] = [];
 
-        if (!filter.filter(l, t).valid) {
+        if (!valid) {
           return;
+        } else if (!obj[r][l][c][b][s][n][0]?.color && color) {
+          obj[r][l][c][b][s][n].unshift({ color, rules, valid, guarantee });
         }
         const result = {};
 
@@ -77,14 +80,16 @@ const updateAbility2 = async () => {
 
             Object.keys(obj[r][l][c][b][s]).forEach((n) => {
               const values = obj[r][l][c][b][s][n];
-              if (values?.length >= Number(count)) {
-                result.push(...values);
+              if (!result.length && values?.length) {
+                result.push(values[0]);
+              } else if (values?.length >= Number(result.length ? count : count + 1)) {
+                result.push(...values.slice(1));
               }
             });
 
             result = result
               .sort((a, b) => Number(b["@date"] ?? 0) - Number(a["@date"] ?? 0))
-              .splice(0, 20);
+              .splice(0, 21);
 
             obj[r][l][c][b][s] = result;
           });
@@ -101,16 +106,19 @@ const updateAbility2 = async () => {
         //Тут типо среднее значение для каких-то турниров
         Object.keys(obj[r][l][c]).forEach((b) => {
           Object.keys(obj[r][l][c][b]).forEach((s) => {
-            const v = obj[r][l][c][b][s];
+            const v = obj[r][l][c][b][s].slice(1);
             const length = v.length;
+            const { color } = obj[r][l][c][b][s]?.[0] ?? {};
 
-            const a = Math.round(v.reduce((r, i) => r + +i["a"], 0) / length) || 0;
+            const a = Math.round(v.reduce((r, i) => r + +i["a"] ?? 0, 0) / length) || 0;
+
+            if (!a && (color === "red" || color === "blue")) {
+              ability2ZeroState.add(
+                `level-${l};network-${r};currency:${c};bid:${b};status:${s};color:${color}`,
+              );
+            }
 
             obj[r][l][c][b][s] = a;
-
-            if (!a && Number(b) > 10) {
-              ability2ZeroState.add(`level-${l};network-${r};currency:${c};bid:${b};status:${s}`);
-            }
           });
         });
       });
@@ -159,7 +167,7 @@ const updateAbility2 = async () => {
   const zeroAbility2 = [...ability2ZeroState];
 
   if (zeroAbility2.length) {
-    await sendZeroAbility2([...ability2ZeroState].join("\n"));
+    await sendZeroAbility2([...ability2ZeroState].sort().join("\n"));
   }
 
   await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
