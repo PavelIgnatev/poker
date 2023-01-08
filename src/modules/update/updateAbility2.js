@@ -18,7 +18,8 @@ const updateAbility2 = async () => {
     .map((_, i) => [i + "A", i + "B", i + "C"])
     .flat();
   const { filtredTournaments: state } = getTournaments();
-  const ability2ZeroState = new Set();
+  const ability2ZeroStateRedBlue = [];
+  const ability2ZeroStateAny = [];
 
   const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
@@ -111,11 +112,21 @@ const updateAbility2 = async () => {
             const { color } = obj[r][l][c][b][s]?.[0] ?? {};
 
             const a = Math.round(v.reduce((r, i) => r + +i["a"] ?? 0, 0) / length) || 0;
+            const abilityState = {
+              l,
+              r,
+              c,
+              b,
+              s,
+              color,
+            };
 
-            if (!a && (color === "red" || color === "blue")) {
-              ability2ZeroState.add(
-                `level-${l};network-${r};currency:${c};bid:${b};status:${s};color:${color}`,
-              );
+            if (!a) {
+              if (color === "red" || color === "blue") {
+                ability2ZeroStateRedBlue.push(abilityState);
+              } else {
+                ability2ZeroStateAny.push(abilityState);
+              }
             }
 
             obj[r][l][c][b][s] = a;
@@ -164,11 +175,8 @@ const updateAbility2 = async () => {
     });
   });
 
-  const zeroAbility2 = [...ability2ZeroState];
-
-  if (zeroAbility2.length) {
-    await sendZeroAbility2([...ability2ZeroState].sort().join("\n"));
-  }
+  await sendZeroAbility2(ability2ZeroStateRedBlue, "red|blue");
+  await sendZeroAbility2(ability2ZeroStateAny, "any");
 
   await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
 };
