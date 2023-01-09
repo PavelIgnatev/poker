@@ -3,7 +3,7 @@
   border-collapse: collapse;
   min-width: 100%;
   grid-template-columns:
-    minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(200px, 2fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 0.5fr) minmax(50px, 0.5fr) minmax(100px, 1fr);
+    minmax(150px, 1.5fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(200px, 2fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(110px, 1px) minmax(100px, 1fr) minmax(100px, 1fr)
 }
 
 .thead,
@@ -47,47 +47,51 @@
     border-top-right-radius: 8px;
   }
 
+
   &::before,
   &::after {
-    content: '\003E';
-
-    font-size: 18px;
-
+    content: '';
     position: absolute;
-
-    left: 50%;
-    transform: translateX(-50%);
-
-    width: 0;
+    top: 50%;
+    right: 12px;
+    border: 6px solid transparent;
   }
 
   &::before {
-    transform: rotate(90deg);
-    bottom: 7px;
+    border-bottom-color: #bdbdbd;
+    margin-top: -12px;
   }
 
   &::after {
-    transform: rotate(270deg);
-    top: 7px;
-  }
-}
-
-.active {
-  &::before {
-    color: #22e02e;
+    border-top-color: #bdbdbd;
+    margin-top: 1px;
   }
 
-  &.reverse {
-    &::before {
-      color: white;
+  &.active {
+    &:not(.reverse)::after {
+      border-width: 6px;
+      right: 12px;
+      border-top-color: #6bf274;
     }
 
-    &::after {
-      color: #22e02e;
+    &:not(.reverse)::before {
+      content: none;
+    }
+
+    &.reverse {
+      &::after {
+        content: none;
+      }
+
+      &::before {
+        border-width: 6px;
+        margin-top: -12px;
+        right: 12px;
+        border-bottom-color: #6bf274;
+      }
     }
   }
 }
-
 
 .tbody {
   .tr {
