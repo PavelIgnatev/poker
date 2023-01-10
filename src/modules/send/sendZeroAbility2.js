@@ -5,10 +5,9 @@ const transporter = createTransport({
   host: "smtp.mail.ru",
   port: 465,
   secure: true,
-  ignoreTLS: true,
   auth: {
     user: "as.dsa.20@mail.ru",
-    pass: "ZzSt2EhMkQanbeReGcu9",
+    pass: "NkpGmnhWqfXkPLMbvUZz",
   },
 });
 
@@ -25,7 +24,7 @@ const mailOptions = (mails, content, title) => {
   const filename = `${date}.xlsx`;
 
   //as.dsa.20@mail.ru
-  //IaatYiI*p24O
+  //PU22EfyoAps$
 
   //behaappy@ya.ru
   return {

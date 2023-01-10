@@ -8,7 +8,7 @@ const transporter = createTransport({
   secure: true,
   auth: {
     user: "as.dsa.20@mail.ru",
-    pass: "ZzSt2EhMkQanbeReGcu9",
+    pass: "NkpGmnhWqfXkPLMbvUZz",
   },
 });
 
@@ -25,7 +25,7 @@ const mailOptions = (mails, html, content) => {
   const filename = `${date}.xlsx`;
 
   //as.dsa.20@mail.ru
-  //Iy*YDrUhtc32
+  //PU22EfyoAps$
 
   //behaappy@ya.ru
   return {

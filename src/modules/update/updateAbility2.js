@@ -7,6 +7,7 @@ const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
 const { getTournaments } = require("../../helpers/getTournaments");
 let filter = require("../filter/filter");
 const { sendZeroAbility2 } = require("../send/sendZeroAbility2");
+const { getRules } = require("../../utils/rules");
 
 const updateAbility2 = async () => {
   delete require.cache[require.resolve("../filter/filter")];
@@ -17,9 +18,59 @@ const updateAbility2 = async () => {
     .fill(null)
     .map((_, i) => [i + "A", i + "B", i + "C"])
     .flat();
+  const config = JSON.parse(await readFile("src/store/rules/config.json"));
+
   const { filtredTournaments: state } = getTournaments();
   const ability2ZeroStateRedBlue = [];
   const ability2ZeroStateAny = [];
+  const allRules = await getRules();
+  const fromTo = {};
+
+  allRules
+    .filter((rules) => rules.every((rule) => rule.color === "red" || rule.color === "blue"))
+    .forEach((rules) => {
+      rules.map(({ type, values, level, network }) => {
+        if (!fromTo[level]) fromTo[level] = {};
+        if (!fromTo[level][network]) fromTo[level][network] = {};
+
+        config[type].forEach(({ placeholder }) => {
+          switch (placeholder) {
+            case "Bid":
+              fromTo[level][network]["max"] = Math.max(
+                fromTo[level][network]["max"] ?? -Infinity,
+                values[0],
+              );
+              fromTo[level][network]["min"] = Math.min(
+                fromTo[level][network]["min"] ?? Infinity,
+                values[0],
+              );
+              break;
+            case "From":
+              fromTo[level][network]["max"] = Math.max(
+                fromTo[level][network]["max"] ?? -Infinity,
+                values[0],
+              );
+              fromTo[level][network]["min"] = Math.min(
+                fromTo[level][network]["min"] ?? Infinity,
+                values[0],
+              );
+              break;
+            case "To":
+              fromTo[level][network]["max"] = Math.max(
+                fromTo[level][network]["max"] ?? -Infinity,
+                values[1],
+              );
+              fromTo[level][network]["min"] = Math.min(
+                fromTo[level][network]["min"] ?? Infinity,
+                values[1],
+              );
+              break;
+          }
+        });
+      });
+    });
+
+  console.log(JSON.stringify(fromTo["3A"]));
 
   const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
@@ -125,7 +176,10 @@ const updateAbility2 = async () => {
               if (color === "red" || color === "blue") {
                 ability2ZeroStateRedBlue.push(abilityState);
               } else {
-                ability2ZeroStateAny.push(abilityState);
+                const { max, min } = fromTo[l][r];
+                if (b >= min && b <= max) {
+                  ability2ZeroStateAny.push(abilityState);
+                }
               }
             }
 
