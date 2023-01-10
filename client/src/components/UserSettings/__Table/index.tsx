@@ -1,5 +1,5 @@
 import b_ from "b_";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import Select from "react-select";
 
 import { Effmu, Networks } from "../../../@types/common";
@@ -43,21 +43,19 @@ const effmuOptions: SelectOption<Effmu>[] = EFFMU.map((effmu) => ({
 }));
 
 export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
-  return (
-    <div className={b({ "select-in-cells": canChangeLevels })}>
-      <div className={b("row", { headline: true })}>
-        <div className={b("cell")}>Network</div>
-        <div className={b("cell")}>Level</div>
-        <div className={b("cell")}>Eff mu</div>
-      </div>
-      {Object.keys(networks).map((network) => {
+  const renderContent = useMemo(
+    () =>
+      Object.keys(networks).map((network) => {
         const { level, effmu } = networks[network];
+
         const defaultOption = levelsOptions.find(
           (option) => option.value === level
         );
         const defaultEffmuOption = effmuOptions.find(
           (option) => option.value === effmu
         );
+        console.log(level, effmu, defaultEffmuOption);
+
         const handleLevelChange = (option: SelectOption<number>) =>
           editableConfigEvents.handleChangeLevel({
             network,
@@ -75,8 +73,8 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
             <div className={b("cell")}>
               {canChangeLevels ? (
                 <Select
-                  options={levelsOptions}
                   defaultValue={defaultOption}
+                  options={levelsOptions}
                   // @ts-ignore все работает
                   onChange={handleLevelChange}
                   className={b("input", { select: true })}
@@ -89,7 +87,7 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
             <div className={b("cell")}>
               <Select
                 options={effmuOptions}
-                defaultValue={defaultEffmuOption}
+                value={defaultEffmuOption}
                 // @ts-ignore все работает
                 onChange={handleEffmuChange}
                 className={b("input", { select: true })}
@@ -98,7 +96,18 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
             </div>
           </div>
         );
-      })}
+      }),
+    [canChangeLevels, networks]
+  );
+
+  return (
+    <div className={b({ "select-in-cells": canChangeLevels })}>
+      <div className={b("row", { headline: true })}>
+        <div className={b("cell")}>Network</div>
+        <div className={b("cell")}>Level</div>
+        <div className={b("cell")}>Eff mu</div>
+      </div>
+      {renderContent}
     </div>
   );
 };

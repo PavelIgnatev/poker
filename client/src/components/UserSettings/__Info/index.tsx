@@ -19,7 +19,6 @@ import { BaseInputString } from "../../BaseInputString";
 
 import b_ from "b_";
 import { useElementsToggle } from "../../ElementsToggle";
-import { ColorPalette } from "../../ColorPalette";
 
 type ColorsType = "green" | "yellow" | "red" | "rgb(152, 183, 201)";
 interface Props {
@@ -245,15 +244,16 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           </div>
         ))}
       </div>
-      <ColorPalette
-        selectedElement={selectedColor}
-        onElementChange={handleColorChange}
-        elements={Colors}
-        mix={b("color-pallete")}
-      />
-      <div className={b("additional-info", { color: true })}>
-        {ColorsInfo[selectedColor]}
-      </div>
+      {Object.keys(ColorsInfo).map((color) => {
+        return (
+          <div key={color} className={b("color")}>
+            <div className={b("circle")} style={{ backgroundColor: color }} />
+            <div className={b("additional-info", { color: true })}>
+              {ColorsInfo[color as ColorsType]}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

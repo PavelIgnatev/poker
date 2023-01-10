@@ -150,6 +150,19 @@
     margin-top: 4px;
   }
 
+  &__circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+  }
+
+  &__color {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
   &__header-password-block {
     display: flex;
     align-items: center;
@@ -234,10 +247,6 @@
     img {
       height: 1em;
       margin-right: 12px;
-    }
-
-    &_color {
-      margin-top: 10px;
     }
   }
 
