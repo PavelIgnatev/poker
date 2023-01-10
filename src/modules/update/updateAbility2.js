@@ -70,8 +70,6 @@ const updateAbility2 = async () => {
       });
     });
 
-  console.log(JSON.stringify(fromTo["3A"]));
-
   const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
   const obj = {};
@@ -176,7 +174,7 @@ const updateAbility2 = async () => {
               if (color === "red" || color === "blue") {
                 ability2ZeroStateRedBlue.push(abilityState);
               } else {
-                const { max, min } = fromTo[l][r];
+                const { max = -Infinity, min = Infinity } = fromTo?.[l]?.[r] ?? {};
                 if (b >= min && b <= max) {
                   ability2ZeroStateAny.push(abilityState);
                 }
