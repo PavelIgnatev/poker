@@ -130,10 +130,9 @@ const updateAbility2 = async () => {
 
             Object.keys(obj[r][l][c][b][s]).forEach((n) => {
               const values = obj[r][l][c][b][s][n];
-              if (!result.length && values?.length) {
-                result.push(values[0]);
-              } else if (values?.length >= Number(result.length ? count : count + 1)) {
-                result.push(...values.slice(1));
+
+              if (values?.length >= Number(count + 1)) {
+                result.push(...values.slice(result.length ? 1 : 0));
               }
             });
 

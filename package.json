@@ -9,7 +9,7 @@
     "server": "concurrently -n server1,server2 \"(npm run start:server1)\" \"(npm run start:server2)\"",
     "start:server1": "PORT=3000 node --max-old-space-size=4096 ./src/server.js",
     "start:server2": "PORT=81 node --max-old-space-size=4096 ./src/server.js",
-    "download:store": "scp -r root@185.167.98.192:/root/src/store  /Users/pikcelll/Documents/pocarr/poker/src/store",
+    "download:store": "scp -r root@185.237.99.141:/root/src/store  /Users/pikcelll/Documents/pocarr/poker/src/store",
     "client": "npm start --prefix client",
     "prettier": "prettier --config ./.prettierrc  --write .",
     "prepare": "husky install"
