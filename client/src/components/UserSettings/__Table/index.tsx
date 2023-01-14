@@ -54,7 +54,6 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
         const defaultEffmuOption = effmuOptions.find(
           (option) => option.value === effmu
         );
-        console.log(level, effmu, defaultEffmuOption);
 
         const handleLevelChange = (option: SelectOption<number>) =>
           editableConfigEvents.handleChangeLevel({

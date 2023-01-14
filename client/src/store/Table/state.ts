@@ -205,6 +205,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       valid,
       guarantee = 1,
       rules,
+      color: colorRule,
     } = filter.filter(level, tournament, true);
     const ability1 = Number(tournament["@ability"]);
     const ability2 = Number(tournament["@abilityBid"]);
@@ -213,7 +214,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
     let color = "rgba(2235,96,96,0.5)";
 
-    if (ability2 - ability1 >= 1 && ability2 - ability1 <= 3) {
+    if (ability2 - ability1 >= 1 && ability2 - ability1 <= 2) {
       color = "rgba(247,255,105,0.5)"; // желтый
     }
     if (
@@ -224,9 +225,13 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     ) {
       color = "rgb(238 236 255)"; // обычный цвет
     }
+    if (ability2 - ability1 >= 3) {
+      color = "rgba(98,179,82,0.5)"; // зеленый
+    }
     if (
-      ability2 - ability1 >= 4 ||
-      (rules && prizepool / Number(guarantee) >= 1.5)
+      (colorRule === "red" || colorRule === "blue") &&
+      rules &&
+      prizepool / Number(guarantee) >= 1.5
     ) {
       color = "rgba(98,179,82,0.5)"; // зеленый
     }

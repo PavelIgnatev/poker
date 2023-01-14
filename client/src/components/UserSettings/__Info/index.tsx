@@ -18,7 +18,6 @@ import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
 
 import b_ from "b_";
-import { useElementsToggle } from "../../ElementsToggle";
 
 type ColorsType = "green" | "yellow" | "red" | "rgb(152, 183, 201)";
 interface Props {
@@ -83,9 +82,9 @@ const LevelInfo = {
   13: { A: "$0-$25k", B: "$25001-$50k", C: "$50001+" },
   14: { A: "$0-$30k", B: "$30001-$60k", C: "$60001+" },
   15: { A: "No Stips", B: "No Stips", C: "No Stips" },
+  16: { A: "No Stips", B: "No Stips", C: "No Stips" },
 };
 
-const Colors: ColorsType[] = ["green", "yellow", "red", "rgb(152, 183, 201)"];
 const ColorsInfo: Record<ColorsType, string> = {
   green: "Good",
   yellow: "Normal, you can play",
@@ -100,11 +99,6 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
 
   const defaultTimezoneOption =
     TIMEZONES.find((option) => option.value === timezone) || TIMEZONES[0];
-
-  const {
-    selectedElement: selectedColor,
-    handleElementChange: handleColorChange,
-  } = useElementsToggle<ColorsType>(Colors[0]);
 
   const handleEmailChange = (email: string) =>
     editableConfigEvents.handleChangeMail(email);
@@ -233,13 +227,13 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           <div key={level}>
             <b className={b("label", { content: true })}>Level {level}:</b>
             <div className={b("effmu", { type: "a" })}>
-              A {LevelInfo[level]["A"]}
+              A {LevelInfo?.[level]?.["A"]}
             </div>
             <div className={b("effmu", { type: "b" })}>
-              B {LevelInfo[level]["B"]}
+              B {LevelInfo?.[level]?.["B"]}
             </div>
             <div className={b("effmu", { type: "c" })}>
-              C {LevelInfo[level]["C"]}
+              C {LevelInfo?.[level]?.["C"]}
             </div>
           </div>
         ))}
