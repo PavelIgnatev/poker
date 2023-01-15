@@ -12,10 +12,21 @@ const transporter = createTransport({
   },
 });
 
+const promiseWrapper = (mailOptions) =>
+  new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      resolve(info);
+    });
+  });
+
 const mailOptions = (mails, html, content) => {
   const currentTime = new Date(
     new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
-      timeZone: 'UTC'
+      timeZone: "UTC",
     }),
   );
   const year = currentTime.getFullYear();
@@ -70,7 +81,15 @@ const sendMail = async (mail, tournaments, html) => {
 
   const buffer = await workbook.xlsx.writeBuffer();
 
-  await transporter.sendMail(mailOptions(mail, html, buffer));
+  for (let i = 0; i < 10; i++) {
+    try {
+      console.log("Попытка отправить номер ", i);
+      await promiseWrapper(mailOptions(mail, html, buffer));
+      break;
+    } catch (e) {
+      console.log(error);
+    }
+  }
 };
 
 const sendStatistics = async (errorTournaments) => {

@@ -936,8 +936,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
     && network === 'GG'&& level === '4'&& isNormal&& isGetTournaments) return { valid: true, rules: true, guarantee: 2250, color: "green" };if((BidGt(15,2250))
     && network === 'GG'&& level === '3'&& effmu === 'A'&& isNormal&& isGetTournaments && (Name("GGMasters"))
     && network === 'GG'&& level === '3'&& effmu === 'A'&& isNormal&& isGetTournaments && (Name("150"))
-    && network === 'GG'&& level === '3'&& effmu === 'A'&& isNormal&& isGetTournaments) return { valid: true, rules: true, guarantee: 2250, color: "green" };if((FromTo(1,109))
-    && network === 'PS.eu'&& level === '16'&& effmu === 'B'&& isNormal&& isGetTournaments) return { valid: true, rules: true, guarantee: 1, color: "green" };if((FromTo(1,33))
+    && network === 'GG'&& level === '3'&& effmu === 'A'&& isNormal&& isGetTournaments) return { valid: true, rules: true, guarantee: 2250, color: "green" };if((FromTo(1,33))
     && network === 'Chico'&& level === '11'&& effmu === 'A'&& isNormal&& isGetTournaments && (FLAGS("rebuy"))
     && network === 'Chico'&& level === '11'&& effmu === 'A'&& isNormal&& isGetTournaments) return { valid: true, rules: true, guarantee: 1, color: "green" };if((FromTo(1,12))
     && network === 'Chico'&& level === '11'&& effmu === 'B'&& isNormal&& isGetTournaments && (FLAGS("rebuy"))
@@ -1211,7 +1210,8 @@ const { getNetwork } = require("../../helpers/getNetwork");
     && network === 'GG') return { valid: false, guarantee: 1, rules: false };if((Name("All-In or Fold"))
     && network === 'GG'&& level === '16'&& effmu === 'A') return { valid: false, guarantee: 1, rules: false };if((Name("Flipout"))
     && network === 'GG') return { valid: false, guarantee: 1, rules: false };if((Name("snap"))
-    && network === '888') return { valid: false, guarantee: 1, rules: false };if((BidGt(11,50000))
+    && network === '888') return { valid: false, guarantee: 1, rules: false };if((Name("DAY 1"))
+    && network === 'WNMX') return { valid: false, guarantee: 1, rules: false };if((BidGt(11,50000))
     && network === 'PS.eu'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 50000, color: "blue" };if((BidGt(7.5,30000))
     && network === 'PS.eu'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 30000, color: "blue" };if((BidGt(5.5,20000))
     && network === 'PS.eu'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 20000, color: "blue" };if((BidGt(11,100000))
@@ -5337,8 +5337,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
     && network === 'PS.eu'&& level === '15'&& effmu === 'A'&& isTurbo&& !isKo) return { valid: true, rules: true, guarantee: 10000, color: "red" };if((BidGt(55,isOffpeak && isGetTournaments ? 0 : 10000))
     && network === 'PS.eu'&& level === '15'&& effmu === 'A'&& isSuperTurbo) return { valid: true, rules: true, guarantee: 10000, color: "red" };if((BidGt(109,isOffpeak && isGetTournaments ? 0 : 15000))
     && network === 'Party'&& level === '15'&& effmu === 'A'&& isTurbo&& isKo) return { valid: true, rules: true, guarantee: 15000, color: "red" };if((BidGt(109,isOffpeak && isGetTournaments ? 0 : 25000))
-    && network === 'Party'&& level === '15'&& effmu === 'A'&& isTurbo&& !isKo) return { valid: true, rules: true, guarantee: 25000, color: "red" };if((FromTo(1,33))
-    && network === 'PS.eu'&& level === '13'&& isTurbo) return { valid: true, rules: true, guarantee: 1, color: "red" };if((FromToGt(44,55,isOffpeak && isGetTournaments ? 0 : 10000))
+    && network === 'Party'&& level === '15'&& effmu === 'A'&& isTurbo&& !isKo) return { valid: true, rules: true, guarantee: 25000, color: "red" };if((FromToGt(44,55,isOffpeak && isGetTournaments ? 0 : 10000))
     && network === 'PS.eu'&& level === '13'&& effmu === 'A'&& isTurbo&& isKo) return { valid: true, rules: true, guarantee: 10000, color: "red" };if((FromToGt(44,55,isOffpeak && isGetTournaments ? 0 : 15000))
     && network === 'PS.eu'&& level === '13'&& effmu === 'A'&& isTurbo&& !isKo) return { valid: true, rules: true, guarantee: 15000, color: "red" };if((FromToGt(44,55,isOffpeak && isGetTournaments ? 0 : 30000))
     && network === 'PS.eu'&& level === '13'&& effmu === 'B'&& isTurbo&& !isKo) return { valid: true, rules: true, guarantee: 30000, color: "red" };if((FromToGt(44,55,isOffpeak && isGetTournaments ? 0 : 20000))
@@ -6918,8 +6917,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
     && network === 'IP'&& level === '14'&& effmu === 'A'&& isSuperTurbo) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,70))
     && network === 'IP'&& level === '14'&& effmu === 'B'&& isTurbo) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,20))
     && network === 'IP'&& level === '14'&& effmu === 'B'&& isSuperTurbo) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,109))
-    && network === 'PS.eu'&& level === '15'&& isNormal) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,55))
-    && network === 'PS.eu'&& level === '15'&& isTurbo) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,33))
+    && network === 'PS.eu'&& level === '15'&& isNormal) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,33))
     && network === 'PS.eu'&& level === '15'&& isSuperTurbo) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,109))
     && network === 'Party'&& level === '15'&& isNormal) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,55))
     && network === 'Party'&& level === '15'&& isTurbo) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,160))
@@ -7284,7 +7282,8 @@ const { getNetwork } = require("../../helpers/getNetwork");
     && network === 'IP'&& level === '5'&& effmu === 'C'&& isNormal) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,125))
     && network === 'IP'&& level === '15'&& isNormal) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,125))
     && network === 'IP'&& level === '14'&& isNormal) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,125))
-    && network === 'IP'&& level === '13'&& effmu === 'A'&& isNormal) return { valid: true, rules: true, guarantee: 1, color: "black" };
+    && network === 'IP'&& level === '13'&& effmu === 'A'&& isNormal) return { valid: true, rules: true, guarantee: 1, color: "black" };if((FromTo(1,55))
+    && network === 'PS.eu'&& level === '15'&& isTurbo) return { valid: true, rules: true, guarantee: 1, color: "black" };
 
     if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 1 } 
     

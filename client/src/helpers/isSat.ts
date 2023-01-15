@@ -1,4 +1,4 @@
-import { getNetwork } from './getNetwork';
+  import { getNetwork } from './getNetwork';
 import { tableCellModel } from './../@types/tableCellModel';
 
 export const isSat = (tournament:tableCellModel) => {

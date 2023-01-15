@@ -11,6 +11,17 @@ const transporter = createTransport({
   },
 });
 
+const promiseWrapper = (mailOptions) =>
+  new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      resolve(info);
+    });
+  });
+
 const mailOptions = (mails, content, title) => {
   const currentTime = new Date(
     new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
@@ -59,7 +70,15 @@ const sendMail = async (mail, tournaments, title) => {
 
   const buffer = await workbook.xlsx.writeBuffer();
 
-  await transporter.sendMail(mailOptions(mail, buffer, title));
+  for (let i = 0; i < 10; i++) {
+    try {
+      console.log("Попытка отправить номер ", i);
+      await promiseWrapper(mailOptions(mail, buffer, title));
+      break;
+    } catch (e) {
+      console.log(error);
+    }
+  }
 };
 
 const sendZeroAbility2 = async (zeroTournaments, title) => {
@@ -74,7 +93,7 @@ const sendZeroAbility2 = async (zeroTournaments, title) => {
     await sendMail(
       ["behaappy@ya.ru,palllkaignatev@ya.ru,pocarr.offstake@gmail.com"],
       zeroTournaments,
-      title
+      title,
     );
   } catch (error) {
     console.log("При отправке произошла ошибка", error);
