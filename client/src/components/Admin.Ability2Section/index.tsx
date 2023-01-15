@@ -2,8 +2,7 @@ import b_ from "b_";
 import { useStore } from "effector-react";
 import { useEffect } from "react";
 
-import { Effmu, LevelPlusEffmu, Rule } from "../../@types/common";
-import { EFFMU } from "../../constants";
+import { Rule } from "../../@types/common";
 import {
   $prevSettings,
   $state,
@@ -12,7 +11,6 @@ import {
 } from "../../store/Settings";
 
 import { LevelBlocks, useLevelBlocks } from "../LevelBlocks";
-import { ElementsToggle, useElementsToggle } from "../ElementsToggle";
 
 import { Ability2SectionRules } from "./__Rules";
 
@@ -22,7 +20,7 @@ import { Loader } from "../Loader";
 // поработать над неймингом если есть желание
 type State = any;
 export type SavedRules = {
-  [key: LevelPlusEffmu]: Rule[] | null;
+  [key: string]: Rule[] | null;
 };
 
 export const b = b_.with("ability-2-section");
@@ -39,10 +37,6 @@ export const Ability2Section = () => {
   const ability2Loading = useStore(fetchStateAbility2.pending);
 
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
-  const {
-    selectedElement: selectedEffmu,
-    handleElementChange: handleEffmuChange,
-  } = useElementsToggle<Effmu>(EFFMU[0]);
 
   return (
     <section className={b()}>
@@ -54,18 +48,11 @@ export const Ability2Section = () => {
       {selectedLevel !== null && (
         <>
           <span className={b("subtitle")}>Rules for {selectedLevel} level</span>
-          <ElementsToggle
-            mix={b("effmu-toggle")}
-            selectedElement={selectedEffmu}
-            onElementChange={handleEffmuChange}
-            elements={EFFMU}
-          />
           {!ability2Loading ? (
             <Ability2SectionRules
               savedRules={savedRules}
               state={state}
               level={selectedLevel}
-              effmu={selectedEffmu}
             />
           ) : (
             <div className={b("loader")}>

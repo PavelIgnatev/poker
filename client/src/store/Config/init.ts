@@ -5,7 +5,7 @@ import api from "../../api";
 import { ErrNot } from "../../components/NotificationService";
 
 import { $config, $editableConfig, DEFAULT_EDITABLE_CONFIG } from "./state";
-import { Effmu, Level, Network } from "../../@types/common";
+import { Level, Network } from "../../@types/common";
 
 const DEFAULT_ERROR_MESSAGE =
   "An error has occurred. You are denied access to the service.";
@@ -62,20 +62,6 @@ export const editableConfigEvents = createApi($editableConfig, {
   setConfig: (_, config: ConfigModel) => config,
   setConfig2: (_, config: ConfigModel) => config,
   clearConfig: (_) => DEFAULT_EDITABLE_CONFIG,
-  handleChangeMail: (config, mail: string) => ({
-    ...config,
-    mail,
-  }),
-  handleChangeEffmu: (
-    config,
-    { network, effmu }: { network: Network; effmu: Effmu }
-  ) => ({
-    ...config,
-    networks: {
-      ...config.networks,
-      [network]: { ...config.networks[network], effmu },
-    },
-  }),
   handleChangeLevel: (
     config,
     { network, level }: { network: Network; level: Level }
@@ -91,16 +77,6 @@ export const editableConfigEvents = createApi($editableConfig, {
     password,
   }),
   handleTimezoneChange: (config, timezone) => ({ ...config, timezone }),
-  handleChangeEffmuAll: (config, effmu) => ({
-    ...config,
-    networks: Object.keys(config.networks).reduce(
-      (acc, network) => ({
-        ...acc,
-        [network]: { ...config.networks[network], effmu },
-      }),
-      {}
-    ),
-  }),
 });
 
 $config.on(getConfigRequest.doneData, (_, config) => config);

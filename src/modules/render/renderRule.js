@@ -18,7 +18,6 @@ function renderRule(rule) {
     : values[indexPrizepool];
 
   const level = validateNumber(ruleLevel);
-  const effMu = ruleLevel.replace(level, "").replace("-", "");
 
   return (
     `(${type}(${values
@@ -32,7 +31,6 @@ function renderRule(rule) {
       .join(",")}))
     && network === '${network}'` +
     (level === "1" && ruleLevel.includes("-") ? "" : `&& level === '${level}'`) +
-    (effMu !== "all" ? `&& effmu === '${effMu}'` : "") +
     (status !== "all" ? `&& is${status}` : "") +
     (KO !== "all" ? `&& ${KO === "KO" ? "isKo" : "!isKo"}` : "") +
     (color === "green" || color === "brown" ? `&& isGetTournaments` : "")

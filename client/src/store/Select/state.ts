@@ -31,12 +31,6 @@ export const TIMERANGE = [
   { value: "604800", label: "<1 week" },
 ];
 
-export const EFFMU = [
-  { value: "A", label: "A" },
-  { value: "B", label: "B" },
-  { value: "C", label: "C" },
-];
-
 export const NETWORKS = [
   { value: "PokerStars", label: "PS.eu" },
   { value: "iPoker", label: "IP" },

@@ -2,9 +2,7 @@ import b_ from "b_";
 import { useEffect, useState } from "react";
 import Select from "react-select";
 
-import { Effmu } from "../../@types/common";
 import { SelectOption } from "../../@types/selectsModel";
-import { EFFMU } from "../../constants";
 import { getRulesRequest } from "../../store/Rules";
 import { SHORT_NETWORKS } from "../../store/Select";
 
@@ -34,10 +32,6 @@ export const b = b_.with("rules-section");
 
 export const RulesSection = () => {
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
-  const {
-    selectedElement: selectedEffmu,
-    handleElementChange: handleEffmuChange,
-  } = useElementsToggle<Effmu | "all">(EFFMU[0]);
   const { selectedElement: selectedKO, handleElementChange: handleKOChange } =
     useElementsToggle<KOType>(KO[0]);
   const {
@@ -53,8 +47,8 @@ export const RulesSection = () => {
   );
   const handleNetworkChange = (option: SelectOption<string>) =>
     setSelectedNetwork(option.value ?? SHORT_NETWORKS[0].value);
-  const level = selectedLevel + selectedEffmu;
   const isAllLevels = selectedLevel === ALL_LEVELS;
+  const level = String(selectedLevel ?? 16);
 
   useEffect(() => {
     getRulesRequest({
@@ -64,7 +58,14 @@ export const RulesSection = () => {
       status: selectedStatus,
       KO: selectedKO,
     });
-  }, [selectedLevel, selectedColor, selectedEffmu, selectedNetwork, selectedStatus, selectedKO, level]);
+  }, [
+    selectedLevel,
+    selectedColor,
+    selectedNetwork,
+    selectedStatus,
+    selectedKO,
+    level,
+  ]);
 
   return (
     <section className={b()}>
@@ -86,12 +87,6 @@ export const RulesSection = () => {
             </h2>
           )}
           <div className={b("filter")}>
-            <ElementsToggle
-              mix={b("elems-toggle", { effmu: true })}
-              selectedElement={selectedEffmu}
-              onElementChange={handleEffmuChange}
-              elements={EFFMU.concat(["all"])}
-            />
             <Select
               styles={specialSelectStyles}
               placeholder="Network"

@@ -67,7 +67,6 @@ async function renderRules(rules) {
     const isAbility2 = ability2 && ability2 !== '-'
 
     const level = validateNumber(ruleLevel);
-    const effmu = ruleLevel.replace(level, "").replace("-", "");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 

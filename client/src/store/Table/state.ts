@@ -54,8 +54,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
   // мапим все данные о турнирах
   tournaments = tournaments.map((tournament) => {
     const network = getNetwork(tournament["@network"]);
-    const { level: networksLevel = 1, effmu = "A" } = networks?.[network] ?? {};
-    const level = networksLevel + effmu;
+    const { level: networksLevel = 1 } = networks?.[network] ?? {};
+    const level = String(networksLevel);
     const name = tournament["@name"]?.toLowerCase();
     const stake = Number(tournament["@stake"] ?? 0);
     const rake = Number(tournament["@rake"] ?? 0);

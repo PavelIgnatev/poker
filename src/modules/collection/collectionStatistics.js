@@ -19,7 +19,7 @@ const collectionStatistics = async () => {
     const lastValue = await getCurrencyRate();
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
-        timeZone: 'UTC'
+        timeZone: "UTC",
       }),
     );
     const year = currentTime.getFullYear();
@@ -48,11 +48,11 @@ const collectionStatistics = async () => {
             `https://www.sharkscope.com/api/pocarrleaderboard/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${Math.round(
               +new Date(
                 new Date(date).toLocaleString("en-EN", {
-                  timeZone: 'UTC'
+                  timeZone: "UTC",
                 }),
               ) /
-              1000 +
-              86400 * 2,
+                1000 +
+                86400 * 2,
             )}`,
           );
         } catch (error) {
@@ -81,7 +81,7 @@ const collectionStatistics = async () => {
                     Number((tournament["@date"] ?? tournament["@scheduledStartDate"] ?? 0) + "000"),
                   ).toLocaleString("en-EN", {
                     day: "numeric",
-                    timeZone: 'UTC'
+                    timeZone: "UTC",
                   }),
                 ) === Number(day),
             )
@@ -90,8 +90,8 @@ const collectionStatistics = async () => {
               const t = getMoreProp(ft);
               const name = t["@name"]?.toLowerCase();
               const network = t["@network"];
-              const { level: networksLevel, effmu } = networks[network];
-              const level = networksLevel + effmu;
+              const { level: networksLevel } = networks[network];
+              const level = String(networksLevel);
               const currency = t["@currency"];
               const bid = t["@bid"];
               const status = getStatus(t);
@@ -104,7 +104,7 @@ const collectionStatistics = async () => {
                   month: "short",
                   hour: "numeric",
                   minute: "numeric",
-                  timeZone: 'UTC'
+                  timeZone: "UTC",
                 })
                 .replace(", 24", ", 00")
                 .split(", ");
@@ -116,8 +116,8 @@ const collectionStatistics = async () => {
               ]?.[t["@name"]]
                 ? rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[status]?.[t["@name"]]
                 : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                  ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                  : 0;
+                ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+                : 0;
 
               const realAbility = abilityBid + rulesAbility2;
 

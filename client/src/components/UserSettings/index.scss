@@ -117,18 +117,6 @@
     margin-bottom: 36px;
   }
 
-  &__effmu {
-    margin: 10px;
-    margin-left: 0;
-    font-size: 0.85em;
-    line-height: 1.1em;
-    color: #4a72ff;
-    &-content {
-      display: flex;
-      gap: 20px;
-      margin-top: 28px;
-    }
-  }
 
   &__color-pallete {
     width: max-content;
@@ -216,18 +204,9 @@
     margin-top: 16px;
   }
 
-  &__email-wrapper {
-    margin-top: 12px;
-    flex: 1;
-  }
-
   &__settings-wrapper {
     flex: 1;
     display: flex;
-  }
-
-  &__effmu-wrapper {
-    margin-right: 24px;
   }
 
   &__input {

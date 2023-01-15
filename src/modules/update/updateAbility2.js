@@ -16,8 +16,8 @@ const updateAbility2 = async () => {
   const lastValue = await getCurrencyRate();
   const levels = Array(17)
     .fill(null)
-    .map((_, i) => [i + "A", i + "B", i + "C"])
-    .flat();
+    .map((_, i) => i);
+
   const config = JSON.parse(await readFile("src/store/rules/config.json"));
 
   const { filtredTournaments: state } = getTournaments();

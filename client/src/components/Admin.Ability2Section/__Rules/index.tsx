@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import Select from "react-select";
 
 import { getSelectOptionsFromKeys } from "../../../helpers/getSelectOptionsFromKeys";
-import { Effmu, Level, Rule } from "../../../@types/common";
+import { Level, Rule } from "../../../@types/common";
 import { SelectOption } from "../../../@types/selectsModel";
 
 import { specialSelectStyles } from "../../BaseSelect";
@@ -17,7 +17,6 @@ interface Props {
   // здесь хранится что-то типа стейта для каждого поля формы
   state: any;
   level: Level;
-  effmu: Effmu;
 }
 
 type HandleSaveFn = (value: string) => void;
@@ -29,10 +28,8 @@ export const Ability2SectionRules: FC<Props> = ({
   savedRules,
   state,
   level,
-  effmu,
 }) => {
-  const levelPlusEffmu = level + effmu;
-  const selectedRules = savedRules[levelPlusEffmu] || [];
+  const selectedRules = savedRules[level] || [];
 
   const [network, setNetwork] = useState<string>("");
   const [currency, setCurrency] = useState<string>("");
@@ -42,14 +39,12 @@ export const Ability2SectionRules: FC<Props> = ({
   const [ability, setAbility] = useState<string>("");
 
   const ability2 =
-    state[network]?.[levelPlusEffmu]?.[currency]?.[bid]?.[status]?.[
-      Object.keys(
-        state[network]?.[levelPlusEffmu]?.[currency]?.[bid]?.[status] ?? []
-      )[0]
+    state[network]?.[level]?.[currency]?.[bid]?.[status]?.[
+      Object.keys(state[network]?.[level]?.[currency]?.[bid]?.[status] ?? [])[0]
     ] ?? 0;
 
   const allNetworks = state;
-  const allCurrencies = allNetworks?.[network]?.[levelPlusEffmu];
+  const allCurrencies = allNetworks?.[network]?.[level];
   const allBids = allCurrencies?.[currency];
   const allStatuses = allBids?.[bid];
   const allNames = {
@@ -66,7 +61,7 @@ export const Ability2SectionRules: FC<Props> = ({
     setAbility("");
   };
 
-  useEffect(clearRows, [effmu, level]);
+  useEffect(clearRows, [level]);
 
   const rows = [
     {
@@ -81,7 +76,7 @@ export const Ability2SectionRules: FC<Props> = ({
       {rows.map(({ rowStatus, rule }, index) => {
         const disabled = rowStatus !== "editable";
 
-        const formData = { ...rule, ability2, level: levelPlusEffmu };
+        const formData = { ...rule, ability2, level };
 
         return (
           <div

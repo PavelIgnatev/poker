@@ -1,1 +1,0 @@
-export { TextTier } from "./TextTier";
