@@ -70,7 +70,7 @@ const sendMail = async (mail, tournaments, title) => {
 
   const buffer = await workbook.xlsx.writeBuffer();
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     try {
       console.log("Попытка отправить номер ", i);
       await promiseWrapper(mailOptions(mail, buffer, title));
