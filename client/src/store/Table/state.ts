@@ -201,6 +201,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
   // определение цвета турнира
   tournaments = tournaments.map((tournament) => {
     const level = tournament["@level"];
+
     const {
       valid,
       guarantee = 1,

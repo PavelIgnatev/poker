@@ -6,7 +6,6 @@ const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
 const { getTournaments } = require("../../helpers/getTournaments");
 let filter = require("../filter/filter");
-const { sendZeroAbility2 } = require("../send/sendZeroAbility2");
 const { getRules } = require("../../utils/rules");
 
 const updateAbility2 = async () => {
@@ -25,50 +24,6 @@ const updateAbility2 = async () => {
   const ability2ZeroStateAny = [];
   const allRules = await getRules();
   const fromTo = {};
-
-  allRules
-    .filter((rules) => rules.every((rule) => rule.color === "red" || rule.color === "blue"))
-    .forEach((rules) => {
-      rules.map(({ type, values, level, network }) => {
-        if (!fromTo[level]) fromTo[level] = {};
-        if (!fromTo[level][network]) fromTo[level][network] = {};
-
-        config[type].forEach(({ placeholder }) => {
-          switch (placeholder) {
-            case "Bid":
-              fromTo[level][network]["max"] = Math.max(
-                fromTo[level][network]["max"] ?? -Infinity,
-                values[0],
-              );
-              fromTo[level][network]["min"] = Math.min(
-                fromTo[level][network]["min"] ?? Infinity,
-                values[0],
-              );
-              break;
-            case "From":
-              fromTo[level][network]["max"] = Math.max(
-                fromTo[level][network]["max"] ?? -Infinity,
-                values[0],
-              );
-              fromTo[level][network]["min"] = Math.min(
-                fromTo[level][network]["min"] ?? Infinity,
-                values[0],
-              );
-              break;
-            case "To":
-              fromTo[level][network]["max"] = Math.max(
-                fromTo[level][network]["max"] ?? -Infinity,
-                values[1],
-              );
-              fromTo[level][network]["min"] = Math.min(
-                fromTo[level][network]["min"] ?? Infinity,
-                values[1],
-              );
-              break;
-          }
-        });
-      });
-    });
 
   const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
@@ -91,7 +46,7 @@ const updateAbility2 = async () => {
           return;
         }
 
-        const { rules, valid, color, guarantee } = filter.filter(l, t);
+        const { valid } = filter.filter(l, t);
 
         if (!obj) obj = {};
         if (!obj[r]) obj[r] = {};
@@ -103,8 +58,6 @@ const updateAbility2 = async () => {
 
         if (!valid) {
           return;
-        } else if (!obj[r][l][c][b][s][n][0]?.color && color) {
-          obj[r][l][c][b][s][n].unshift({ color, rules, valid, guarantee });
         }
         const result = {};
 
@@ -131,8 +84,8 @@ const updateAbility2 = async () => {
             Object.keys(obj[r][l][c][b][s]).forEach((n) => {
               const values = obj[r][l][c][b][s][n];
 
-              if (values?.length >= Number(count + 1)) {
-                result.push(...values.slice(result.length ? 1 : 0));
+              if (values?.length >= Number(count)) {
+                result.push(...values);
               }
             });
 
@@ -157,30 +110,8 @@ const updateAbility2 = async () => {
           Object.keys(obj[r][l][c][b]).forEach((s) => {
             const v = obj[r][l][c][b][s].slice(1);
             const length = v.length;
-            const { color } = obj[r][l][c][b][s]?.[0] ?? {};
 
-            const a = Math.round(v.reduce((r, i) => r + +i["a"] ?? 0, 0) / length) || 0;
-            const abilityState = {
-              l,
-              r,
-              c,
-              b,
-              s,
-              color,
-            };
-
-            if (!a) {
-              if (color === "red" || color === "blue") {
-                ability2ZeroStateRedBlue.push(abilityState);
-              } else {
-                const { max = -Infinity, min = Infinity } = fromTo?.[l]?.[r] ?? {};
-                if (b >= min && b <= max) {
-                  ability2ZeroStateAny.push(abilityState);
-                }
-              }
-            }
-
-            obj[r][l][c][b][s] = a;
+            obj[r][l][c][b][s] = Math.round(v.reduce((r, i) => r + +i["a"] ?? 0, 0) / length) || 0;
           });
         });
       });
@@ -225,9 +156,6 @@ const updateAbility2 = async () => {
       });
     });
   });
-
-  await sendZeroAbility2(ability2ZeroStateRedBlue, "red|blue");
-  await sendZeroAbility2(ability2ZeroStateAny, "any");
 
   await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
 };

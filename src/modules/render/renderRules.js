@@ -13,7 +13,7 @@ function customSort(a, s) {
 }
 
 async function renderRules(rules) {
-  const nativeRules = [...rules]
+  const nativeRules = [...rules];
   customSort(nativeRules, ["green", "orange", "blue", "red", "brown", "black"]);
   const result = `const { getNetwork } = require("../../helpers/getNetwork");
   const {
@@ -34,9 +34,8 @@ async function renderRules(rules) {
   const { isTurbo: isTurboS } = require("../../helpers/isTurbo");
   const { isNormal: isNormalS } = require("../../helpers/isNormal")
   const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
-  const {validateNumber} = require('../../helpers/validateNumber')
   
-  const filter = (ruleLevel, tournament, isGetTournaments = false) => {
+  const filter = (level, tournament, isGetTournaments = false) => {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
       bid = Number(tournament["@usdBid"]),
@@ -65,8 +64,6 @@ async function renderRules(rules) {
     const isNormal = !isTurbo && !isSuperTurbo;
     const isAbility1 = ability1 && ability1 !== '-'
     const isAbility2 = ability2 && ability2 !== '-'
-
-    const level = validateNumber(ruleLevel);
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 

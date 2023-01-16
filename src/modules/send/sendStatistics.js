@@ -96,42 +96,19 @@ const sendStatistics = async (errorTournaments) => {
   console.log("Начинаю отправлять статистику по турнирам на почты игроков");
   const config = JSON.parse(await readFile("src/store/config/config.json"));
   const errorAliases = [];
-  const aliases = Object.keys(errorTournaments);
 
   if (!aliases.length) {
     console.log("Нечего отправлять, все сыграли правильные турниры", new Date());
     return;
   }
 
-  for (let i = 0; i < aliases.length; i++) {
-    const alias = aliases[i];
-
-    if (!config[alias]) {
-      continue;
-    }
-
-    const { mail } = config[alias];
-
-    try {
-      await sendMail(
-        [mail],
-        Array.from(errorTournaments[alias]),
-        `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
-      );
-    } catch {
-      errorAliases.push(alias);
-    }
-  }
-
-  console.log("Закончил отправлять статистику по турнирам на почты игроков");
   console.log("Начинаю отправлять статистику по турнирам на почту админов");
 
   try {
     await sendMail(
-      ["pocarr.offstake@gmail.com,palllkaignatev@yandex.ru, behaappy@ya.ru, pocarr.ru@gmail.com"],
+      ["palllkaignatev@yandex.ru,nickolassmirnov@gmail.com"],
       Object.values(errorTournaments).flat(),
-      `<div>Invalid emails from players: ${errorAliases.join(", ")}</div>
-      <div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
+      `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
     );
     console.log("Закончил отправлять статистику по турнирам на почту админов");
   } catch (error) {

@@ -8,16 +8,14 @@ const validateNumber = (value) => {
 };
 
 function renderRule(rule) {
-  const { type, values, offpeak, network, level: ruleLevel, KO, status, color } = rule;
+  const { type, values, offpeak, network, level, KO, status, color } = rule;
   const config = JSON.parse(fs.readFileSync("src/store/rules/config.json", "utf-8"));
 
-  const indexPrizepool = config[type].findIndex((rule) => rule.placeholder === "Guarantee")
+  const indexPrizepool = config[type].findIndex((rule) => rule.placeholder === "Guarantee");
 
   values[indexPrizepool] = offpeak
     ? `isOffpeak && isGetTournaments ? 0 : ${values[indexPrizepool]}`
     : values[indexPrizepool];
-
-  const level = validateNumber(ruleLevel);
 
   return (
     `(${type}(${values
@@ -29,8 +27,8 @@ function renderRule(rule) {
           : value,
       )
       .join(",")}))
-    && network === '${network}'` +
-    (level === "1" && ruleLevel.includes("-") ? "" : `&& level === '${level}'`) +
+    && network === '${network}'
+    && String(level) === '${level}'` +
     (status !== "all" ? `&& is${status}` : "") +
     (KO !== "all" ? `&& ${KO === "KO" ? "isKo" : "!isKo"}` : "") +
     (color === "green" || color === "brown" ? `&& isGetTournaments` : "")
