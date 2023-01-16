@@ -12,7 +12,6 @@ import { BaseInputString } from "../../BaseInputString";
 
 import b_ from "b_";
 
-type ColorsType = "green" | "yellow" | "red" | "rgb(152, 183, 201)";
 interface Props {
   config: ConfigModel;
   isAdminPage?: boolean;
