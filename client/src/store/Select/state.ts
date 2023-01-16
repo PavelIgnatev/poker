@@ -12,7 +12,7 @@ export const TIMEZONES = [
   { value: "-14400000", label: "AT" }, // UTC- 4
   { value: "-12600000", label: "NT" }, // UTC- 3:30
   { value: "-10800000", label: "ART" }, // UTC- 3
-  { value: "-7200000", label: "BRT" }, // UTC- 2
+  { value: "-10800000", label: "BRT" }, // UTC- 3
   { value: "3600000", label: "CET" }, // UTC +1
   { value: "7200000", label: "EET" }, // UTC+2
   { value: "10800000", label: "MSK" }, // UTC+3

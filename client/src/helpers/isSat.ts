@@ -1,10 +1,11 @@
-  import { getNetwork } from './getNetwork';
-import { tableCellModel } from './../@types/tableCellModel';
+import { getNetwork } from "./getNetwork";
+import { tableCellModel } from "./../@types/tableCellModel";
 
-export const isSat = (tournament:tableCellModel) => {
+export const isSat = (tournament: tableCellModel) => {
   const name = tournament["@name"]?.toLowerCase();
   const network = getNetwork(tournament["@network"]);
-  let sat = network !== "WNMX" ? !!tournament["@flags"]?.includes("SAT") : false;
+  let sat =
+    network !== "WNMX" ? !!tournament["@flags"]?.includes("SAT") : false;
 
   if (!sat && name) {
     if (network === "GG") {
@@ -43,7 +44,8 @@ export const isSat = (tournament:tableCellModel) => {
         name.includes(" seats") ||
         name.includes("seats ") ||
         (name.includes(" sat") && !name.includes(" satu")) ||
-        name.includes("sat  ");
+        name.includes("sat  ") ||
+        name.includes(" x ");
     }
   }
 
