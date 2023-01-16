@@ -30,13 +30,6 @@ const nativeSelectStyles = {
 
 const b = b_.with("user-settings-info");
 
-const ColorsInfo: Record<ColorsType, string> = {
-  green: "Good",
-  yellow: "Normal, you can play",
-  red: "You can play, but difficult",
-  "rgb(152, 183, 201)": "You can play, but there is no information",
-};
-
 export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   const { alias, password, timezone } = config;
   const [showPassword, setShowPassword] = useState(false);
@@ -110,16 +103,6 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           />
         </div>
       )}
-      {Object.keys(ColorsInfo).map((color) => {
-        return (
-          <div key={color} className={b("color")}>
-            <div className={b("circle")} style={{ backgroundColor: color }} />
-            <div className={b("additional-info", { color: true })}>
-              {ColorsInfo[color as ColorsType]}
-            </div>
-          </div>
-        );
-      })}
     </div>
   );
 };
