@@ -108,7 +108,7 @@ const updateAbility2 = async () => {
         //Тут типо среднее значение для каких-то турниров
         Object.keys(obj[r][l][c]).forEach((b) => {
           Object.keys(obj[r][l][c][b]).forEach((s) => {
-            const v = obj[r][l][c][b][s].slice(1);
+            const v = obj[r][l][c][b][s];
             const length = v.length;
 
             obj[r][l][c][b][s] = Math.round(v.reduce((r, i) => r + +i["a"] ?? 0, 0) / length) || 0;
