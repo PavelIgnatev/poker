@@ -52,7 +52,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
 
     if((FromTo(1,111111))
     && network === 'PS.eu'
-    && String(level) === '2'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "black" };
+    && String(level) === '6') return { valid: true, rules: true, guarantee: 1, color: "black" };
 
     if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 1 } 
     
