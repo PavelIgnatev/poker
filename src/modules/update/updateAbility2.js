@@ -17,13 +17,7 @@ const updateAbility2 = async () => {
     .fill(null)
     .map((_, i) => i);
 
-  const config = JSON.parse(await readFile("src/store/rules/config.json"));
-
   const { filtredTournaments: state } = getTournaments();
-  const ability2ZeroStateRedBlue = [];
-  const ability2ZeroStateAny = [];
-  const allRules = await getRules();
-  const fromTo = {};
 
   const { count } = JSON.parse(await readFile("src/store/sample/sample.json"));
 
