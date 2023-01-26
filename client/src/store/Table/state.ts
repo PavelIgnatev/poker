@@ -73,7 +73,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const od = tournament["@flags"]?.includes("OD");
     const sng = tournament["@gameClass"]?.includes("sng");
     const isNL = tournament["@structure"] === "NL";
-    const isH = tournament["@game"] === "H" || tournament["@game"] === "H6";
+    const isH = tournament["@game"] === "H";
     const rebuy = isRebuy(tournament);
 
     const isMandatoryСonditions = isNL && isH && !rebuy && !od && !sng;

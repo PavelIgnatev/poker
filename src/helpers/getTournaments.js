@@ -30,7 +30,7 @@ const getTournaments = () => {
       const od = item["@flags"]?.includes("OD"),
         sng = item["@gameClass"]?.includes("sng"),
         isNL = item["@structure"] === "NL",
-        isH = item["@game"] === "H" || item["@game"] === "H6",
+        isH = item["@game"] === "H",
         name = item["@name"],
         sat = isSat(item);
 
