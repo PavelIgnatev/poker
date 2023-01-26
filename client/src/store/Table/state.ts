@@ -174,8 +174,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const prizepool = tournament["@usdPrizepool"];
 
     return (
-      tournament["@usdBid"] >= Number(moneyStart) &&
-      tournament["@usdBid"] <= Number(moneyEnd) &&
+      Number(tournament["@usdBid"]) >= Number(moneyStart) &&
+      Number(tournament["@usdBid"]) <= Number(moneyEnd) &&
       ((isKOQ !== false && isNormalQ !== false
         ? bounty && !turbo && !superturbo
         : false) ||
@@ -193,7 +193,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
           ? !bounty && superturbo
           : false)) &&
       (prizepool !== "-"
-        ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd
+        ? Number(prizepoolStart) <= Number(prizepool) &&
+          Number(prizepool) <= Number(prizepoolEnd)
         : true)
     );
   });
