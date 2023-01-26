@@ -215,7 +215,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
     let color = "rgb(238, 236, 255)";
 
-    if (ability2 - ability1 === -2) {
+    if (ability2 - ability1 === -2 || ability2 - ability1 <= -2) {
       color = "rgba(235,96,96,0.5)"; // red
     }
     if (ability2 - ability1 === -1 || ability2 - ability1 === 0) {
