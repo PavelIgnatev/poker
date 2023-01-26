@@ -212,10 +212,16 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const usdPrizepool = tournament["@usdPrizepool"];
     const prizepool = Number(usdPrizepool === "-" ? 1 : usdPrizepool);
 
-    let color = "rgba(2235,96,96,0.5)";
+    let color = "rgb(238, 236, 255)";
 
-    if (ability2 - ability1 >= 1 && ability2 - ability1 <= 2) {
+    if (ability2 - ability1 === -2) {
+      color = "rgba(235,96,96,0.5)"; // red
+    }
+    if (ability2 - ability1 === -1 || ability2 - ability1 === 0) {
       color = "rgba(247,255,105,0.5)"; // желтый
+    }
+    if (ability1 < ability2) {
+      color = "rgba(98,179,82,0.5)"; // зеленый
     }
     if (
       tournament["@abilityBid"] === "-" ||
@@ -223,18 +229,15 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       !ability2 ||
       !ability1
     ) {
-      color = "rgb(238 236 255)"; // обычный цвет
+      color = "rgb(238, 236, 255) "; // обычный цвет
     }
-    if (ability2 - ability1 >= 3) {
-      color = "rgba(98,179,82,0.5)"; // зеленый
-    }
-    if (
-      (colorRule === "red" || colorRule === "blue") &&
-      rules &&
-      prizepool / Number(guarantee) >= 1.5
-    ) {
-      color = "rgba(98,179,82,0.5)"; // зеленый
-    }
+    // if (
+    //   (colorRule === "red" || colorRule === "blue") &&
+    //   rules &&
+    //   prizepool / Number(guarantee) >= 1.5
+    // ) {
+    //   color = "rgba(98,179,82,0.5)"; // зеленый
+    // }
 
     return { ...tournament, color, valid };
   });

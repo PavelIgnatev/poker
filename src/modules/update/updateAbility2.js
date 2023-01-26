@@ -86,6 +86,8 @@ const updateAbility2 = async () => {
         const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
         t["@usdBid"] = c === "CNY" ? b / lastValue : b;
         t["@usdPrizepool"] = c === "CNY" && pp !== "-" ? pp / lastValue : pp;
+        const isStartDate = t["@date"] ?? 0;
+        const startDate = Number(isStartDate * 1000);
 
         if (!b || !r || !n || !c) {
           return;
@@ -115,6 +117,7 @@ const updateAbility2 = async () => {
         result["b"] = t["@bid"];
         result["p"] = t["@prizepool"];
         result["s"] = getSheduledDate(t);
+        result["sd"] = startDate;
 
         obj[r][l][c][b][s][n].push(result);
       });
@@ -137,7 +140,7 @@ const updateAbility2 = async () => {
             });
 
             result = result
-              .sort((a, b) => Number(b["@date"] ?? 0) - Number(a["@date"] ?? 0))
+              .sort((a, b) => Number(b["@sd"] ?? 0) - Number(a["@sd"] ?? 0))
               .splice(0, 21);
 
             obj[r][l][c][b][s] = result;
@@ -226,10 +229,10 @@ const updateAbility2 = async () => {
     });
   });
 
-  await sendZeroAbility2(ability2ZeroStateRedBlue, "red|blue");
-  await sendZeroAbility2(ability2ZeroStateAny, "any");
+  // await sendZeroAbility2(ability2ZeroStateRedBlue, "red|blue");
+  // await sendZeroAbility2(ability2ZeroStateAny, "any");
 
-  await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
+  // await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
 };
 
 module.exports = {
