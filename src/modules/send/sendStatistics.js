@@ -3,12 +3,15 @@ const { readFile } = require("../../utils/promisify");
 const Excel = require("exceljs");
 
 const transporter = createTransport({
-  host: "smtp.mail.ru",
-  port: 465,
-  secure: true,
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
-    user: "as.dsa.20@mail.ru",
-    pass: "NkpGmnhWqfXkPLMbvUZz",
+    user: "pocarr.offstake@gmail.com",
+    pass: "odouugoikgkugvyj",
+  },
+  tls: {
+    rejectUnauthorized: false,
   },
 });
 

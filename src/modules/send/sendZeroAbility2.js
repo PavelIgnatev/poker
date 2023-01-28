@@ -1,13 +1,19 @@
 const { createTransport } = require("nodemailer");
 const Excel = require("exceljs");
 
+// user: "as.dsa.20@mail.ru",
+// pass: "NkpGmnhWqfXkPLMbvUZz",
+
 const transporter = createTransport({
-  host: "smtp.mail.ru",
-  port: 465,
-  secure: true,
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
-    user: "as.dsa.20@mail.ru",
-    pass: "NkpGmnhWqfXkPLMbvUZz",
+    user: "pocarr.offstake@gmail.com",
+    pass: "odouugoikgkugvyj",
+  },
+  tls: {
+    rejectUnauthorized: false,
   },
 });
 
@@ -39,7 +45,7 @@ const mailOptions = (mails, content, title) => {
 
   //behaappy@ya.ru
   return {
-    from: "as.dsa.20@mail.ru",
+    from: "pocarr.offstake@gmail.com",
     to: mails,
     subject: `Zero Ability2 ${title} tournaments by ${date}`,
     attachments: [
