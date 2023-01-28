@@ -229,10 +229,10 @@ const updateAbility2 = async () => {
     });
   });
 
-  // await sendZeroAbility2(ability2ZeroStateRedBlue, "red|blue");
-  // await sendZeroAbility2(ability2ZeroStateAny, "any");
+  await sendZeroAbility2(ability2ZeroStateRedBlue, "red|blue");
+  await sendZeroAbility2(ability2ZeroStateAny, "any");
 
-  // await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
+  await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
 };
 
 module.exports = {
