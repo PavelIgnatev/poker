@@ -90,7 +90,7 @@ const sendMail = async (mail, tournaments, html) => {
       await promiseWrapper(mailOptions(mail, html, buffer));
       break;
     } catch (e) {
-      console.log(error);
+      console.log(e);
     }
   }
 };
