@@ -174,8 +174,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const prizepool = tournament["@usdPrizepool"];
 
     return (
-      tournament["@usdBid"] >= Number(moneyStart) &&
-      tournament["@usdBid"] <= Number(moneyEnd) &&
+      Number(tournament["@usdBid"]) >= Number(moneyStart) &&
+      Number(tournament["@usdBid"]) <= Number(moneyEnd) &&
       ((isKOQ !== false && isNormalQ !== false
         ? bounty && !turbo && !superturbo
         : false) ||
@@ -193,7 +193,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
           ? !bounty && superturbo
           : false)) &&
       (prizepool !== "-"
-        ? prizepoolStart <= prizepool && prizepool <= prizepoolEnd
+        ? Number(prizepoolStart) <= Number(prizepool) &&
+          Number(prizepool) <= Number(prizepoolEnd)
         : true)
     );
   });
@@ -227,13 +228,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       color = "rgb(238 236 255)"; // обычный цвет
     }
     if (ability2 - ability1 >= 3) {
-      color = "rgba(98,179,82,0.5)"; // зеленый
-    }
-    if (
-      (colorRule === "red" || colorRule === "blue") &&
-      rules &&
-      prizepool / Number(guarantee) >= 1.5
-    ) {
       color = "rgba(98,179,82,0.5)"; // зеленый
     }
 

@@ -17,6 +17,8 @@ function renderRule(rule) {
     ? `isOffpeak && isGetTournaments ? 0 : ${values[indexPrizepool]}`
     : values[indexPrizepool];
 
+  console.log(level);
+
   return (
     `(${type}(${values
       .map((value, i) =>
@@ -27,8 +29,8 @@ function renderRule(rule) {
           : value,
       )
       .join(",")}))
-    && network === '${network}'
-    && String(level) === '${level}'` +
+    && network === '${network}'` +
+    (level !== "-1" ? `&& String(level) === '${level}'` : "") +
     (status !== "all" ? `&& is${status}` : "") +
     (KO !== "all" ? `&& ${KO === "KO" ? "isKo" : "!isKo"}` : "") +
     (color === "green" || color === "brown" ? `&& isGetTournaments` : "")

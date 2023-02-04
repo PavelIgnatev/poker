@@ -50,9 +50,16 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((FromTo(1,111111))
-    && network === 'PS.eu'
-    && String(level) === '6') return { valid: true, rules: true, guarantee: 1, color: "black" };
+    if((FLAGS("sat"))
+    && network === 'PS.eu') return { valid: false, guarantee: 1, rules: false };if((FromTo(1,4.4))
+    && network === 'PS.eu'&& String(level) === '5'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(1,3.3))
+    && network === 'PS.eu'&& String(level) === '5'&& isTurbo&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromToName(0,11,"builder"))
+    && network === 'PS.eu'&& String(level) === '5'&& isNormal&& isKo&& isGetTournaments) return { valid: true, rules: true, guarantee: 1, color: "brown" };if((FromToName(0,4.4,"big"))
+    && network === 'PS.eu'&& String(level) === '5'&& isNormal&& !isKo&& isGetTournaments) return { valid: true, rules: true, guarantee: 1, color: "brown" };if((BidName(16.5,"bounty"))
+    && network === 'PS.eu'&& String(level) === '5'&& isNormal&& isKo&& isGetTournaments && (StartDay("Friday"))
+    && network === 'PS.eu'&& String(level) === '5'&& isNormal&& isKo&& isGetTournaments) return { valid: true, rules: true, guarantee: 1, color: "brown" };if((BidName(16.5,"bounty"))
+    && network === 'PS.eu'&& String(level) === '5'&& isNormal&& isKo&& isGetTournaments && (StartDay("Saturday"))
+    && network === 'PS.eu'&& String(level) === '5'&& isNormal&& isKo&& isGetTournaments) return { valid: true, rules: true, guarantee: 1, color: "brown" };
 
     if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 1 } 
     
