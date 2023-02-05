@@ -140,7 +140,7 @@ const updateAbility2 = async () => {
             });
 
             result = result
-              .sort((a, b) => Number(b["@sd"] ?? 0) - Number(a["@sd"] ?? 0))
+              .sort((a, b) => Number(b["sd"] ?? Infinity) - Number(a["sd"] ?? Infinity))
               .splice(0, 21);
 
             obj[r][l][c][b][s] = result;
@@ -229,8 +229,8 @@ const updateAbility2 = async () => {
     });
   });
 
-  await sendZeroAbility2(ability2ZeroStateRedBlue, "red|blue");
-  await sendZeroAbility2(ability2ZeroStateAny, "any");
+  // await sendZeroAbility2(ability2ZeroStateRedBlue, "red|blue");
+  // await sendZeroAbility2(ability2ZeroStateAny, "any");
 
   await writeFile("src/store/ability2/ability2.json", JSON.stringify(obj2));
 };

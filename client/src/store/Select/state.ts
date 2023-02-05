@@ -2,25 +2,30 @@ import { tournamentsSettingsProps } from "./types";
 import { createStore } from "effector";
 
 export const TIMEZONES = [
-  { value: "0", label: "UTC, WET" },
-  { value: "-36000000", label: "HST" }, // UTC-10
-  { value: "-32400000", label: "AKT" }, // UTC-9
-  { value: "-28800000", label: "PT" }, // UTC- 8
-  { value: "-25200000", label: "MT" }, // UTC- 7
-  { value: "-21600000", label: "CT" }, // UTC- 6
-  { value: "-18000000", label: "ET" }, // UTC- 5
-  { value: "-14400000", label: "AT" }, // UTC- 4
-  { value: "-12600000", label: "NT" }, // UTC- 3:30
-  { value: "-10800000", label: "ART" }, // UTC- 3
-  { value: "-10800000", label: "BRT" }, // UTC- 3
-  { value: "3600000", label: "CET" }, // UTC +1
-  { value: "7200000", label: "EET" }, // UTC+2
-  { value: "10800000", label: "MSK" }, // UTC+3
-  { value: "19800000", label: "IST" }, // UTC +5:30
-  { value: "32400000", label: "JST" }, // UTC +9
-  { value: "28800000", label: "AWST, CCT" }, // UTC +8
-  { value: "34200000", label: "ACST" }, // UTC +9:30
-  { value: "36000000", label: "AEST" }, // UTC +10
+  { value: "0", label: "UTC" },
+  { value: "-36000000", label: "UTC-10 (HST)" }, // UTC-10
+  { value: "-32400000", label: "UTC-9 (AKT)" }, // UTC-9
+  { value: "-28800000", label: "UTC- 8 (PT)" }, // UTC- 8
+  { value: "-25200000", label: "UTC- 7 (MT)" }, // UTC- 7
+  { value: "-21600000", label: "UTC- 6 (CT)" }, // UTC- 6
+  { value: "-18000000", label: "UTC- 5 (ET)" }, // UTC- 5
+  { value: "-14400000", label: "UTC- 4 (AT)" }, // UTC- 4
+  { value: "-12600000", label: "UTC- 3:30 (NT)" }, // UTC- 3:30
+  { value: "-10800000", label: "UTC- 3 (BRT)" }, // UTC- 3
+  { value: "-7200000", label: "UTC- 2" }, // UTC- 2
+  { value: "-3600000", label: "UTC-1" }, // UTC -1
+  { value: "3600000", label: "UTC +1 (CET )" }, // UTC +1
+  { value: "7200000", label: "UTC+2 (EET)" }, // UTC+2
+  { value: "10800000", label: "UTC+3 (MSK)" }, // UTC+3
+  { value: "14400000", label: "UTC+4" }, // UTC+ 4
+  { value: "18000000", label: "UTC+5" }, // UTC+ 5
+  { value: "19800000", label: "UTC+5:30" }, // UTC +5:30
+  { value: "21600000", label: "UTC+ 6 (ALMT)" }, // UTC+ 6
+  { value: "25200000", label: "UTC+7 (IST)" }, // UTC+ 7
+  { value: "28800000", label: "UTC+8 (AWST)" }, // UTC +8
+  { value: "32400000", label: "UTC +9 (JST)" }, // UTC +9
+  { value: "34200000", label: "UTC +9:30 (ACST)" }, // UTC +9:30
+  { value: "36000000", label: "UTC +10 (AEST)" }, // UTC +10
 ];
 
 export const TIMERANGE = [
