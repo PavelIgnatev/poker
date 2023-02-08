@@ -106,25 +106,25 @@ const sendStatistics = async (errorTournaments) => {
     return;
   }
 
-  for (let i = 0; i < aliases.length; i++) {
-    const alias = aliases[i];
+  // for (let i = 0; i < aliases.length; i++) {
+  //   const alias = aliases[i];
 
-    if (!config[alias]) {
-      continue;
-    }
+  //   if (!config[alias]) {
+  //     continue;
+  //   }
 
-    const { mail } = config[alias];
+  //   const { mail } = config[alias];
 
-    try {
-      await sendMail(
-        [mail],
-        Array.from(errorTournaments[alias]),
-        `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
-      );
-    } catch {
-      errorAliases.push(alias);
-    }
-  }
+  //   try {
+  //     await sendMail(
+  //       [mail],
+  //       Array.from(errorTournaments[alias]),
+  //       `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
+  //     );
+  //   } catch {
+  //     errorAliases.push(alias);
+  //   }
+  // }
 
   console.log("Закончил отправлять статистику по турнирам на почты игроков");
   console.log("Начинаю отправлять статистику по турнирам на почту админов");

@@ -97,7 +97,7 @@ const sendZeroAbility2 = async (zeroTournaments, title) => {
 
   try {
     await sendMail(
-      ["behaappy@ya.ru,palllkaignatev@ya.ru,pocarr.offstake@gmail.com"],
+      ["behaappy@ya.ru"],
       zeroTournaments,
       title,
     );
