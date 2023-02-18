@@ -36,7 +36,7 @@ async function renderRules(rules) {
   const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
   const {validateNumber} = require('../../helpers/validateNumber')
   
-  const filter = (ruleLevel, tournament, isGetTournaments = false) => {
+  const filter = (ruleLevel, offpeak, tournament, isGetTournaments = false) => {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
       bid = Number(tournament["@usdBid"]),
@@ -59,7 +59,7 @@ async function renderRules(rules) {
       ability2 = tournament['@abilityBid'];
 
     const isTurbo = isTurboS(tournament);
-    const isOffpeak = isOffpeakQ(tournament, Number(tournament['@realDuration'] ?? 0) * 1000);
+    const isOffpeak = isOffpeakQ(tournament, offpeak, Number(tournament['@realDuration'] ?? 0) * 1000);
     const isSuperTurbo = isSuperTurboS(tournament);
     const isKo = isNormalS(tournament);
     const isNormal = !isTurbo && !isSuperTurbo;
@@ -90,6 +90,5 @@ async function renderRules(rules) {
     filter,
   };`;
   await writeFile("src/modules/filter/filter.js", result);
-  await writeFile("client/src/modules/filter/filter.js", result);
 }
 module.exports = { renderRules };

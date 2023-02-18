@@ -1,12 +1,10 @@
-const fs = require("fs");
 const moment = require("moment");
 const MomentRange = require("moment-range");
 MomentRange.extendMoment(moment);
 
 const { getESTHours } = require("../helpers/getESTHours");
 
-const isOffpeak = (tournament, duration = 0) => {
-  const offpeak = JSON.parse(fs.readFileSync("src/store/offpeak/offpeak.json", "utf-8"));
+const isOffpeak = (tournament, offpeak, duration = 0) => {
   const [hour, minutes] = getESTHours(tournament, duration).split(":");
 
   const {

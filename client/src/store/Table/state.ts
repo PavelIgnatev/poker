@@ -10,13 +10,13 @@ import { isSuperTurbo } from "./../../helpers/isSuperTurbo";
 import { isTurbo } from "./../../helpers/isTurbo";
 import { isNormal } from "./../../helpers/isNormal";
 import { getTimeByMS } from "./../../helpers/getTimeByMS";
-import filter from "../../modules/filter/filter.js";
 
 import { tableCellModel } from "../../@types/tableCellModel";
 import { $tournamentsSettings } from "../Select";
 
 import { getNetwork } from "./../../helpers/getNetwork";
 import { $config } from "../Config";
+import { $filterContent } from "../Filter";
 import { $store } from "../Store";
 
 export const $tableState = createStore<tableCellModel[] | null | undefined>(
@@ -29,7 +29,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
   }
 
   const config = $config.getState();
-  const { ability1, ability2, rules, currency: lastValue } = $store.getState();
+  const filter = $filterContent.getState();
+  const { ability1, ability2, rules, currency: lastValue, offpeak } = $store.getState();
 
   const {
     moneyStart,
@@ -207,11 +208,12 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       guarantee = 1,
       rules,
       color: colorRule,
-    } = filter.filter(level, tournament, true);
+    } = filter(level, offpeak, tournament, true);
+
     const ability1 = Number(tournament["@ability"]);
     const ability2 = Number(tournament["@abilityBid"]);
-    const usdPrizepool = tournament["@usdPrizepool"];
-    const prizepool = Number(usdPrizepool === "-" ? 1 : usdPrizepool);
+    // const usdPrizepool = tournament["@usdPrizepool"];
+    // const prizepool = Number(usdPrizepool === "-" ? 1 : usdPrizepool);
 
     let color = "rgb(238, 236, 255)";
 
@@ -258,6 +260,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       ? dateStart <= res && res <= r
       : !(dateStart > res && res > dateEnd);
   });
+
+  console.log(tournaments.length)
 
   return tournaments;
 });

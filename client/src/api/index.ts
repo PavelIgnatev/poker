@@ -39,4 +39,6 @@ class Api extends ConfigApi {
   }
 }
 
-export default new Api();
+const api = new Api();
+
+export default api;

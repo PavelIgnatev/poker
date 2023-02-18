@@ -11,7 +11,7 @@ function renderRule(rule) {
   const { type, values, offpeak, network, level: ruleLevel, KO, status, color } = rule;
   const config = JSON.parse(fs.readFileSync("src/store/rules/config.json", "utf-8"));
 
-  const indexPrizepool = config[type].findIndex((rule) => rule.placeholder === "Guarantee")
+  const indexPrizepool = config[type].findIndex((rule) => rule.placeholder === "Guarantee");
 
   values[indexPrizepool] = offpeak
     ? `isOffpeak && isGetTournaments ? 0 : ${values[indexPrizepool]}`

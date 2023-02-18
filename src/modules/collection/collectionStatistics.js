@@ -1,3 +1,4 @@
+const fs = require("fs");
 const { api } = require("../../api");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getWeekday } = require("../../helpers/getWeekday");
@@ -19,7 +20,7 @@ const collectionStatistics = async () => {
     const lastValue = await getCurrencyRate();
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
-        timeZone: 'UTC'
+        timeZone: "UTC",
       }),
     );
     const year = currentTime.getFullYear();
@@ -32,6 +33,7 @@ const collectionStatistics = async () => {
     const ability2 = JSON.parse(await readFile(`${path}/ability2.json`));
     const rules = JSON.parse(await readFile(`${path}/rules.json`));
     const config = JSON.parse(await readFile(`src/store/config/config.json`));
+    const offpeak = JSON.parse(await readFile("src/store/offpeak/offpeak.json"));
 
     await Promise.all(
       Object.keys(stateConfig).map(async (alias) => {
@@ -48,11 +50,11 @@ const collectionStatistics = async () => {
             `https://www.sharkscope.com/api/pocarrleaderboard/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${Math.round(
               +new Date(
                 new Date(date).toLocaleString("en-EN", {
-                  timeZone: 'UTC'
+                  timeZone: "UTC",
                 }),
               ) /
-              1000 +
-              86400 * 2,
+                1000 +
+                86400 * 2,
             )}`,
           );
         } catch (error) {
@@ -81,7 +83,7 @@ const collectionStatistics = async () => {
                     Number((tournament["@date"] ?? tournament["@scheduledStartDate"] ?? 0) + "000"),
                   ).toLocaleString("en-EN", {
                     day: "numeric",
-                    timeZone: 'UTC'
+                    timeZone: "UTC",
                   }),
                 ) === Number(day),
             )
@@ -104,7 +106,7 @@ const collectionStatistics = async () => {
                   month: "short",
                   hour: "numeric",
                   minute: "numeric",
-                  timeZone: 'UTC'
+                  timeZone: "UTC",
                 })
                 .replace(", 24", ", 00")
                 .split(", ");
@@ -116,8 +118,8 @@ const collectionStatistics = async () => {
               ]?.[t["@name"]]
                 ? rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[status]?.[t["@name"]]
                 : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                  ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                  : 0;
+                ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+                : 0;
 
               const realAbility = abilityBid + rulesAbility2;
 
@@ -139,7 +141,7 @@ const collectionStatistics = async () => {
               t["@usdBid"] = currency === "CNY" ? bid / lastValue : bid;
               t["@usdPrizepool"] = currency === "CNY" && pp !== "-" ? pp / lastValue : pp;
 
-              if (Number(bid) !== 0 && !filter.filter(level, t, true).valid) {
+              if (Number(bid) !== 0 && !filter.filter(level, offpeak, t, true).valid) {
                 if (!errorTournaments[alias]) errorTournaments[alias] = [];
                 errorTournaments[alias].push(t);
               }

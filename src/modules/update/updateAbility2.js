@@ -1,3 +1,4 @@
+const fs = require("fs");
 const { readFile, writeFile } = require("../../utils/promisify");
 const { getStatus } = require("../../helpers/getStatus");
 const { getSheduledDate } = require("../../helpers/getSheduledDate");
@@ -19,6 +20,7 @@ const updateAbility2 = async () => {
     .map((_, i) => [i + "A", i + "B", i + "C"])
     .flat();
   const config = JSON.parse(await readFile("src/store/rules/config.json"));
+  const offpeak = JSON.parse(await readFile("src/store/offpeak/offpeak.json"));
 
   const { filtredTournaments: state } = getTournaments();
   const ability2ZeroStateRedBlue = [];
@@ -93,7 +95,7 @@ const updateAbility2 = async () => {
           return;
         }
 
-        const { rules, valid, color, guarantee } = filter.filter(l, t);
+        const { rules, valid, color, guarantee } = filter.filter(l, offpeak, t);
 
         if (!obj) obj = {};
         if (!obj[r]) obj[r] = {};
