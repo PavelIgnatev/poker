@@ -18,7 +18,6 @@ const start = async () => {
     global.app = fastify;
 
     fastify.log.info(`Сервер запущен ${new Date().toISOString()}`);
-
     crons();
   } catch (err) {
     console.log(err);

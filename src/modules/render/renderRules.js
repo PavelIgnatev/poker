@@ -1,8 +1,9 @@
-const { minifyFile } = require("../../helpers/minifyFile");
 const { writeFile } = require("../../utils/promisify");
 const { renderCheck } = require("./renderCheck");
 const { renderCheckFalse } = require("./renderCheckFalse");
 const { renderRule } = require("./renderRule");
+const util = require("util");
+const exec = util.promisify(require("child_process").exec);
 
 function customSort(a, s) {
   return a.sort(function (x1, x2) {
@@ -13,7 +14,7 @@ function customSort(a, s) {
 }
 
 async function renderRules(rules) {
-  const nativeRules = [...rules]
+  const nativeRules = [...rules];
   customSort(nativeRules, ["green", "orange", "blue", "red", "brown", "black"]);
   const result = `const { getNetwork } = require("../../helpers/getNetwork");
   const {
@@ -90,5 +91,6 @@ async function renderRules(rules) {
     filter,
   };`;
   await writeFile("src/modules/filter/filter.js", result);
+  await exec("rollup --config rollup.config.mjs --bundleConfigAsCjs");
 }
 module.exports = { renderRules };
