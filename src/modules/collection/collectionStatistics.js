@@ -88,62 +88,65 @@ const collectionStatistics = async () => {
                 ) === Number(day),
             )
             .forEach((ft) => {
-              const d = Number(ft["@duration"] ?? 0);
               const t = getMoreProp(ft);
-              const name = t["@name"]?.toLowerCase();
-              const network = t["@network"];
-              const { level: networksLevel, effmu } = networks[network];
-              const level = networksLevel + effmu;
-              const currency = t["@currency"];
-              const bid = t["@bid"];
-              const status = getStatus(t);
-              const isStartDate = Number(t["@date"] ?? t["@scheduledStartDate"] ?? 0);
+              const network = t?.["@network"];
+              if (networks?.[network]) {
+                const d = Number(ft["@duration"] ?? 0);
+                const name = t["@name"]?.toLowerCase();
 
-              const data = new Date(Number(Number(`${isStartDate - d}000`)))
-                .toLocaleString("en-EN", {
-                  hour12: false,
-                  day: "numeric",
-                  month: "short",
-                  hour: "numeric",
-                  minute: "numeric",
-                  timeZone: "UTC",
-                })
-                .replace(", 24", ", 00")
-                .split(", ");
+                const { level: networksLevel, effmu } = networks[network];
+                const level = networksLevel + effmu;
+                const currency = t["@currency"];
+                const bid = t["@bid"];
+                const status = getStatus(t);
+                const isStartDate = Number(t["@date"] ?? t["@scheduledStartDate"] ?? 0);
 
-              const abilityBid = ability2?.[network]?.[level]?.[currency]?.[bid]?.[status] ?? 0;
+                const data = new Date(Number(Number(`${isStartDate - d}000`)))
+                  .toLocaleString("en-EN", {
+                    hour12: false,
+                    day: "numeric",
+                    month: "short",
+                    hour: "numeric",
+                    minute: "numeric",
+                    timeZone: "UTC",
+                  })
+                  .replace(", 24", ", 00")
+                  .split(", ");
 
-              const rulesAbility2 = rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[
-                status
-              ]?.[t["@name"]]
-                ? rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[status]?.[t["@name"]]
-                : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                : 0;
+                const abilityBid = ability2?.[network]?.[level]?.[currency]?.[bid]?.[status] ?? 0;
 
-              const realAbility = abilityBid + rulesAbility2;
+                const rulesAbility2 = rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[
+                  status
+                ]?.[t["@name"]]
+                  ? rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[status]?.[t["@name"]]
+                  : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+                  ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
+                  : 0;
 
-              const startDate = Number(isStartDate * 1000);
+                const realAbility = abilityBid + rulesAbility2;
 
-              const info = ability1?.[network]?.[data[1]]?.[bid]?.[name]?.["@avability"];
-              const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
-              t["@ability"] = info ? info : "-";
-              t["@abilityBid"] = realAbility ? realAbility : "-";
-              t["@getWeekday"] = isStartDate ? getWeekday(startDate) : "-";
-              t["@realDuration"] = d;
-              t["@alias"] = alias;
-              t["@nickname"] = t?.["TournamentEntry"]?.["@playerName"] ?? "undefined";
-              t["@prize"] = t?.["TournamentEntry"]?.["@prize"] ?? 0;
-              t["@d"] = data[0];
-              t["@times"] = data[1];
-              t["@level"] = level;
-              t["@multientries"] = t?.["TournamentEntry"]?.["@multientries"] ?? 0;
-              t["@usdBid"] = currency === "CNY" ? bid / lastValue : bid;
-              t["@usdPrizepool"] = currency === "CNY" && pp !== "-" ? pp / lastValue : pp;
+                const startDate = Number(isStartDate * 1000);
 
-              if (Number(bid) !== 0 && !filter.filter(level, offpeak, t, true).valid) {
-                if (!errorTournaments[alias]) errorTournaments[alias] = [];
-                errorTournaments[alias].push(t);
+                const info = ability1?.[network]?.[data[1]]?.[bid]?.[name]?.["@avability"];
+                const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
+                t["@ability"] = info ? info : "-";
+                t["@abilityBid"] = realAbility ? realAbility : "-";
+                t["@getWeekday"] = isStartDate ? getWeekday(startDate) : "-";
+                t["@realDuration"] = d;
+                t["@alias"] = alias;
+                t["@nickname"] = t?.["TournamentEntry"]?.["@playerName"] ?? "undefined";
+                t["@prize"] = t?.["TournamentEntry"]?.["@prize"] ?? 0;
+                t["@d"] = data[0];
+                t["@times"] = data[1];
+                t["@level"] = level;
+                t["@multientries"] = t?.["TournamentEntry"]?.["@multientries"] ?? 0;
+                t["@usdBid"] = currency === "CNY" ? bid / lastValue : bid;
+                t["@usdPrizepool"] = currency === "CNY" && pp !== "-" ? pp / lastValue : pp;
+
+                if (Number(bid) !== 0 && !filter.filter(level, offpeak, t, true).valid) {
+                  if (!errorTournaments[alias]) errorTournaments[alias] = [];
+                  errorTournaments[alias].push(t);
+                }
               }
             });
         }
