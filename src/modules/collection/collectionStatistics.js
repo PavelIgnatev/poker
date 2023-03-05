@@ -140,8 +140,12 @@ const collectionStatistics = async () => {
                 t["@times"] = data[1];
                 t["@level"] = level;
                 t["@multientries"] = t?.["TournamentEntry"]?.["@multientries"] ?? 0;
-                t["@usdBid"] = currency === "CNY" ? bid / lastValue : bid;
-                t["@usdPrizepool"] = currency === "CNY" && pp !== "-" ? pp / lastValue : pp;
+                t["@usdBid"] =
+                  currency === "CNY" ? Math.round(Number(bid) / lastValue) : Number(bid);
+                t["@usdPrizepool"] =
+                  currency === "CNY" && pp !== "-"
+                    ? Math.round(Number(pp) / lastValue)
+                    : Number(pp);
 
                 if (Number(bid) !== 0 && !filter.filter(level, offpeak, t, true).valid) {
                   if (!errorTournaments[alias]) errorTournaments[alias] = [];

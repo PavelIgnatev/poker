@@ -86,8 +86,9 @@ const updateAbility2 = async () => {
         const n = t["@name"]?.toLowerCase(); //name
         const c = t["@currency"]; //currency
         const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
-        t["@usdBid"] = c === "CNY" ? b / lastValue : b;
-        t["@usdPrizepool"] = c === "CNY" && pp !== "-" ? pp / lastValue : pp;
+        t["@usdBid"] = c === "CNY" ? Math.round(Number(b) / lastValue) : Number(b);
+        t["@usdPrizepool"] =
+          c === "CNY" && pp !== "-" ? Math.round(Number(pp) / lastValue) : Number(pp);
         const isStartDate = t["@date"] ?? 0;
         const startDate = Number(isStartDate * 1000);
 

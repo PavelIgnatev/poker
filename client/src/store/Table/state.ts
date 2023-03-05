@@ -30,7 +30,13 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
   const config = $config.getState();
   const filter = $filterContent.getState();
-  const { ability1, ability2, rules, currency: lastValue, offpeak } = $store.getState();
+  const {
+    ability1,
+    ability2,
+    rules,
+    currency: lastValue,
+    offpeak,
+  } = $store.getState();
 
   const {
     moneyStart,
@@ -162,8 +168,12 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@timezone": timezone,
       "@status": status,
       "@level": level,
-      "@usdBid": currency === "CNY" ? Number(bid) / lastValue : bid,
-      "@usdPrizepool": currency === "CNY" && pp !== "-" ? pp / lastValue : pp,
+      "@usdBid":
+        currency === "CNY" ? Math.round(Number(bid) / lastValue) : Number(bid),
+      "@usdPrizepool":
+        currency === "CNY" && pp !== "-"
+          ? Math.round(Number(pp) / lastValue)
+          : Number(pp),
     };
   });
 
@@ -261,7 +271,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       : !(dateStart > res && res > dateEnd);
   });
 
-  console.log(tournaments.length)
+  console.log(tournaments.length);
 
   return tournaments;
 });
