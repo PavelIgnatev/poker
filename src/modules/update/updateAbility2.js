@@ -173,6 +173,7 @@ const updateAbility2 = async () => {
               b,
               s,
               color,
+              sample: v.length,
             };
 
             if (!a) {

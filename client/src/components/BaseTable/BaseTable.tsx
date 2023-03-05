@@ -20,12 +20,14 @@ export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
   const [isReverse, setIsReverse] = useState(false);
   const { networks = {} } = useStore($config) ?? {};
 
-  const effmu = useMemo(
+  const levelAndEffmu = useMemo(
     () =>
       Object.keys(networks).reduce(
         (acc, network) =>
-          acc > networks[network].effmu ? acc : networks[network].effmu,
-        "A"
+          acc > networks[network].level + networks[network].effmu
+            ? acc
+            : networks[network].level + networks[network].effmu,
+        "0A"
       ),
     [networks]
   ) as Effmu;
@@ -49,7 +51,7 @@ export const BaseTable: FC<BaseTableProps> = ({ data, loading }) => {
 
   return (
     <section className={classes.section}>
-      <TextTier effmu={effmu} />
+      <TextTier levelAndEffmu={levelAndEffmu} />
 
       <table id="grid" className={classes.table}>
         <Thead

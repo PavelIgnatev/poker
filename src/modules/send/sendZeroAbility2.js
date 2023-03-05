@@ -68,6 +68,7 @@ const sendMail = async (mail, tournaments, title) => {
     { header: "Bid", key: "b" },
     { header: "Status", key: "s" },
     { header: "Color", key: "color" },
+    { header: "Sample", key: "sample" },
   ];
 
   tournaments.forEach((e) => {
