@@ -322,7 +322,7 @@ const { getNetwork } = getNetwork_1;
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((FromTo(1,11111))
+    if((FromTo(1,1111))
     && network === 'PS.eu'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
     
     return { valid: false, guarantee: 1, rules: false };

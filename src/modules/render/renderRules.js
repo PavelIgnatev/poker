@@ -15,7 +15,7 @@ function customSort(a, s) {
 
 async function renderRules(rules) {
   const nativeRules = [...rules];
-  customSort(nativeRules, ["green", "orange", "blue", "red", "brown", "black"]);
+  customSort(nativeRules, ["green", "orange", "blue", "red"]);
   const result = `const { getNetwork } = require("../../helpers/getNetwork");
   const {
     FromTo: FromToQ,

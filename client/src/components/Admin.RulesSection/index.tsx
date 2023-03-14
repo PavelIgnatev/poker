@@ -18,10 +18,10 @@ import "./index.scss";
 
 type KOType = "KO" | "Freezout" | "all";
 type StatusType = "Normal" | "Turbo" | "SuperTurbo" | "all";
-type ColorsType = "blue" | "red" | "orange";
+type ColorsType = "blue" | "red" | "green" | "orange";
 const KO: KOType[] = ["KO", "Freezout", "all"];
 const Status: StatusType[] = ["Normal", "Turbo", "SuperTurbo", "all"];
-const Colors: ColorsType[] = ["blue", "red", "orange"];
+const Colors: ColorsType[] = ["blue", "red", "green", "orange"];
 
 export const b = b_.with("rules-section");
 
