@@ -16,6 +16,7 @@ const start = async () => {
     await fastify.listen({ port: PORT, host: "0.0.0.0" });
 
     global.app = fastify;
+    
 
     fastify.log.info(`Сервер запущен ${new Date().toISOString()}`);
     crons();

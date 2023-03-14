@@ -10,10 +10,10 @@ const getTournaments = () => {
   const days = readdirSync("src/store/days").map((day) => day.replace(".json", ""));
   const filtredState = {};
 
-  // Получаем 90 последних дней
+  // Получаем 5 последних дней
   const state = days
     .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
-    .splice(0, Math.min(days.length, 90))
+    .splice(0, Math.min(days.length, 5))
     .reduce((accumulator, day) => {
       const currentDay = readFileSync(`src/store/days/${day}.json`, {
         encoding: "utf8",

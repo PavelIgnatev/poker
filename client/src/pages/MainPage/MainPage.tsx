@@ -9,8 +9,6 @@ import {
   PasswordSection,
 } from "../../components/PasswordSection";
 import { useIntervalWorker } from "../../hooks/useIntervalWorker";
-import { BaseFooter } from "../../components/BaseFooter";
-
 
 export const MainPage = () => {
   const loading = useStore(fetchUserReposFx.pending);
@@ -25,7 +23,6 @@ export const MainPage = () => {
     window.location.reload();
   }, 12 * 60 * 60 * 1000);
 
-
   const handlePasswordSubmit: OnPasswordSubmit = ({ password, login }) =>
     getConfigRequest({ alias: login, password });
 
@@ -33,7 +30,6 @@ export const MainPage = () => {
     return (
       <>
         <PasswordSection onSubmit={handlePasswordSubmit} />
-        <BaseFooter />
       </>
     );
   }
@@ -42,7 +38,6 @@ export const MainPage = () => {
     <>
       <BaseHeader />
       <BaseTable data={tournaments} loading={loading} />
-      <BaseFooter />
     </>
   );
 };

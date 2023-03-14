@@ -7,7 +7,6 @@ import { getUniqueElemKeyGetter } from "../../../helpers/getUniqueElemKeyGetter"
 import {
   $rules,
   deleteRulesRequest,
-  patchRulesRequest,
   postRulesRequest,
 } from "../../../store/Rules";
 import { validateNumber } from "../../../helpers/validateNumber";
@@ -20,12 +19,10 @@ import { RULES_TYPES_TO_FIELDS, RULES_TYPES } from "../constants";
 import { b } from "../index";
 
 type RulesSectionRulesProps = {
-  color: string;
   level: string;
   network: string;
   status: string;
   KO: string;
-  offpeak: boolean;
 };
 type valuesType = Array<Record<string, number | string>>;
 
@@ -99,15 +96,14 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
     });
   };
 
-  const { color, level, network, status, KO } = props;
-  const uniqueElemKeyGetter = getUniqueElemKeyGetter(color + level + network + status + KO);
+  const { level, network, status, KO } = props;
+  const uniqueElemKeyGetter = getUniqueElemKeyGetter(level + network + status + KO);
 
   return (
     <div className={b("rules")}>
       {rules.map((ruleRows, ruleIndex) => {
         const isComposite = ruleRows.length > 1;
         const isEditable = ruleIndex === 0;
-        const offpeak = ruleRows?.[0]?.offpeak ?? false;
 
         const isSaveBtnDisabled = getIsSaveBtnDisabled(ruleRows, values);
 
@@ -119,7 +115,6 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
             {ruleRows.map((ruleRow, rowIndex) => {
               const { type: ruleType, values: ruleValues } = ruleRow;
               const fields = RULES_TYPES_TO_FIELDS[ruleType] as Field[];
-              const isOffpeak = fields.findIndex((rule) => rule.placeholder === "Guarantee") !== -1;
               const isLastRow = rowIndex === ruleRows.length - 1;
 
               const uniqueRowKeyGetter = uniqueRuleKeyGetter("row" + ruleType + rowIndex);
@@ -187,20 +182,6 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                       onClick={() => handleRemoveRuleRow(rowIndex)}
                     >
                       Х
-                    </BaseButton>
-                  )}
-                  {!isEditable && isLastRow && isOffpeak && (
-                    <BaseButton
-                      onClick={() => {
-                        patchRulesRequest({
-                          rule: ruleRows,
-                          offpeak: !offpeak,
-                        });
-                      }}
-                      green={offpeak}
-                      className={b("offpeak")}
-                    >
-                      Offpeak
                     </BaseButton>
                   )}
                   {!isEditable && isLastRow && (

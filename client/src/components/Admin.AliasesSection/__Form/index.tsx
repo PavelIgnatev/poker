@@ -30,7 +30,6 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
   selectedLevel,
 }) => {
   const [alias, setAlias] = useState<string>("");
-  const [mail, setMail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [timezone, setTZone] = useState<string>("0");
   const adminPassword = useStore($password);
@@ -40,7 +39,6 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
       config: {
         alias,
         level: selectedLevel ?? 16,
-        mail,
         password,
         timezone,
       },
@@ -50,7 +48,6 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
     await getAliasesRequest(selectedLevel ?? 16);
 
     setAlias("");
-    setMail("");
     setPassword("");
     setTZone(TIMEZONES[0].value);
   };
@@ -69,13 +66,6 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         placeholder="Password"
         className={b("alias-form-input")}
       />
-      <BaseInputString
-        onChange={setMail}
-        value={mail}
-        placeholder="Mail"
-        className={b("alias-form-input")}
-      />
-
       <Select
         options={TIMEZONES}
         placeholder="Timezones"

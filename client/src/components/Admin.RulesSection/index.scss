@@ -47,10 +47,6 @@
     }
   }
 
-  &__offpeak {
-    margin-left: 20px;
-  }
-
   &__rule-row {
     display: flex;
 
@@ -134,7 +130,7 @@
   }
 
   &__filter-network {
-    margin-left: 16px;
     width: 205px;
+    height: 48px;
   }
 }

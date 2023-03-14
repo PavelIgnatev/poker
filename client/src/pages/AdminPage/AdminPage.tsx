@@ -1,7 +1,6 @@
 import { useStore } from "effector-react";
 import { FC, useEffect } from "react";
 
-import { Ability2Section } from "../../components/Admin.Ability2Section";
 import { AliasesSection } from "../../components/Admin.AliasesSection";
 import {
   OnPasswordSubmit,
@@ -9,13 +8,10 @@ import {
   PasswordSectionType,
 } from "../../components/PasswordSection";
 import { getSample } from "../../store/Sample";
-import { SampleSection } from "../../components/SampleSection";
 import {
   $isValidAdminPassword,
   validateAdminPasswordRequest,
 } from "../../store/Password";
-import { OffpeakSection } from "../../components/OffpeakSection";
-import { getOffpeak } from "../../store/Offpeak";
 import { RulesSection } from "../../components/Admin.RulesSection";
 import { getUpdate } from "../../store/Update";
 import { UpdateSection } from "../../components/UpdateSection";
@@ -26,7 +22,6 @@ export const AdminPage: FC = () => {
   useEffect(() => {
     getSample();
     getUpdate();
-    getOffpeak();
   }, [isAdmin]);
 
   const handlePasswordSubmit: OnPasswordSubmit = ({ password }) =>
@@ -43,16 +38,7 @@ export const AdminPage: FC = () => {
 
   return (
     <>
-      <section
-        style={{ marginTop: "20px", color: "#FF4242", fontSize: "18px" }}
-      >
-        Welcome to <strong>Admin Panel</strong>
-      </section>
-      <UpdateSection />
-      <SampleSection />
-      <OffpeakSection />
       <RulesSection />
-      <Ability2Section />
       <AliasesSection />
     </>
   );

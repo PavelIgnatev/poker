@@ -5,6 +5,7 @@ const { findInArray } = require("../../../helpers/findInArray");
 module.exports = async (req, res) => {
   const { rules: bodyRules } = req.body;
   const rules = await getRules();
+  console.log(bodyRules)
 
   const index = findInArray(rules, bodyRules);
 

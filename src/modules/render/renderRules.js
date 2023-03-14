@@ -5,17 +5,8 @@ const { renderRule } = require("./renderRule");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 
-function customSort(a, s) {
-  return a.sort(function (x1, x2) {
-    var i1 = s.indexOf(x1[0].color),
-      i2 = s.indexOf(x2[0].color);
-    return i1 < 0 ? 1 : i2 < 0 ? -1 : i1 - i2;
-  });
-}
-
 async function renderRules(rules) {
   const nativeRules = [...rules];
-  customSort(nativeRules, ["green", "orange", "blue", "red", "brown", "black"]);
   const result = `const { getNetwork } = require("../../helpers/getNetwork");
   const {
     FromTo: FromToQ,
@@ -34,10 +25,9 @@ async function renderRules(rules) {
   const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
   const { isTurbo: isTurboS } = require("../../helpers/isTurbo");
   const { isNormal: isNormalS } = require("../../helpers/isNormal")
-  const { isOffpeak: isOffpeakQ } = require("../../helpers/isOffpeak");
   const {validateNumber} = require('../../helpers/validateNumber')
   
-  const filter = (ruleLevel, offpeak, tournament, isGetTournaments = false) => {
+  const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
       bid = Math.round(Number(tournament["@usdBid"])),
@@ -55,34 +45,26 @@ async function renderRules(rules) {
       StartDay = StartDayQ(weekDay),
       Name = NameQ(name),
       NotName = NotNameQ(name),
-      FLAGS = FLAGSQ(tournament),
-      ability1 = tournament['@ability'],
-      ability2 = tournament['@abilityBid'];
+      FLAGS = FLAGSQ(tournament);
 
     const isTurbo = isTurboS(tournament);
-    const isOffpeak = isOffpeakQ(tournament, offpeak, Number(tournament['@realDuration'] ?? 0) * 1000);
     const isSuperTurbo = isSuperTurboS(tournament);
     const isKo = isNormalS(tournament);
     const isNormal = !isTurbo && !isSuperTurbo;
-    const isAbility1 = ability1 && ability1 !== '-'
-    const isAbility2 = ability2 && ability2 !== '-'
 
     const level = validateNumber(ruleLevel);
-    const effmu = ruleLevel.replace(level, "").replace("-", "");
+    const effmu = 'A'
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
     ${nativeRules
       .map((rule) => {
-        if (rule[0].color === "orange") {
-          return renderCheckFalse(rule.map(renderRule).join(" && "));
-        }
+          // return renderCheckFalse(rule.map(renderRule).join(" && "));
+
 
         return renderCheck(rule, rule.map(renderRule).join(" && "));
       })
       .join("")}
-
-    if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 1 } 
     
     return { valid: false, guarantee: 1, rules: false };
   };

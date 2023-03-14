@@ -3,7 +3,7 @@
   border-collapse: collapse;
   min-width: 100%;
   grid-template-columns:
-    minmax(150px, 1.5fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(200px, 2fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(110px, 1px) minmax(100px, 1fr) minmax(100px, 1fr)
+    minmax(150px, 1.5fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(200px, 2fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(110px, 1px) minmax(100px, 1fr)
 }
 
 .thead,
@@ -24,10 +24,9 @@
 
 .thead .th {
   user-select: none;
-
+  top: 0;
   cursor: pointer;
   position: relative;
-  top: 90px;
   position: sticky;
   background: rgb(57, 99, 162);
   height: 60px;

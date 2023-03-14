@@ -8,14 +8,10 @@ const validateNumber = (value) => {
 };
 
 function renderRule(rule) {
-  const { type, values, offpeak, network, level: ruleLevel, KO, status, color } = rule;
+  const { type, values, network, level: ruleLevel, KO, status } = rule;
   const config = JSON.parse(fs.readFileSync("src/store/rules/config.json", "utf-8"));
 
   const indexPrizepool = config[type].findIndex((rule) => rule.placeholder === "Guarantee");
-
-  values[indexPrizepool] = offpeak
-    ? `isOffpeak && isGetTournaments ? 0 : ${values[indexPrizepool]}`
-    : values[indexPrizepool];
 
   const level = validateNumber(ruleLevel);
   const effMu = ruleLevel.replace(level, "").replace("-", "");
@@ -34,8 +30,7 @@ function renderRule(rule) {
     (level === "1" && ruleLevel.includes("-") ? "" : `&& level === '${level}'`) +
     (effMu !== "all" ? `&& effmu === '${effMu}'` : "") +
     (status !== "all" ? `&& is${status}` : "") +
-    (KO !== "all" ? `&& ${KO === "KO" ? "isKo" : "!isKo"}` : "") +
-    (color === "green" || color === "brown" ? `&& isGetTournaments` : "")
+    (KO !== "all" ? `&& ${KO === "KO" ? "isKo" : "!isKo"}` : "")
   );
 }
 

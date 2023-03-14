@@ -2,8 +2,7 @@ const fs = require("fs");
 
 function renderCheck(rules, ruleString) {
   let maxGuarantee = 1;
-  const { color } = rules[0];
-
+  
   rules.map((rule) => {
     const { type, values } = rule;
 
@@ -13,11 +12,11 @@ function renderCheck(rules, ruleString) {
 
     maxGuarantee = Math.max(
       maxGuarantee,
-      Number(values?.[indexPrizepool]?.replace("isOffpeak && isGetTournaments ? 0 : ", "") ?? 0),
+      Number(values?.[indexPrizepool]?.replace("isGetTournaments ? 0 : ", "") ?? 0),
     );
   });
 
-  return `if(${ruleString}) return { valid: true, rules: true, guarantee: ${maxGuarantee}, color: "${color}" };`;
+  return `if(${ruleString}) return { valid: true, rules: true, guarantee: ${maxGuarantee} };`;
 }
 
 module.exports = { renderCheck };

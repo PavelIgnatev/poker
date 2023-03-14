@@ -31,10 +31,7 @@ const collectionStatistics = async () => {
     const path = `src/store/copies/${date}`;
     const stateConfig = JSON.parse(await readFile(`${path}/config.json`));
     const ability1 = JSON.parse(await readFile(`${path}/ability1.json`));
-    const ability2 = JSON.parse(await readFile(`${path}/ability2.json`));
-    const rules = JSON.parse(await readFile(`${path}/rules.json`));
     const config = JSON.parse(await readFile(`src/store/config/config.json`));
-    const offpeak = JSON.parse(await readFile("src/store/offpeak/offpeak.json"));
 
     await Promise.all(
       Object.keys(stateConfig).map(async (alias) => {
@@ -99,7 +96,6 @@ const collectionStatistics = async () => {
                 const level = networksLevel + effmu;
                 const currency = t["@currency"];
                 const bid = t["@bid"];
-                const status = getStatus(t);
                 const isStartDate = Number(t["@date"] ?? t["@scheduledStartDate"] ?? 0);
 
                 const data = new Date(Number(Number(`${isStartDate - d}000`)))
@@ -114,24 +110,11 @@ const collectionStatistics = async () => {
                   .replace(", 24", ", 00")
                   .split(", ");
 
-                const abilityBid = ability2?.[network]?.[level]?.[currency]?.[bid]?.[status] ?? 0;
-
-                const rulesAbility2 = rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[
-                  status
-                ]?.[t["@name"]]
-                  ? rules[network]?.[data[1]]?.[level]?.[currency]?.[bid]?.[status]?.[t["@name"]]
-                  : rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                  ? rules[network]?.["all"]?.[level]?.[currency]?.[bid]?.[status]?.["all"]
-                  : 0;
-
-                const realAbility = abilityBid + rulesAbility2;
-
                 const startDate = Number(isStartDate * 1000);
 
                 const info = ability1?.[network]?.[data[1]]?.[bid]?.[name]?.["@avability"];
                 const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
                 t["@ability"] = info ? info : "-";
-                t["@abilityBid"] = realAbility ? realAbility : "-";
                 t["@getWeekday"] = isStartDate ? getWeekday(startDate) : "-";
                 t["@realDuration"] = d;
                 t["@alias"] = alias;
@@ -148,7 +131,7 @@ const collectionStatistics = async () => {
                     ? Math.round(Number(pp) / lastValue)
                     : Number(pp);
 
-                if (Number(bid) !== 0 && !filter.filter(level, offpeak, t, true).valid) {
+                if (Number(bid) !== 0 && !filter.filter(level, t, true).valid) {
                   if (!errorTournaments[alias]) errorTournaments[alias] = [];
                   errorTournaments[alias].push(t);
                 }

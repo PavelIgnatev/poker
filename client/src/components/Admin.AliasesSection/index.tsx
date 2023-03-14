@@ -3,7 +3,6 @@ import React from "react";
 
 import { getAliasesRequest } from "../../store/Alias";
 
-import { BaseInputString } from "../BaseInputString";
 import { LevelBlocks, ALL_LEVELS, useLevelBlocks } from "../LevelBlocks";
 
 import { AliasesSectionForm } from "./__Form";
@@ -14,7 +13,7 @@ import "./index.scss";
 export const b = b_.with("aliases-section");
 
 export const AliasesSection = () => {
-  const [search, setSearch] = React.useState<string>("");
+  const [search] = React.useState<string>("");
 
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
   const isAllLevels = selectedLevel === ALL_LEVELS;
@@ -51,12 +50,6 @@ export const AliasesSection = () => {
                 Aliases for <strong>all level</strong>
               </h2>
             )}
-            <BaseInputString
-              onChange={setSearch}
-              value={search}
-              placeholder="Search"
-              className={b("alias-form-input", { search: true })}
-            />
           </div>
           {!isAllLevels && <AliasesSectionForm selectedLevel={selectedLevel} />}
           <AliasesSectionList selectedLevel={selectedLevel} search={search} />

@@ -96,22 +96,6 @@ export const Tbody: FC<TbodyProps> = ({ data, sortedKey, isReverse }) => {
               <td
                 className={classes.td}
                 style={{ backgroundColor: item.color, marginBottom: "1px" }}
-                onClick={() => {
-                  if (
-                    window.location.pathname !== "/info" &&
-                    item["@abilityBid"] !== "-"
-                  ) {
-                    window.open(
-                      `/info?${new URLSearchParams(param).toString()}`
-                    );
-                  }
-                }}
-              >
-                {item["@abilityBid"]}
-              </td>
-              <td
-                className={classes.td}
-                style={{ backgroundColor: item.color, marginBottom: "1px" }}
               >
                 {item["@duration"]}
               </td>

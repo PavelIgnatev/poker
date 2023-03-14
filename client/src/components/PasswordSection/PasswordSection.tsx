@@ -1,11 +1,10 @@
-import b_ from "b_";
 import { useStore } from "effector-react";
 import { FC, useCallback, useState } from "react";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 import { $password, handleChangePassword } from "../../store/Password";
-
-import { BaseInputString } from "../BaseInputString";
-import { BaseButton } from "../BaseButton";
 
 import "./PasswordSection.scss";
 
@@ -27,55 +26,85 @@ interface Props {
   type?: PasswordSectionType;
 }
 
-const b = b_.with("password-section");
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      background: "linear-gradient(to bottom right, #00b4db, #0083b0)",
+    },
+    form: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: "20px",
+      borderRadius: "10px",
+      background: "white",
+    },
+    input: {
+      marginBottom: "20px",
+      minWidth: "300px",
+    },
+    button: {
+      minHeight: "50px",
+      minWidth: "150px"
+    },
+  })
+);
 
 export const PasswordSection: FC<Props> = ({ onSubmit, type }) => {
+  const classes = useStyles();
   const [login, setLogin] = useState(localStorage.getItem("login") ?? "");
   const password = useStore($password);
 
-  const isAdmin = type === PasswordSectionType.ADMIN;
   const isAlias = type === PasswordSectionType.ALIAS || !type;
-
-  const whosePassword = isAdmin ? "admin" : "your";
 
   const handleChangeLogin = useCallback((v: string) => {
     localStorage.setItem("login", v);
     setLogin(v);
   }, []);
 
-  return (
-    <section className={b()}>
-      <div className={b("content-wrapper")}>
-        {isAlias && (
-          <div className={b("input-wrapper")}>
-            <span className={b("label")}>
-              Enter <strong>your alias</strong> here
-            </span>
-            <BaseInputString
-              className={b("input")}
-              value={login}
-              onChange={handleChangeLogin}
-            />
-          </div>
-        )}
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
 
-        <div className={b("input-wrapper")}>
-          <span className={b("label")}>
-            Enter <strong>{whosePassword} password</strong> here
-          </span>
-          <BaseInputString
-            className={b("input")}
-            value={password}
-            onChange={handleChangePassword}
+      onSubmit({ password, login });
+    },
+    [onSubmit, password, login]
+  );
+
+  return (
+    <div className={classes.root}>
+      <form onSubmit={handleSubmit} className={classes.form}>
+        {isAlias && (
+          <TextField
+            label="Login"
+            variant="outlined"
+            className={classes.input}
+            value={login}
+            onChange={(e) => handleChangeLogin(e.currentTarget.value)}
           />
-        </div>
-        <BaseButton
-          className={b("submit-button")}
-          onClick={() => onSubmit({ password, login })}
+        )}
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          className={classes.input}
+          value={password}
+          onChange={(e) => handleChangePassword(e.currentTarget.value)}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          className={classes.button}
         >
-          Submit
-        </BaseButton>
-      </div>
-    </section>
+          Login
+        </Button>
+      </form>
+    </div>
   );
 };
