@@ -1,5 +1,5 @@
 const { readFile, writeFile } = require("./promisify");
-const { rulesAbility2Path, previewRulesAbility2Path, rulesPath } = require("../constants");
+const { rulesPath } = require("../constants");
 const { filterRules } = require("../helpers/filterRules");
 
 module.exports = {

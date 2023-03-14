@@ -40,15 +40,6 @@ export const Tbody: FC<TbodyProps> = ({ data, sortedKey, isReverse }) => {
           return 0;
         })
         .map((item, index: number) => {
-          const param = {
-            timezone: item["@timezone"],
-            network: item["@network"],
-            level: item["@level"],
-            currency: item["@currency"],
-            bid: String(item["@realBid"]),
-            status: item["@status"],
-          };
-
           return (
             <tr className={classes.tr} key={index}>
               <td

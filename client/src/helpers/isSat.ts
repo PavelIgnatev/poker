@@ -4,11 +4,10 @@ import { tableCellModel } from "./../@types/tableCellModel";
 export const isSat = (tournament: tableCellModel) => {
   const name = tournament["@name"]?.toLowerCase();
   const network = getNetwork(tournament["@network"]);
-  let sat =
-    network !== "WNMX" ? !!tournament["@flags"]?.includes("SAT") : false;
+  let sat = !!tournament["@flags"]?.includes("SAT");
 
   if (!sat && name) {
-    if (network === "GG") {
+    if (network === "GGNetwork") {
       sat =
         name.includes(" seats") ||
         name.includes("seats ") ||
@@ -20,7 +19,7 @@ export const isSat = (tournament: tableCellModel) => {
         name.includes("step ") ||
         (name.includes(" sat") && !name.includes(" satu")) ||
         name.includes("sat  ");
-    } else if (network === "WNMX") {
+    } else if (network === "Winamax.fr") {
       sat =
         (name.includes(" sat") && !name.includes(" satu")) ||
         name.includes("sat  ") ||
@@ -37,7 +36,7 @@ export const isSat = (tournament: tableCellModel) => {
         name.includes("seat") ||
         name.includes(" qualifier") ||
         name.includes("qualifier ");
-    } else if (network === "IP") {
+    } else if (network === "iPoker") {
       sat =
         name.includes("ticket") ||
         name.includes("ticket") ||

@@ -16,11 +16,6 @@ const start = async () => {
 
     await fastify.listen({ port: PORT, host: "0.0.0.0" });
 
-    if(fastify.server.address().port === 81){
-      updateServer()
-
-    }
-
     global.app = fastify;
     
 

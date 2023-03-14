@@ -1,12 +1,8 @@
-const fs = require("fs");
 const { api } = require("../../api");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getWeekday } = require("../../helpers/getWeekday");
 const { readFile, writeFile } = require("../../utils/promisify");
-const { deleteFolder } = require("../delete/deleteFolder");
-const { getStatus } = require("../../helpers/getStatus");
 const { sendStatistics } = require("../send/sendStatistics");
-const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
 
 let filter = require("../filter/filter");
 
@@ -17,7 +13,6 @@ const collectionStatistics = async () => {
   filter = require("../filter/filter");
 
   try {
-    const lastValue = await getCurrencyRate();
     const currentTime = new Date(
       new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
         timeZone: "UTC",
@@ -124,12 +119,8 @@ const collectionStatistics = async () => {
                 t["@times"] = data[1];
                 t["@level"] = level;
                 t["@multientries"] = t?.["TournamentEntry"]?.["@multientries"] ?? 0;
-                t["@usdBid"] =
-                  currency === "CNY" ? Math.round(Number(bid) / lastValue) : Number(bid);
-                t["@usdPrizepool"] =
-                  currency === "CNY" && pp !== "-"
-                    ? Math.round(Number(pp) / lastValue)
-                    : Number(pp);
+                t["@usdBid"] = Number(bid);
+                t["@usdPrizepool"] = Number(pp);
 
                 if (Number(bid) !== 0 && !filter.filter(level, t, true).valid) {
                   if (!errorTournaments[alias]) errorTournaments[alias] = [];

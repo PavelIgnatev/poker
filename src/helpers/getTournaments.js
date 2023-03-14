@@ -40,7 +40,7 @@ const getTournaments = () => {
 
       if (!name) return false;
 
-      const superturbo = network === "WNMX" ? false : isSuperTurbo(item);
+      const superturbo = network === "Winamax.fr" ? false : isSuperTurbo(item);
 
       if (isNL && isH && !rebuy && !od && !sng && !sat && !superturbo) {
         return true;

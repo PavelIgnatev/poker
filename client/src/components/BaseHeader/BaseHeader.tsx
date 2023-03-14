@@ -1,5 +1,4 @@
 import { FC } from "react";
-import cx from "classnames";
 
 import {
   $tournamentsSettings,
@@ -12,7 +11,6 @@ import { BaseSelect } from "../BaseSelect/BaseSelect";
 import { BaseSelectMulti } from "../BaseSelectMulti/BaseSelectMulti";
 import { BaseInput } from "../BaseInput/BaseInput";
 import { BaseCheckbox } from "../BaseCheckbox";
-import { BaseInputMask } from "../BaseInputMask";
 import { ComponentCategory } from "../ComponentCategory";
 import { BaseButton } from "../BaseButton";
 import { fetchUserReposFx } from "../../store/Table";
@@ -91,24 +89,6 @@ export const BaseHeader: FC = () => {
                 onChange={editableTournamentsSettings.handleChangeTime}
                 placeholder="Time"
               />
-            </ComponentCategory>
-            <ComponentCategory>
-              <div className={classes.inputWrapper}>
-                <BaseInputMask
-                  placeholder="From(h)"
-                  value={tournamentsSettings.dateStart}
-                  handleChange={
-                    editableTournamentsSettings.handleChangeDateStart
-                  }
-                  className={cx(classes.input, classes.inputTime)}
-                />
-                <BaseInputMask
-                  placeholder="To(h)"
-                  value={tournamentsSettings.dateEnd}
-                  handleChange={editableTournamentsSettings.handleChangeDateEnd}
-                  className={cx(classes.input, classes.inputTime)}
-                />
-              </div>
             </ComponentCategory>
             <ComponentCategory></ComponentCategory>
           </div>

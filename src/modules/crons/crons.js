@@ -1,6 +1,5 @@
 const { CronJob } = require("cron");
 
-const { parseCurrencyRate } = require("../currencyRate/parseCurrencyRate");
 const { updateServer } = require("../update/updateServer");
 const { writeFile } = require("../../utils/promisify");
 
@@ -24,14 +23,8 @@ const crons = () => {
     }
   });
 
-  const updateCNYCourseCron = new CronJob("0 */30 * * * *", function () {
-    if (numberInArray(global.app.server.address().port)) {
-      parseCurrencyRate();
-    }
-  });
 
   updateServerCron.start();
-  updateCNYCourseCron.start();
 };
 
 module.exports = { crons };

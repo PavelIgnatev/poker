@@ -28,6 +28,7 @@ function curry(func) {
     (realBid, from, to) => Number(realBid) >= Number(from) && Number(realBid) <= Number(to),
   );
   
+  
   //name.includes
   const Name = curry((name, str) => name.toLowerCase().includes(str.toLowerCase()));
   

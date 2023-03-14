@@ -41,26 +41,26 @@ export const EFFMU = [
 ];
 
 export const NETWORKS = [
-  { value: "PokerStars", label: "PS.eu" },
-  { value: "iPoker", label: "IP" },
+  { value: "PokerStars", label: "PokerStars" },
+  { value: "iPoker", label: "iPoker" },
   { value: "Chico", label: "Chico" },
-  { value: "PokerStars(FR-ES-PT)", label: "PS.es" },
-  { value: "PartyPoker", label: "Party" },
-  { value: "GGNetwork", label: "GG" },
-  { value: "888Poker", label: "888" },
-  { value: "Winamax", label: "WNMX" },
+  { value: "PokerStars(FR-ES-PT)", label: "PokerStars(FR-ES-PT)" },
+  { value: "PartyPoker", label: "PartyPoker" },
+  { value: "GGNetwork", label: "GGNetwork" },
+  { value: "888Poker", label: "888Poker" },
+  { value: "Winamax", label: "Winamax.fr" },
   { value: "WPN", label: "WPN" },
 ];
 
 export const SHORT_NETWORKS = [
-  { value: "PS.eu", label: "PS.eu" },
-  { value: "IP", label: "IP" },
+  { value: "PokerStars", label: "PokerStars" },
+  { value: "iPoker", label: "iPoker" },
   { value: "Chico", label: "Chico" },
-  { value: "PS.es", label: "PS.es" },
-  { value: "Party", label: "Party" },
-  { value: "GG", label: "GG" },
-  { value: "888", label: "888" },
-  { value: "WNMX", label: "WNMX" },
+  { value: "PokerStars(FR-ES-PT)", label: "PokerStars(FR-ES-PT)" },
+  { value: "PartyPoker", label: "PartyPoker" },
+  { value: "GGNetwork", label: "GGNetwork" },
+  { value: "888Poker", label: "888Poker" },
+  { value: "Winamax.fr", label: "Winamax.fr" },
   { value: "WPN", label: "WPN" },
 ];
 

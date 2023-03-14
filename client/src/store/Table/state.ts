@@ -87,7 +87,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const sat = isSat(tournament);
 
     //Фикс гарантии для WPN и 888Poker и Chiko
-    if (network === "WPN" || network === "888" || network === "Chico") {
+    if (network === "WPN" || network === "888Poker" || network === "Chico") {
       const $ = tournament["@name"].split("$");
       if ($.length > 1) {
         if (network === "Chico" && !sat) {
@@ -98,7 +98,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
             .replace("K", "000")
             .replace("M", "000000")
             .replace(".", "");
-        } else if ((network === "WPN" && !sat) || network === "888") {
+        } else if ((network === "WPN" && !sat) || network === "888Poker") {
           tournament["@guarantee"] = $[1]
             .split(" ")[0]
             .replace(")", "")
@@ -119,7 +119,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
           Number(tournament["@stake"] ?? 0)
       )
     );
-
 
     const pp = prizepool >= 0 ? prizepool : "-";
 
@@ -147,12 +146,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@timezone": timezone,
       "@status": status,
       "@level": level,
-      "@usdBid":
-        currency === "CNY" ? Math.round(Number(bid) / lastValue) : Number(bid),
-      "@usdPrizepool":
-        currency === "CNY" && pp !== "-"
-          ? Math.round(Number(pp) / lastValue)
-          : Number(pp),
+      "@usdBid":  Number(bid),
+      "@usdPrizepool": Number(pp),
     };
   });
 
@@ -192,6 +187,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
   // определение цвета турнира
   tournaments = tournaments.map((tournament) => {
     const level = tournament["@level"];
+
     const { valid } = filter(level, tournament, true);
 
     return { ...tournament, valid };

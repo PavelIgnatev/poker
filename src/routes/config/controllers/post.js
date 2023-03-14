@@ -14,10 +14,10 @@ module.exports = async (req, res) => {
     return res.status(403).send({ message: 'Config" parameter is required' });
   }
 
-  const { alias, level, mail, password, timezone } = newConfig;
-  if (!mail || level === null || !alias || !password || !timezone) {
+  const { alias, level, password, timezone } = newConfig;
+  if (level === null || !alias || !password || !timezone) {
     return res.status(403).send({
-      message: "All parameters are required (mail, level, alias, password, timezone)",
+      message: "All parameters are required (level, alias, password, timezone)",
     });
   }
 
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     return res.status(403).send({ message: "Alias is already in use" });
   }
 
-  config[alias] = { alias, mail, networks: {}, password, timezone };
+  config[alias] = { alias, networks: {}, password, timezone };
 
   networks.forEach((network) => {
     config[alias].networks[network] = { level, effmu: "A" };

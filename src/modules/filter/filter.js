@@ -48,8 +48,8 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((FromTo(1,1111))
-    && network === 'PS.eu'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
+    if((FromTo(1,11111))
+    && network === 'PokerStars'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
     
     return { valid: false, guarantee: 1, rules: false };
   };

@@ -31,6 +31,37 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
+  FromToGt: [
+    {
+      type: "number",
+      placeholder: "From",
+      options: null,
+    },
+    {
+      type: "number",
+      placeholder: "To",
+      options: null,
+    },
+    {
+      type: "number",
+      placeholder: "Guarantee",
+      options: null,
+    },
+  ],
+  Name: [
+    {
+      type: "string",
+      placeholder: "Includes",
+      options: null,
+    },
+  ],
+  NotName: [
+    {
+      type: "string",
+      placeholder: "Includes",
+      options: null,
+    },
+  ],
   BidGt: [
     {
       type: "number",
@@ -43,15 +74,10 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  Ticket: [
+  BidName: [
     {
       type: "number",
       placeholder: "Bid",
-      options: null,
-    },
-    {
-      type: "number",
-      placeholder: "Tickets",
       options: null,
     },
     {
@@ -77,47 +103,11 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  FromToGt: [
-    {
-      type: "number",
-      placeholder: "From",
-      options: null,
-    },
-    {
-      type: "number",
-      placeholder: "To",
-      options: null,
-    },
-    {
-      type: "number",
-      placeholder: "Guarantee",
-      options: null,
-    },
-  ],
-  BidName: [
-    {
-      type: "number",
-      placeholder: "Bid",
-      options: null,
-    },
+  StartDay: [
     {
       type: "string",
-      placeholder: "Includes",
-      options: null,
-    },
-  ],
-  Name: [
-    {
-      type: "string",
-      placeholder: "Includes",
-      options: null,
-    },
-  ],
-  NotName: [
-    {
-      type: "string",
-      placeholder: "Includes",
-      options: null,
+      placeholder: "Weekday",
+      options: ["Sunday", "Monday", "Thusday", "Webnesday", "Thursday", "Friday", "Saturday"],
     },
   ],
   FLAGS: [
@@ -138,18 +128,28 @@ export const RULES_TYPES_TO_FIELDS = {
       placeholder: "Flags",
     },
   ],
+  Ticket: [
+    {
+      type: "number",
+      placeholder: "Bid",
+      options: null,
+    },
+    {
+      type: "number",
+      placeholder: "Tickets",
+      options: null,
+    },
+    {
+      type: "string",
+      placeholder: "Includes",
+      options: null,
+    },
+  ],
   Entrants: [
     {
       type: "number",
       placeholder: "Count",
       options: null,
-    },
-  ],
-  StartDay: [
-    {
-      type: "string",
-      placeholder: "Weekday",
-      options: ["Sunday", "Monday", "Thusday", "Webnesday", "Thursday", "Friday", "Saturday"],
     },
   ],
 };

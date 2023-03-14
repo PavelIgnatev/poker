@@ -21,7 +21,7 @@ const getMoreProp = (tournament) => {
   const sat = isSat(tournament);
 
   //Фикс гарантии для WPN и 888Poker и Chiko
-  if (network === "WPN" || network === "888" || network === "Chico") {
+  if (network === "WPN" || network === "888Poker" || network === "Chico") {
     const $ = tournament["@name"].split("$");
     if ($.length > 1) {
       if (network === "Chico" && !sat) {
@@ -33,7 +33,7 @@ const getMoreProp = (tournament) => {
           .replace("K", "000")
           .replace("M", "000000")
           .replace(".", "");
-      } else if ((network === "WPN" && !sat) || network === "888") {
+      } else if ((network === "WPN" && !sat) || network === "888Poker") {
         tournament["@guarantee"] = $[1].split(" ")[0].replace(")", "").replace(",", "");
       }
     }

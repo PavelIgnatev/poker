@@ -9,31 +9,31 @@
 const getNetwork$3 = (network) => {
   switch (network) {
     case "PokerStars(FR-ES-PT)": {
-      network = "PS.es";
+      network = "PokerStars(FR-ES-PT)";
       break;
     }
     case "PokerStars": {
-      network = "PS.eu";
+      network = "PokerStars";
       break;
     }
     case "PartyPoker": {
-      network = "Party";
+      network = "PartyPoker";
       break;
     }
     case "GGNetwork": {
-      network = "GG";
+      network = "GGNetwork";
       break;
     }
     case "888Poker": {
-      network = "888";
+      network = "888Poker";
       break;
     }
     case "Winamax.fr": {
-      network = "WNMX";
+      network = "Winamax.fr";
       break;
     }
     case "iPoker": {
-      network = "IP";
+      network = "iPoker";
       break;
     }
     case "Chico": {
@@ -172,10 +172,10 @@ const { getNetwork: getNetwork$2 } = getNetwork_1;
 const isSat$1 = (tournament) => {
   const name = tournament["@name"]?.toLowerCase();
   const network = getNetwork$2(tournament["@network"]);
-  let sat = network !== "WNMX" ? !!tournament["@flags"]?.includes("SAT") : false;
+  let sat = !!tournament["@flags"]?.includes("SAT");
 
   if (!sat && name) {
-    if (network === "GG") {
+    if (network === "GGNetwork") {
       sat =
         name.includes(" seats") ||
         name.includes("seats ") ||
@@ -187,7 +187,7 @@ const isSat$1 = (tournament) => {
         name.includes("step ") ||
         (name.includes(" sat") && !name.includes(" satu")) ||
         name.includes("sat  ");
-    } else if (network === "WNMX") {
+    } else if (network === "Winamax.fr") {
       sat =
         (name.includes(" sat") && !name.includes(" satu")) ||
         name.includes("sat  ") ||
@@ -204,7 +204,7 @@ const isSat$1 = (tournament) => {
         name.includes("seat") ||
         name.includes(" qualifier") ||
         name.includes("qualifier ");
-    } else if (network === "IP") {
+    } else if (network === "iPoker") {
       sat =
         name.includes("ticket") ||
         name.includes("ticket") ||
@@ -242,7 +242,7 @@ const isTurbo = (tournament) => {
   const turbo =
     (flags?.includes("T") ||
       name?.includes("turbo") ||
-      (network === "PS.eu" && name?.includes("hot"))) &&
+      (network === "PokerStars" && name?.includes("hot"))) &&
     !superturbo;
 
   return turbo;
@@ -322,8 +322,8 @@ const { getNetwork } = getNetwork_1;
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((FromTo(1,1111))
-    && network === 'PS.eu'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
+    if((FromTo(1,11111))
+    && network === 'PokerStars'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
     
     return { valid: false, guarantee: 1, rules: false };
   };

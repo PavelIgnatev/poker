@@ -14,7 +14,7 @@ export const isTurbo = (tournament:tableCellModel) => {
     const turbo =
       (flags?.includes("T") ||
         name?.includes("turbo") ||
-        (network === "PS.eu" && name?.includes("hot"))) &&
+        (network === "PokerStars" && name?.includes("hot"))) &&
       !superturbo;
   
     return turbo;
