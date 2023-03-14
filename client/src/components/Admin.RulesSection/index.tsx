@@ -9,6 +9,7 @@ import { getRulesRequest } from "../../store/Rules";
 import { SHORT_NETWORKS } from "../../store/Select";
 
 import { specialSelectStyles } from "../BaseSelect";
+import { ColorPalette } from "../ColorPalette";
 import { ElementsToggle, useElementsToggle } from "../ElementsToggle";
 import { ALL_LEVELS, LevelBlocks, useLevelBlocks } from "../LevelBlocks";
 import { RulesSectionRules } from "./__Rules";
@@ -17,43 +18,52 @@ import "./index.scss";
 
 type KOType = "KO" | "Freezout" | "all";
 type StatusType = "Normal" | "Turbo" | "SuperTurbo" | "all";
+type ColorsType = "blue" | "red" | "orange";
 const KO: KOType[] = ["KO", "Freezout", "all"];
 const Status: StatusType[] = ["Normal", "Turbo", "SuperTurbo", "all"];
+const Colors: ColorsType[] = ["blue", "red", "orange"];
 
 export const b = b_.with("rules-section");
 
 export const RulesSection = () => {
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
-  const { selectedElement: selectedEffmu } = useElementsToggle<Effmu>(EFFMU[0]);
+  const { selectedElement: selectedEffmu } = useElementsToggle<Effmu | "all">(
+    EFFMU[0]
+  );
   const { selectedElement: selectedKO, handleElementChange: handleKOChange } =
     useElementsToggle<KOType>(KO[0]);
   const {
     selectedElement: selectedStatus,
     handleElementChange: handleStatusChange,
   } = useElementsToggle<StatusType>(Status[0]);
-
+  const {
+    selectedElement: selectedColor,
+    handleElementChange: handleColorChange,
+  } = useElementsToggle<ColorsType>(Colors[0]);
   const [selectedNetwork, setSelectedNetwork] = useState(
     SHORT_NETWORKS[0].value
   );
   const handleNetworkChange = (option: SelectOption<string>) =>
     setSelectedNetwork(option.value ?? SHORT_NETWORKS[0].value);
-  const level = selectedLevel + selectedEffmu;
   const isAllLevels = selectedLevel === ALL_LEVELS;
 
   useEffect(() => {
-    getRulesRequest({
-      level,
-      network: selectedNetwork,
-      status: selectedStatus,
-      KO: selectedKO,
-    });
+    if (selectedLevel !== null) {
+      getRulesRequest({
+        color: selectedColor,
+        level: selectedLevel + selectedEffmu,
+        network: selectedNetwork,
+        status: selectedStatus,
+        KO: selectedKO,
+      });
+    }
   }, [
     selectedLevel,
+    selectedColor,
     selectedEffmu,
     selectedNetwork,
     selectedStatus,
     selectedKO,
-    level,
   ]);
 
   return (
@@ -85,6 +95,11 @@ export const RulesSection = () => {
               className={b("filter-network")}
               defaultValue={SHORT_NETWORKS[0]}
             />
+            <ColorPalette
+              selectedElement={selectedColor}
+              onElementChange={handleColorChange}
+              elements={Colors}
+            />
           </div>
           <div className={b("filter")}>
             <ElementsToggle
@@ -102,7 +117,8 @@ export const RulesSection = () => {
             />
           </div>
           <RulesSectionRules
-            level={level}
+            color={selectedColor}
+            level={selectedLevel + selectedEffmu}
             network={selectedNetwork}
             status={selectedStatus}
             KO={selectedKO}

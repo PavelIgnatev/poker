@@ -1,6 +1,7 @@
 const { PORT } = require("./config/");
 const { createFastifyInstance } = require("./createFastifyInstance");
 const { crons } = require("./modules/crons/crons");
+const { updateServer } = require("./modules/update/updateServer");
 
 process.env.TZ = "UTC";
 
@@ -14,6 +15,11 @@ const start = async () => {
     }
 
     await fastify.listen({ port: PORT, host: "0.0.0.0" });
+
+    if(fastify.server.address().port === 81){
+      updateServer()
+
+    }
 
     global.app = fastify;
     

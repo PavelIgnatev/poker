@@ -19,6 +19,7 @@ import { RULES_TYPES_TO_FIELDS, RULES_TYPES } from "../constants";
 import { b } from "../index";
 
 type RulesSectionRulesProps = {
+  color: string;
   level: string;
   network: string;
   status: string;
@@ -63,7 +64,10 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
       .map((_, i) => values?.[ruleIndex]?.[i] ?? ""),
     ...props,
   }));
-  const rules: rulesModel[][] = [editableRule, ...savedRules];
+  const rules: rulesModel[][] = [
+    editableRule,
+    ...(savedRules ? savedRules : []),
+  ];
 
   const handleSaveRule = () => {
     postRulesRequest(editableRule);
@@ -83,7 +87,11 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
     });
   };
 
-  const handleValues = (value: string | number, rowIndex: number, fieldIndex: number) => {
+  const handleValues = (
+    value: string | number,
+    rowIndex: number,
+    fieldIndex: number
+  ) => {
     setValues((values) => {
       const newValues = [...values];
 
@@ -96,8 +104,10 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
     });
   };
 
-  const { level, network, status, KO } = props;
-  const uniqueElemKeyGetter = getUniqueElemKeyGetter(level + network + status + KO);
+  const { color, level, network, status, KO } = props;
+  const uniqueElemKeyGetter = getUniqueElemKeyGetter(
+    color + level + network + status + KO
+  );
 
   return (
     <div className={b("rules")}>
@@ -110,14 +120,19 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
         const uniqueRuleKeyGetter = uniqueElemKeyGetter("rule" + ruleIndex);
 
         return (
-          <div className={b("rule", { composite: isComposite })} key={uniqueRuleKeyGetter.key}>
+          <div
+            className={b("rule", { composite: isComposite })}
+            key={uniqueRuleKeyGetter.key}
+          >
             <div className={b("rule-stripe")} />
             {ruleRows.map((ruleRow, rowIndex) => {
               const { type: ruleType, values: ruleValues } = ruleRow;
               const fields = RULES_TYPES_TO_FIELDS[ruleType] as Field[];
               const isLastRow = rowIndex === ruleRows.length - 1;
 
-              const uniqueRowKeyGetter = uniqueRuleKeyGetter("row" + ruleType + rowIndex);
+              const uniqueRowKeyGetter = uniqueRuleKeyGetter(
+                "row" + ruleType + rowIndex
+              );
 
               return (
                 <div className={b("rule-row")} key={uniqueRowKeyGetter.key}>
@@ -139,7 +154,9 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                     const isNum = elementType === "number";
                     const value = String(ruleValues?.[fieldIndex] || "");
 
-                    const uniqueFieldKeyGetter = uniqueRowKeyGetter("field" + fieldIndex);
+                    const uniqueFieldKeyGetter = uniqueRowKeyGetter(
+                      "field" + fieldIndex
+                    );
 
                     if (field.options?.length) {
                       return (
@@ -168,7 +185,11 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                         className={b("rule-row-field", { input: true })}
                         value={value}
                         onChange={(value) => {
-                          handleValues(isNum ? validateNumber(value) : value, rowIndex, fieldIndex);
+                          handleValues(
+                            isNum ? validateNumber(value) : value,
+                            rowIndex,
+                            fieldIndex
+                          );
                         }}
                         placeholder={placeholder}
                         disabled={!isEditable}
@@ -199,7 +220,10 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
 
             {isEditable && (
               <div className={b("rule-row")}>
-                <BaseButton onClick={handleAddRuleRow} className={b("rule-row-control-btn")}>
+                <BaseButton
+                  onClick={handleAddRuleRow}
+                  className={b("rule-row-control-btn")}
+                >
                   Add rule row
                 </BaseButton>
                 <BaseButton

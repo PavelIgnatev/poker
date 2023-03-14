@@ -5,7 +5,7 @@ const { updateServer } = require("../update/updateServer");
 const { writeFile } = require("../../utils/promisify");
 
 const startValue = 81;
-const arrayLength = 9;
+const arrayLength = 1;
 
 function numberInArray(num, arr) {
   return Array(arrayLength)

@@ -1,5 +1,6 @@
-const filterRules = (rule, level, network, status, KO, type, values) => {
+const filterRules = (rule, color, level, network, status, KO, type, values) => {
   return (
+    rule.color === color &&
     rule.level === level &&
     rule.network === network &&
     rule.status === status &&

@@ -5,8 +5,17 @@ const { renderRule } = require("./renderRule");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 
+function customSort(a, s) {
+  return a.sort(function (x1, x2) {
+    var i1 = s.indexOf(x1[0].color),
+      i2 = s.indexOf(x2[0].color);
+    return i1 < 0 ? 1 : i2 < 0 ? -1 : i1 - i2;
+  });
+}
+
 async function renderRules(rules) {
   const nativeRules = [...rules];
+  customSort(nativeRules, ["green", "orange", "blue", "red", "brown", "black"]);
   const result = `const { getNetwork } = require("../../helpers/getNetwork");
   const {
     FromTo: FromToQ,
@@ -59,8 +68,11 @@ async function renderRules(rules) {
 
     ${nativeRules
       .map((rule) => {
-          // return renderCheckFalse(rule.map(renderRule).join(" && "));
+        console.log(rule);
 
+        if (rule[0].color === "orange") {
+          return renderCheckFalse(rule.map(renderRule).join(" && "));
+        }
 
         return renderCheck(rule, rule.map(renderRule).join(" && "));
       })
