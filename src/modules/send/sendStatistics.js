@@ -131,7 +131,7 @@ const sendStatistics = async (errorTournaments) => {
 
   try {
     await sendMail(
-      ["pocarr.offstake@gmail.com,palllkaignatev@yandex.ru, behaappy@ya.ru, pocarr.ru@gmail.com"],
+      ["mgr.miranda85@gmail.com,pocarr.offstake@gmail.com,palllkaignatev@yandex.ru, behaappy@ya.ru, pocarr.ru@gmail.com"],
       Object.values(errorTournaments).flat(),
       `<div>Invalid emails from players: ${errorAliases.join(", ")}</div>
       <div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
