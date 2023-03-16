@@ -1,5 +1,4 @@
 const { createTransport } = require("nodemailer");
-const { readFile } = require("../../utils/promisify");
 const Excel = require("exceljs");
 
 const transporter = createTransport({
@@ -97,7 +96,6 @@ const sendMail = async (mail, tournaments, html) => {
 
 const sendStatistics = async (errorTournaments) => {
   console.log("Начинаю отправлять статистику по турнирам на почты игроков");
-  const config = JSON.parse(await readFile("src/store/config/config.json"));
   const errorAliases = [];
   const aliases = Object.keys(errorTournaments);
 
