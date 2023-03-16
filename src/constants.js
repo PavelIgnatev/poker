@@ -1,3 +1,4 @@
+
 module.exports = {
   networks: [
     "PokerStars",
@@ -10,7 +11,7 @@ module.exports = {
     "Winamax.fr",
     "WPN",
   ],
-  adminPassword: "6c630o3gUmIXxl2VUExd2GgjDmhC9WTs",
+  adminPassword: process.env.PASSWORD,
   configPath: "src/store/config/config.json",
   samplePath: "src/store/sample/sample.json",
   rulesPath: "src/store/rules/rules.json",

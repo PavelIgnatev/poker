@@ -65,5 +65,3 @@ export const editableTournamentsSettings = createApi($tournamentsSettings, {
     timezone,
   }),
 });
-
-$tournamentsSettings.watch(console.log);

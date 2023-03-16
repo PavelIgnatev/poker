@@ -68,8 +68,6 @@ async function renderRules(rules) {
 
     ${nativeRules
       .map((rule) => {
-        console.log(rule);
-
         if (rule[0].color === "orange") {
           return renderCheckFalse(rule.map(renderRule).join(" && "));
         }

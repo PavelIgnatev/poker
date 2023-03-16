@@ -14,7 +14,6 @@ import {
 } from "../../store/Password";
 import { RulesSection } from "../../components/Admin.RulesSection";
 import { getUpdate } from "../../store/Update";
-import { UpdateSection } from "../../components/UpdateSection";
 
 export const AdminPage: FC = () => {
   const isAdmin = useStore($isValidAdminPassword);

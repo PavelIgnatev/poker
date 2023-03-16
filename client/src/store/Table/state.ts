@@ -30,7 +30,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
   const config = $config.getState();
   const filter = $filterContent.getState();
-  const { ability1, currency: lastValue } = $store.getState();
+  const { ability1 } = $store.getState();
 
   const {
     moneyStart,
@@ -70,7 +70,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const turbo = isTurbo(tournament);
     const superturbo = isSuperTurbo(tournament);
     const status = getStatus(tournament);
-    const currency = tournament["@currency"];
     const od = tournament["@flags"]?.includes("OD");
     const sng = tournament["@gameClass"]?.includes("sng");
     const isNL = tournament["@structure"] === "NL";
