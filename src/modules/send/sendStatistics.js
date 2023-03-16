@@ -7,8 +7,8 @@ const transporter = createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: "pocarr.offstake@gmail.com",
-    pass: "odouugoikgkugvyj",
+    user: "offstakepocarr@gmail.com",
+    pass: "eszmpczpadbbbtok",
   },
   tls: {
     rejectUnauthorized: false,
@@ -43,7 +43,7 @@ const mailOptions = (mails, html, content) => {
 
   //behaappy@ya.ru
   return {
-    from: "as.dsa.20@mail.ru",
+    from: "offstakepocarr@gmail.com",
     to: mails,
     subject: `Erroneous tournaments for ${date}`,
     html,
@@ -131,7 +131,7 @@ const sendStatistics = async (errorTournaments) => {
 
   try {
     await sendMail(
-      ["mgr.miranda85@gmail.com,pocarr.offstake@gmail.com,palllkaignatev@yandex.ru,behaappy@ya.ru"],
+      ["pocarrelite@gmail.com,mgr.miranda85@gmail.com,pocarr.ru@gmail.com,behaappy@ya.ru,palllkaignatev@yandex.ru"],
       Object.values(errorTournaments).flat(),
       `<div>Invalid emails from players: ${errorAliases.join(", ")}</div>
       <div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
