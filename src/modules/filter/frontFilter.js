@@ -7,40 +7,6 @@
  */
 
 const getNetwork$3 = (network) => {
-  switch (network) {
-    case "PokerStars(FR-ES-PT)": {
-      network = "PokerStars(FR-ES-PT)";
-      break;
-    }
-    case "PokerStars": {
-      network = "PokerStars";
-      break;
-    }
-    case "PartyPoker": {
-      network = "PartyPoker";
-      break;
-    }
-    case "GGNetwork": {
-      network = "GGNetwork";
-      break;
-    }
-    case "888Poker": {
-      network = "888Poker";
-      break;
-    }
-    case "Winamax.fr": {
-      network = "Winamax.fr";
-      break;
-    }
-    case "iPoker": {
-      network = "iPoker";
-      break;
-    }
-    case "Chico": {
-      network = "Chico";
-      break;
-    }
-  }
   return network;
 };
 
@@ -293,13 +259,13 @@ const { getNetwork } = getNetwork_1;
   const {validateNumber} = validateNumber_1;
   
   const filter = (ruleLevel, tournament, isGetTournaments = false) => {
-    const name = tournament["@name"]?.toLowerCase(),
-      network = getNetwork(tournament["@network"]),
-      bid = Math.round(Number(tournament["@usdBid"])),
+    const name = tournament["@name"]?.toLowerCase();
+      getNetwork(tournament["@network"]);
+      const bid = Number(tournament["@usdBid"]),
       prizepool = Math.round(Number(tournament["@usdPrizepool"])),
-      weekDay = tournament["@getWeekday"],
+      weekDay = tournament["@getWeekday"];
 
-      FromTo = FromToQ(bid);
+      FromToQ(bid);
       FromToNameQ(name)(bid);
       BidGtQ(bid)(prizepool);
       BidGtNameQ(name)(bid)(prizepool);
@@ -312,18 +278,15 @@ const { getNetwork } = getNetwork_1;
       NotNameQ(name);
       FLAGSQ(tournament);
 
-    const isTurbo = isTurboS(tournament);
-    const isSuperTurbo = isSuperTurboS(tournament);
-    const isKo = isNormalS(tournament);
-    const isNormal = !isTurbo && !isSuperTurbo;
+    isTurboS(tournament);
+    isSuperTurboS(tournament);
+    isNormalS(tournament);
 
-    const level = validateNumber(ruleLevel);
-    const effmu = 'A';
+    validateNumber(ruleLevel);
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((FromTo(1,11111))
-    && network === 'PokerStars'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
+    
     
     return { valid: false, guarantee: 1, rules: false };
   };

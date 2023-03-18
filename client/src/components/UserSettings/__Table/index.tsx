@@ -5,9 +5,10 @@ import Select from "react-select";
 import { Networks } from "../../../@types/common";
 import { SelectOption } from "../../../@types/selectsModel";
 import { LEVELS_ARRAY } from "../../../constants";
-import { editableConfigEvents } from "../../../store/Config";
+import { $editableConfig, editableConfigEvents } from "../../../store/Config";
 
 import { specialSelectStyles } from "../../BaseSelect";
+import { useStore } from "effector-react";
 
 const selectStyles = {
   ...specialSelectStyles,
@@ -38,6 +39,8 @@ const levelsOptions: SelectOption<number>[] = LEVELS_ARRAY.map((level) => ({
 }));
 
 export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
+  const store = useStore($editableConfig);
+
   const renderContent = useMemo(
     () =>
       Object.keys(networks).map((network) => {
@@ -72,8 +75,9 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
           </div>
         );
       }),
-    [canChangeLevels, networks]
+    [canChangeLevels, networks, store]
   );
+
 
   return (
     <div className={b({ "select-in-cells": canChangeLevels })}>

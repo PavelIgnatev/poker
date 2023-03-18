@@ -1,19 +1,15 @@
 import { useStore } from "effector-react";
 
-import { BaseTable } from "../../components/BaseTable";
-import { BaseHeader } from "../../components/BaseHeader";
-import { $filtredTableState, fetchUserReposFx } from "../../store/Table";
 import { $config, getConfigRequest } from "../../store/Config";
 import {
   OnPasswordSubmit,
   PasswordSection,
 } from "../../components/PasswordSection";
 import { useIntervalWorker } from "../../hooks/useIntervalWorker";
+import { BaseSettings } from "../../components/BaseSettings";
+import { BaseTournaments } from "../../components/BaseTournaments";
 
 export const MainPage = () => {
-  const loading = useStore(fetchUserReposFx.pending);
-  const tournaments = useStore($filtredTableState);
-
   const config = useStore($config);
 
   const { setIntervalWorker } = useIntervalWorker();
@@ -36,8 +32,10 @@ export const MainPage = () => {
 
   return (
     <>
-      <BaseHeader />
-      <BaseTable data={tournaments} loading={loading} />
+      <div>
+        <BaseSettings />
+        <BaseTournaments />
+      </div>
     </>
   );
 };

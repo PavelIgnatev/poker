@@ -39,7 +39,7 @@ async function renderRules(rules) {
   const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
-      bid = Math.round(Number(tournament["@usdBid"])),
+      bid = Number(tournament["@usdBid"]),
       prizepool = Math.round(Number(tournament["@usdPrizepool"])),
       weekDay = tournament["@getWeekday"],
 

@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
   const wrongAlias = !config[alias];
   const wrongPassword = checkPassword(password, config[alias]?.password);
   if (wrongAlias || wrongPassword) {
-    return res.status(403).send({ message: "Wrong password or alias" });
+    return res.status(403).send({ message: "Alias or password entered incorrectly" });
   }
 
   config[alias] = newConfig;

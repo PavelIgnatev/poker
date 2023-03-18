@@ -98,8 +98,11 @@
       border-right: 2px solid $borderColor;
     }
 
+    &:first-child {
+      width: 275px;
+    }
+
     @media (max-width: 1600px) {
-      width: 140px;
       padding: 12px 0;
     }
   }
@@ -123,6 +126,7 @@
     font-size: 0.85em;
     line-height: 1.1em;
     color: #4a72ff;
+
     &-content {
       display: flex;
       gap: 20px;

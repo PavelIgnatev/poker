@@ -34,7 +34,6 @@ const useStyles = makeStyles(() =>
       justifyContent: "center",
       alignItems: "center",
       height: "100vh",
-      background: "linear-gradient(to bottom right, #00b4db, #0083b0)",
     },
     form: {
       display: "flex",
@@ -43,6 +42,7 @@ const useStyles = makeStyles(() =>
       padding: "20px",
       borderRadius: "10px",
       background: "white",
+      boxShadow: "0px 0px 8px 2px rgba(34, 60, 80, 0.2)",
     },
     input: {
       marginBottom: "20px",
@@ -50,7 +50,7 @@ const useStyles = makeStyles(() =>
     },
     button: {
       minHeight: "50px",
-      minWidth: "150px"
+      minWidth: "150px",
     },
   })
 );
@@ -81,7 +81,7 @@ export const PasswordSection: FC<Props> = ({ onSubmit, type }) => {
       <form onSubmit={handleSubmit} className={classes.form}>
         {isAlias && (
           <TextField
-            label="Login"
+            label="Alias"
             variant="outlined"
             className={classes.input}
             value={login}

@@ -70,15 +70,10 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const turbo = isTurbo(tournament);
     const superturbo = isSuperTurbo(tournament);
     const status = getStatus(tournament);
-    const od = tournament["@flags"]?.includes("OD");
-    const sng = tournament["@gameClass"]?.includes("sng");
-    const isNL = tournament["@structure"] === "NL";
-    const isH = tournament["@game"] === "H";
     const rebuy = isRebuy(tournament);
 
-    const isMandatoryСonditions = isNL && isH && !rebuy && !od && !sng;
     const info = ability1?.[network]?.[time]?.[bid]?.[name];
-    const ability = isMandatoryСonditions && info?.["@avability"];
+    const ability = info?.["@avability"];
 
     const duration = info?.["@duration"]
       ? Math.round(info?.["@duration"])
@@ -145,7 +140,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@timezone": timezone,
       "@status": status,
       "@level": level,
-      "@usdBid":  Number(bid),
+      "@usdBid": Number(bid),
       "@usdPrizepool": Number(pp),
     };
   });

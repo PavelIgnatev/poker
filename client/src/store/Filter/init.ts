@@ -28,5 +28,3 @@ export const fetchFilterContent = createEffect(async () => {
 });
 
 $filterContent.on(fetchFilterContent.doneData, (_, data) => data);
-
-fetchFilterContent();

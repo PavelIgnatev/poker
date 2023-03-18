@@ -1,0 +1,1 @@
+export { BaseTournaments } from "./BaseTournaments";

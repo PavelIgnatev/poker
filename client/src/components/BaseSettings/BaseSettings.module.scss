@@ -1,0 +1,25 @@
+.title {
+    min-width: 600px;
+}
+
+.inputWrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.inputBuyIn {
+    flex: 1;
+}
+
+.menu {
+    padding: 5px 0 ;
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.checkboxWrapper {
+    display: flex;
+    justify-content: space-between;
+}

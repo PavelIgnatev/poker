@@ -82,6 +82,20 @@ export const editableConfigEvents = createApi($editableConfig, {
       [network]: { ...config.networks[network], level },
     },
   }),
+  handleAllLevelsChange: (config, level: Level) => {
+    const { networks } = config;
+
+    return {
+      ...config,
+      networks: Object.keys(networks).reduce(
+        (acc, network) => ({
+          ...acc,
+          [network]: { level },
+        }),
+        {}
+      ),
+    };
+  },
   handleChangePassword: (config, password: string) => ({
     ...config,
     password,

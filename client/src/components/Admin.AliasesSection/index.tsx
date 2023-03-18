@@ -26,10 +26,6 @@ export const AliasesSection = () => {
     }
   }, [selectedLevel, isAllLevels]);
 
-  // крч добавляем юзеров асинхронно - и запрос шлем и сами добавляем, если ошибка - убираем его
-  // с удалением то же самое
-  // чтобы не было много загрузок - можно было по многу добавлять
-
   return (
     <section className={b()}>
       <h2 className={b("title")}>Aliases by level:</h2>

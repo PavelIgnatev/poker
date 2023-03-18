@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react";
+import b_ from "b_";
 import Select from "react-select";
 
 import { SelectOption } from "../../../@types/selectsModel";
@@ -9,8 +10,12 @@ import { editableTournamentsSettings, TIMEZONES } from "../../../store/Select";
 
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
+import { LEVELS_ARRAY } from "../../../constants";
 
-import b_ from "b_";
+const levelsOptions: SelectOption<number>[] = LEVELS_ARRAY.map((level) => ({
+  value: level,
+  label: level,
+}));
 
 interface Props {
   config: ConfigModel;
@@ -31,8 +36,6 @@ const b = b_.with("user-settings-info");
 
 export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   const { alias, password, timezone } = config;
-  const [showPassword, setShowPassword] = useState(false);
-  const toggleShowPassword = () => setShowPassword((p) => !p);
 
   const defaultTimezoneOption =
     TIMEZONES.find((option) => option.value === timezone) || TIMEZONES[0];
@@ -41,6 +44,9 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
     editableConfigEvents.handleChangePassword(password);
   const handleTimezoneChange = (option: SelectOption<typeof TIMEZONES[0]>) =>
     editableConfigEvents.handleTimezoneChange(option.value);
+  const handleLevelChange = (option: SelectOption<number>) => {
+    editableConfigEvents.handleAllLevelsChange(option.value as any);
+  };
 
   useEffect(() => {
     editableTournamentsSettings.handleChangeTimezone(defaultTimezoneOption);
@@ -53,33 +59,25 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           <span className={b("header-alias")}>
             <b>Alias:</b> {alias}
           </span>
-          {!isAdminPage && (
-            <span className={b("header-password")}>
-              <b>Password:</b>
-              <div
-                className={b("header-password-block")}
-                onClick={toggleShowPassword}
-              >
-                <span
-                  className={b("header-password-text", {
-                    hidden: !showPassword,
-                  })}
-                >
-                  {showPassword ? password : "****"}
-                </span>
-                <img
-                  className={b("header-password-img")}
-                  src={EyeIcon}
-                  alt=""
-                />
-              </div>
-            </span>
-          )}
         </div>
       </div>
       <div className={b("settings")}>
         <div className={b("settings-wrapper")}>
           <div className={b("timezones-wrapper")}>
+            <b className={b("label")}>Change all levels</b>
+            <Select
+              options={levelsOptions}
+              // @ts-ignore все работает
+              onChange={handleLevelChange}
+              className={b("input", { select: true })}
+              styles={specialSelectStyles}
+            />
+          </div>
+        </div>
+      </div>
+      <div className={b("settings")}>
+        <div className={b("settings-wrapper")}>
+          <div className={b("password-wrapper")}>
             <b className={b("label")}>Timezone</b>
             <Select
               options={TIMEZONES}

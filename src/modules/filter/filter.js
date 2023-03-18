@@ -21,7 +21,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
   const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
-      bid = Math.round(Number(tournament["@usdBid"])),
+      bid = Number(tournament["@usdBid"]),
       prizepool = Math.round(Number(tournament["@usdPrizepool"])),
       weekDay = tournament["@getWeekday"],
 
@@ -48,8 +48,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((FromTo(1,11111))
-    && network === 'PokerStars'&& level === '0'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
+    
     
     return { valid: false, guarantee: 1, rules: false };
   };

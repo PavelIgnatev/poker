@@ -26,13 +26,13 @@ const updateServer = async () => {
     const rules = await getRules();
     await renderRules(rules);
   } catch (erorr) {
-    console.log("Ошибка при рендере правил: ", error);
+    console.log("Ошибка при рендере правил: ", erorr);
   }
 
   // Отправка писем
   try {
-    console.log("Начинаю отправлять письма");
-    await collectionStatistics();
+    // console.log("Начинаю отправлять письма");
+    // await collectionStatistics();
   } catch (error) {
     console.log("Ошибка при отправке писем: ", error);
   }
