@@ -6,7 +6,7 @@
     "node": "14.21.1"
   },
   "scripts": {
-    "server": "concurrently -n server1,server2 \"(npm run start:server1)\" \"(npm run start:server2)\"",
+    "server": "NODE_ENV=production concurrently -n server1,server2 \"(npm run start:server1)\" \"(npm run start:server2)\"",
     "start:server1": "PORT=3000 node --max-old-space-size=4096 ./src/server.js",
     "start:server2": "PORT=81 node --max-old-space-size=4096 ./src/server.js",
     "download:store": "scp -r root@185.237.99.141:/root/poker/src/store  /Users/pikcelll/Documents/pocarr/poker/src/store",

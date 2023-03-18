@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "PORT=3001 serve -s build",
+    "start:dev": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "start:prod": "PORT=3001 BROWSER=none react-scripts start",
     "test": "react-scripts test",
