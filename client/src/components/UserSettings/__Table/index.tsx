@@ -5,10 +5,9 @@ import Select from "react-select";
 import { Networks } from "../../../@types/common";
 import { SelectOption } from "../../../@types/selectsModel";
 import { LEVELS_ARRAY } from "../../../constants";
-import { $editableConfig, editableConfigEvents } from "../../../store/Config";
+import { editableConfigEvents } from "../../../store/Config";
 
 import { specialSelectStyles } from "../../BaseSelect";
-import { useStore } from "effector-react";
 
 const selectStyles = {
   ...specialSelectStyles,
@@ -39,8 +38,6 @@ const levelsOptions: SelectOption<number>[] = LEVELS_ARRAY.map((level) => ({
 }));
 
 export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
-  const store = useStore($editableConfig);
-
   const renderContent = useMemo(
     () =>
       Object.keys(networks).map((network) => {
@@ -49,6 +46,7 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
         const defaultOption = levelsOptions.find(
           (option) => option.value === level
         );
+
         const handleLevelChange = (option: SelectOption<number>) =>
           editableConfigEvents.handleChangeLevel({
             network,
@@ -62,6 +60,7 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
               {canChangeLevels ? (
                 <Select
                   defaultValue={defaultOption}
+                  value={defaultOption}
                   options={levelsOptions}
                   // @ts-ignore все работает
                   onChange={handleLevelChange}
@@ -75,9 +74,8 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
           </div>
         );
       }),
-    [canChangeLevels, networks, store]
+    [canChangeLevels, networks]
   );
-
 
   return (
     <div className={b({ "select-in-cells": canChangeLevels })}>
