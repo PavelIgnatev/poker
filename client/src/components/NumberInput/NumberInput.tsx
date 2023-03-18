@@ -32,6 +32,7 @@ export const NumberInput = ({
       value={value}
       onChange={handleChange}
       inputProps={{ min: 0, max }}
+      autoComplete="off"
     />
   );
 };

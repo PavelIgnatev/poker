@@ -13,8 +13,6 @@ import "./index.scss";
 export const b = b_.with("aliases-section");
 
 export const AliasesSection = () => {
-  const [search] = React.useState<string>("");
-
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
   const isAllLevels = selectedLevel === ALL_LEVELS;
 
@@ -36,19 +34,8 @@ export const AliasesSection = () => {
       />
       {selectedLevel !== null && (
         <div className={b("content-wrapper")}>
-          <div className={b("subtitle-wrapper")}>
-            {!isAllLevels ? (
-              <h2 className={b("subtitle")}>
-                Aliases for <strong>{selectedLevel} level</strong>
-              </h2>
-            ) : (
-              <h2 className={b("subtitle")}>
-                Aliases for <strong>all level</strong>
-              </h2>
-            )}
-          </div>
           {!isAllLevels && <AliasesSectionForm selectedLevel={selectedLevel} />}
-          <AliasesSectionList selectedLevel={selectedLevel} search={search} />
+          <AliasesSectionList selectedLevel={selectedLevel} />
         </div>
       )}
     </section>

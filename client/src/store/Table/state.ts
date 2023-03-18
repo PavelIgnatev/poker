@@ -43,6 +43,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     prizepoolStart,
     prizepoolEnd,
   } = $tournamentsSettings.getState();
+
   const { networks, timezone } = config ?? {};
 
   // сортировка по времени старта турнира
@@ -151,6 +152,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const turbo = tournament["@turbo"];
     const superturbo = tournament["@superturbo"];
     const prizepool = tournament["@usdPrizepool"];
+
+    console.log(bounty)
 
     return (
       Number(tournament["@usdBid"]) >= Number(moneyStart) &&

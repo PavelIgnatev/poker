@@ -60,7 +60,7 @@ export const editableTournamentsSettings = createApi($tournamentsSettings, {
     ...setting,
     normal,
   }),
-  handleChangeTimezone: (setting, timezone: typeof TIMEZONES[0]) => ({
+  handleChangeTimezone: (setting, timezone: typeof TIMEZONES[12]) => ({
     ...setting,
     timezone,
   }),

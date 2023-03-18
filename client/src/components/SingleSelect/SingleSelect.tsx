@@ -24,7 +24,7 @@ interface Option {
 interface Props extends Omit<SelectProps, "multiple"> {
   label: string;
   options: Option[];
-  defaultValue: Option;
+  defaultValue: Option | null;
   onSingleChange: (v: Option | null) => void;
 }
 

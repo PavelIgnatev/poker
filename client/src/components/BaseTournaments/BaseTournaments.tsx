@@ -157,7 +157,7 @@ export const BaseTournaments = () => {
           </div>
         )}
         {!rows.length && !loading && (
-          <div className={classes.loaderContainer}>The data is empty</div>
+          <div className={classes.loaderContainer}>The list is empty</div>
         )}
         <TablePagination
           rowsPerPageOptions={[20, 50, 100]}

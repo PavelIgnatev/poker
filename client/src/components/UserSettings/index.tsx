@@ -17,6 +17,7 @@ import { UserSettingsTable } from "./__Table";
 import { UserSettingsInfo } from "./__Info";
 
 import "./index.scss";
+import { getAliasesRequest } from "../../store/Alias";
 
 interface Props {
   config: ConfigModel;

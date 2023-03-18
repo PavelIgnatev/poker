@@ -84,6 +84,7 @@ export const PasswordSection: FC<Props> = ({ onSubmit, type }) => {
             label="Alias"
             variant="outlined"
             className={classes.input}
+            autoComplete="off"
             value={login}
             onChange={(e) => handleChangeLogin(e.currentTarget.value)}
           />
@@ -92,6 +93,7 @@ export const PasswordSection: FC<Props> = ({ onSubmit, type }) => {
           label="Password"
           type="password"
           variant="outlined"
+          autoComplete="off"
           className={classes.input}
           value={password}
           onChange={(e) => handleChangePassword(e.currentTarget.value)}

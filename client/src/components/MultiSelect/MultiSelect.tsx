@@ -41,6 +41,7 @@ export const MultiSelect: React.FC<Props> = ({
             variant="outlined"
             label={label}
             placeholder=""
+            autoComplete="off"
           />
         )}
         {...props}

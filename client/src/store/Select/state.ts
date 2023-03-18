@@ -2,30 +2,31 @@ import { tournamentsSettingsProps } from "./types";
 import { createStore } from "effector";
 
 export const TIMEZONES = [
+  { value: "-43200000", label: "UTC-12 (IDLW)" },
+  { value: "-39600000", label: "UTC-11 (NT)" },
+  { value: "-36000000", label: "UTC-10 (HST)" },
+  { value: "-32400000", label: "UTC-9 (AKT)" },
+  { value: "-28800000", label: "UTC-8 (PT)" },
+  { value: "-25200000", label: "UTC-7 (MT)" },
+  { value: "-21600000", label: "UTC-6 (CT)" },
+  { value: "-18000000", label: "UTC-5 (ET)" },
+  { value: "-14400000", label: "UTC-4 (AT)" },
+  { value: "-10800000", label: "UTC-3 (BRT)" },
+  { value: "-7200000", label: "UTC-2 (AT)" },
+  { value: "-3600000", label: "UTC-1 (AZOT)" },
   { value: "0", label: "UTC" },
-  { value: "-36000000", label: "UTC-10 (HST)" }, // UTC-10
-  { value: "-32400000", label: "UTC-9 (AKT)" }, // UTC-9
-  { value: "-28800000", label: "UTC- 8 (PT)" }, // UTC- 8
-  { value: "-25200000", label: "UTC- 7 (MT)" }, // UTC- 7
-  { value: "-21600000", label: "UTC- 6 (CT)" }, // UTC- 6
-  { value: "-18000000", label: "UTC- 5 (ET)" }, // UTC- 5
-  { value: "-14400000", label: "UTC- 4 (AT)" }, // UTC- 4
-  { value: "-12600000", label: "UTC- 3:30 (NT)" }, // UTC- 3:30
-  { value: "-10800000", label: "UTC- 3 (BRT)" }, // UTC- 3
-  { value: "-7200000", label: "UTC- 2" }, // UTC- 2
-  { value: "-3600000", label: "UTC-1" }, // UTC -1
-  { value: "3600000", label: "UTC +1 (CET )" }, // UTC +1
-  { value: "7200000", label: "UTC+2 (EET)" }, // UTC+2
-  { value: "10800000", label: "UTC+3 (MSK)" }, // UTC+3
-  { value: "14400000", label: "UTC+4" }, // UTC+ 4
-  { value: "18000000", label: "UTC+5" }, // UTC+ 5
-  { value: "19800000", label: "UTC+5:30" }, // UTC +5:30
-  { value: "21600000", label: "UTC+ 6 (ALMT)" }, // UTC+ 6
-  { value: "25200000", label: "UTC+7 (IST)" }, // UTC+ 7
-  { value: "28800000", label: "UTC+8 (AWST)" }, // UTC +8
-  { value: "32400000", label: "UTC +9 (JST)" }, // UTC +9
-  { value: "34200000", label: "UTC +9:30 (ACST)" }, // UTC +9:30
-  { value: "36000000", label: "UTC +10 (AEST)" }, // UTC +10
+  { value: "3600000", label: "UTC+1 (CET )" },
+  { value: "7200000", label: "UTC+2 (EET)" },
+  { value: "10800000", label: "UTC+3 (MSK)" },
+  { value: "14400000", label: "UTC+4 (AZT)" },
+  { value: "18000000", label: "UTC+5 (PKT)" },
+  { value: "21600000", label: "UTC+6 (ALMT)" },
+  { value: "25200000", label: "UTC+7 (ICT)" },
+  { value: "28800000", label: "UTC+8 (AWST)" },
+  { value: "32400000", label: "UTC+9 (JST)" },
+  { value: "36000000", label: "UTC+10 (AEST)" },
+  { value: "39600000", label: "UTC+11 (AET)" },
+  { value: "43200000", label: "UTC+12 (NZST)" },
 ];
 
 export const TIMERANGE = [
@@ -38,9 +39,7 @@ export const TIMERANGE = [
   { value: "604800", label: "<1 week" },
 ];
 
-export const EFFMU = [
-  { value: "A", label: "A" },
-];
+export const EFFMU = [{ value: "A", label: "A" }];
 
 export const NETWORKS = [
   { value: "PokerStars", label: "PokerStars" },
@@ -69,7 +68,7 @@ export const SHORT_NETWORKS = [
 export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {
   network: null,
   time: TIMERANGE[2],
-  timezone: TIMEZONES[0],
+  timezone: TIMEZONES[12],
   timezoneTable: null,
   prizepoolStart: 0,
   prizepoolEnd: 10000000,

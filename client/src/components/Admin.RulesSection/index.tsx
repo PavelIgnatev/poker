@@ -16,10 +16,10 @@ import { RulesSectionRules } from "./__Rules";
 
 import "./index.scss";
 
-type KOType = "KO" | "Freezout" | "all";
+type KOType = "Knockout" | "Freeze-out" | "all";
 type StatusType = "Normal" | "Turbo" | "SuperTurbo" | "all";
 type ColorsType = "blue" | "green" | "orange";
-const KO: KOType[] = ["KO", "Freezout", "all"];
+const KO: KOType[] = ["Knockout", "Freeze-out", "all"];
 const Status: StatusType[] = ["Normal", "Turbo", "SuperTurbo", "all"];
 const Colors: ColorsType[] = ["blue", "green", "orange"];
 
@@ -32,6 +32,7 @@ export const RulesSection = () => {
   );
   const { selectedElement: selectedKO, handleElementChange: handleKOChange } =
     useElementsToggle<KOType>(KO[0]);
+    console.log(selectedKO)
   const {
     selectedElement: selectedStatus,
     handleElementChange: handleStatusChange,

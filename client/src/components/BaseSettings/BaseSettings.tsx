@@ -91,7 +91,7 @@ export const BaseSettings = () => {
             </div>
             <div className={classes.inputWrapper}>
               <NumberInput
-                label="warranty FROM"
+                label="guarantee FROM"
                 value={tournamentsSettings.prizepoolStart}
                 onChange={
                   editableTournamentsSettings.handleChangePrizepoolStart
@@ -100,7 +100,7 @@ export const BaseSettings = () => {
                 className={classes.inputBuyIn}
               />
               <NumberInput
-                label="warranty TO"
+                label="guarantee TO"
                 value={tournamentsSettings.prizepoolEnd}
                 onChange={editableTournamentsSettings.handleChangePrizepoolEnd}
                 max={100000000}
@@ -111,7 +111,7 @@ export const BaseSettings = () => {
               <Grid container>
                 <Grid item xs={12}>
                   <Checkbox
-                    label="KO"
+                    label="Knockout"
                     selected={tournamentsSettings.KO}
                     onChange={() =>
                       editableTournamentsSettings.handleChangeKo(
@@ -120,7 +120,7 @@ export const BaseSettings = () => {
                     }
                   />
                   <Checkbox
-                    label="Freezout"
+                    label="Freeze-out"
                     selected={tournamentsSettings.freezout}
                     onChange={() =>
                       editableTournamentsSettings.handleChangeFreezout(

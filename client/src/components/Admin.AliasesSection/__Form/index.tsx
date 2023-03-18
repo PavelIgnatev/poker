@@ -1,40 +1,55 @@
 import { useStore } from "effector-react";
-import { FC, useState } from "react";
-import Select from "react-select";
+import { FC, FormEvent, useState } from "react";
+import { TextField, Button } from "@mui/material";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 import { getAliasesRequest } from "../../../store/Alias";
 import { postConfigRequest } from "../../../store/Config";
 import { $password } from "../../../store/Password";
 import { TIMEZONES } from "../../../store/Select";
-import { specialSelectStyles } from "../../BaseSelect";
-import { BaseInputString } from "../../BaseInputString";
-import { BaseButton } from "../../BaseButton";
 
-import { b } from "../index";
+import { SingleSelect } from "../../SingleSelect";
 
 interface AliasesSectionFormProps {
   selectedLevel: number | null;
 }
 
-const nativeSelectStyles = {
-  ...specialSelectStyles,
-  control: (provided: object, state: any) => ({
-    ...specialSelectStyles.control(provided, state),
-    fontWeight: 700,
-    fontSize: "20px",
-    width: "150px",
-  }),
-};
+const useStyles = makeStyles(() =>
+  createStyles({
+    form: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      background: "white",
+      gap: '10px',
+      maxWidth: "300px",
+    },
+    input: {
+      marginBottom: "20px",
+    },
+    select: {
+      width: "300px",
+    },
+    button: {
+      minHeight: "50px",
+      width: "300px",
+    },
+  })
+);
 
 export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
   selectedLevel,
 }) => {
+  const classes = useStyles();
+
   const [alias, setAlias] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [timezone, setTZone] = useState<string>("0");
   const adminPassword = useStore($password);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     await postConfigRequest({
       config: {
         alias,
@@ -49,37 +64,46 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
 
     setAlias("");
     setPassword("");
-    setTZone(TIMEZONES[0].value);
+    setTZone(TIMEZONES[12].value);
   };
 
   return (
-    <div className={b("alias-form")}>
-      <BaseInputString
-        onChange={setAlias}
+    <form onSubmit={handleSubmit} className={classes.form}>
+      <TextField
+        label="Alias"
+        name="login"
         value={alias}
-        placeholder="Alias"
-        className={b("alias-form-input")}
+        className={classes.input}
+        onChange={(e) => setAlias(e.currentTarget.value)}
+        autoComplete="off"
+        required
+        fullWidth
       />
-      <BaseInputString
-        onChange={setPassword}
+      <TextField
+        label="Password"
+        name="password"
         value={password}
-        placeholder="Password"
-        className={b("alias-form-input")}
+        className={classes.input}
+        onChange={(e) => setPassword(e.currentTarget.value)}
+        autoComplete="off"
+        required
+        fullWidth
       />
-      <Select
+      <SingleSelect
+        className={classes.select}
+        label="Timezones"
         options={TIMEZONES}
-        placeholder="Timezones"
-        defaultValue={TIMEZONES[0]}
-        onChange={(option) => setTZone(option?.value ?? "0")}
-        styles={nativeSelectStyles}
+        defaultValue={TIMEZONES[12]}
+        onSingleChange={(option) => setTZone(option?.value ?? "0")}
       />
-      <BaseButton
-        className={b("alias-form-button")}
-        onClick={handleSubmit}
-        green
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        className={classes.button}
       >
-        Add
-      </BaseButton>
-    </div>
+        Добавить пользователя
+      </Button>
+    </form>
   );
 };

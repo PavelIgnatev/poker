@@ -9,7 +9,7 @@ export const DEFAULT_EDITABLE_CONFIG: ConfigModel = {
   alias: "",
   networks: {},
   password: "",
-  timezone: TIMEZONES[0].value,
+  timezone: TIMEZONES[12].value,
 };
 export const $editableConfig = createStore<ConfigModel>(
   DEFAULT_EDITABLE_CONFIG
