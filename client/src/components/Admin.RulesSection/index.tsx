@@ -1,6 +1,6 @@
 import b_ from "b_";
 import { useEffect, useState } from "react";
-import Select from "react-select";
+import { Typography } from "@mui/material";
 
 import { Effmu } from "../../@types/common";
 import { SelectOption } from "../../@types/selectsModel";
@@ -8,10 +8,9 @@ import { EFFMU } from "../../constants";
 import { getRulesRequest } from "../../store/Rules";
 import { SHORT_NETWORKS } from "../../store/Select";
 
-import { specialSelectStyles } from "../BaseSelect";
-import { ColorPalette } from "../ColorPalette";
-import { ElementsToggle, useElementsToggle } from "../ElementsToggle";
-import { ALL_LEVELS, LevelBlocks, useLevelBlocks } from "../LevelBlocks";
+import { SingleSelect } from "../SingleSelect";
+import { useElementsToggle } from "../ElementsToggle";
+import { LevelBlocks, useLevelBlocks } from "../LevelBlocks";
 import { RulesSectionRules } from "./__Rules";
 
 import "./index.scss";
@@ -22,6 +21,11 @@ type ColorsType = "blue" | "green" | "orange";
 const KO: KOType[] = ["Knockout", "Freeze-out", "all"];
 const Status: StatusType[] = ["Normal", "Turbo", "SuperTurbo", "all"];
 const Colors: ColorsType[] = ["blue", "green", "orange"];
+const ColorsValues = [
+  { value: "blue", label: "Default" },
+  { value: "orange", label: "Invert" },
+  { value: "green", label: "Exception" },
+];
 
 export const b = b_.with("rules-section");
 
@@ -32,7 +36,7 @@ export const RulesSection = () => {
   );
   const { selectedElement: selectedKO, handleElementChange: handleKOChange } =
     useElementsToggle<KOType>(KO[0]);
-    console.log(selectedKO)
+
   const {
     selectedElement: selectedStatus,
     handleElementChange: handleStatusChange,
@@ -46,7 +50,6 @@ export const RulesSection = () => {
   );
   const handleNetworkChange = (option: SelectOption<string>) =>
     setSelectedNetwork(option.value ?? SHORT_NETWORKS[0].value);
-  const isAllLevels = selectedLevel === ALL_LEVELS;
 
   useEffect(() => {
     if (selectedLevel !== null) {
@@ -69,52 +72,51 @@ export const RulesSection = () => {
 
   return (
     <section className={b()}>
-      <span className={b("title")}>Rules for levels:</span>
+      <Typography variant="h5" gutterBottom>
+        Rules control
+      </Typography>
       <LevelBlocks
         selectedLevel={selectedLevel}
         onLevelChange={handleLevelChange}
-        withAllLevels
       />
       {selectedLevel !== null && (
         <>
-          {!isAllLevels ? (
-            <h2 className={b("subtitle")}>
-              Rules for <strong>{selectedLevel} level</strong>
-            </h2>
-          ) : (
-            <h2 className={b("subtitle")}>
-              Rules for <strong>all level</strong>
-            </h2>
-          )}
           <div className={b("filter")}>
-            <Select
-              styles={specialSelectStyles}
-              placeholder="Network"
+            <SingleSelect
+              label="Network"
+              className={b("select")}
               options={SHORT_NETWORKS}
-              // @ts-ignore
-              onChange={handleNetworkChange}
-              className={b("filter-network")}
+              required
+              autoComplete="off"
               defaultValue={SHORT_NETWORKS[0]}
+              onSingleChange={handleNetworkChange as any}
             />
-            <ColorPalette
-              selectedElement={selectedColor}
-              onElementChange={handleColorChange}
-              elements={Colors}
+            <SingleSelect
+              label="Type"
+              className={b("select")}
+              options={KO.map((k) => ({ value: k, label: k }))}
+              required
+              autoComplete="off"
+              defaultValue={{ value: selectedKO, label: selectedKO }}
+              onSingleChange={(e) => handleKOChange(e?.value as any)()}
             />
-          </div>
-          <div className={b("filter")}>
-            <ElementsToggle
-              mix={b("elems-toggle", { KO: true })}
-              selectedElement={selectedKO}
-              onElementChange={handleKOChange}
-              elements={KO}
+            <SingleSelect
+              label="Status"
+              className={b("select")}
+              options={Status.map((k) => ({ value: k, label: k }))}
+              required
+              autoComplete="off"
+              defaultValue={{ value: selectedStatus, label: selectedStatus }}
+              onSingleChange={(e) => handleStatusChange(e?.value as any)()}
             />
-            <div className={b("elems-toggle-divider")} />
-            <ElementsToggle
-              mix={b("elems-toggle", { status: true })}
-              selectedElement={selectedStatus}
-              onElementChange={handleStatusChange}
-              elements={Status}
+            <SingleSelect
+              label="Rule"
+              className={b("select")}
+              options={ColorsValues}
+              required
+              autoComplete="off"
+              defaultValue={{ value: selectedColor, label: selectedColor }}
+              onSingleChange={(e) => handleColorChange(e?.value as any)()}
             />
           </div>
           <RulesSectionRules

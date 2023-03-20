@@ -32,14 +32,11 @@ export const isSat = (tournament: tableCellModel) => {
         (name.includes(" sat") && !name.includes(" satu")) ||
         name.includes("sat  ") ||
         name.includes("satellite") ||
-        name.includes("ticket") ||
         name.includes("seat") ||
         name.includes(" qualifier") ||
         name.includes("qualifier ");
     } else if (network === "iPoker") {
       sat =
-        name.includes("ticket") ||
-        name.includes("ticket") ||
         name.includes(" seats") ||
         name.includes("seats ") ||
         (name.includes(" sat") && !name.includes(" satu")) ||

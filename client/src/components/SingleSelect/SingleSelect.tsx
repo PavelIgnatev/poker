@@ -23,6 +23,7 @@ interface Option {
 
 interface Props extends Omit<SelectProps, "multiple"> {
   label: string;
+  value?: any;
   options: Option[];
   defaultValue: Option | null;
   onSingleChange: (v: Option | null) => void;
@@ -30,6 +31,7 @@ interface Props extends Omit<SelectProps, "multiple"> {
 
 export const SingleSelect: React.FC<Props> = ({
   label,
+  value,
   options,
   onSingleChange,
   defaultValue,
@@ -50,10 +52,10 @@ export const SingleSelect: React.FC<Props> = ({
 
   return (
     <ThemeProvider theme={theme}>
-      <FormControl variant="outlined" className={classes.formControl}>
+      <FormControl variant="outlined" className={classes.formControl} required>
         <InputLabel>{label}</InputLabel>
         <Select
-          value={selectedOption?.value || ""}
+          value={value >= 0 ? value : selectedOption?.value}
           onChange={handleChange}
           label={label}
           {...props}

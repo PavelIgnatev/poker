@@ -1,16 +1,14 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import b_ from "b_";
-import Select from "react-select";
+import { TextField, Typography } from "@mui/material";
 
 import { SelectOption } from "../../../@types/selectsModel";
 import { ConfigModel } from "../../../@types/configModel";
-import EyeIcon from "../../../assets/icons/eye.svg";
 import { editableConfigEvents } from "../../../store/Config";
 import { editableTournamentsSettings, TIMEZONES } from "../../../store/Select";
 
-import { specialSelectStyles } from "../../BaseSelect";
-import { BaseInputString } from "../../BaseInputString";
 import { LEVELS_ARRAY } from "../../../constants";
+import { SingleSelect } from "../../SingleSelect";
 
 const levelsOptions: SelectOption<number>[] = LEVELS_ARRAY.map((level) => ({
   value: level,
@@ -21,16 +19,6 @@ interface Props {
   config: ConfigModel;
   isAdminPage?: boolean;
 }
-
-const nativeSelectStyles = {
-  ...specialSelectStyles,
-  control: (provided: object, state: any) => ({
-    ...specialSelectStyles.control(provided, state),
-    fontWeight: 700,
-    fontSize: "20px",
-    width: "150px",
-  }),
-};
 
 const b = b_.with("user-settings-info");
 
@@ -56,21 +44,18 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
     <div className={b()}>
       <div className={b("header")}>
         <div className={b("header-conent")}>
-          <span className={b("header-alias")}>
-            <b>Alias:</b> {alias}
-          </span>
+          <Typography variant="h5">Alias: {alias}</Typography>
         </div>
       </div>
       <div className={b("settings")}>
         <div className={b("settings-wrapper")}>
           <div className={b("timezones-wrapper")}>
-            <b className={b("label")}>Change all levels</b>
-            <Select
-              options={levelsOptions}
-              // @ts-ignore все работает
-              onChange={handleLevelChange}
-              className={b("input", { select: true })}
-              styles={specialSelectStyles}
+            <SingleSelect
+              label="Change all levels"
+              options={levelsOptions as any}
+              defaultValue={null}
+              className={b("select")}
+              onSingleChange={handleLevelChange as any}
             />
           </div>
         </div>
@@ -78,26 +63,28 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
       <div className={b("settings")}>
         <div className={b("settings-wrapper")}>
           <div className={b("password-wrapper")}>
-            <b className={b("label")}>Timezone</b>
-            <Select
+            <SingleSelect
+              label="Timezone"
+              className={b("select")}
               options={TIMEZONES}
+              required
+              autoComplete="off"
               defaultValue={defaultTimezoneOption}
-              // @ts-ignore
-              onChange={handleTimezoneChange}
-              className={b("input", { timezone: true })}
-              styles={nativeSelectStyles}
+              onSingleChange={handleTimezoneChange as any}
             />
           </div>
         </div>
       </div>
       {isAdminPage && (
         <div className={b("password-wrapper")}>
-          <b className={b("label")}>Password</b>
-          <BaseInputString
+          <TextField
+            label="Password"
+            name="password"
             value={password}
-            onChange={handlePasswordChange}
-            className={b("input", { text: true })}
-            disabled={!isAdminPage}
+            onChange={(e) => handlePasswordChange(e.currentTarget.value)}
+            autoComplete="off"
+            required
+            fullWidth
           />
         </div>
       )}

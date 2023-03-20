@@ -5,6 +5,7 @@ const { readFile, writeFile } = require("../../utils/promisify");
 const { sendStatistics } = require("../send/sendStatistics");
 
 let filter = require("../filter/filter");
+const { deleteFolder } = require("../delete/deleteFolder");
 
 const collectionStatistics = async () => {
   const errorTournaments = {};
@@ -89,7 +90,6 @@ const collectionStatistics = async () => {
 
                 const { level: networksLevel, effmu } = networks[network];
                 const level = networksLevel + effmu;
-                const currency = t["@currency"];
                 const bid = t["@bid"];
                 const isStartDate = Number(t["@date"] ?? t["@scheduledStartDate"] ?? 0);
 
@@ -137,7 +137,7 @@ const collectionStatistics = async () => {
     try {
       await sendStatistics(errorTournaments);
       console.log("Начинаю удалять папку дня ", date);
-      // await deleteFolder(`src/store/copies/${date}`);
+      await deleteFolder(`src/store/copies/${date}`);
     } catch (error) {
       console.log(error);
     }

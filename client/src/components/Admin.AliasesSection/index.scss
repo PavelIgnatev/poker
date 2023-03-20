@@ -2,10 +2,18 @@
 
 .aliases-section {
   margin-top: 64px;
-  margin-bottom: 60vh;
+  margin-bottom: 20vh;
 
   font-size: 20px;
-  color: $baseColor;
+
+  &__content-wrapper {
+    display: flex;
+    gap: 40px;
+  }
+
+  &__dialog {
+    max-width: initial !important;
+  }
 
   &__title {
     margin: 0;
@@ -54,17 +62,17 @@
         border-radius: 12px;
         box-shadow: 0 0 0 1px #dde7ff;
 
-        & * div {
-          color: rgba(29%, 45%, 100%, 0.5);
-        }
+        // & * div {
+        //   color: rgba(29%, 45%, 100%, 0.5);
+        // }
 
-        & * div:not([id]) {
-          color: black !important;
-        }
+        // & * div:not([id]) {
+        //   color: black !important;
+        // }
 
-        svg {
-          color: rgba(29%, 45%, 100%, 0.5) !important;
-        }
+        // svg {
+        //   color: rgba(29%, 45%, 100%, 0.5) !important;
+        // }
       }
     }
 

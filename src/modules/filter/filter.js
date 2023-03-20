@@ -4,7 +4,6 @@ const { getNetwork } = require("../../helpers/getNetwork");
     FromToName: FromToNameQ,
     BidGt: BidGtQ,
     BidGtName: BidGtNameQ,
-    Ticket: TicketQ,
     BidName: BidNameQ,
     Name: NameQ,
     FromToGt: FromToGtQ,
@@ -30,7 +29,6 @@ const { getNetwork } = require("../../helpers/getNetwork");
       BidGt = BidGtQ(bid)(prizepool),
       BidGtName = BidGtNameQ(name)(bid)(prizepool),
       FromToGt = FromToGtQ(bid)(prizepool),
-      Ticket = TicketQ(name)(bid)(tournament["@tickets"] ?? 0),
       Entrants = EntrantsQ(tournament?.["@totalEntrants"] ?? 0),
       BidName = BidNameQ(name)(bid),
       StartDay = StartDayQ(weekDay),
@@ -48,7 +46,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    
+    if((FromTo(1,1111111))&& effmu === 'A') return { valid: false, guarantee: 1, rules: false };
     
     return { valid: false, guarantee: 1, rules: false };
   };

@@ -1,11 +1,10 @@
-const { updateServer } = require("../../../modules/update/updateServer");
-const { saveSample } = require("../../../utils/sample");
+const { saveEmail } = require("../../../utils/email");
 
 module.exports = async (req, res) => {
-  const { sample } = req.body;
+  const { email } = req.body;
 
   try {
-    await saveSample({ count: Number(sample) });
+    await saveEmail({ email });
   } catch (error) {
     console.log("При обновлении сервера произошла ошибка", error);
   }

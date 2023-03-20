@@ -15,7 +15,6 @@ function curry(func) {
   // BidGt = BidGtQ(bid)(prizepool);
   // BidGtName = BidGtNameQ(name)(bid)(prizepool);
   // FromToGt = FromToGtQ(bid)(prizepool);
-  // Ticket = TicketQ(name)(bid)(tournament["@tickets"] ?? 0);
   // Entrants = EntrantsQ(tournament?.["@totalEntrants"] ?? 0);
   // BidName = BidNameQ(name)(bid);
   // StartDay = StartDayQ(weekDay);
@@ -47,12 +46,6 @@ function curry(func) {
   const BidGtName = curry(
     (name, realBid, realPrizepool, bid, prizepool, str) =>
       BidGt(realBid, realPrizepool, bid, prizepool) && Name(name, str),
-  );
-  
-  //тик равно, тикеты больше либо равно + name.includes
-  const Ticket = curry(
-    (name, realBid, realTickets, bid, tickets, str) =>
-      BidGt(realBid, realTickets, bid, tickets) && Name(name, str),
   );
   
   //Ставка равно + name.includes
@@ -89,7 +82,6 @@ function curry(func) {
     FromToName,
     BidGt,
     BidGtName,
-    Ticket,
     BidName,
     Name,
     FromToGt,

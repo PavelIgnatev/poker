@@ -5,14 +5,10 @@ import classes from "./NotificationService.module.scss";
 
 //Уведомление о успехе
 export function SucNot(content: string) {
-  toast.success(<div className={classes.NotificationContent}>{content}</div>, {
-    className: classes.NotificationSuccess,
-  });
+  toast.success(<div className={classes.NotificationContent}>{content}</div>);
 }
 
 //Уведомление о ошибке
 export function ErrNot(content: string) {
-  toast.error(<div className={classes.NotificationContent}>{content}</div>, {
-    className: classes.NotificationError,
-  });
+  toast.error(<div className={classes.NotificationContent}>{content}</div>);
 }

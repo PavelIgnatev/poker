@@ -2,7 +2,6 @@ export type rulesType =
   | "FromTo"
   | "FromToName"
   | "BidGt"
-  | "Ticket"
   | "BidGtName"
   | "FromToGt"
   | "BidName"

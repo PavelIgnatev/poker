@@ -1,4 +1,3 @@
-import { getAliasesRequest } from './../Alias/init';
 import { createDomain, createApi } from "effector";
 
 import { ConfigModel, defaultConfigModel } from "../../@types/configModel";

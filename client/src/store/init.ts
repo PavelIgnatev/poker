@@ -4,7 +4,7 @@ import "./Settings";
 import "./Config";
 import "./Password";
 import "./Alias";
-import "./Sample";
+import "./Email";
 import "./Rules";
 import "./Store";
 import "./Update";

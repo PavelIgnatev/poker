@@ -29,7 +29,6 @@ function curry(func) {
 // BidGt = BidGtQ(bid)(prizepool);
 // BidGtName = BidGtNameQ(name)(bid)(prizepool);
 // FromToGt = FromToGtQ(bid)(prizepool);
-// Ticket = TicketQ(name)(bid)(tournament["@tickets"] ?? 0);
 // Entrants = EntrantsQ(tournament?.["@totalEntrants"] ?? 0);
 // BidName = BidNameQ(name)(bid);
 // StartDay = StartDayQ(weekDay);
@@ -60,12 +59,6 @@ const BidGt = curry(
 const BidGtName = curry(
   (name, realBid, realPrizepool, bid, prizepool, str) =>
     BidGt(realBid, realPrizepool, bid, prizepool) && Name(name, str),
-);
-
-//тик равно, тикеты больше либо равно + name.includes
-const Ticket = curry(
-  (name, realBid, realTickets, bid, tickets, str) =>
-    BidGt(realBid, realTickets, bid, tickets) && Name(name, str),
 );
 
 //Ставка равно + name.includes
@@ -102,7 +95,6 @@ var curry_1 = {
   FromToName,
   BidGt,
   BidGtName,
-  Ticket,
   BidName,
   Name,
   FromToGt,
@@ -166,14 +158,11 @@ const isSat$1 = (tournament) => {
         (name.includes(" sat") && !name.includes(" satu")) ||
         name.includes("sat  ") ||
         name.includes("satellite") ||
-        name.includes("ticket") ||
         name.includes("seat") ||
         name.includes(" qualifier") ||
         name.includes("qualifier ");
     } else if (network === "iPoker") {
       sat =
-        name.includes("ticket") ||
-        name.includes("ticket") ||
         name.includes(" seats") ||
         name.includes("seats ") ||
         (name.includes(" sat") && !name.includes(" satu")) ||
@@ -244,7 +233,6 @@ const { getNetwork } = getNetwork_1;
     FromToName: FromToNameQ,
     BidGt: BidGtQ,
     BidGtName: BidGtNameQ,
-    Ticket: TicketQ,
     BidName: BidNameQ,
     Name: NameQ,
     FromToGt: FromToGtQ,
@@ -263,14 +251,13 @@ const { getNetwork } = getNetwork_1;
       getNetwork(tournament["@network"]);
       const bid = Number(tournament["@usdBid"]),
       prizepool = Math.round(Number(tournament["@usdPrizepool"])),
-      weekDay = tournament["@getWeekday"];
+      weekDay = tournament["@getWeekday"],
 
-      FromToQ(bid);
+      FromTo = FromToQ(bid);
       FromToNameQ(name)(bid);
       BidGtQ(bid)(prizepool);
       BidGtNameQ(name)(bid)(prizepool);
       FromToGtQ(bid)(prizepool);
-      TicketQ(name)(bid)(tournament["@tickets"] ?? 0);
       EntrantsQ(tournament?.["@totalEntrants"] ?? 0);
       BidNameQ(name)(bid);
       StartDayQ(weekDay);
@@ -283,10 +270,11 @@ const { getNetwork } = getNetwork_1;
     isNormalS(tournament);
 
     validateNumber(ruleLevel);
+    const effmu = 'A';
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    
+    if((FromTo(1,1111111))&& effmu === 'A') return { valid: false, guarantee: 1, rules: false };
     
     return { valid: false, guarantee: 1, rules: false };
   };

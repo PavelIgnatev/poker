@@ -1,29 +1,76 @@
+import { useState } from "react";
+import b_ from "b_";
+import { makeStyles } from "@mui/styles";
+import { Close } from "@mui/icons-material";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Dialog,
+  Box,
+  Typography,
+  IconButton,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useStore } from "effector-react";
-import React, { FC, useState } from "react";
 
-import CloseIcon from "../../../assets/icons/close.svg";
-import { deleteConfigRequest, getConfigRequest } from "../../../store/Config";
+import { $password } from "../../../store/Password";
 import {
   $aliases,
   aliasesEvents,
   getAliasesRequest,
 } from "../../../store/Alias";
-import { $password } from "../../../store/Password";
+import {
+  $config,
+  $editableConfig,
+  deleteConfigRequest,
+  getConfigRequest,
+  patchConfigRequest,
+} from "../../../store/Config";
+import { ConfirmationDialog } from "../../ConfirmationDialog";
+import { UserSettings } from "../../UserSettings";
 
-import { ApprovalSection } from "../../ApprovalSection";
+export const b = b_.with("aliases-section");
 
-import { b } from "../index";
+const useStyles = makeStyles(() => ({
+  listItem: {
+    border: "1px solid rgba(0, 0, 0, 0.23)",
+    borderRadius: "4px",
+    maxHeight: "56px",
+    flexBasis: "calc(50% - 10px)",
+    cursor: "pointer",
+    "&:hover": {
+      borderColor: "black",
+    },
+  },
+  list: {
+    gap: "10px",
+    marginTop: "9px",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+}));
 
-interface Props {
-  selectedLevel: number | null;
-}
-
-export const AliasesSectionList: FC<Props> = ({ selectedLevel }) => {
-  const [selectedAlias, setSelectedAlias] = React.useState<string>("");
-
+export const AliasesSectionList = ({
+  selectedLevel,
+}: {
+  selectedLevel: number;
+}) => {
+  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [selectedAlias, setSelectedAlias] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const classes2 = useStyles();
 
-  const handleOpenModal = () => {
+  const password = useStore($password);
+  const aliases = useStore($aliases);
+  const selectedConfig = useStore($config);
+  const editableConfig = useStore($editableConfig);
+
+  const { alias, networks, password: newPassword, ...props } = editableConfig;
+
+  const handleOpenModal = (user: string) => {
+    setSelectedAlias(user);
     setIsModalOpen(true);
   };
 
@@ -31,22 +78,9 @@ export const AliasesSectionList: FC<Props> = ({ selectedLevel }) => {
     setIsModalOpen(false);
   };
 
-  const password = useStore($password);
-  const aliases = useStore($aliases);
-
-  const aliasesLoading = useStore(getAliasesRequest.pending);
-
-  if (selectedLevel === null) {
-    return null;
-  }
-
-  if (aliasesLoading) {
-    return <span>Loading</span>;
-  }
-
-  const handleAliasClick = (alias: string) => async () => {
+  const handleAliasClick = async (alias: string) => {
+    setSelectedUser(alias);
     await getConfigRequest({ alias, password });
-    handleOpenModal();
   };
 
   const handleAliasDelete = async () => {
@@ -55,47 +89,80 @@ export const AliasesSectionList: FC<Props> = ({ selectedLevel }) => {
     handleCloseModal();
   };
 
+  const handleDialogClose = async () => {
+    setSelectedUser(null);
+    await patchConfigRequest({
+      alias,
+      config: {
+        ...props,
+        networks,
+        password: newPassword,
+        alias,
+      },
+      password,
+    });
+
+    if (selectedLevel === -1) {
+      getAliasesRequest();
+    } else if (selectedLevel !== null) {
+      getAliasesRequest(selectedLevel);
+    }
+  };
+
   return (
-    <div className={b("alias-list")}>
-      {aliases.length ? (
-        aliases.map((alias) => (
-          <div className={b("alias-item")} key={alias}>
-            <div
-              className={b("alias-item-text")}
-              onClick={handleAliasClick(alias)}
-            >
-              {alias}
-            </div>
-            <div
-              className={b("alias-item-delete-wrapper")}
-              onClick={async () => {
-                handleOpenModal();
-                setSelectedAlias(alias);
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: "600px",
+        marginTop: "15px",
+        textAlign: "center",
+      }}
+    >
+      {aliases.length > 0 && (
+        <Typography variant="h6" gutterBottom>
+          List of aliases
+        </Typography>
+      )}
+      <List className={classes2.list}>
+        {aliases.map((user) => (
+          <ListItem
+            key={user}
+            onClick={() => handleAliasClick(user)}
+            className={classes2.listItem}
+          >
+            <ListItemText primary={user} />
+            <IconButton
+              color="error"
+              aria-label="delete user"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleOpenModal(user);
               }}
             >
-              <img src={CloseIcon} alt="close" />
-            </div>
-          </div>
-        ))
-      ) : (
-        <div>The list is empty</div>
-      )}
-      {/* <Modal ref={settingsModalRef}>
-        {selectedConfig ? (
-          <UserSettings
-            config={selectedConfig}
-            isAdminPage={isAdminPage}
-            onClose={() => console.log("dsa")}
-          />
-        ) : (
-          <div style={{ padding: 50 }}>Loading config</div>
-        )}
-      </Modal> */}
-      <ApprovalSection
+              <DeleteIcon />
+            </IconButton>
+          </ListItem>
+        ))}
+      </List>
+      <Dialog
+        open={selectedUser !== null}
+        onClose={handleDialogClose}
+        classes={{ paper: b("dialog") }}
+      >
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <IconButton onClick={handleDialogClose}>
+            <Close />
+          </IconButton>
+        </div>
+        {selectedConfig && <UserSettings config={selectedConfig} />}
+      </Dialog>
+      <ConfirmationDialog
         isOpen={isModalOpen}
-        onClose={handleCloseModal}
+        title="Are you sure?"
+        content="Do you really want to perform this action?"
+        onCancel={handleCloseModal}
         onConfirm={handleAliasDelete}
       />
-    </div>
+    </Box>
   );
 };

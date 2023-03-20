@@ -14,21 +14,19 @@
   font-size: 22px;
 
   @media (max-width: 1600px) {
-    padding: 52px 88px;
+    padding: 12px 88px 52px 88px;
     max-width: 80vw;
   }
 
   &__content {
     display: flex;
     overflow-y: scroll;
+    gap: 88px;
   }
 
   &__content-main-block {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    margin-left: 78px;
-    margin-right: 4px;
   }
 
   &__close-icon {
@@ -64,6 +62,10 @@
 }
 
 .user-settings-table {
+  &__select {
+    width: 100px;
+    height: 30px;
+  }
   &__row {
     display: flex;
 
@@ -115,9 +117,13 @@
 .user-settings-info {
   flex: 1;
 
+  &__select {
+    width: 300px;
+  }
+
   &__header {
     display: flex;
-    margin-bottom: 36px;
+    margin-bottom: 18px;
   }
 
   &__effmu {

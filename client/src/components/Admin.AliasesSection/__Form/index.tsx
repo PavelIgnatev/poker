@@ -1,6 +1,6 @@
 import { useStore } from "effector-react";
 import { FC, FormEvent, useState } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 import { getAliasesRequest } from "../../../store/Alias";
@@ -21,11 +21,9 @@ const useStyles = makeStyles(() =>
       flexDirection: "column",
       alignItems: "center",
       background: "white",
-      gap: '10px',
+      gap: "10px",
       maxWidth: "300px",
-    },
-    input: {
-      marginBottom: "20px",
+      marginTop: "15px",
     },
     select: {
       width: "300px",
@@ -53,14 +51,14 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
     await postConfigRequest({
       config: {
         alias,
-        level: selectedLevel ?? 16,
+        level: selectedLevel ?? 0,
         password,
         timezone,
       },
       password: adminPassword,
     });
 
-    await getAliasesRequest(selectedLevel ?? 16);
+    await getAliasesRequest(selectedLevel ?? 0);
 
     setAlias("");
     setPassword("");
@@ -69,11 +67,13 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
+      <Typography variant="h6" gutterBottom>
+        Creating a new account
+      </Typography>
       <TextField
         label="Alias"
         name="login"
         value={alias}
-        className={classes.input}
         onChange={(e) => setAlias(e.currentTarget.value)}
         autoComplete="off"
         required
@@ -83,7 +83,6 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         label="Password"
         name="password"
         value={password}
-        className={classes.input}
         onChange={(e) => setPassword(e.currentTarget.value)}
         autoComplete="off"
         required
@@ -91,9 +90,11 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
       />
       <SingleSelect
         className={classes.select}
-        label="Timezones"
+        label="Timezone"
         options={TIMEZONES}
         defaultValue={TIMEZONES[12]}
+        required
+        fullWidth
         onSingleChange={(option) => setTZone(option?.value ?? "0")}
       />
       <Button
@@ -102,7 +103,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         color="primary"
         className={classes.button}
       >
-        Добавить пользователя
+        Add
       </Button>
     </form>
   );

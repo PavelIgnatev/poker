@@ -2,7 +2,6 @@
 
 .rules-section {
   font-size: 20px;
-  color: $baseColor;
   margin-top: 64px;
 
   &__rules {
@@ -49,7 +48,7 @@
 
   &__rule-row {
     display: flex;
-
+    gap: 10px;
     min-height: 48px;
     margin-top: 20px;
 
@@ -59,7 +58,7 @@
   }
 
   &__rule-row-select {
-    width: 180px;
+    min-width: 120px;
   }
 
   &__rule-row-field {
@@ -92,7 +91,8 @@
   &__filter {
     display: flex;
     align-items: center;
-    margin-top: 16px;
+    margin-top: 24px;
+    gap: 10px;
     max-width: 1000px;
   }
 

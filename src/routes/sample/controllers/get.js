@@ -1,7 +1,7 @@
-const { getSample } = require("../../../utils/sample");
+const { getEmail } = require("../../../utils/email");
 
 module.exports = async (req, res) => {
-  const sample = await getSample();
+  const email = await getEmail();
 
-  res.status(200).send(sample);
+  res.status(200).send(email);
 };

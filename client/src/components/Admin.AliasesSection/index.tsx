@@ -1,11 +1,11 @@
 import b_ from "b_";
 import React from "react";
+import { Typography } from "@mui/material";
 
 import { getAliasesRequest } from "../../store/Alias";
-
 import { LevelBlocks, ALL_LEVELS, useLevelBlocks } from "../LevelBlocks";
-
 import { AliasesSectionForm } from "./__Form";
+
 import { AliasesSectionList } from "./__List";
 
 import "./index.scss";
@@ -26,11 +26,12 @@ export const AliasesSection = () => {
 
   return (
     <section className={b()}>
-      <h2 className={b("title")}>Aliases by level:</h2>
+      <Typography variant="h5" gutterBottom>
+        Alias control
+      </Typography>
       <LevelBlocks
         selectedLevel={selectedLevel}
         onLevelChange={handleLevelChange}
-        withAllLevels
       />
       {selectedLevel !== null && (
         <div className={b("content-wrapper")}>

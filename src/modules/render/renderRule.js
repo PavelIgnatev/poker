@@ -16,6 +16,8 @@ function renderRule(rule) {
   const level = validateNumber(ruleLevel);
   const effMu = ruleLevel.replace(level, "").replace("-", "");
 
+  console.log(network)
+
   return (
     `(${type}(${values
       .map((value, i) =>
@@ -25,8 +27,8 @@ function renderRule(rule) {
           ? Number(value)
           : value,
       )
-      .join(",")}))
-    && network === '${network}'` +
+      .join(",")}))` +
+    (network !== "all" ? `&& network === '${network}'` : "") +
     (level === "1" && ruleLevel.includes("-") ? "" : `&& level === '${level}'`) +
     (effMu !== "all" ? `&& effmu === '${effMu}'` : "") +
     (status !== "all" ? `&& is${status}` : "") +

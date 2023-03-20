@@ -43,26 +43,27 @@ export const EFFMU = [{ value: "A", label: "A" }];
 
 export const NETWORKS = [
   { value: "PokerStars", label: "PokerStars" },
-  { value: "iPoker", label: "iPoker" },
-  { value: "Chico", label: "Chico" },
   { value: "PokerStars(FR-ES-PT)", label: "PokerStars(FR-ES-PT)" },
   { value: "PartyPoker", label: "PartyPoker" },
-  { value: "GGNetwork", label: "GGNetwork" },
   { value: "888Poker", label: "888Poker" },
-  { value: "Winamax", label: "Winamax.fr" },
+  { value: "Chico", label: "Chico" },
   { value: "WPN", label: "WPN" },
+  { value: "iPoker", label: "iPoker" },
+  { value: "GGNetwork", label: "GGNetwork" },
+  { value: "Winamax.fr", label: "Winamax.fr" },
 ];
 
 export const SHORT_NETWORKS = [
   { value: "PokerStars", label: "PokerStars" },
-  { value: "iPoker", label: "iPoker" },
-  { value: "Chico", label: "Chico" },
   { value: "PokerStars(FR-ES-PT)", label: "PokerStars(FR-ES-PT)" },
   { value: "PartyPoker", label: "PartyPoker" },
-  { value: "GGNetwork", label: "GGNetwork" },
   { value: "888Poker", label: "888Poker" },
-  { value: "Winamax.fr", label: "Winamax.fr" },
+  { value: "Chico", label: "Chico" },
   { value: "WPN", label: "WPN" },
+  { value: "iPoker", label: "iPoker" },
+  { value: "GGNetwork", label: "GGNetwork" },
+  { value: "Winamax.fr", label: "Winamax.fr" },
+  { value: "all", label: "all" },
 ];
 
 export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {

@@ -128,23 +128,6 @@ export const RULES_TYPES_TO_FIELDS = {
       placeholder: "Flags",
     },
   ],
-  Ticket: [
-    {
-      type: "number",
-      placeholder: "Bid",
-      options: null,
-    },
-    {
-      type: "number",
-      placeholder: "Tickets",
-      options: null,
-    },
-    {
-      type: "string",
-      placeholder: "Includes",
-      options: null,
-    },
-  ],
   Entrants: [
     {
       type: "number",

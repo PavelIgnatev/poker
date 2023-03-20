@@ -12,11 +12,14 @@ import {
   validateAdminPasswordRequest,
 } from "../../store/Password";
 import { RulesSection } from "../../components/Admin.RulesSection";
+import { EmailSection } from "../../components/EmailSection";
+import { getEmail } from "../../store/Email";
 
 export const AdminPage: FC = () => {
   const isAdmin = useStore($isValidAdminPassword);
 
   useEffect(() => {
+    getEmail();
   }, [isAdmin]);
 
   const handlePasswordSubmit: OnPasswordSubmit = ({ password }) =>
@@ -33,6 +36,7 @@ export const AdminPage: FC = () => {
 
   return (
     <>
+      <EmailSection />
       <RulesSection />
       <AliasesSection />
     </>

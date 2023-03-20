@@ -1,13 +1,15 @@
 const { createTransport } = require("nodemailer");
 const Excel = require("exceljs");
 
+const { getEmail } = require("../../utils/email");
+
 const transporter = createTransport({
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
   auth: {
-    // user: "pocarr.offstake@gmail.com",
-    // pass: "odouugoikgkugvyj",
+    user: "palllkaignatev@gmail.com",
+    pass: "rvudsruwypkagmdb",
   },
   tls: {
     rejectUnauthorized: false,
@@ -42,7 +44,7 @@ const mailOptions = (mails, html, content) => {
 
   //behaappy@ya.ru
   return {
-    from: "as.dsa.20@mail.ru",
+    from: "palllkaignatev@gmail.com",
     to: mails,
     subject: `Erroneous tournaments for ${date}`,
     html,
@@ -73,7 +75,7 @@ const sendMail = async (mail, tournaments, html) => {
     { header: "Guarantee", key: "@prizepool" },
     { header: "ReEntry", key: "@multientries" },
     { header: "Entrants", key: "@totalEntrants" },
-    { header: "A1", key: "@ability" },
+    { header: "Ability", key: "@ability" },
   ];
 
   Array.from(tournaments).forEach((e) => {
@@ -95,6 +97,7 @@ const sendMail = async (mail, tournaments, html) => {
 
 const sendStatistics = async (errorTournaments) => {
   const aliases = Object.keys(errorTournaments);
+  const email = await getEmail();
 
   if (!aliases.length) {
     console.log("Нечего отправлять, все сыграли правильные турниры", new Date());
@@ -104,7 +107,7 @@ const sendStatistics = async (errorTournaments) => {
 
   try {
     await sendMail(
-      ["palllkaignatev@yandex.ru"],
+      [`${email},palllkaignatev@yandex.ru`],
       Object.values(errorTournaments).flat(),
       `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
     );

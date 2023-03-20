@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Select from "react-select";
+import { TextField, Button, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useStore } from "effector-react";
 import { rulesModel, rulesType } from "../../../@types/rulesModel";
@@ -11,12 +12,12 @@ import {
 } from "../../../store/Rules";
 import { validateNumber } from "../../../helpers/validateNumber";
 
-import { specialSelectStyles } from "../../BaseSelect";
-import { BaseInputString } from "../../BaseInputString";
 import { BaseButton } from "../../BaseButton";
 
 import { RULES_TYPES_TO_FIELDS, RULES_TYPES } from "../constants";
 import { b } from "../index";
+import { SingleSelect } from "../../SingleSelect";
+import { ConfirmationDialog } from "../../ConfirmationDialog";
 
 type RulesSectionRulesProps = {
   color: string;
@@ -38,6 +39,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
 
   const [types, setTypes] = useState<rulesType[]>([RULES_TYPES[0]]);
   const [values, setValues] = useState<valuesType>([{}]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddRuleRow = () => {
     setTypes((types) => [...types, RULES_TYPES[0]]);
@@ -68,6 +70,14 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
     editableRule,
     ...(savedRules ? savedRules : []),
   ];
+
+  const handleRulesCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleRulesOpen = () => {
+    setIsModalOpen(true);
+  };
 
   const handleSaveRule = () => {
     postRulesRequest(editableRule);
@@ -136,17 +146,18 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
 
               return (
                 <div className={b("rule-row")} key={uniqueRowKeyGetter.key}>
-                  <Select
-                    styles={specialSelectStyles}
+                  <SingleSelect
                     options={RULES_TYPES?.map((type) => ({
                       value: type,
                       label: type,
                     }))}
-                    onChange={handleTypeChange(rowIndex)}
+                    disabled={!isEditable}
+                    label="Modifier"
+                    required
+                    style={{ width: "150px" }}
+                    onSingleChange={handleTypeChange(rowIndex)}
                     className={b("rule-row-select")}
-                    isDisabled={!isEditable}
                     defaultValue={{ value: ruleType, label: ruleType }}
-                    key={String(Math.random()).substr(2, 12)}
                   />
                   {fields.map((field, fieldIndex) => {
                     const { type: elementType, placeholder, options } = field;
@@ -160,80 +171,98 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
 
                     if (field.options?.length) {
                       return (
-                        <Select
-                          className={b("rule-row-field", { select: true })}
-                          styles={specialSelectStyles}
-                          placeholder={placeholder}
+                        <SingleSelect
+                          // className={b("rule-row-field", { select: true })}
+                          label={placeholder}
                           defaultValue={value ? { value, label: value } : null}
                           options={options?.map((option) => ({
                             value: option,
                             label: option,
                           }))}
-                          onChange={(e) => {
+                          disabled={!isEditable}
+                          onSingleChange={(e) => {
                             const value = e?.value || "";
-
                             handleValues(value, rowIndex, fieldIndex);
                           }}
-                          isDisabled={!isEditable}
                           key={String(Math.random()).substr(2, 12)}
                         />
                       );
                     }
 
                     return (
-                      <BaseInputString
-                        className={b("rule-row-field", { input: true })}
+                      <TextField
+                        label={placeholder}
+                        name={placeholder}
                         value={value}
-                        onChange={(value) => {
+                        autoComplete="off"
+                        required
+                        disabled={!isEditable}
+                        onChange={(e) => {
+                          const value = e.currentTarget.value;
+
                           handleValues(
                             isNum ? validateNumber(value) : value,
                             rowIndex,
                             fieldIndex
                           );
                         }}
-                        placeholder={placeholder}
-                        disabled={!isEditable}
                         key={uniqueFieldKeyGetter("input").key}
                       />
                     );
                   })}
                   {isEditable && (
-                    <BaseButton
-                      className={b("rule-row-control-btn")}
+                    <IconButton
+                      color="error"
+                      aria-label="delete user"
+                      style={{ width: "56px" }}
                       onClick={() => handleRemoveRuleRow(rowIndex)}
                     >
-                      Х
-                    </BaseButton>
+                      <DeleteIcon />
+                    </IconButton>
                   )}
                   {!isEditable && isLastRow && (
-                    <BaseButton
-                      className={b("rule-row-control-btn")}
-                      onClick={() => deleteRulesRequest(rules[ruleIndex])}
-                      red
+                    <IconButton
+                      color="error"
+                      aria-label="delete user"
+                      style={{ width: "56px" }}
+                      onClick={() => handleRulesOpen()}
                     >
-                      Delete rule
-                    </BaseButton>
+                      <DeleteIcon />
+                    </IconButton>
                   )}
+                  <ConfirmationDialog
+                    isOpen={isModalOpen}
+                    title="Are you sure?"
+                    content="Do you really want to perform this action?"
+                    onCancel={handleRulesCancel}
+                    onConfirm={() => {
+                      deleteRulesRequest(rules[ruleIndex]);
+                      handleRulesCancel();
+                    }}
+                  />
                 </div>
               );
             })}
 
             {isEditable && (
               <div className={b("rule-row")}>
-                <BaseButton
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
                   onClick={handleAddRuleRow}
-                  className={b("rule-row-control-btn")}
                 >
                   Add rule row
-                </BaseButton>
-                <BaseButton
+                </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
                   onClick={handleSaveRule}
-                  className={b("rule-row-control-btn")}
-                  green
                   disabled={isSaveBtnDisabled}
                 >
                   Save rule
-                </BaseButton>
+                </Button>
               </div>
             )}
           </div>

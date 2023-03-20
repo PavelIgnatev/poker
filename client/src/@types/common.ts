@@ -13,7 +13,6 @@ export type Networks = Record<Network, NetworkLevels>;
 export type Rule = {
   network: Network;
   level: Level;
-  currency: string;
   bid: string;
   status: string;
   name: string;

@@ -1,44 +1,33 @@
 import b_ from "b_";
 import React, { FC } from "react";
+import { Button, ButtonGroup } from "@mui/material";
 
 import { LEVELS_ARRAY } from "../../constants";
-
-import "./index.scss";
 
 interface Props {
   selectedLevel: number | null;
   onLevelChange: (level: number) => () => void;
-  withAllLevels?: boolean;
 }
 
 export const ALL_LEVELS = -1;
 
 const b = b_.with("level-blocks");
 
-export const LevelBlocks: FC<Props> = ({ selectedLevel, onLevelChange, withAllLevels }) => (
+export const LevelBlocks: FC<Props> = ({ selectedLevel, onLevelChange }) => (
   <div className={b()}>
-    {LEVELS_ARRAY.map((level) => (
-      <button
-        className={b("block", {
-          selected: selectedLevel === level,
-        })}
-        key={level}
-        onClick={onLevelChange(level)}
-      >
-        <span className={b("block-text")}>{level}</span>
-      </button>
-    ))}
-    {withAllLevels && (
-      <button
-        className={b("block", {
-          selected: selectedLevel === ALL_LEVELS,
-          all: true,
-        })}
-        onClick={onLevelChange(ALL_LEVELS)}
-      >
-        <span className={b("block-text")}>All</span>
-      </button>
-    )}
+    <ButtonGroup variant="contained" aria-label="Number Selector">
+      {LEVELS_ARRAY.concat([-1]).map((level) => (
+        <Button
+          key={level}
+          size="large"
+          onClick={onLevelChange(level)}
+          variant={selectedLevel === level ? "outlined" : "contained"}
+          color={selectedLevel === level ? "primary" : undefined}
+        >
+          {level < 0 ? "all" : level}
+        </Button>
+      ))}
+    </ButtonGroup>
   </div>
 );
 
