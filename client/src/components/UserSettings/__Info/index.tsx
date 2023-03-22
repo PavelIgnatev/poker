@@ -101,7 +101,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   const defaultTimezoneOption =
     TIMEZONES.find((option) => option.value === timezone) || TIMEZONES[0];
 
-  const defaultAdressOption =
+  const defaultAddressOption =
     ADDRESS.find((option) => option.value === address) || ADDRESS[0];
 
   const handleEmailChange = (email: string) =>
@@ -110,8 +110,8 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
     editableConfigEvents.handleChangePassword(password);
   const handleTimezoneChange = (option: SelectOption<typeof TIMEZONES[0]>) =>
     editableConfigEvents.handleTimezoneChange(option.value);
-  const handleAdressChange = (option: SelectOption<typeof ADDRESS[0]>) =>
-    editableConfigEvents.handleAdressChange(option.value);
+  const handleAddressChange = (option: SelectOption<typeof ADDRESS[0]>) =>
+    editableConfigEvents.handleAddressChange(option.value);
   const handleAllEffmuChange = (option: SelectOption<typeof EFFMU[0]>) =>
     editableConfigEvents.handleChangeEffmuAll(option.value);
 
@@ -188,17 +188,18 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
               styles={nativeSelectStyles}
             />
           </div>
-          <div className={b("address-wrapper")}>
-            <b className={b("label")}>Adress</b>
+        {isAdminPage && <div className={b("address-wrapper")}>
+            <b className={b("label")}>Address</b>
             <Select
               options={ADDRESS}
-              defaultValue={defaultAdressOption}
+              defaultValue={defaultAddressOption}
               // @ts-ignore
-              onChange={handleAdressChange}
+              onChange={handleAddressChange}
               className={b("input", { timezone: true })}
               styles={nativeSelectStyles}
             />
-          </div>
+          </div> 
+        }
         </div>
         <div className={b("email-wrapper")}>
           <b className={b("label")}>E-mail</b>

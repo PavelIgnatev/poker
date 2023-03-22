@@ -33,7 +33,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
   const [mail, setMail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [timezone, setTZone] = useState<string>("0");
-  const [address, setAdress] = useState<string | null>(null);
+  const [address, setAddress] = useState<string | null>(null);
   const adminPassword = useStore($password);
 
   const handleSubmit = async () => {
@@ -55,7 +55,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
     setMail("");
     setPassword("");
     setTZone(TIMEZONES[0].value);
-    setAdress(ADDRESS[0].value);
+    setAddress(ADDRESS[0].value);
   };
 
   return (
