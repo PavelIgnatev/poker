@@ -1,5 +1,7 @@
 const { createTransport } = require("nodemailer");
 const Excel = require("exceljs");
+const { getConfig } = require("../../utils/config");
+const { readFile } = require("../../utils/promisify");
 
 const transporter = createTransport({
   host: "smtp.gmail.com",
@@ -99,11 +101,11 @@ const sendStatistics = async (errorTournaments) => {
   const errorAliases = [];
   const aliases = Object.keys(errorTournaments);
 
+
   if (!aliases.length) {
     console.log("Нечего отправлять, все сыграли правильные турниры", new Date());
     return;
   }
-
   // for (let i = 0; i < aliases.length; i++) {
   //   const alias = aliases[i];
 
@@ -124,8 +126,10 @@ const sendStatistics = async (errorTournaments) => {
   //   }
   // }
 
+
   console.log("Закончил отправлять статистику по турнирам на почты игроков");
   console.log("Начинаю отправлять статистику по турнирам на почту админов");
+
 
   try {
     await sendMail(
