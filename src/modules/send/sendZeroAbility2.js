@@ -9,8 +9,8 @@ const transporter = createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: "pocarr.offstake@gmail.com",
-    pass: "odouugoikgkugvyj",
+    user: "offstakepocarr@gmail.com",
+    pass: "eszmpczpadbbbtok",
   },
   tls: {
     rejectUnauthorized: false,
