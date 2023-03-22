@@ -5,7 +5,7 @@ import Select from "react-select";
 import { getAliasesRequest } from "../../../store/Alias";
 import { postConfigRequest } from "../../../store/Config";
 import { $password } from "../../../store/Password";
-import { TIMEZONES } from "../../../store/Select";
+import { ADDRESS, TIMEZONES } from "../../../store/Select";
 import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
 import { BaseButton } from "../../BaseButton";
@@ -33,6 +33,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
   const [mail, setMail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [timezone, setTZone] = useState<string>("0");
+  const [address, setAdress] = useState<string | null>(null);
   const adminPassword = useStore($password);
 
   const handleSubmit = async () => {
@@ -43,6 +44,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         mail,
         password,
         timezone,
+        address,
       },
       password: adminPassword,
     });
@@ -53,6 +55,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
     setMail("");
     setPassword("");
     setTZone(TIMEZONES[0].value);
+    setAdress(ADDRESS[0].value);
   };
 
   return (

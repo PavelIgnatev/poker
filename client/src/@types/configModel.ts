@@ -6,6 +6,7 @@ export interface ConfigModel {
   mail: string;
   password: string;
   timezone: string;
+  address: string | null;
 }
 
 export interface defaultConfigModel {
@@ -14,4 +15,5 @@ export interface defaultConfigModel {
   mail: string;
   password: string;
   timezone: string;
+  address: string | null;
 }

@@ -28,6 +28,13 @@ export const TIMEZONES = [
   { value: "36000000", label: "UTC +10 (AEST)" }, // UTC +10
 ];
 
+export const ADDRESS = [
+  { value: null, label: "Unknown" },
+  { value: "america@gmail.com", label: "America" },
+  { value: "europe@gmail.com", label: "Europe" },
+  { value: "asia@gmail.com", label: "Asia" },
+];
+
 export const TIMERANGE = [
   { value: "600", label: "<10 minutes" },
   { value: "3600", label: "<1 hour" },

@@ -91,6 +91,7 @@ export const editableConfigEvents = createApi($editableConfig, {
     password,
   }),
   handleTimezoneChange: (config, timezone) => ({ ...config, timezone }),
+  handleAdressChange: (config, address) => ({...config, address}),
   handleChangeEffmuAll: (config, effmu) => ({
     ...config,
     networks: Object.keys(config.networks).reduce(

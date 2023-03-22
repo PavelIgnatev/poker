@@ -1,15 +1,15 @@
 const { createTransport } = require("nodemailer");
 const Excel = require("exceljs");
 const { getConfig } = require("../../utils/config");
-const { readFile } = require("../../utils/promisify");
+const { readFile, writeFile } = require("../../utils/promisify");
 
 const transporter = createTransport({
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
   auth: {
-    user: "offstakepocarr@gmail.com",
-    pass: "eszmpczpadbbbtok",
+    user: "palllkaignatev@gmail.com",
+    pass: "rvudsruwypkagmdb",
   },
   tls: {
     rejectUnauthorized: false,
@@ -58,7 +58,8 @@ const mailOptions = (mails, html, content) => {
   };
 };
 
-const sendMail = async (mail, tournaments, html) => {
+const sendMail = async (mail, tournaments, html, region) => {
+  console.log(region)
   const workbook = new Excel.Workbook();
   const worksheet = workbook.addWorksheet("Debtors");
   worksheet.columns = [
@@ -85,6 +86,25 @@ const sendMail = async (mail, tournaments, html) => {
 
   const buffer = await workbook.xlsx.writeBuffer();
 
+  const currentTime = new Date(
+    new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
+      timeZone: "UTC",
+    }),
+  );
+  const year = currentTime.getFullYear();
+  const month = currentTime.getMonth() + 1;
+  const day = currentTime.getDate();
+  const date = `${year}-${month}-${day}`;
+
+  try {
+    console.log(`Начинаю создавать таблицу со статистикой игороков по региону: ${region}`)
+    await writeFile(`src/store/xlsx/${region}-${date}.xlsx`, buffer);
+    console.log(`Создание таблицы со статистикой игороков по региону ${region} успешно завершилось`)
+  }
+  catch(e) {
+    console.log(`Не удалось создать таблицу со статистикой игороков по региону: ${region}`)
+  }
+
   for (let i = 0; i < 5; i++) {
     try {
       console.log("Попытка отправить номер ", i);
@@ -98,7 +118,8 @@ const sendMail = async (mail, tournaments, html) => {
 
 const sendStatistics = async (errorTournaments) => {
   console.log("Начинаю отправлять статистику по турнирам на почты игроков");
-  const errorAliases = [];
+  const config = await getConfig()
+  const errorTournamentsByRegion = {}
   const aliases = Object.keys(errorTournaments);
 
 
@@ -106,41 +127,69 @@ const sendStatistics = async (errorTournaments) => {
     console.log("Нечего отправлять, все сыграли правильные турниры", new Date());
     return;
   }
-  // for (let i = 0; i < aliases.length; i++) {
-  //   const alias = aliases[i];
+  for (let i = 0; i < aliases.length; i++) {
+    const alias = aliases[i];
 
-  //   if (!config[alias]) {
-  //     continue;
-  //   }
+    if (!config[alias]) {
+      continue;
+    }
 
-  //   const { mail } = config[alias];
-
-  //   try {
-  //     await sendMail(
-  //       [mail],
-  //       Array.from(errorTournaments[alias]),
-  //       `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
-  //     );
-  //   } catch {
-  //     errorAliases.push(alias);
-  //   }
-  // }
+    const { address } = config[alias];
 
 
-  console.log("Закончил отправлять статистику по турнирам на почты игроков");
-  console.log("Начинаю отправлять статистику по турнирам на почту админов");
+    if (!address) {
+      continue
+    }
 
 
-  try {
-    await sendMail(
-      ["pocarrelite@gmail.com,mgr.miranda85@gmail.com,pocarr.ru@gmail.com,behaappy@ya.ru,palllkaignatev@yandex.ru"],
-      Object.values(errorTournaments).flat(),
-      `<div>Invalid emails from players: ${errorAliases.join(", ")}</div>
-      <div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
-    );
-    console.log("Закончил отправлять статистику по турнирам на почту админов");
-  } catch (error) {
-    console.log("Отправка не письма на почту админов не удалась, произошла ошибка: ", error);
+    if (!errorTournamentsByRegion[address]) {
+      errorTournamentsByRegion[address] = [errorTournaments[alias]]
+    }
+    else {
+      errorTournamentsByRegion[address].push(errorTournaments[alias])
+    }
+  }
+
+
+  for (let key in errorTournamentsByRegion) {
+    const message = errorTournamentsByRegion[key]
+
+
+    let region
+
+    switch (key) {
+      case 'america@gmail.com':
+        region = 'America'
+        break;
+
+      case 'europe@gmail.com':
+        region = 'Europe'
+        break;
+
+      case 'asia@gmail.com':
+        region = 'Asia'
+        break;
+    }
+
+
+    try {
+      console.log(`Начал отправлять статистику по турнирам на ${key}`)
+      if (message?.flat()?.length) {
+        await sendMail(
+          [`palllkaignatev@yandex.ru,${key}`],
+          message.flat(),
+          `<div style='display:none'>${JSON.stringify(message)}</div>`,
+          region
+        );
+        console.log(`Закончил отправлять статистику по турнирам на почту ${key}`);
+      }
+      else {
+        console.log(`Статистика по турнирам не отправлена, так как сообщение пустое`)
+      }
+    }
+    catch (error) {
+      console.log(`Отправка не письма на почту ${key} не удалась, произошла ошибка: `, error);
+    }
   }
 };
 

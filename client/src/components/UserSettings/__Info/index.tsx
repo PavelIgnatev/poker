@@ -12,6 +12,7 @@ import {
   editableTournamentsSettings,
   TIMEZONES,
   EFFMU,
+  ADDRESS,
 } from "../../../store/Select";
 
 import { specialSelectStyles } from "../../BaseSelect";
@@ -93,12 +94,15 @@ const ColorsInfo: Record<ColorsType, string> = {
 };
 
 export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
-  const { alias, mail, password, timezone, networks } = config;
+  const { alias, mail, password, timezone, networks, address } = config;
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => setShowPassword((p) => !p);
 
   const defaultTimezoneOption =
     TIMEZONES.find((option) => option.value === timezone) || TIMEZONES[0];
+
+  const defaultAdressOption =
+    ADDRESS.find((option) => option.value === address) || ADDRESS[0];
 
   const handleEmailChange = (email: string) =>
     editableConfigEvents.handleChangeMail(email);
@@ -106,6 +110,8 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
     editableConfigEvents.handleChangePassword(password);
   const handleTimezoneChange = (option: SelectOption<typeof TIMEZONES[0]>) =>
     editableConfigEvents.handleTimezoneChange(option.value);
+  const handleAdressChange = (option: SelectOption<typeof ADDRESS[0]>) =>
+    editableConfigEvents.handleAdressChange(option.value);
   const handleAllEffmuChange = (option: SelectOption<typeof EFFMU[0]>) =>
     editableConfigEvents.handleChangeEffmuAll(option.value);
 
@@ -178,6 +184,17 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
               defaultValue={defaultTimezoneOption}
               // @ts-ignore
               onChange={handleTimezoneChange}
+              className={b("input", { timezone: true })}
+              styles={nativeSelectStyles}
+            />
+          </div>
+          <div className={b("address-wrapper")}>
+            <b className={b("label")}>Adress</b>
+            <Select
+              options={ADDRESS}
+              defaultValue={defaultAdressOption}
+              // @ts-ignore
+              onChange={handleAdressChange}
               className={b("input", { timezone: true })}
               styles={nativeSelectStyles}
             />

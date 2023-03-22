@@ -1,3 +1,4 @@
+import { ADDRESS } from './../Select/state';
 import { createStore } from "effector";
 
 import { TIMEZONES } from "../Select";
@@ -11,6 +12,7 @@ export const DEFAULT_EDITABLE_CONFIG: ConfigModel = {
   mail: "",
   password: "",
   timezone: TIMEZONES[0].value,
+  address: ADDRESS[0].value
 };
 export const $editableConfig = createStore<ConfigModel>(
   DEFAULT_EDITABLE_CONFIG
