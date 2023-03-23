@@ -51,6 +51,13 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
+  NotName: [
+    {
+      type: "string",
+      placeholder: "Includes",
+      options: null,
+    },
+  ],
   StartDay: [
     {
       type: "string",
@@ -72,16 +79,46 @@ export const RULES_TYPES_TO_FIELDS = {
       options: [
         "rebuy",
         "od",
-        "sng",
         "deepstack",
         "sat",
         "!rebuy",
         "!od",
-        "!sng",
         "!deepstack",
         "!sat",
       ],
       placeholder: "Flags",
+    },
+  ],
+  Class: [
+    {
+      type: "string",
+      options: ["sng", "scheduled", "!sng", "!scheduled"],
+      placeholder: "Class",
+    },
+  ],
+  Structure: [
+    {
+      type: "string",
+      options: [
+        "NL",
+        "PL",
+        "PNL",
+        "FL",
+        "ML",
+        "!NL",
+        "!PL",
+        "!PNL",
+        "!FL",
+        "!ML",
+      ],
+      placeholder: "Structure",
+    },
+  ],
+  Game: [
+    {
+      type: "string",
+      options: ["H", "H6", "O", "OHL", "!H", "!H6", "!O", "!OHL"],
+      placeholder: "Game",
     },
   ],
   Entrants: [

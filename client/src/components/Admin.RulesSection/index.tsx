@@ -92,7 +92,7 @@ export const RulesSection = () => {
               onSingleChange={handleNetworkChange as any}
             />
             <SingleSelect
-              label="Type"
+              label="Format"
               className={b("select")}
               options={KO.map((k) => ({ value: k, label: k }))}
               required
@@ -101,7 +101,7 @@ export const RulesSection = () => {
               onSingleChange={(e) => handleKOChange(e?.value as any)()}
             />
             <SingleSelect
-              label="Status"
+              label="Speed"
               className={b("select")}
               options={Status.map((k) => ({ value: k, label: k }))}
               required

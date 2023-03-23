@@ -47,8 +47,6 @@ export const UserSettingsTable: FC<Props> = ({ networks }) => {
           (option) => option.value === level
         );
 
-        console.log(defaultOption);
-
         const handleLevelChange = (option: SelectOption<number>) =>
           editableConfigEvents.handleChangeLevel({
             network,

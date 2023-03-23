@@ -24,10 +24,14 @@ async function renderRules(rules) {
     PrizepoolEqual: PrizepoolEqualQ,
     PrizepoolFrom: PrizepoolFromQ,
     Name: NameQ,
+    NotName: NotNameQ,
     PrizepoolTo: PrizepoolToQ,
     StartDay: StartDayQ,
     Entrants: EntrantsQ,
     Flags: FlagsQ,
+    Class: ClassQ,
+    Structure: StructureQ,
+    Game: GameQ,
   } = require("../../helpers/curry");
   const { isSuperTurbo: isSuperTurboS } = require("../../helpers/isSuperTurbo");
   const { isTurbo: isTurboS } = require("../../helpers/isTurbo");
@@ -50,7 +54,11 @@ async function renderRules(rules) {
       Entrants = EntrantsQ(tournament?.["@totalEntrants"] ?? 0),
       StartDay = StartDayQ(weekDay),
       Name = NameQ(name),
-      Flags = FlagsQ(tournament);
+      NotName = NotNameQ(name),
+      Flags = FlagsQ(tournament),
+      Class = ClassQ(tournament),
+      Structure = StructureQ(tournament),
+      Game = GameQ(tournament);
 
     const isTurbo = isTurboS(tournament);
     const isSuperTurbo = isSuperTurboS(tournament);

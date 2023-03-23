@@ -4,8 +4,6 @@
  * @return {boolean} True, если турнир является super turbo
  */
 
-const { getNetwork } = require("./getNetwork");
-
 const isRebuy = (tournament) => {
   return tournament["@flags"]?.includes("R") && !tournament["@flags"]?.includes("RH");
 };

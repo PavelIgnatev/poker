@@ -69,11 +69,11 @@ const sendMail = async (mail, tournaments, html) => {
     { header: "Nickname", key: "@nickname" },
     { header: "Level", key: "@level" },
     { header: "Network", key: "@network" },
+    { header: "Prizepool", key: "@prizepool" },
     { header: "Name", key: "@name" },
     { header: "Buy-in", key: "@bid" },
     { header: "Prize", key: "@prize" },
-    { header: "Guarantee", key: "@prizepool" },
-    { header: "ReEntry", key: "@multientries" },
+    { header: "Reentry", key: "@multientries" },
     { header: "Entrants", key: "@totalEntrants" },
     { header: "Ability", key: "@ability" },
   ];

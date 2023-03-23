@@ -22,9 +22,7 @@ export const fetchFilterContent = createEffect(async () => {
     )();
 
     return filter.filter;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 });
 
 $filterContent.on(fetchFilterContent.doneData, (_, data) => data);

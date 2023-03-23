@@ -18,9 +18,28 @@ const PrizepoolFrom = curry((prizepool, from) => Number(prizepool) >= Number(fro
 const PrizepoolTo = curry((prizepool, to) => Number(prizepool) <= Number(to));
 const StartDay = curry((realDay, day) => String(realDay) === String(day));
 const Name = curry((name, str) => name.toLowerCase().includes(str.toLowerCase()));
+const NotName = curry((name, str) => !name.toLowerCase().includes(str.toLowerCase()));
 const Flags = curry((tournament, flags) => {
   const isNotRule = flags?.includes("!");
   const rule = tournament?.[`@${flags.replace("!", "")}`] ?? false;
+
+  return isNotRule ? !rule : rule;
+});
+const Class = curry((tournament, classes) => {
+  const isNotRule = classes?.includes("!");
+  const rule = tournament?.[`@${classes.replace("!", "")}`] ?? false;
+
+  return isNotRule ? !rule : rule;
+});
+const Structure = curry((tournament, structure) => {
+  const isNotRule = structure?.includes("!");
+  const rule = tournament?.[`@${structure.replace("!", "")}`] ?? false;
+
+  return isNotRule ? !rule : rule;
+});
+const Game = curry((tournament, game) => {
+  const isNotRule = game?.includes("!");
+  const rule = tournament?.[`@${game.replace("!", "")}`] ?? false;
 
   return isNotRule ? !rule : rule;
 });
@@ -35,7 +54,11 @@ module.exports = {
   PrizepoolFrom,
   PrizepoolTo,
   Name,
+  NotName,
   StartDay,
   Entrants,
   Flags,
+  Class,
+  Game,
+  Structure,
 };

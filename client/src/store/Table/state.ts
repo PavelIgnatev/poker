@@ -128,6 +128,16 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@bounty": !!bounty,
       "@sat": !!sat,
       "@sng": !!tournament["@gameClass"]?.includes("sng"),
+      "@scheduled": !!tournament["@gameClass"]?.includes("scheduled"),
+      "@NL": !!(tournament["@structure"] === "NL"),
+      "@PL": !!(tournament["@structure"] === "PL"),
+      "@PNL": !!(tournament["@structure"] === "PNL"),
+      "@FL": !!(tournament["@structure"] === "FL"),
+      "@ML": !!(tournament["@structure"] === "ML"),
+      "@H": !!(tournament["@game"] === "H"),
+      "@H6": !!(tournament["@game"] === "H6"),
+      "@O": !!(tournament["@game"] === "O"),
+      "@OHL": !!(tournament["@game"] === "OHL"),
       "@deepstack": !!tournament["@flags"]?.includes("D"),
       "@superturbo": !!superturbo,
       "@prizepool": pp,
@@ -152,7 +162,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const turbo = tournament["@turbo"];
     const superturbo = tournament["@superturbo"];
     const prizepool = tournament["@usdPrizepool"];
-    
+
     return (
       Number(tournament["@usdBid"]) >= Number(moneyStart) &&
       Number(tournament["@usdBid"]) <= Number(moneyEnd) &&
@@ -187,9 +197,11 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
     return { ...tournament, valid };
   });
-
+  const d = new Set();
   // фильтр по времени "от"-"до"
   tournaments = tournaments.filter((item) => {
+    d.add(item["@game"]);
+
     const startDate = item?.["@scheduledStartDate"] ?? "-";
     const { dateStart, dateEnd } = $tournamentsSettings.getState();
 
@@ -203,8 +215,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       ? dateStart <= res && res <= r
       : !(dateStart > res && res > dateEnd);
   });
-
-  console.log(tournaments.length);
 
   return tournaments;
 });
