@@ -27,18 +27,7 @@ const promiseWrapper = (mailOptions) =>
     });
   });
 
-const mailOptions = (mails, html, content) => {
-  const currentTime = new Date(
-    new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
-      timeZone: "UTC",
-    }),
-  );
-  const year = currentTime.getFullYear();
-  const month = currentTime.getMonth() + 1;
-  const day = currentTime.getDate();
-  const date = `${year}-${month}-${day}`;
-  const filename = `${date}.xlsx`;
-
+const mailOptions = (mails, html, content, filename) => {
   //as.dsa.20@mail.ru
   //PU22EfyoAps$
 
@@ -59,7 +48,6 @@ const mailOptions = (mails, html, content) => {
 };
 
 const sendMail = async (mail, tournaments, html, region) => {
-  console.log(region)
   const workbook = new Excel.Workbook();
   const worksheet = workbook.addWorksheet("Debtors");
   worksheet.columns = [
@@ -95,10 +83,11 @@ const sendMail = async (mail, tournaments, html, region) => {
   const month = currentTime.getMonth() + 1;
   const day = currentTime.getDate();
   const date = `${year}-${month}-${day}`;
+  const filename = `${region}-${date}.xlsx`
 
   try {
     console.log(`Начинаю создавать таблицу со статистикой игороков по региону: ${region}`)
-    await writeFile(`src/store/xlsx/${region}-${date}.xlsx`, buffer);
+    await writeFile(`src/store/xlsx/${filename}`, buffer);
     console.log(`Создание таблицы со статистикой игороков по региону ${region} успешно завершилось`)
   }
   catch(e) {
@@ -108,7 +97,7 @@ const sendMail = async (mail, tournaments, html, region) => {
   for (let i = 0; i < 5; i++) {
     try {
       console.log("Попытка отправить номер ", i);
-      await promiseWrapper(mailOptions(mail, html, buffer));
+      await promiseWrapper(mailOptions(mail, html, buffer, filename));
       break;
     } catch (e) {
       console.log(e);
@@ -154,7 +143,7 @@ const sendStatistics = async (errorTournaments) => {
   for (let key in errorTournamentsByRegion) {
     const message = errorTournamentsByRegion[key]
 
-
+  
     let region
 
     switch (key) {
