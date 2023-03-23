@@ -159,7 +159,7 @@ const sendStatistics = async (errorTournaments) => {
         region = 'Russian'
         break;
     }
-
+ 
 
     try {
       console.log(`Начал отправлять статистику по турнирам на ${key}`)
