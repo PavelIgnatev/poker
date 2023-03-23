@@ -26,11 +26,11 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   const { alias, password, timezone } = config;
 
   const defaultTimezoneOption =
-    TIMEZONES.find((option) => option.value === timezone) || TIMEZONES[12];
+    TIMEZONES.find((option) => option.value === timezone) || TIMEZONES[15];
 
   const handlePasswordChange = (password: string) =>
     editableConfigEvents.handleChangePassword(password);
-  const handleTimezoneChange = (option: SelectOption<typeof TIMEZONES[12]>) =>
+  const handleTimezoneChange = (option: SelectOption<typeof TIMEZONES[15]>) =>
     editableConfigEvents.handleTimezoneChange(option.value);
   const handleLevelChange = (option: SelectOption<number>) => {
     editableConfigEvents.handleAllLevelsChange(option.value as any);

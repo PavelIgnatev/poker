@@ -12,8 +12,6 @@ import {
 } from "../../../store/Rules";
 import { validateNumber } from "../../../helpers/validateNumber";
 
-import { BaseButton } from "../../BaseButton";
-
 import { RULES_TYPES_TO_FIELDS, RULES_TYPES } from "../constants";
 import { b } from "../index";
 import { SingleSelect } from "../../SingleSelect";
@@ -154,7 +152,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                     disabled={!isEditable}
                     label="Modifier"
                     required
-                    style={{ width: "150px" }}
+                    style={{ width: "160px" }}
                     onSingleChange={handleTypeChange(rowIndex)}
                     className={b("rule-row-select")}
                     defaultValue={{ value: ruleType, label: ruleType }}

@@ -1,105 +1,43 @@
 {
-    "FromTo": [
+    "BidEqual": [
+        {
+            "type": "number",
+            "placeholder": "Equal",
+            "options": null
+        }
+    ],
+    "BidFrom": [
         {
             "type": "number",
             "placeholder": "From",
             "options": null
-        },
+        }
+    ],
+    "BidTo": [
         {
             "type": "number",
             "placeholder": "To",
             "options": null
         }
     ],
-    "FromToName": [
+    "PrizepoolEqual": [
+        {
+            "type": "number",
+            "placeholder": "Equal",
+            "options": null
+        }
+    ],
+    "PrizepoolFrom": [
         {
             "type": "number",
             "placeholder": "From",
             "options": null
-        },
+        }
+    ],
+    "PrizepoolTo": [
         {
             "type": "number",
             "placeholder": "To",
-            "options": null
-        },
-        {
-            "type": "string",
-            "placeholder": "Includes",
-            "options": null
-        }
-    ],
-    "BidGt": [
-        {
-            "type": "number",
-            "placeholder": "Bid",
-            "options": null
-        },
-        {
-            "type": "number",
-            "placeholder": "Guarantee",
-            "options": null
-        }
-    ],
-    "Ticket": [
-        {
-            "type": "number",
-            "placeholder": "Bid",
-            "options": null
-        },
-        {
-            "type": "number",
-            "placeholder": "Tickets",
-            "options": null
-        },
-        {
-            "type": "string",
-            "placeholder": "Includes",
-            "options": null
-        }
-    ],
-    "BidGtName": [
-        {
-            "type": "number",
-            "placeholder": "Bid",
-            "options": null
-        },
-        {
-            "type": "number",
-            "placeholder": "Guarantee",
-            "options": null
-        },
-        {
-            "type": "string",
-            "placeholder": "includes",
-            "options": null
-        }
-    ],
-    "FromToGt": [
-        {
-            "type": "number",
-            "placeholder": "From",
-            "options": null
-        },
-        {
-            "type": "number",
-            "placeholder": "To",
-            "options": null
-        },
-        {
-            "type": "number",
-            "placeholder": "Guarantee",
-            "options": null
-        }
-    ],
-    "BidName": [
-        {
-            "type": "number",
-            "placeholder": "Bid",
-            "options": null
-        },
-        {
-            "type": "string",
-            "placeholder": "Includes",
             "options": null
         }
     ],
@@ -107,38 +45,6 @@
         {
             "type": "string",
             "placeholder": "Includes",
-            "options": null
-        }
-    ],
-    "NotName": [
-        {
-            "type": "string",
-            "placeholder": "Includes",
-            "options": null
-        }
-    ],
-    "FLAGS": [
-        {
-            "type": "string",
-            "options": [
-                "rebuy",
-                "!rebuy",
-                "od",
-                "!od",
-                "sng",
-                "!sng",
-                "deepstack",
-                "!deepstack",
-                "sat",
-                "!sat"
-            ],
-            "placeholder": "Flags"
-        }
-    ],
-    "Entrants": [
-        {
-            "type": "number",
-            "placeholder": "Count",
             "options": null
         }
     ],
@@ -155,6 +61,31 @@
                 "Friday",
                 "Saturday"
             ]
+        }
+    ],
+    "Flags": [
+        {
+            "type": "string",
+            "options": [
+                "rebuy",
+                "od",
+                "sng",
+                "deepstack",
+                "sat",
+                "!rebuy",
+                "!od",
+                "!sng",
+                "!deepstack",
+                "!sat"
+            ],
+            "placeholder": "Flags"
+        }
+    ],
+    "Entrants": [
+        {
+            "type": "number",
+            "placeholder": "Count",
+            "options": null
         }
     ]
 }

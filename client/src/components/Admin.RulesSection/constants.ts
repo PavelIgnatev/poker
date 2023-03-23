@@ -2,49 +2,45 @@ import { rulesType } from "../../@types/rulesModel";
 
 // если здесь чет меняем то меняем и на сервере
 export const RULES_TYPES_TO_FIELDS = {
-  FromTo: [
+  BidEqual: [
+    {
+      type: "number",
+      placeholder: "Equal",
+      options: null,
+    },
+  ],
+  BidFrom: [
     {
       type: "number",
       placeholder: "From",
       options: null,
     },
+  ],
+  BidTo: [
     {
       type: "number",
       placeholder: "To",
       options: null,
     },
   ],
-  FromToName: [
+  PrizepoolEqual: [
     {
       type: "number",
-      placeholder: "From",
-      options: null,
-    },
-    {
-      type: "number",
-      placeholder: "To",
-      options: null,
-    },
-    {
-      type: "string",
-      placeholder: "Includes",
+      placeholder: "Equal",
       options: null,
     },
   ],
-  FromToGt: [
+  PrizepoolFrom: [
     {
       type: "number",
       placeholder: "From",
       options: null,
     },
+  ],
+  PrizepoolTo: [
     {
       type: "number",
       placeholder: "To",
-      options: null,
-    },
-    {
-      type: "number",
-      placeholder: "Guarantee",
       options: null,
     },
   ],
@@ -55,74 +51,34 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
-  NotName: [
-    {
-      type: "string",
-      placeholder: "Includes",
-      options: null,
-    },
-  ],
-  BidGt: [
-    {
-      type: "number",
-      placeholder: "Bid",
-      options: null,
-    },
-    {
-      type: "number",
-      placeholder: "Guarantee",
-      options: null,
-    },
-  ],
-  BidName: [
-    {
-      type: "number",
-      placeholder: "Bid",
-      options: null,
-    },
-    {
-      type: "string",
-      placeholder: "Includes",
-      options: null,
-    },
-  ],
-  BidGtName: [
-    {
-      type: "number",
-      placeholder: "Bid",
-      options: null,
-    },
-    {
-      type: "number",
-      placeholder: "Guarantee",
-      options: null,
-    },
-    {
-      type: "string",
-      placeholder: "includes",
-      options: null,
-    },
-  ],
   StartDay: [
     {
       type: "string",
       placeholder: "Weekday",
-      options: ["Sunday", "Monday", "Thusday", "Webnesday", "Thursday", "Friday", "Saturday"],
+      options: [
+        "Sunday",
+        "Monday",
+        "Thusday",
+        "Webnesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
     },
   ],
-  FLAGS: [
+  Flags: [
     {
       type: "string",
       options: [
         "rebuy",
-        "!rebuy",
         "od",
-        "!od",
         "sng",
-        "!sng",
         "deepstack",
-        "!deepstack",
         "sat",
+        "!rebuy",
+        "!od",
+        "!sng",
+        "!deepstack",
         "!sat",
       ],
       placeholder: "Flags",

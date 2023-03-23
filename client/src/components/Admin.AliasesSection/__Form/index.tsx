@@ -62,7 +62,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
 
     setAlias("");
     setPassword("");
-    setTZone(TIMEZONES[12].value);
+    setTZone(TIMEZONES[15].value);
   };
 
   return (
@@ -92,7 +92,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         className={classes.select}
         label="Timezone"
         options={TIMEZONES}
-        defaultValue={TIMEZONES[12]}
+        defaultValue={TIMEZONES[15]}
         required
         fullWidth
         onSingleChange={(option) => setTZone(option?.value ?? "0")}

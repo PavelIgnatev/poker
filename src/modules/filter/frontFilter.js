@@ -24,84 +24,34 @@ function curry(func) {
   };
 }
 
-// FromTo = FromToQ(bid);
-// FromToName = FromToNameQ(name)(bid);
-// BidGt = BidGtQ(bid)(prizepool);
-// BidGtName = BidGtNameQ(name)(bid)(prizepool);
-// FromToGt = FromToGtQ(bid)(prizepool);
-// Entrants = EntrantsQ(tournament?.["@totalEntrants"] ?? 0);
-// BidName = BidNameQ(name)(bid);
-// StartDay = StartDayQ(weekDay);
-// Name = NameQ(name);
-// NotName = NotNameQ(name);
-// FLAGS = FLAGSQ(tournament);
-
-//Ставка больше либо равно и ставка меньше либо равно
-const FromTo = curry(
-  (realBid, from, to) => Number(realBid) >= Number(from) && Number(realBid) <= Number(to),
-);
-
-//name.includes
-const Name = curry((name, str) => name.toLowerCase().includes(str.toLowerCase()));
-
-//Ставка больше либо равно и ставка меньше либо равно + name.includes
-const FromToName = curry(
-  (name, realBid, from, to, str) => FromTo(realBid, from, to) && Name(name, str),
-);
-
-//Ставка равно, гарантия больше либо равно
-const BidGt = curry(
-  (realBid, realPrizepool, bid, prizepool) =>
-    Number(bid) === Number(realBid) && Number(realPrizepool) >= Number(prizepool),
-);
-
-//Ставка равно, гарантия больше либо равно + name.includes
-const BidGtName = curry(
-  (name, realBid, realPrizepool, bid, prizepool, str) =>
-    BidGt(realBid, realPrizepool, bid, prizepool) && Name(name, str),
-);
-
-//Ставка равно + name.includes
-const BidName = curry(
-  (name, realBid, bid, str) => Number(realBid) === Number(bid) && Name(name, str),
-);
-
-//!name.includes
-const NotName = curry((name, str) => !Name(name, str));
-
-//Ставка больше либо равно и ставка меньше либо равно, гарантия больше либо равно
-const FromToGt = curry(
-  (realBid, realPrizepool, from, to, prizepool) =>
-    FromTo(realBid, from, to) && Number(realPrizepool) >= Number(prizepool),
-);
-
-//Ставка больше либо равно и ставка меньше либо равно, гарантия больше либо равно
+const BidEqual = curry((bid, equal) => Number(bid) === Number(equal));
+const BidFrom = curry((bid, from) => Number(bid) >= Number(from));
+const BidTo = curry((bid, to) => Number(bid) <= Number(to));
+const PrizepoolEqual = curry((prizepool, equal) => Number(prizepool) === Number(equal));
+const PrizepoolFrom = curry((prizepool, from) => Number(prizepool) >= Number(from));
+const PrizepoolTo = curry((prizepool, to) => Number(prizepool) <= Number(to));
 const StartDay = curry((realDay, day) => String(realDay) === String(day));
-
-// Фильтр по флагу
-const FLAGS = curry((tournament, flags) => {
+const Name = curry((name, str) => name.toLowerCase().includes(str.toLowerCase()));
+const Flags = curry((tournament, flags) => {
   const isNotRule = flags?.includes("!");
   const rule = tournament?.[`@${flags.replace("!", "")}`] ?? false;
 
   return isNotRule ? !rule : rule;
 });
-
-// Фильтр по Entrants
 const Entrants = curry((totalEntrants, entrants) => Number(totalEntrants) >= Number(entrants));
 
 var curry_1 = {
   curry,
-  FromTo,
-  FromToName,
-  BidGt,
-  BidGtName,
-  BidName,
+  BidEqual,
+  BidFrom,
+  BidTo,
+  PrizepoolEqual,
+  PrizepoolFrom,
+  PrizepoolTo,
   Name,
-  FromToGt,
   StartDay,
   Entrants,
-  FLAGS,
-  NotName,
+  Flags,
 };
 
 /**
@@ -229,17 +179,16 @@ var validateNumber_1 = { validateNumber: validateNumber$1 };
 
 const { getNetwork } = getNetwork_1;
   const {
-    FromTo: FromToQ,
-    FromToName: FromToNameQ,
-    BidGt: BidGtQ,
-    BidGtName: BidGtNameQ,
-    BidName: BidNameQ,
+    BidEqual: BidEqualQ,
+    BidFrom: BidFromQ,
+    BidTo: BidToQ,
+    PrizepoolEqual: PrizepoolEqualQ,
+    PrizepoolFrom: PrizepoolFromQ,
     Name: NameQ,
-    FromToGt: FromToGtQ,
+    PrizepoolTo: PrizepoolToQ,
     StartDay: StartDayQ,
-    NotName: NotNameQ,
     Entrants: EntrantsQ,
-    FLAGS: FLAGSQ,
+    Flags: FlagsQ,
   } = curry_1;
   const { isSuperTurbo: isSuperTurboS } = isSuperTurbo_1;
   const { isTurbo: isTurboS } = isTurbo_1;
@@ -251,30 +200,28 @@ const { getNetwork } = getNetwork_1;
       getNetwork(tournament["@network"]);
       const bid = Number(tournament["@usdBid"]),
       prizepool = Math.round(Number(tournament["@usdPrizepool"])),
-      weekDay = tournament["@getWeekday"],
+      weekDay = tournament["@getWeekday"];
 
-      FromTo = FromToQ(bid);
-      FromToNameQ(name)(bid);
-      BidGtQ(bid)(prizepool);
-      BidGtNameQ(name)(bid)(prizepool);
-      FromToGtQ(bid)(prizepool);
+      BidEqualQ(bid);
+      BidFromQ(bid);
+      BidToQ(bid);
+      PrizepoolEqualQ(prizepool);
+      PrizepoolFromQ(prizepool);
+      PrizepoolToQ(prizepool);
       EntrantsQ(tournament?.["@totalEntrants"] ?? 0);
-      BidNameQ(name)(bid);
       StartDayQ(weekDay);
       NameQ(name);
-      NotNameQ(name);
-      FLAGSQ(tournament);
+      FlagsQ(tournament);
 
     isTurboS(tournament);
     isSuperTurboS(tournament);
     isNormalS(tournament);
 
     validateNumber(ruleLevel);
-    const effmu = 'A';
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((FromTo(1,1111111))&& effmu === 'A') return { valid: false, guarantee: 1, rules: false };
+    
     
     return { valid: false, guarantee: 1, rules: false };
   };

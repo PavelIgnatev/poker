@@ -152,9 +152,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const turbo = tournament["@turbo"];
     const superturbo = tournament["@superturbo"];
     const prizepool = tournament["@usdPrizepool"];
-
-    console.log(bounty)
-
+    
     return (
       Number(tournament["@usdBid"]) >= Number(moneyStart) &&
       Number(tournament["@usdBid"]) <= Number(moneyEnd) &&

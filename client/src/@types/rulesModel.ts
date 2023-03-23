@@ -1,14 +1,13 @@
 export type rulesType =
-  | "FromTo"
-  | "FromToName"
-  | "BidGt"
-  | "BidGtName"
-  | "FromToGt"
-  | "BidName"
   | "Name"
-  | "NotName"
-  | "FLAGS"
+  | "BidEqual"
+  | "BidFrom"
+  | "BidTo"
+  | "PrizepoolEqual"
+  | "PrizepoolFrom"
+  | "PrizepoolTo"
   | "StartDay"
+  | "Flags"
   | "Entrants";
 
 export interface rulesModel {

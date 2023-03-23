@@ -62,13 +62,13 @@ const sendMail = async (mail, tournaments, html) => {
   const workbook = new Excel.Workbook();
   const worksheet = workbook.addWorksheet("Debtors");
   worksheet.columns = [
-    { header: "Level", key: "@level" },
-    { header: "Alias", key: "@alias" },
+    { header: "ID", key: "@id" },
     { header: "Date", key: "@d" },
     { header: "Time", key: "@times" },
-    { header: "Network", key: "@network" },
-    { header: "ID", key: "@id" },
+    { header: "Alias", key: "@alias" },
     { header: "Nickname", key: "@nickname" },
+    { header: "Level", key: "@level" },
+    { header: "Network", key: "@network" },
     { header: "Name", key: "@name" },
     { header: "Buy-in", key: "@bid" },
     { header: "Prize", key: "@prize" },
