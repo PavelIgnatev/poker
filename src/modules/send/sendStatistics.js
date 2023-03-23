@@ -154,7 +154,6 @@ const sendStatistics = async (errorTournaments) => {
   for (let key in errorTournamentsByRegion) {
     const message = errorTournamentsByRegion[key]
 
-    console.log(key)
 
     let region
 
