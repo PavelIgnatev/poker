@@ -250,7 +250,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                   color="primary"
                   onClick={handleAddRuleRow}
                 >
-                  Add rule row
+                  Add row
                 </Button>
                 <Button
                   type="submit"
