@@ -19,6 +19,6 @@
     "sourceMap": true,
     "inlineSources": true // TODO на что влияет?
   },
-  "include": ["src"],
+  "include": ["src", "tester.js"],
   "no-empty": false
 }

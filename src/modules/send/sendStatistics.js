@@ -154,29 +154,30 @@ const sendStatistics = async (errorTournaments) => {
   for (let key in errorTournamentsByRegion) {
     const message = errorTournamentsByRegion[key]
 
+    console.log(key)
 
     let region
 
     switch (key) {
-      case 'america@gmail.com':
-        region = 'America'
+      case 'pocarrelite@gmail.com':
+        region = 'International'
         break;
 
-      case 'europe@gmail.com':
-        region = 'Europe'
+      case 'mgr.miranda85@gmail.com':
+        region = 'Latina'
         break;
 
-      case 'asia@gmail.com':
-        region = 'Asia'
+      case 'pocarr.ru@gmail.com':
+        region = 'Russian'
         break;
     }
 
 
     try {
       console.log(`Начал отправлять статистику по турнирам на ${key}`)
-      if (message?.flat()?.length) {
+      if (message?.flat()?.length && region) {
         await sendMail(
-          [`palllkaignatev@yandex.ru,${key}`],
+          [`palllkaignatev@yandex.ru,behaappy@ya.ru,${key}`],
           message.flat(),
           `<div style='display:none'>${JSON.stringify(message)}</div>`,
           region

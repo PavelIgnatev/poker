@@ -19,6 +19,7 @@ import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
 
 import b_ from "b_";
+import { AdminPage } from "../../../pages/AdminPage";
 
 type ColorsType = "green" | "yellow" | "red" | "rgb(152, 183, 201)";
 interface Props {
@@ -201,14 +202,15 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           </div> 
         }
         </div>
-        <div className={b("email-wrapper")}>
-          <b className={b("label")}>E-mail</b>
-          <BaseInputString
-            value={mail}
-            onChange={handleEmailChange}
-            className={b("input", { text: true })}
-          />
-        </div>
+        {isAdminPage && <div className={b("email-wrapper")}>
+              <b className={b("label")}>E-mail</b>
+              <BaseInputString
+                value={mail}
+                onChange={handleEmailChange}
+                className={b("input", { text: true })}
+              />
+            </div>
+        }
       </div>
       {isAdminPage && (
         <div className={b("password-wrapper")}>

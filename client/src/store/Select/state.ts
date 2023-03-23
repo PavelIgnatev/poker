@@ -30,9 +30,10 @@ export const TIMEZONES = [
 
 export const ADDRESS = [
   { value: null, label: "Unknown" },
-  { value: "america@gmail.com", label: "America" },
-  { value: "europe@gmail.com", label: "Europe" },
-  { value: "asia@gmail.com", label: "Asia" },
+  { value: "pocarrelite@gmail.com", label: "International" },
+  { value: "mgr.miranda85@gmail.com", label: "Latina" },
+  { value: "pocarr.ru@gmail.com", label: "Russian" },
+  { value: "", label: "Spanish" },
 ];
 
 export const TIMERANGE = [
