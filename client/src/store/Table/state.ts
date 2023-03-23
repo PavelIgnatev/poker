@@ -93,13 +93,26 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       const $ = tournament["@name"].split("$");
       if ($.length > 1) {
         if (network === "Chico" && !sat) {
-          tournament["@guarantee"] = $[2]
-            ?.split(" ")?.[0]
-            ?.replace(",", "")
-            .replace(".5K", "500")
-            .replace("K", "000")
-            .replace("M", "000000")
-            .replace(".", "");
+          if(typeof +$[1][0] === 'number') {
+            console.log($[1])
+            tournament["@guarantee"] = $[1]
+              .split(" ")[0]
+              .replace(")", "")
+              .replace(",", "");
+            console.log($[1]
+              .split(" ")[0]
+              .replace(")", "")
+              .replace(",", ""))
+          }
+          else {
+            tournament["@guarantee"] = $[2]
+              ?.split(" ")?.[0]
+              ?.replace(",", "")
+              .replace(".5K", "500")
+              .replace("K", "000")
+              .replace("M", "000000")
+              .replace(".", "");
+          }
         } else if ((network === "WPN" && !sat) || network === "888") {
           tournament["@guarantee"] = $[1]
             .split(" ")[0]
@@ -108,6 +121,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
         }
       }
     }
+
 
     const prizepool = Math.round(
       Math.max(
