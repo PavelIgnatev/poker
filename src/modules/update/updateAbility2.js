@@ -15,9 +15,9 @@ const updateAbility2 = async () => {
   filter = require("../filter/filter");
 
   const lastValue = await getCurrencyRate();
-  const levels = Array(17)
-    .fill(null)
-    .map((_, i) => [i + "A", i + "B", i + "C"])
+  const levels = ["A", "B", ...Array(17)
+    .fill(null).map((_, i) => i)]
+    .map((i) => [String(i) + "A", String(i) + "B", String(i) + "C"])
     .flat();
   const config = JSON.parse(await readFile("src/store/rules/config.json"));
   const offpeak = JSON.parse(await readFile("src/store/offpeak/offpeak.json"));

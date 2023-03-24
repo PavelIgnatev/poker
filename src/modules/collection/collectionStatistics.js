@@ -161,7 +161,7 @@ const collectionStatistics = async () => {
     console.log("Перезаписываю алиасы");
     await writeFile("src/store/config/config.json", JSON.stringify(config));
     try {
-      await sendStatistics(errorTournaments);
+      // await sendStatistics(errorTournaments);
       console.log("Начинаю удалять папку дня ", date);
       // await deleteFolder(`src/store/copies/${date}`);
     } catch (error) {

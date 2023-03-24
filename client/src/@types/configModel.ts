@@ -11,7 +11,7 @@ export interface ConfigModel {
 
 export interface defaultConfigModel {
   alias: string;
-  level: number;
+  level: number | string;
   mail: string;
   password: string;
   timezone: string;

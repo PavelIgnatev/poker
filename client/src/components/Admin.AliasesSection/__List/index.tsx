@@ -13,7 +13,7 @@ import { Modal, ModalRef } from "../../Modal";
 import { b } from "../index";
 
 interface Props {
-  selectedLevel: number | null;
+  selectedLevel: number | string | null;
   search: string;
 }
 

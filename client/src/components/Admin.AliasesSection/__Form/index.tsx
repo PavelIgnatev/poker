@@ -13,7 +13,7 @@ import { BaseButton } from "../../BaseButton";
 import { b } from "../index";
 
 interface AliasesSectionFormProps {
-  selectedLevel: number | null;
+  selectedLevel: number | string | null;
 }
 
 const nativeSelectStyles = {

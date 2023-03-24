@@ -7,7 +7,7 @@ export const aliasesEvents = createApi($aliases, {
   deleteAlias: (store, alias: string) => store.filter((a) => a !== alias),
 });
 
-export const getAliasesRequest = createEffect(async (level?: number) => {
+export const getAliasesRequest = createEffect(async (level?: number | string) => {
   return await api.get<string[]>("/api/aliases", { level });
 });
 

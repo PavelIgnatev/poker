@@ -33,23 +33,23 @@ export const Ability2SectionRules: FC<Props> = ({
 }) => {
   const levelPlusEffmu = level + effmu;
   const selectedRules = savedRules[levelPlusEffmu] || [];
-
   const [network, setNetwork] = useState<string>("");
   const [currency, setCurrency] = useState<string>("");
   const [bid, setBid] = useState<string>("");
   const [status, setStatus] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [ability, setAbility] = useState<string>("");
-
+  
   const ability2 =
-    state[network]?.[levelPlusEffmu]?.[currency]?.[bid]?.[status]?.[
-      Object.keys(
-        state[network]?.[levelPlusEffmu]?.[currency]?.[bid]?.[status] ?? []
+  state[network]?.[levelPlusEffmu]?.[currency]?.[bid]?.[status]?.[
+    Object.keys(
+      state[network]?.[levelPlusEffmu]?.[currency]?.[bid]?.[status] ?? []
       )[0]
     ] ?? 0;
-
+    
   const allNetworks = state;
   const allCurrencies = allNetworks?.[network]?.[levelPlusEffmu];
+  console.log(allNetworks, allCurrencies)
   const allBids = allCurrencies?.[currency];
   const allStatuses = allBids?.[bid];
   const allNames = {

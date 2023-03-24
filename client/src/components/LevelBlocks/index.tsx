@@ -6,8 +6,8 @@ import { LEVELS_ARRAY } from "../../constants";
 import "./index.scss";
 
 interface Props {
-  selectedLevel: number | null;
-  onLevelChange: (level: number) => () => void;
+  selectedLevel: number | string | null;
+  onLevelChange: (level: number | string) => () => void;
   withAllLevels?: boolean;
 }
 
@@ -43,9 +43,9 @@ export const LevelBlocks: FC<Props> = ({ selectedLevel, onLevelChange, withAllLe
 );
 
 export const useLevelBlocks = () => {
-  const [selectedLevel, setSelectedLevel] = React.useState<number | null>(null);
+  const [selectedLevel, setSelectedLevel] = React.useState<number | string | null>(null);
 
-  const handleLevelChange = (level: number) => () => {
+  const handleLevelChange = (level: number | string) => () => {
     if (level === selectedLevel) {
       setSelectedLevel(null);
     } else {

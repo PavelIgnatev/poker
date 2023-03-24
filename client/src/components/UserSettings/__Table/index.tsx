@@ -32,7 +32,7 @@ interface Props {
 
 const b = b_.with("user-settings-table");
 
-const levelsOptions: SelectOption<number>[] = LEVELS_ARRAY.map((level) => ({
+const levelsOptions: SelectOption<number | string>[] = LEVELS_ARRAY.map((level) => ({
   value: level,
   label: level,
 }));

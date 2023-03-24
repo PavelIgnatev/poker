@@ -2,7 +2,7 @@ export type Effmu = "A" | "B" | "C" | "all";
 
 export type Network = string;
 
-export type Level = number;
+export type Level = number | string;
 
 export type NetworkLevels = {
   level: Level;
