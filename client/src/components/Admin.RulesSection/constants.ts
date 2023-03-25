@@ -44,6 +44,48 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
+  AbilityEqual: [
+    {
+      type: "number",
+      placeholder: "Equal",
+      options: null,
+    },
+  ],
+  AbilityFrom: [
+    {
+      type: "number",
+      placeholder: "From",
+      options: null,
+    },
+  ],
+  AbilityTo: [
+    {
+      type: "number",
+      placeholder: "To",
+      options: null,
+    },
+  ],
+  EntrantsEqual: [
+    {
+      type: "number",
+      placeholder: "Equal",
+      options: null,
+    },
+  ],
+  EntrantsFrom: [
+    {
+      type: "number",
+      placeholder: "From",
+      options: null,
+    },
+  ],
+  EntrantsTo: [
+    {
+      type: "number",
+      placeholder: "To",
+      options: null,
+    },
+  ],
   Name: [
     {
       type: "string",
@@ -119,13 +161,6 @@ export const RULES_TYPES_TO_FIELDS = {
       type: "string",
       options: ["H", "H6", "O", "OHL", "!H", "!H6", "!O", "!OHL"],
       placeholder: "Game",
-    },
-  ],
-  Entrants: [
-    {
-      type: "number",
-      placeholder: "Count",
-      options: null,
     },
   ],
 };

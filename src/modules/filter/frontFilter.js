@@ -30,6 +30,12 @@ const BidTo = curry((bid, to) => Number(bid) <= Number(to));
 const PrizepoolEqual = curry((prizepool, equal) => Number(prizepool) === Number(equal));
 const PrizepoolFrom = curry((prizepool, from) => Number(prizepool) >= Number(from));
 const PrizepoolTo = curry((prizepool, to) => Number(prizepool) <= Number(to));
+const EntrantsEqual = curry((entrants, equal) => Number(entrants) === Number(equal));
+const EntrantsFrom = curry((entrants, from) => Number(entrants) >= Number(from));
+const EntrantsTo = curry((entrants, to) => Number(entrants) <= Number(to));
+const AbilityEqual = curry((ability, equal) => Number(ability) === Number(equal));
+const AbilityFrom = curry((ability, from) => Number(ability) >= Number(from));
+const AbilityTo = curry((ability, to) => Number(ability) <= Number(to));
 const StartDay = curry((realDay, day) => String(realDay) === String(day));
 const Name = curry((name, str) => name.toLowerCase().includes(str.toLowerCase()));
 const NotName = curry((name, str) => !name.toLowerCase().includes(str.toLowerCase()));
@@ -57,7 +63,6 @@ const Game = curry((tournament, game) => {
 
   return isNotRule ? !rule : rule;
 });
-const Entrants = curry((totalEntrants, entrants) => Number(totalEntrants) >= Number(entrants));
 
 var curry_1 = {
   curry,
@@ -67,10 +72,15 @@ var curry_1 = {
   PrizepoolEqual,
   PrizepoolFrom,
   PrizepoolTo,
+  EntrantsEqual,
+  EntrantsFrom,
+  EntrantsTo,
+  AbilityEqual,
+  AbilityFrom,
+  AbilityTo,
   Name,
   NotName,
   StartDay,
-  Entrants,
   Flags,
   Class,
   Game,
@@ -207,11 +217,16 @@ const { getNetwork } = getNetwork_1;
     BidTo: BidToQ,
     PrizepoolEqual: PrizepoolEqualQ,
     PrizepoolFrom: PrizepoolFromQ,
+    PrizepoolTo: PrizepoolToQ,
+    EntrantsEqual: EntrantsEqualQ,
+    EntrantsFrom: EntrantsFromQ,
+    EntrantsTo: EntrantsToQ,
+    AbilityEqual: AbilityEqualQ,
+    AbilityFrom: AbilityFromQ,
+    AbilityTo: AbilityToQ,
     Name: NameQ,
     NotName: NotNameQ,
-    PrizepoolTo: PrizepoolToQ,
     StartDay: StartDayQ,
-    Entrants: EntrantsQ,
     Flags: FlagsQ,
     Class: ClassQ,
     Structure: StructureQ,
@@ -223,6 +238,8 @@ const { getNetwork } = getNetwork_1;
   const {validateNumber} = validateNumber_1;
   
   const filter = (ruleLevel, tournament, isGetTournaments = false) => {
+    const ability = !tournament['@ability'] || tournament['@ability'] === '-' ? 0 : tournament['@ability'];
+
     const name = tournament["@name"]?.toLowerCase();
       getNetwork(tournament["@network"]);
       const bid = Number(tournament["@usdBid"]),
@@ -230,12 +247,17 @@ const { getNetwork } = getNetwork_1;
       weekDay = tournament["@getWeekday"];
 
       BidEqualQ(bid);
-      BidFromQ(bid);
+      const BidFrom = BidFromQ(bid);
       BidToQ(bid);
       PrizepoolEqualQ(prizepool);
       PrizepoolFromQ(prizepool);
       PrizepoolToQ(prizepool);
-      EntrantsQ(tournament?.["@totalEntrants"] ?? 0);
+      EntrantsEqualQ(tournament?.["@totalEntrants"] ?? 0);
+      EntrantsFromQ(tournament?.["@totalEntrants"] ?? 0);
+      EntrantsToQ(tournament?.["@totalEntrants"] ?? 0);
+      AbilityEqualQ(ability);
+      AbilityFromQ(ability);
+      AbilityToQ(ability);
       StartDayQ(weekDay);
       NameQ(name);
       NotNameQ(name);
@@ -248,11 +270,12 @@ const { getNetwork } = getNetwork_1;
     isSuperTurboS(tournament);
     isNormalS(tournament);
 
-    validateNumber(ruleLevel);
+    const level = validateNumber(ruleLevel);
+    const effmu = 'A';
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    
+    if((BidFrom(1))&& level === '1'&& effmu === 'A') return { valid: true, rules: true, guarantee: 1 };
     
     return { valid: false, guarantee: 1, rules: false };
   };

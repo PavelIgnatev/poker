@@ -1,15 +1,23 @@
 export type rulesType =
-  | "Name"
   | "BidEqual"
   | "BidFrom"
   | "BidTo"
   | "PrizepoolEqual"
   | "PrizepoolFrom"
   | "PrizepoolTo"
+  | "AbilityEqual"
+  | "AbilityFrom"
+  | "AbilityTo"
+  | "EntrantsEqual"
+  | "EntrantsFrom"
+  | "EntrantsTo"
+  | "Name"
+  | "NotName"
   | "StartDay"
   | "Flags"
-  | "Entrants";
-
+  | "Class"
+  | "Structure"
+  | "Game";
 export interface rulesModel {
   type: rulesType;
   values: Array<string | number>;

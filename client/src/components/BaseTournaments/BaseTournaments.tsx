@@ -1,4 +1,5 @@
 import { useStore } from "effector-react";
+import cx from "classnames";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import {
@@ -42,8 +43,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: "15px",
     },
     head: {
-      background: "#b6ec9f",
-      fontWight: 500,
+      background: "#303F9F",
+      fontWeight: 500,
     },
     tableContainer: {
       marginBottom: theme.spacing(2),
@@ -64,6 +65,9 @@ const useStyles = makeStyles((theme: Theme) =>
     cell: {
       maxWidth: "300px",
       textAlign: "center",
+    },
+    cellHead: {
+      color: 'white'
     },
   })
 );
@@ -103,22 +107,57 @@ export const BaseTournaments = () => {
           <Table>
             <TableHead className={classes.head}>
               <TableRow>
-                <TableCell className={classes.cell}>ID</TableCell>
-                <TableCell className={classes.cell}>Start Reg</TableCell>
-                <TableCell className={classes.cell}>Late Reg</TableCell>
-                <TableCell className={classes.cell}>Name</TableCell>
-                <TableCell className={classes.cell}>Network</TableCell>
-                <TableCell className={classes.cell}>Buy-in</TableCell>
-                <TableCell className={classes.cell}>Guarantee</TableCell>
-                <TableCell className={classes.cell}>Ability</TableCell>
-                <TableCell className={classes.cell}>Duration</TableCell>
+                <TableCell className={cx(classes.cell, classes.cellHead)}>
+                  ID
+                </TableCell>
+                <TableCell className={cx(classes.cell, classes.cellHead)}>
+                  Start Reg
+                </TableCell>
+                <TableCell className={cx(classes.cell, classes.cellHead)}>
+                  Late Reg
+                </TableCell>
+                <TableCell className={cx(classes.cell, classes.cellHead)}>
+                  Name
+                </TableCell>
+                <TableCell className={cx(classes.cell, classes.cellHead)}>
+                  Network
+                </TableCell>
+                <TableCell className={cx(classes.cell, classes.cellHead)}>
+                  Buy-in
+                </TableCell>
+                <TableCell className={cx(classes.cell, classes.cellHead)}>
+                  Prizepool
+                </TableCell>
+                <TableCell className={cx(classes.cell, classes.cellHead)}>
+                  Ability
+                </TableCell>
+                <TableCell className={cx(classes.cell, classes.cellHead)}>
+                  Duration
+                </TableCell>
               </TableRow>
             </TableHead>
 
             <TableBody>
               {!loading &&
                 rows.map((item) => (
-                  <TableRow key={item["@id"]} className={classes.tableRow}>
+                  <TableRow
+                    key={item["@id"]}
+                    className={classes.tableRow}
+                    style={{
+                      background:
+                        typeof item["percent"] !== "undefined"
+                          ? item["percent"] >= 0
+                            ? `rgba(140, 255, 0, ${Math.max(
+                                0.15,
+                                Number(item.percent) / 100
+                              )})` //green
+                            : `rgba(255, 0, 0, ${Math.max(
+                                0.2,
+                                Math.abs(item.percent) / 100
+                              )})` //red
+                          : "",
+                    }}
+                  >
                     <TableCell className={classes.cell}>
                       {item["@id"]}
                     </TableCell>

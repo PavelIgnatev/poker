@@ -195,7 +195,25 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
     const { valid } = filter(level, tournament, true);
 
-    return { ...tournament, valid };
+    function calculateDifficultyPercent(difficulty: number) {
+      if (difficulty === 69) {
+        return 0;
+      } else if (difficulty > 69 && difficulty <= 89) {
+        return -((difficulty - 69) / 20) * 100;
+      } else if (difficulty >= 55 && difficulty < 69) {
+        return ((69 - difficulty) / 14) * 100;
+      } else if (difficulty > 89) {
+        return -100;
+      } else if (difficulty < 55) {
+        return 100;
+      }
+    }
+
+    return {
+      ...tournament,
+      valid,
+      percent: calculateDifficultyPercent(Number(tournament["@ability"])),
+    };
   });
   const d = new Set();
   // фильтр по времени "от"-"до"

@@ -8,8 +8,8 @@ const transporter = createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: "palllkaignatev@gmail.com",
-    pass: "rvudsruwypkagmdb",
+    user: "pokerteamsoft@gmail.com",
+    pass: "tnekyspaizuzbocv",
   },
   tls: {
     rejectUnauthorized: false,
@@ -39,14 +39,10 @@ const mailOptions = (mails, html, content) => {
   const date = `${year}-${month}-${day}`;
   const filename = `${date}.xlsx`;
 
-  //as.dsa.20@mail.ru
-  //PU22EfyoAps$
-
-  //behaappy@ya.ru
   return {
-    from: "palllkaignatev@gmail.com",
+    from: "pokerteamsoft@gmail.com",
     to: mails,
-    subject: `Erroneous tournaments for ${date}`,
+    subject: `Statistics of incorrectly played tournaments for ${date}`,
     html,
     attachments: [
       {
@@ -97,17 +93,17 @@ const sendMail = async (mail, tournaments, html) => {
 
 const sendStatistics = async (errorTournaments) => {
   const aliases = Object.keys(errorTournaments);
-  const email = await getEmail();
+  const { email } = await getEmail();
 
   if (!aliases.length) {
     console.log("Нечего отправлять, все сыграли правильные турниры", new Date());
     return;
   }
   console.log("Начинаю отправлять статистику по турнирам на почту админов");
-
+  console.log(email);
   try {
     await sendMail(
-      [`${email},palllkaignatev@yandex.ru`],
+      [`${email},pokerteamsoft@gmail.com`],
       Object.values(errorTournaments).flat(),
       `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
     );

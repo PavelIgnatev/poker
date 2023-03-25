@@ -5,11 +5,16 @@ const { getNetwork } = require("../../helpers/getNetwork");
     BidTo: BidToQ,
     PrizepoolEqual: PrizepoolEqualQ,
     PrizepoolFrom: PrizepoolFromQ,
+    PrizepoolTo: PrizepoolToQ,
+    EntrantsEqual: EntrantsEqualQ,
+    EntrantsFrom: EntrantsFromQ,
+    EntrantsTo: EntrantsToQ,
+    AbilityEqual: AbilityEqualQ,
+    AbilityFrom: AbilityFromQ,
+    AbilityTo: AbilityToQ,
     Name: NameQ,
     NotName: NotNameQ,
-    PrizepoolTo: PrizepoolToQ,
     StartDay: StartDayQ,
-    Entrants: EntrantsQ,
     Flags: FlagsQ,
     Class: ClassQ,
     Structure: StructureQ,
@@ -21,6 +26,8 @@ const { getNetwork } = require("../../helpers/getNetwork");
   const {validateNumber} = require('../../helpers/validateNumber')
   
   const filter = (ruleLevel, tournament, isGetTournaments = false) => {
+    const ability = !tournament['@ability'] || tournament['@ability'] === '-' ? 0 : tournament['@ability']
+
     const name = tournament["@name"]?.toLowerCase(),
       network = getNetwork(tournament["@network"]),
       bid = Number(tournament["@usdBid"]),
@@ -33,7 +40,12 @@ const { getNetwork } = require("../../helpers/getNetwork");
       PrizepoolEqual = PrizepoolEqualQ(prizepool),
       PrizepoolFrom = PrizepoolFromQ(prizepool),
       PrizepoolTo = PrizepoolToQ(prizepool),
-      Entrants = EntrantsQ(tournament?.["@totalEntrants"] ?? 0),
+      EntrantsEqual = EntrantsEqualQ(tournament?.["@totalEntrants"] ?? 0),
+      EntrantsFrom = EntrantsFromQ(tournament?.["@totalEntrants"] ?? 0),
+      EntrantsTo = EntrantsToQ(tournament?.["@totalEntrants"] ?? 0),
+      AbilityEqual = AbilityEqualQ(ability),
+      AbilityFrom = AbilityFromQ(ability),
+      AbilityTo = AbilityToQ(ability),
       StartDay = StartDayQ(weekDay),
       Name = NameQ(name),
       NotName = NotNameQ(name),
@@ -52,7 +64,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    
+    if((BidFrom(1))&& level === '1'&& effmu === 'A') return { valid: true, rules: true, guarantee: 1 };
     
     return { valid: false, guarantee: 1, rules: false };
   };

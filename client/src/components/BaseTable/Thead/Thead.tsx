@@ -88,7 +88,7 @@ export const Thead = ({
             [classes.reverse]: isReverse,
           })}
         >
-          Guarantee
+          Prizepool
         </th>
         <th
           onClick={() => handleClick("@ability")}

@@ -1,19 +1,31 @@
-import classes from "./BaseFooter.module.scss";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Typography, Link } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(2),
+    marginTop: "auto",
+  },
+}));
 
 export const BaseFooter = () => {
+  const classes = useStyles();
+
   return (
     <footer className={classes.footer}>
-      <div className={classes.content}>
-        Developed in{" "}
-        <a
-          href="https://growth-teams.ru"
-          target="_blank"
-          rel="noreferrer"
-          className={classes.a}
-        >
-          growth-teams.ru
-        </a>
-      </div>
+      <Typography
+        variant="subtitle1"
+        align="center"
+        color="textSecondary"
+        component="p"
+      >
+        Contact us at{" "}
+        <Link href="mailto:pokerteamsoft@gmail.com" color="inherit">
+          pokerteamsoft@gmail.com
+        </Link>
+      </Typography>
     </footer>
   );
 };

@@ -33,7 +33,7 @@ const useStyles = makeStyles(() =>
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      height: "100vh",
+      height: "calc(100vh - 60px)",
     },
     form: {
       display: "flex",

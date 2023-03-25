@@ -49,9 +49,11 @@ const updateAbility1 = async () => {
               const values = obj[day][time][bid][name][info];
               const length = values.length || 1;
 
-              obj[day][time][bid][name][info] = Math.round(
+              const ability = Math.round(
                 Number(values.reduce((r, i) => r + Number(i), 0) / length),
               );
+
+              obj[day][time][bid][name][info] = ability;
             });
           });
         });

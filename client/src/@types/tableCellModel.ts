@@ -44,4 +44,5 @@ export interface tableCellModel {
   "@usdBid": number | string;
   "@usdPrizepool": string | number;
   valid: boolean;
+  percent?: number;
 }

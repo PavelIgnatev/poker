@@ -8,6 +8,7 @@ import {
 import { useIntervalWorker } from "../../hooks/useIntervalWorker";
 import { BaseSettings } from "../../components/BaseSettings";
 import { BaseTournaments } from "../../components/BaseTournaments";
+import { BaseFooter } from "../../components/BaseFooter";
 
 export const MainPage = () => {
   const config = useStore($config);
@@ -26,6 +27,7 @@ export const MainPage = () => {
     return (
       <>
         <PasswordSection onSubmit={handlePasswordSubmit} />
+        <BaseFooter />
       </>
     );
   }

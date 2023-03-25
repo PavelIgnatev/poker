@@ -16,6 +16,12 @@ const BidTo = curry((bid, to) => Number(bid) <= Number(to));
 const PrizepoolEqual = curry((prizepool, equal) => Number(prizepool) === Number(equal));
 const PrizepoolFrom = curry((prizepool, from) => Number(prizepool) >= Number(from));
 const PrizepoolTo = curry((prizepool, to) => Number(prizepool) <= Number(to));
+const EntrantsEqual = curry((entrants, equal) => Number(entrants) === Number(equal));
+const EntrantsFrom = curry((entrants, from) => Number(entrants) >= Number(from));
+const EntrantsTo = curry((entrants, to) => Number(entrants) <= Number(to));
+const AbilityEqual = curry((ability, equal) => Number(ability) === Number(equal));
+const AbilityFrom = curry((ability, from) => Number(ability) >= Number(from));
+const AbilityTo = curry((ability, to) => Number(ability) <= Number(to));
 const StartDay = curry((realDay, day) => String(realDay) === String(day));
 const Name = curry((name, str) => name.toLowerCase().includes(str.toLowerCase()));
 const NotName = curry((name, str) => !name.toLowerCase().includes(str.toLowerCase()));
@@ -43,7 +49,6 @@ const Game = curry((tournament, game) => {
 
   return isNotRule ? !rule : rule;
 });
-const Entrants = curry((totalEntrants, entrants) => Number(totalEntrants) >= Number(entrants));
 
 module.exports = {
   curry,
@@ -53,10 +58,15 @@ module.exports = {
   PrizepoolEqual,
   PrizepoolFrom,
   PrizepoolTo,
+  EntrantsEqual,
+  EntrantsFrom,
+  EntrantsTo,
+  AbilityEqual,
+  AbilityFrom,
+  AbilityTo,
   Name,
   NotName,
   StartDay,
-  Entrants,
   Flags,
   Class,
   Game,

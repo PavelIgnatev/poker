@@ -16,8 +16,6 @@ function renderRule(rule) {
   const level = validateNumber(ruleLevel);
   const effMu = ruleLevel.replace(level, "").replace("-", "");
 
-  console.log(network)
-
   return (
     `(${type}(${values
       .map((value, i) =>
