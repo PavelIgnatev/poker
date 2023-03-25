@@ -22,9 +22,13 @@ const EntrantsTo = curry((entrants, to) => Number(entrants) <= Number(to));
 const AbilityEqual = curry((ability, equal) => Number(ability) === Number(equal));
 const AbilityFrom = curry((ability, from) => Number(ability) >= Number(from));
 const AbilityTo = curry((ability, to) => Number(ability) <= Number(to));
+const TicketEqual = curry((ticket, equal) => Number(ticket) === Number(equal));
+const TicketFrom = curry((ticket, from) => Number(ticket) >= Number(from));
+const TicketTo = curry((ticket, to) => Number(ticket) <= Number(to));
 const StartDay = curry((realDay, day) => String(realDay) === String(day));
 const Name = curry((name, str) => name.toLowerCase().includes(str.toLowerCase()));
 const NotName = curry((name, str) => !name.toLowerCase().includes(str.toLowerCase()));
+
 const Flags = curry((tournament, flags) => {
   const isNotRule = flags?.includes("!");
   const rule = tournament?.[`@${flags.replace("!", "")}`] ?? false;
@@ -64,6 +68,9 @@ module.exports = {
   AbilityEqual,
   AbilityFrom,
   AbilityTo,
+  TicketEqual,
+  TicketFrom,
+  TicketTo,
   Name,
   NotName,
   StartDay,

@@ -36,9 +36,13 @@ const EntrantsTo = curry((entrants, to) => Number(entrants) <= Number(to));
 const AbilityEqual = curry((ability, equal) => Number(ability) === Number(equal));
 const AbilityFrom = curry((ability, from) => Number(ability) >= Number(from));
 const AbilityTo = curry((ability, to) => Number(ability) <= Number(to));
+const TicketEqual = curry((ticket, equal) => Number(ticket) === Number(equal));
+const TicketFrom = curry((ticket, from) => Number(ticket) >= Number(from));
+const TicketTo = curry((ticket, to) => Number(ticket) <= Number(to));
 const StartDay = curry((realDay, day) => String(realDay) === String(day));
 const Name = curry((name, str) => name.toLowerCase().includes(str.toLowerCase()));
 const NotName = curry((name, str) => !name.toLowerCase().includes(str.toLowerCase()));
+
 const Flags = curry((tournament, flags) => {
   const isNotRule = flags?.includes("!");
   const rule = tournament?.[`@${flags.replace("!", "")}`] ?? false;
@@ -78,6 +82,9 @@ var curry_1 = {
   AbilityEqual,
   AbilityFrom,
   AbilityTo,
+  TicketEqual,
+  TicketFrom,
+  TicketTo,
   Name,
   NotName,
   StartDay,
@@ -224,6 +231,9 @@ const { getNetwork } = getNetwork_1;
     AbilityEqual: AbilityEqualQ,
     AbilityFrom: AbilityFromQ,
     AbilityTo: AbilityToQ,
+    TicketEqual: TicketEqualQ,
+    TicketFrom: TicketFromQ,
+    TicketTo: TicketToQ,
     Name: NameQ,
     NotName: NotNameQ,
     StartDay: StartDayQ,
@@ -247,7 +257,7 @@ const { getNetwork } = getNetwork_1;
       weekDay = tournament["@getWeekday"];
 
       BidEqualQ(bid);
-      const BidFrom = BidFromQ(bid);
+      BidFromQ(bid);
       BidToQ(bid);
       PrizepoolEqualQ(prizepool);
       PrizepoolFromQ(prizepool);
@@ -258,6 +268,9 @@ const { getNetwork } = getNetwork_1;
       AbilityEqualQ(ability);
       AbilityFromQ(ability);
       AbilityToQ(ability);
+      TicketEqualQ(tournament?.["@tickets"] ?? 0);
+      TicketFromQ(tournament?.["@tickets"] ?? 0);
+      TicketToQ(tournament?.["@tickets"] ?? 0);
       StartDayQ(weekDay);
       NameQ(name);
       NotNameQ(name);
@@ -270,12 +283,11 @@ const { getNetwork } = getNetwork_1;
     isSuperTurboS(tournament);
     isNormalS(tournament);
 
-    const level = validateNumber(ruleLevel);
-    const effmu = 'A';
+    validateNumber(ruleLevel);
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((BidFrom(1))&& level === '1'&& effmu === 'A') return { valid: true, rules: true, guarantee: 1 };
+    
     
     return { valid: false, guarantee: 1, rules: false };
   };

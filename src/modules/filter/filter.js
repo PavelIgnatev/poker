@@ -12,6 +12,9 @@ const { getNetwork } = require("../../helpers/getNetwork");
     AbilityEqual: AbilityEqualQ,
     AbilityFrom: AbilityFromQ,
     AbilityTo: AbilityToQ,
+    TicketEqual: TicketEqualQ,
+    TicketFrom: TicketFromQ,
+    TicketTo: TicketToQ,
     Name: NameQ,
     NotName: NotNameQ,
     StartDay: StartDayQ,
@@ -46,6 +49,9 @@ const { getNetwork } = require("../../helpers/getNetwork");
       AbilityEqual = AbilityEqualQ(ability),
       AbilityFrom = AbilityFromQ(ability),
       AbilityTo = AbilityToQ(ability),
+      TicketEqual = TicketEqualQ(tournament?.["@tickets"] ?? 0),
+      TicketFrom = TicketFromQ(tournament?.["@tickets"] ?? 0),
+      TicketTo = TicketToQ(tournament?.["@tickets"] ?? 0),
       StartDay = StartDayQ(weekDay),
       Name = NameQ(name),
       NotName = NotNameQ(name),
@@ -64,7 +70,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((BidFrom(1))&& level === '1'&& effmu === 'A') return { valid: true, rules: true, guarantee: 1 };
+    
     
     return { valid: false, guarantee: 1, rules: false };
   };

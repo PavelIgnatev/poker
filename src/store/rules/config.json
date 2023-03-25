@@ -83,6 +83,27 @@
             "options": null
         }
     ],
+    "TicketEqual": [
+        {
+            "type": "number",
+            "placeholder": "Equal",
+            "options": null
+        }
+    ],
+    "TicketFrom": [
+        {
+            "type": "number",
+            "placeholder": "From",
+            "options": null
+        }
+    ],
+    "TicketTo": [
+        {
+            "type": "number",
+            "placeholder": "To",
+            "options": null
+        }
+    ],
     "Name": [
         {
             "type": "string",
