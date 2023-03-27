@@ -1,4 +1,5 @@
-export type Effmu = "A" | "B" | "C" | "all";
+export type Effmu = "A" | "B" | "C" | "all" | "SuperA";
+export type EffmuForUsers = "A" | "B" | "C" | "all";
 
 export type Network = string;
 

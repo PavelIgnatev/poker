@@ -1,3 +1,4 @@
+import { SelectOption } from './../../@types/selectsModel';
 import { tournamentsSettingsProps } from "./types";
 import { createStore } from "effector";
 
@@ -45,6 +46,13 @@ export const TIMERANGE = [
 ];
 
 export const EFFMU = [
+  { value: "A", label: "A" },
+  { value: "B", label: "B" },
+  { value: "C", label: "C" },
+  { value: "SuperA", label: "SuperA" },
+];
+
+export const EFFMUForUsers = [
   { value: "A", label: "A" },
   { value: "B", label: "B" },
   { value: "C", label: "C" },

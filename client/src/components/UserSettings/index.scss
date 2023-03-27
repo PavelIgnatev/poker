@@ -92,6 +92,7 @@
     font-size: 1em;
     line-height: 1em;
 
+    
     border-left: 2px solid $borderColor;
 
     &:last-child {
@@ -234,6 +235,7 @@
 
   &__input {
     height: 48px !important;
+
 
     &__text {
       font-size: 0.83em;

@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React from "react";
+import React, { useState } from "react";
 import b_ from "b_";
 
 import CloseIcon from "../../assets/icons/close.svg";
@@ -43,6 +43,7 @@ export const UserSettings = ({ config, isAdminPage, onClose }: Props) => {
   if (!alias) {
     return null;
   }
+
 
   const handleSubmit = async () => {
     setProgress(true);

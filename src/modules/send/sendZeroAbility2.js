@@ -13,7 +13,8 @@ const transporter = createTransport({
     pass: "eszmpczpadbbbtok",
   },
   tls: {
-    rejectUnauthorized: false,
+    minVersion: 'TLSv1.2',
+    rejectUnauthorized: true,
   },
 });
 

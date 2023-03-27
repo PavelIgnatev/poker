@@ -13,6 +13,7 @@ import {
   TIMEZONES,
   EFFMU,
   ADDRESS,
+  EFFMUForUsers,
 } from "../../../store/Select";
 
 import { specialSelectStyles } from "../../BaseSelect";
@@ -97,6 +98,19 @@ const ColorsInfo: Record<ColorsType, string> = {
 export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   const { alias, mail, password, timezone, networks, address } = config;
   const [showPassword, setShowPassword] = useState(false);
+  const [isSuperA, setIsSuperA] = useState(true)
+
+  useEffect(() => {
+    for(let i = 0; i < Object.keys(networks).length; i++) {
+      if(networks[Object.keys(networks)[i]].effmu !== 'SuperA') {
+        setIsSuperA(false)
+        break
+      }
+    }
+  }, [networks])
+  
+
+
   const toggleShowPassword = () => setShowPassword((p) => !p);
 
   const defaultTimezoneOption =
@@ -123,6 +137,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
       (network) => networks[network].level
     );
 
+
     return levels
       .filter(function (item, level) {
         return levels.indexOf(item) === level;
@@ -133,6 +148,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   useEffect(() => {
     editableTournamentsSettings.handleChangeTimezone(defaultTimezoneOption);
   }, [defaultTimezoneOption]);
+
 
   return (
     <div className={b()}>
@@ -170,7 +186,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           <div className={b("effmu-wrapper")}>
             <b className={b("label")}>Effmu All</b>
             <Select
-              options={EFFMU}
+              options={isAdminPage? EFFMU : isSuperA? EFFMU : EFFMUForUsers}
               // @ts-ignore
               onChange={handleAllEffmuChange}
               className={b("input", { effmu: true })}

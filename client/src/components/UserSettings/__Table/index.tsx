@@ -4,7 +4,7 @@ import Select from "react-select";
 
 import { Effmu, Networks } from "../../../@types/common";
 import { SelectOption } from "../../../@types/selectsModel";
-import { EFFMU, LEVELS_ARRAY } from "../../../constants";
+import { EFFMU, EFFMUOPTIONSWITHOUTSUPERA, LEVELS_ARRAY } from "../../../constants";
 import { editableConfigEvents } from "../../../store/Config";
 
 import { specialSelectStyles } from "../../BaseSelect";
@@ -18,7 +18,7 @@ const selectStyles = {
   control: (provided: object, state: any) => ({
     ...specialSelectStyles.control(provided, state),
     fontSize: "20px",
-    width: "70px",
+    width: "110px",
   }),
   noOptionsMessage: (provided: object) => ({
     display: "none",
@@ -38,6 +38,11 @@ const levelsOptions: SelectOption<number | string>[] = LEVELS_ARRAY.map((level) 
 }));
 
 const effmuOptions: SelectOption<Effmu>[] = EFFMU.map((effmu) => ({
+  value: effmu,
+  label: effmu,
+}));
+
+const effmuOptionsWithoutSuperA: SelectOption<Effmu>[] = EFFMUOPTIONSWITHOUTSUPERA.map((effmu) => ({
   value: effmu,
   label: effmu,
 }));
@@ -85,7 +90,7 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
             </div>
             <div className={b("cell")}>
               <Select
-                options={effmuOptions}
+                options={effmu === 'SuperA'? effmuOptions : effmuOptionsWithoutSuperA}
                 value={defaultEffmuOption}
                 // @ts-ignore все работает
                 onChange={handleEffmuChange}
