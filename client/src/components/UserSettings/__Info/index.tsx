@@ -20,7 +20,6 @@ import { specialSelectStyles } from "../../BaseSelect";
 import { BaseInputString } from "../../BaseInputString";
 
 import b_ from "b_";
-import { AdminPage } from "../../../pages/AdminPage";
 
 type ColorsType = "green" | "yellow" | "red" | "rgb(152, 183, 201)";
 interface Props {
@@ -41,51 +40,65 @@ const nativeSelectStyles = {
 const b = b_.with("user-settings-info");
 
 const LevelInfo = {
-  0: { A: "$0-$400", B: "$401-$800", C: "$801+" },
-  1: { A: "$0-$1k", B: "$1001-$2k", C: "$2001+" },
-  2: { A: "$0-$1.5k", B: "$1501-$3k", C: "$3001+" },
+  A: { A: "No Stips", B: "No Stips", C: "No Stips", SuperA: "No Stips" },
+  B: { A: "$0 - $250", B: "$251 - $500", C: "$501+", SuperA: "No Stips" },
+  0: { A: "$0-$400", B: "$401-$800", C: "$801+", SuperA: "No Stips" },
+  1: { A: "$0-$1k", B: "$1001-$2k", C: "$2001+", SuperA: "No Stips" },
+  2: { A: "$0-$1.5k", B: "$1501-$3k", C: "$3001+", SuperA: "No Stips" },
   3: {
     A: "$0-$2.5k",
     B: "$2501-$5k",
     C: "$5001+",
+    SuperA: "No Stips",
   },
   4: {
     A: "$0-$4k",
     B: "$4001-$8k",
     C: "$8001+",
+    SuperA: "No Stips",
   },
   5: {
     A: "$0-$5k",
     B: "$5001-$10k",
     C: "$10001+",
+    SuperA: "No Stips",
   },
   6: {
     A: "$0-$7k",
     B: "$7001-$14k",
     C: "$14001+",
+    SuperA: "No Stips",
   },
-  7: { A: "$0-$7.5k", B: "$7501-$15k", C: "$15001+" },
-  8: { A: "$0-$8k", B: "$8001-$16k", C: "$16001+" },
+  7: { A: "$0-$7.5k", B: "$7501-$15k", C: "$15001+", SuperA: "No Stips" },
+  8: { A: "$0-$8k", B: "$8001-$16k", C: "$16001+", SuperA: "No Stips" },
   9: {
     A: "$0-$10k",
     B: "$10001-$20k",
     C: "$20001+",
+    SuperA: "No Stips",
   },
   10: {
     A: "$0-$12.5k",
     B: "$12501-$25k",
     C: "$25001+",
+    SuperA: "No Stips",
   },
   11: {
     A: "$0-$15k",
     B: "$15001-$30k",
     C: "$30001+",
+    SuperA: "No Stips",
   },
-  12: { A: "$0-$20k", B: "$20001-$40k", C: "$40001+" },
-  13: { A: "$0-$25k", B: "$25001-$50k", C: "$50001+" },
-  14: { A: "$0-$30k", B: "$30001-$60k", C: "$60001+" },
-  15: { A: "No Stips", B: "No Stips", C: "No Stips" },
-  16: { A: "No Stips", B: "No Stips", C: "No Stips" },
+  12: { A: "$0-$20k", B: "$20001-$40k", C: "$40001+", SuperA: "No Stips" },
+  13: { A: "$0-$25k", B: "$25001-$50k", C: "$50001+", SuperA: "No Stips" },
+  14: { A: "$0-$30k", B: "$30001-$60k", C: "$60001+", SuperA: "No Stips" },
+  15: {
+    A: "$40,001 - $100k",
+    B: "$100,001 - $200k",
+    C: "$200,001+",
+    SuperA: "$0 - $40k",
+  },
+  16: { A: "No Stips", B: "No Stips", C: "No Stips", SuperA: "No Stips" },
 };
 
 const ColorsInfo: Record<ColorsType, string> = {
@@ -98,18 +111,18 @@ const ColorsInfo: Record<ColorsType, string> = {
 export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   const { alias, mail, password, timezone, networks, address } = config;
   const [showPassword, setShowPassword] = useState(false);
-  const [isSuperA, setIsSuperA] = useState(true)
+  const [isSuperA, setIsSuperA] = useState(true);
+  const [isOneSuperA, setIsOneSuperA] = useState(false);
 
   useEffect(() => {
-    for(let i = 0; i < Object.keys(networks).length; i++) {
-      if(networks[Object.keys(networks)[i]].effmu !== 'SuperA') {
-        setIsSuperA(false)
-        break
+    for (let i = 0; i < Object.keys(networks).length; i++) {
+      if (networks[Object.keys(networks)[i]].effmu !== "SuperA") {
+        setIsSuperA(false);
+        break;
       }
+      else setIsOneSuperA(true)
     }
-  }, [networks])
-  
-
+  }, [networks]);
 
   const toggleShowPassword = () => setShowPassword((p) => !p);
 
@@ -137,7 +150,6 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
       (network) => networks[network].level
     );
 
-
     return levels
       .filter(function (item, level) {
         return levels.indexOf(item) === level;
@@ -148,7 +160,6 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
   useEffect(() => {
     editableTournamentsSettings.handleChangeTimezone(defaultTimezoneOption);
   }, [defaultTimezoneOption]);
-
 
   return (
     <div className={b()}>
@@ -186,7 +197,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           <div className={b("effmu-wrapper")}>
             <b className={b("label")}>Effmu All</b>
             <Select
-              options={isAdminPage? EFFMU : isSuperA? EFFMU : EFFMUForUsers}
+              options={isAdminPage ? EFFMU : isSuperA ? EFFMU : EFFMUForUsers}
               // @ts-ignore
               onChange={handleAllEffmuChange}
               className={b("input", { effmu: true })}
@@ -205,28 +216,30 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
               styles={nativeSelectStyles}
             />
           </div>
-        {isAdminPage && <div className={b("address-wrapper")}>
-            <b className={b("label")}>Address</b>
-            <Select
-              options={ADDRESS}
-              defaultValue={defaultAddressOption}
-              // @ts-ignore
-              onChange={handleAddressChange}
-              className={b("input", { timezone: true })}
-              styles={nativeSelectStyles}
-            />
-          </div> 
-        }
-        </div>
-        {isAdminPage && <div className={b("email-wrapper")}>
-              <b className={b("label")}>E-mail</b>
-              <BaseInputString
-                value={mail}
-                onChange={handleEmailChange}
-                className={b("input", { text: true })}
+          {isAdminPage && (
+            <div className={b("address-wrapper")}>
+              <b className={b("label")}>Address</b>
+              <Select
+                options={ADDRESS}
+                defaultValue={defaultAddressOption}
+                // @ts-ignore
+                onChange={handleAddressChange}
+                className={b("input", { timezone: true })}
+                styles={nativeSelectStyles}
               />
             </div>
-        }
+          )}
+        </div>
+        {isAdminPage && (
+          <div className={b("email-wrapper")}>
+            <b className={b("label")}>E-mail</b>
+            <BaseInputString
+              value={mail}
+              onChange={handleEmailChange}
+              className={b("input", { text: true })}
+            />
+          </div>
+        )}
       </div>
       {isAdminPage && (
         <div className={b("password-wrapper")}>
@@ -262,6 +275,11 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
         {levels.map((level) => (
           <div key={level}>
             <b className={b("label", { content: true })}>Level {level}:</b>
+            {isOneSuperA && (
+              <div className={b("effmu", { type: "SuperA" })}>
+                SuperA {LevelInfo?.[level]?.["SuperA"]}
+              </div>
+            )}
             <div className={b("effmu", { type: "a" })}>
               A {LevelInfo?.[level]?.["A"]}
             </div>

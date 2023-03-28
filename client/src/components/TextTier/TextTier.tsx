@@ -1,7 +1,44 @@
 import classes from "./TextTier.module.scss";
 
+
 export const TextTier = ({ levelAndEffmu }: any) => {
   const textTierOptions: any = {
+    "AA": {
+      title:
+        "You may late register and/or re-enter if you will have: 50+ big blinds in KO's, 10+ big blinds in non-KO's with 1,500+ entrants, >40 or <15 big blinds in non-KO's with 1499- entrants",
+      subtitle:
+        "",
+    },
+    "AB": {
+      title:
+        "You may late register and/or re-enter if you will have: 50+ big blinds in KO's, 10+ big blinds in non-KO's with 1,500+ entrants, >40 or <15 big blinds in non-KO's with 1499- entrants",
+      subtitle:
+        "",
+    },
+    "AC": {
+      title:
+        "You may late register and/or re-enter if you will have: 50+ big blinds in KO's, 10+ big blinds in non-KO's with 1,500+ entrants, >40 or <15 big blinds in non-KO's with 1499- entrants",
+      subtitle:
+        "",
+    },
+    "BA": {
+      title:
+        "TIER A: Enter and/or re-enter if you will have: 50+ big blinds in KO's, 10+ big blinds in non-KO's with 1,500+ entrants, >40 or <15 big blinds in non-KO's with 1499- entrants",
+      subtitle:
+        "",
+    },
+    "BB": {
+      title:
+        "TIER B: Enter and/or re-enter if you will have: 50+ big blinds in any on-stake tournament (unless ***ONE BULLET*** is specified)",
+      subtitle:
+        "",
+    },
+    "BC": {
+      title:
+        "TIER C: Enter if you will have 50+ big blinds in any on-stake tournament. Re-Enter if you will have 50+ big blinds AND there are 2,000+ entrants (unless ***ONE BULLET*** is specified)",
+      subtitle:
+        "",
+    },
     "0A": {
       title:
         "TIER A: Enter and/or re-enter if you will have: 50+ big blinds in KO's, 10+ big blinds in non-KO's with 1,500+ entrants, >40 or <15 big blinds in non-KO's with 1499- entrants",
@@ -263,22 +300,27 @@ export const TextTier = ({ levelAndEffmu }: any) => {
       subtitle:
         "TIER C: $55- Non-KO MTT's: Enter/Re-Enter with >40 or <15 big blinds, any field size.",
     },
+    "15SuperA": {
+      title:
+      "TIER Super A: $55- Non-KO MTT's: Enter/Re-Enter with >40 or <15 big blinds, any field size.",
+      subtitle: "",
+    },
     "15A": {
       title:
-        "TIER A: Enter and/or re-enter if you will have: 50+ big blinds in KO's, 10+ big blinds in non-KO's with 1,500+ entrants, >40 or <15 big blinds in non-KO's with 1499- entrants",
+        "TIER A: $55- Non-KO MTT's: Enter/Re-Enter with >40 or <15 big blinds, any field size.",
       subtitle:
         "",
     },
     "15B": {
       title:
-      "TIER B: Enter and/or re-enter if you will have: 50+ big blinds in any on-stake tournament (unless ONE BULLET is specified)",
+      "TIER B: Purple Enter with 50bb+, Re-Enter with 50bb+, Orange follow Tier A rules.",
       subtitle:
-        "",
+        "TIER B: $55- Non-KO MTT's: Enter/Re-Enter with >40 or <15 big blinds, any field size.",
     },
     "15C": {
       title:
-      "TIER C: Enter if you will have 50+ big blinds in any on-stake tournament. Re-Enter if you will have 50+ big blinds AND there are 2,000+ entrants (unless ONE BULLET is specified)",
-      subtitle: "",
+      "TIER C: Purple Enter with 50bb+, Re-Enter with 50bb+, Orange follow Tier A rules.",
+      subtitle: "TIER C: $55- Non-KO MTT's: Enter/Re-Enter with >40 or <15 big blinds, any field size.",
     },
     "16A": {
       title:

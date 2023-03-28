@@ -18,6 +18,7 @@ import { getNetwork } from "./../../helpers/getNetwork";
 import { $config } from "../Config";
 import { $filterContent } from "../Filter";
 import { $store } from "../Store";
+import { IGNORELIST } from "../../helpers/validateNames";
 
 export const $tableState = createStore<tableCellModel[] | null | undefined>(
   null
@@ -52,12 +53,31 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       Number(b["@scheduledStartDate"] ?? 0)
   );
 
+
+  // Валидация названия турнира
+  const validateName = (name: string, ignoreList: string[]) => {
+    if(!name) return ''
+    else name = name.toLowerCase();
+
+    const cleanedName = name.replace(/[^\w]/gi, "").replace(/\d+/g, "");
+
+    
+    const hasIgnoreWords = ignoreList.some(word => cleanedName.toLowerCase().includes(word.toLowerCase()));
+    
+    if (hasIgnoreWords) {
+      return name;
+    }
+    
+    return cleanedName;
+  }
+
+
   // мапим все данные о турнирах
   tournaments = tournaments.map((tournament) => {
     const network = getNetwork(tournament["@network"]);
     const { level: networksLevel = 1, effmu = "A" } = networks?.[network] ?? {};
     const level = networksLevel + effmu;
-    const name = tournament["@name"]?.toLowerCase();
+    const validatedName = validateName(tournament["@name"], IGNORELIST)
     const stake = Number(tournament["@stake"] ?? 0);
     const rake = Number(tournament["@rake"] ?? 0);
     const bid = (stake + rake).toFixed(2);
@@ -78,8 +98,9 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const rebuy = isRebuy(tournament);
 
     const isMandatoryСonditions = isNL && isH && !rebuy && !od && !sng;
-    const info = ability1?.[network]?.[time]?.[bid]?.[name];
+    const info = ability1?.[network]?.[time]?.[bid]?.[validatedName];
     const ability = isMandatoryСonditions && info?.["@avability"];
+    
 
     const duration = info?.["@duration"]
       ? Math.round(info?.["@duration"])
@@ -94,15 +115,10 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       if ($.length > 1) {
         if (network === "Chico" && !sat) {
           if(typeof +$[1][0] === 'number') {
-            console.log($[1])
             tournament["@guarantee"] = $[1]
               .split(" ")[0]
               .replace(")", "")
               .replace(",", "");
-            console.log($[1]
-              .split(" ")[0]
-              .replace(")", "")
-              .replace(",", ""))
           }
           else {
             tournament["@guarantee"] = $[2]
@@ -224,6 +240,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       color: colorRule,
     } = filter(level, offpeak, tournament, true);
 
+
     const ability1 = Number(tournament["@ability"]);
     const ability2 = Number(tournament["@abilityBid"]);
     // const usdPrizepool = tournament["@usdPrizepool"];
@@ -275,7 +292,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       : !(dateStart > res && res > dateEnd);
   });
 
-  console.log(tournaments.length)
 
   return tournaments;
 });

@@ -3,6 +3,26 @@ const { getTimeByMS } = require("../../helpers/getTimeByMS");
 const { getNetwork } = require("../../helpers/getNetwork");
 const { getTournaments } = require("../../helpers/getTournaments");
 
+
+const IGNORELIST = ["scoop", "wsop"];
+const validateName = (name, ignoreList) => {
+  if(!name) return ''
+  else name = name.toLowerCase();
+
+  const cleanedName = name.replace(/[^\w]/gi, "").replace(/\d+/g, "");
+
+  
+  const hasIgnoreWords = ignoreList.some(word => cleanedName.toLowerCase().includes(word.toLowerCase()));
+  
+  if (hasIgnoreWords) {
+    return name;
+  }
+  
+  return cleanedName;
+}
+
+
+
 const updateAbility1 = async () => {
   try {
     const { tournaments: state } = getTournaments();
@@ -13,7 +33,7 @@ const updateAbility1 = async () => {
       Object.values(tournamentsByDay).forEach((tournament) => {
         const ability = tournament["@avability"];
         const duration = tournament["@duration"];
-        const name = tournament["@name"]?.toLowerCase();
+        const name = validateName(tournament["@name"], IGNORELIST);
         const network = getNetwork(tournament["@network"]);
         const stake = Number(tournament["@stake"] ?? 0);
         const rake = Number(tournament["@rake"] ?? 0);
@@ -58,10 +78,13 @@ const updateAbility1 = async () => {
       });
     });
 
+
     await writeFile("src/store/ability1/ability1.json", JSON.stringify(obj));
   } catch (error) {
     console.log(error);
   }
 };
+
+
 
 module.exports = { updateAbility1 };

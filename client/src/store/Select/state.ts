@@ -1,4 +1,3 @@
-import { SelectOption } from './../../@types/selectsModel';
 import { tournamentsSettingsProps } from "./types";
 import { createStore } from "effector";
 

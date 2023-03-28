@@ -1,11 +1,7 @@
-const { updateAbility2 } = require("./modules/update/updateAbility2");
+const { updateAbility1 } = require("./modules/update/updateAbility1");
 
 
 
 
 
-
-
-
-
-updateAbility2()
+updateAbility1()

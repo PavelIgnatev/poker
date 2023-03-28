@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React, { useState } from "react";
+import React from "react";
 import b_ from "b_";
 
 import CloseIcon from "../../assets/icons/close.svg";
