@@ -3,7 +3,6 @@ const { getConfig, saveConfig } = require("../../../utils/config");
 const { networks, adminPassword } = require("../../../constants");
 
 module.exports = async (req, res) => {
-  // console.log(req.body);
   const { config: newConfig, password: reqAdminPassword } = req.body;
 
   if (reqAdminPassword !== adminPassword) {

@@ -41,7 +41,7 @@ const collectionStatistics = async () => {
 
         try {
           result = await api.get(
-            `https://www.sharkscope.com/api/pocarrleaderboard/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${Math.round(
+            `https://www.sharkscope.com/api/komanda/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${Math.round(
               +new Date(
                 new Date(date).toLocaleString("en-EN", {
                   timeZone: "UTC",
