@@ -59,7 +59,9 @@ const { getNetwork } = require("../../helpers/getNetwork");
     && network === 'PS.eu'&& level === ''&& effmu === 'ASuperA'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,1111111))
     && network === 'PS.eu'&& level === ''&& effmu === 'AA'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,10000000))
     && network === 'PS.eu'&& level === '15'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,10000000))
-    && network === 'PS.eu'&& level === '15'&& effmu === 'SuperA'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };
+    && network === 'PS.eu'&& level === '15'&& effmu === 'SuperA'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,100000000000000))
+    && network === 'PS.eu'&& level === '15'&& effmu === 'B'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,100000000))
+    && network === 'PS.eu'&& level === '15'&& effmu === 'C'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };
 
     if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 1 } 
     
