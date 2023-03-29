@@ -90,7 +90,7 @@ export const UserSettingsTable: FC<Props> = ({ networks, canChangeLevels }) => {
             </div>
             <div className={b("cell")}>
               <Select
-                options={effmu === 'SuperA'? effmuOptions : effmuOptionsWithoutSuperA}
+                options={effmu === 'SuperA' || level === 15? effmuOptions : effmuOptionsWithoutSuperA}
                 value={defaultEffmuOption}
                 // @ts-ignore все работает
                 onChange={handleEffmuChange}

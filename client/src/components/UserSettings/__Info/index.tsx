@@ -124,6 +124,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
     }
   }, [networks]);
 
+
   const toggleShowPassword = () => setShowPassword((p) => !p);
 
   const defaultTimezoneOption =
@@ -157,10 +158,14 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
       .slice(0, 3);
   }, [networks]) as Array<keyof typeof LevelInfo>;
 
+  const isOnlyFiveTeens = useMemo(() => {
+    return levels.length === 1 && levels[0] === 15
+  }, [levels])
+  
   useEffect(() => {
     editableTournamentsSettings.handleChangeTimezone(defaultTimezoneOption);
   }, [defaultTimezoneOption]);
-
+  
   return (
     <div className={b()}>
       <div className={b("header")}>
@@ -197,7 +202,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
           <div className={b("effmu-wrapper")}>
             <b className={b("label")}>Effmu All</b>
             <Select
-              options={isAdminPage ? EFFMU : isSuperA ? EFFMU : EFFMUForUsers}
+              options={isAdminPage ? EFFMU : isSuperA || isOnlyFiveTeens ? EFFMU : EFFMUForUsers}
               // @ts-ignore
               onChange={handleAllEffmuChange}
               className={b("input", { effmu: true })}
@@ -275,7 +280,7 @@ export const UserSettingsInfo: FC<Props> = ({ config, isAdminPage }) => {
         {levels.map((level) => (
           <div key={level}>
             <b className={b("label", { content: true })}>Level {level}:</b>
-            {isOneSuperA && (
+            {(isOneSuperA || level === 15) && (
               <div className={b("effmu", { type: "SuperA" })}>
                 SuperA {LevelInfo?.[level]?.["SuperA"]}
               </div>

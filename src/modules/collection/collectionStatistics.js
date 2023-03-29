@@ -147,8 +147,12 @@ const collectionStatistics = async () => {
                   currency === "CNY" && pp !== "-"
                     ? Math.round(Number(pp) / lastValue)
                     : Number(pp);
+                const reEntry =  t?.["@multientries"];
+                const totalEntrants =  t?.["@totalEntrants"];
+                // Проверка isCan определяет игрока в боксе С при вхождении больше 1 раза и кол-во участников < 2000
+                const isCan = (effmu === 'C' && totalEntrants < 2000 && reEntry > 0)
 
-                if (Number(bid) !== 0 && !filter.filter(level, offpeak, t, true).valid) {
+                if (Number(bid) && (isCan || !filter.filter(level, offpeak, t, true).valid)) {
                   if (!errorTournaments[alias]) errorTournaments[alias] = [];
                   errorTournaments[alias].push(t);
                 }
@@ -161,7 +165,7 @@ const collectionStatistics = async () => {
     console.log("Перезаписываю алиасы");
     await writeFile("src/store/config/config.json", JSON.stringify(config));
     try {
-      // await sendStatistics(errorTournaments);
+      await sendStatistics(errorTournaments);
       console.log("Начинаю удалять папку дня ", date);
       // await deleteFolder(`src/store/copies/${date}`);
     } catch (error) {
