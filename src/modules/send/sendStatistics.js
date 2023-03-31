@@ -166,7 +166,7 @@ const sendStatistics = async (errorTournaments) => {
       console.log(`Начал отправлять статистику по турнирам на ${key}`)
       if (message?.flat()?.length && region) {
         await sendMail(
-          [`palllkaignatev@yandex.ru,behaappy@ya.ru,${key}`],
+          [`palllkaignatev@yandex.ru,behaappy@ya.ru`],
           message.flat(),
           `<div style='display:none'>${JSON.stringify(message)}</div>`,
           region
