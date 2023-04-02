@@ -107,7 +107,7 @@ const sendMail = async (mail, tournaments, html, region) => {
 };
 
 const sendStatistics = async (errorTournaments) => {
-  console.log("Начинаю отправлять статистику по турнирам на почты игроков");
+  console.log("Начинаю отправлять статистику по турнирам");
   const config = await getConfig()
   const errorTournamentsByRegion = {}
   const aliases = Object.keys(errorTournaments);
