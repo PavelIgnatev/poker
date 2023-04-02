@@ -154,7 +154,7 @@ const sendStatistics = async (errorTournaments) => {
         break;
 
       case "pocarr.ru@gmail.com":
-        region = "Russian";
+        region = "SNG";
         break;
     }
 
