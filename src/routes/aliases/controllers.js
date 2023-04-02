@@ -2,17 +2,16 @@ const { getConfig } = require("../../utils/config");
 
 const get = async (req) => {
   const { level } = req.query;
-  const numLevel = Number(level);
+  const numLevel = !isNaN(Number(level))? Number(level) : level;
 
   const config = await getConfig();
 
   let aliases = Object.keys(config);
 
-  if (!isNaN(numLevel)) {
-    aliases = aliases.filter((alias) => {
-      console.log(Object.values(config[alias].networks))
-      const levels = Object.values(config[alias].networks).map((network)=> network.level);
 
+  if (numLevel !== "undefined") {
+    aliases = aliases.filter((alias) => {
+      const levels = Object.values(config[alias].networks).map((network)=> network.level);
       return levels.includes(numLevel);
     });
   }

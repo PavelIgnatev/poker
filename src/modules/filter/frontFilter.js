@@ -6092,19 +6092,14 @@ const { getNetwork } = getNetwork_1;
     const isAbility1 = ability1 && ability1 !== '-';
     const isAbility2 = ability2 && ability2 !== '-';
 
-    const level = validateNumber(ruleLevel);
-    const effmu = ruleLevel.replace(level, "").replace("-", "");
+    const level = (ruleLevel[0] === 'A' || ruleLevel[0] === 'B')? ruleLevel[0] : validateNumber(ruleLevel);
+    ruleLevel.replace(level, "").replace("-", "");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((FromTo(0,1000000000))
-    && network === 'PS.eu'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,100000))
-    && network === 'PS.eu'&& level === ''&& effmu === 'ASuperA'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,1111111))
-    && network === 'PS.eu'&& level === ''&& effmu === 'AA'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,10000000))
-    && network === 'PS.eu'&& level === '15'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,10000000))
-    && network === 'PS.eu'&& level === '15'&& effmu === 'SuperA'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,100000000000000))
-    && network === 'PS.eu'&& level === '15'&& effmu === 'B'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,100000000))
-    && network === 'PS.eu'&& level === '15'&& effmu === 'C'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };
+    if((FromTo(0,100000))
+    && network === 'PS.eu'&& level === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };if((FromTo(0,10000))
+    && network === 'PS.eu'&& level === 'B'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1, color: "blue" };
 
     if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 1 } 
     

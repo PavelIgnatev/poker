@@ -2,8 +2,16 @@ import { useStore } from "effector-react";
 import React, { FC, RefObject } from "react";
 
 import CloseIcon from "../../../assets/icons/close.svg";
-import { $config, deleteConfigRequest, getConfigRequest } from "../../../store/Config";
-import { $aliases, aliasesEvents, getAliasesRequest } from "../../../store/Alias";
+import {
+  $config,
+  deleteConfigRequest,
+  getConfigRequest,
+} from "../../../store/Config";
+import {
+  $aliases,
+  aliasesEvents,
+  getAliasesRequest,
+} from "../../../store/Alias";
 import { $isValidAdminPassword, $password } from "../../../store/Password";
 
 import { ApprovalSection } from "../../ApprovalSection";
@@ -30,9 +38,9 @@ export const AliasesSectionList: FC<Props> = ({ selectedLevel, search }) => {
   const selectedConfig = useStore($config);
   const password = useStore($password);
   const aliases =
-    useStore($aliases)?.filter((alias) =>
-      alias.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
-    ) ?? [];
+    useStore($aliases)?.filter((alias) => {
+      return alias.toLocaleLowerCase().includes(search.toLocaleLowerCase());
+    }) ?? [];
 
   const aliasesLoading = useStore(getAliasesRequest.pending);
 
@@ -60,7 +68,10 @@ export const AliasesSectionList: FC<Props> = ({ selectedLevel, search }) => {
       {aliases.length ? (
         aliases.map((alias) => (
           <div className={b("alias-item")} key={alias}>
-            <div className={b("alias-item-text")} onClick={handleAliasClick(alias)}>
+            <div
+              className={b("alias-item-text")}
+              onClick={handleAliasClick(alias)}
+            >
               {alias}
             </div>
             <div

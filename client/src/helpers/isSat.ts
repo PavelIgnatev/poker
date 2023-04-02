@@ -25,6 +25,7 @@ export const isSat = (tournament: tableCellModel) => {
         (name.includes(" sat") && !name.includes(" satu")) ||
         name.includes("sat  ") ||
         name.includes("satellite") ||
+        name.includes("package") ||
         name.includes("qualif") ||
         name.includes("last chance") ||
         name.includes("hit&run");

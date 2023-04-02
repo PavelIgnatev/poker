@@ -17,7 +17,7 @@ function renderRule(rule) {
     ? `isOffpeak && isGetTournaments ? 0 : ${values[indexPrizepool]}`
     : values[indexPrizepool];
 
-  const level = validateNumber(ruleLevel);
+  const level = (ruleLevel[0] === 'A' || ruleLevel[0] === 'B')? ruleLevel[0] : validateNumber(ruleLevel);
   const effMu = ruleLevel.replace(level, "").replace("-", "");
 
   return (

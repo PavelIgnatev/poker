@@ -19,6 +19,7 @@ export const AliasesSection = () => {
   const { selectedLevel, handleLevelChange } = useLevelBlocks();
   const isAllLevels = selectedLevel === ALL_LEVELS;
 
+
   React.useEffect(() => {
     if (isAllLevels) {
       getAliasesRequest();
@@ -58,8 +59,8 @@ export const AliasesSection = () => {
               className={b("alias-form-input", { search: true })}
             />
           </div>
-          {!isAllLevels && <AliasesSectionForm selectedLevel={selectedLevel} />}
-          <AliasesSectionList selectedLevel={selectedLevel} search={search} />
+            {!isAllLevels && <AliasesSectionForm selectedLevel={selectedLevel} />}
+            <AliasesSectionList selectedLevel={selectedLevel} search={search} />
         </div>
       )}
     </section>

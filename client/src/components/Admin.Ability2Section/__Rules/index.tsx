@@ -49,7 +49,6 @@ export const Ability2SectionRules: FC<Props> = ({
     
   const allNetworks = state;
   const allCurrencies = allNetworks?.[network]?.[levelPlusEffmu];
-  console.log(allNetworks, allCurrencies)
   const allBids = allCurrencies?.[currency];
   const allStatuses = allBids?.[bid];
   const allNames = {
