@@ -1,24 +1,7 @@
 const { createTransport } = require("nodemailer");
 const Excel = require("exceljs");
 
-// user: "as.dsa.20@mail.ru",
-// pass: "NkpGmnhWqfXkPLMbvUZz",
-
-const transporter = createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: "palllkaignatev@gmail.com",
-    pass: "mxyyzrqajbshwvmk",
-  },
-  tls: {
-    minVersion: "TLSv1.2",
-    rejectUnauthorized: true,
-  },
-});
-
-const promiseWrapper = (mailOptions) =>
+const promiseWrapper = (mailOptions, transporter) =>
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -59,7 +42,7 @@ const mailOptions = (mails, content, title) => {
   };
 };
 
-const sendMail = async (mail, tournaments, title) => {
+const sendMail = async (mail, tournaments, title, transporter) => {
   const workbook = new Excel.Workbook();
   const worksheet = workbook.addWorksheet("Debtors");
   worksheet.columns = [
@@ -81,7 +64,7 @@ const sendMail = async (mail, tournaments, title) => {
   for (let i = 0; i < 5; i++) {
     try {
       console.log("Попытка отправить номер ", i);
-      await promiseWrapper(mailOptions(mail, buffer, title));
+      await promiseWrapper(mailOptions(mail, buffer, title), transporter);
       break;
     } catch (e) {
       console.log(e);
@@ -92,20 +75,32 @@ const sendMail = async (mail, tournaments, title) => {
 const sendZeroAbility2 = async (zeroTournaments, title) => {
   console.log("Начинаю отправлять турниры, которые имеют нулевое абилити2");
 
+  const transporter = createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "palllkaignatev@gmail.com",
+      pass: "utjhheduajuoemza",
+    },
+    tls: {
+      minVersion: "TLSv1.2",
+      rejectUnauthorized: true,
+    },
+  });
+
   if (!zeroTournaments.length) {
     console.log("Нечего отправлять, все турниры имеют абилити 2", new Date());
     return;
   }
 
   try {
-    await sendMail(
-      ["behaappy@ya.ru"],
-      zeroTournaments,
-      title,
-    );
+    await sendMail(["behaappy@ya.ru"], zeroTournaments, title, transporter);
   } catch (error) {
     console.log("При отправке произошла ошибка", error);
   }
+
+  transporter.close();
 };
 
 module.exports = { sendZeroAbility2 };

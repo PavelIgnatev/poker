@@ -3,21 +3,7 @@ const Excel = require("exceljs");
 const { getConfig } = require("../../utils/config");
 const { writeFile } = require("../../utils/promisify");
 
-const transporter = createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: "palllkaignatev@gmail.com",
-    pass: "mxyyzrqajbshwvmk",
-  },
-  tls: {
-    minVersion: "TLSv1.2",
-    rejectUnauthorized: true,
-  },
-});
-
-const promiseWrapper = (mailOptions) =>
+const promiseWrapper = (mailOptions, transporter) =>
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -48,7 +34,7 @@ const mailOptions = (mails, html, content, filename) => {
   };
 };
 
-const sendMail = async (mail, tournaments, html, region) => {
+const sendMail = async (mail, tournaments, html, region, transporter) => {
   const workbook = new Excel.Workbook();
   const worksheet = workbook.addWorksheet("Debtors");
   worksheet.columns = [
@@ -99,7 +85,7 @@ const sendMail = async (mail, tournaments, html, region) => {
   for (let i = 0; i < 5; i++) {
     try {
       console.log("Попытка отправить номер ", i);
-      await promiseWrapper(mailOptions(mail, html, buffer, filename));
+      await promiseWrapper(mailOptions(mail, html, buffer, filename), transporter);
       break;
     } catch (e) {
       console.log(e);
@@ -109,6 +95,21 @@ const sendMail = async (mail, tournaments, html, region) => {
 
 const sendStatistics = async (errorTournaments) => {
   console.log("Начинаю отправлять статистику по турнирам");
+
+  const transporter = createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "palllkaignatev@gmail.com",
+      pass: "utjhheduajuoemza",
+    },
+    tls: {
+      minVersion: "TLSv1.2",
+      rejectUnauthorized: true,
+    },
+  });
+
   const config = await getConfig();
   const errorTournamentsByRegion = {};
   const aliases = Object.keys(errorTournaments);
@@ -161,10 +162,12 @@ const sendStatistics = async (errorTournaments) => {
       console.log(`Начал отправлять статистику по турнирам на ${key}`);
       if (message?.flat()?.length && region) {
         await sendMail(
-          [`palllkaignatev@yandex.ru,behaappy@ya.ru,${key}`],
+          [`palllkaignatev@yandex.ru,behaappy@ya.ru`],
+          // [`palllkaignatev@yandex.ru,behaappy@ya.ru,${key}`],
           message.flat(),
           `<div style='display:none'>${JSON.stringify(message)}</div>`,
           region,
+          transporter,
         );
         console.log(`Закончил отправлять статистику по турнирам на почту ${key}`);
       } else {
@@ -174,6 +177,8 @@ const sendStatistics = async (errorTournaments) => {
       console.log(`Отправка не письма на почту ${key} не удалась, произошла ошибка: `, error);
     }
   }
+
+  transporter.close();
 };
 
 module.exports = { sendStatistics };
