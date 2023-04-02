@@ -42,6 +42,11 @@ const collectionStatistics = async () => {
 
         if (!configByAlias) return;
 
+        if (!configByAlias?.address) {
+          console.log(`У пользователя ${alias} нет адреса`);
+          return;
+        }
+
         const { networks } = configByAlias;
 
         let result;
@@ -147,10 +152,10 @@ const collectionStatistics = async () => {
                   currency === "CNY" && pp !== "-"
                     ? Math.round(Number(pp) / lastValue)
                     : Number(pp);
-                const reEntry =  t?.["@multientries"];
-                const totalEntrants =  t?.["@totalEntrants"];
+                const reEntry = t?.["@multientries"];
+                const totalEntrants = t?.["@totalEntrants"];
                 // Проверка isCan определяет игрока в боксе С при вхождении больше 1 раза и кол-во участников < 2000
-                const isCan = (effmu === 'C' && totalEntrants < 2000 && reEntry > 0)
+                const isCan = effmu === "C" && totalEntrants < 2000 && reEntry > 0;
 
                 if (Number(bid) && (isCan || !filter.filter(level, offpeak, t, true).valid)) {
                   if (!errorTournaments[alias]) errorTournaments[alias] = [];

@@ -1,7 +1,7 @@
 const { createTransport } = require("nodemailer");
 const Excel = require("exceljs");
 const { getConfig } = require("../../utils/config");
-const { readFile, writeFile } = require("../../utils/promisify");
+const { writeFile } = require("../../utils/promisify");
 
 const transporter = createTransport({
   host: "smtp.gmail.com",
@@ -36,7 +36,7 @@ const mailOptions = (mails, html, content, filename) => {
   return {
     from: "offstakepocarr@gmail.com",
     to: mails,
-    subject: `Erroneous tournaments for ${date}`,
+    subject: `Erroneous tournaments for ${filename}`,
     html,
     attachments: [
       {
@@ -84,15 +84,16 @@ const sendMail = async (mail, tournaments, html, region) => {
   const month = currentTime.getMonth() + 1;
   const day = currentTime.getDate();
   const date = `${year}-${month}-${day}`;
-  const filename = `${region}-${date}.xlsx`
+  const filename = `${region}-${date}.xlsx`;
 
   try {
-    console.log(`Начинаю создавать таблицу со статистикой игороков по региону: ${region}`)
+    console.log(`Начинаю создавать таблицу со статистикой игороков по региону: ${region}`);
     await writeFile(`src/store/xlsx/${filename}`, buffer);
-    console.log(`Создание таблицы со статистикой игороков по региону ${region} успешно завершилось`)
-  }
-  catch(e) {
-    console.log(`Не удалось создать таблицу со статистикой игороков по региону: ${region}`)
+    console.log(
+      `Создание таблицы со статистикой игороков по региону ${region} успешно завершилось`,
+    );
+  } catch (e) {
+    console.log(`Не удалось создать таблицу со статистикой игороков по региону: ${region}`);
   }
 
   for (let i = 0; i < 5; i++) {
@@ -108,15 +109,15 @@ const sendMail = async (mail, tournaments, html, region) => {
 
 const sendStatistics = async (errorTournaments) => {
   console.log("Начинаю отправлять статистику по турнирам");
-  const config = await getConfig()
-  const errorTournamentsByRegion = {}
+  const config = await getConfig();
+  const errorTournamentsByRegion = {};
   const aliases = Object.keys(errorTournaments);
-
 
   if (!aliases.length) {
     console.log("Нечего отправлять, все сыграли правильные турниры", new Date());
     return;
   }
+
   for (let i = 0; i < aliases.length; i++) {
     const alias = aliases[i];
 
@@ -126,58 +127,50 @@ const sendStatistics = async (errorTournaments) => {
 
     const { address } = config[alias];
 
-
     if (!address) {
-      continue
+      continue;
     }
-
 
     if (!errorTournamentsByRegion[address]) {
-      errorTournamentsByRegion[address] = [errorTournaments[alias]]
-    }
-    else {
-      errorTournamentsByRegion[address].push(errorTournaments[alias])
+      errorTournamentsByRegion[address] = [errorTournaments[alias]];
+    } else {
+      errorTournamentsByRegion[address].push(errorTournaments[alias]);
     }
   }
 
-
   for (let key in errorTournamentsByRegion) {
-    const message = errorTournamentsByRegion[key]
+    const message = errorTournamentsByRegion[key];
 
-  
-    let region
+    let region;
 
     switch (key) {
-      case 'pocarrelite@gmail.com':
-        region = 'International'
+      case "pocarrelite@gmail.com":
+        region = "International";
         break;
 
-      case 'mgr.miranda85@gmail.com':
-        region = 'Latina'
+      case "mgr.miranda85@gmail.com":
+        region = "Latina";
         break;
 
-      case 'pocarr.ru@gmail.com':
-        region = 'Russian'
+      case "pocarr.ru@gmail.com":
+        region = "Russian";
         break;
     }
- 
 
     try {
-      console.log(`Начал отправлять статистику по турнирам на ${key}`)
+      console.log(`Начал отправлять статистику по турнирам на ${key}`);
       if (message?.flat()?.length && region) {
         await sendMail(
           [`palllkaignatev@yandex.ru,behaappy@ya.ru,${key}`],
           message.flat(),
           `<div style='display:none'>${JSON.stringify(message)}</div>`,
-          region
+          region,
         );
         console.log(`Закончил отправлять статистику по турнирам на почту ${key}`);
+      } else {
+        console.log(`Статистика по турнирам не отправлена, так как сообщение пустое`);
       }
-      else {
-        console.log(`Статистика по турнирам не отправлена, так как сообщение пустое`)
-      }
-    }
-    catch (error) {
+    } catch (error) {
       console.log(`Отправка не письма на почту ${key} не удалась, произошла ошибка: `, error);
     }
   }

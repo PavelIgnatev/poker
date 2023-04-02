@@ -47,9 +47,6 @@ const fs = () => {
         t["@usdPrizepool"] =
           currency === "CNY" && pp !== "-" ? Math.round(Number(pp) / lastValue) : Number(pp);
 
-        if (t["@prizepool"] >= 40000 && t["@date"] >= 1677525300) {
-          console.log(filter.filter("11A", {}, t), getDate(Number(`${t["@date"]}000`)));
-        }
       }
     });
 };
