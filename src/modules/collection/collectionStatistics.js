@@ -137,7 +137,7 @@ const collectionStatistics = async () => {
     try {
       await sendStatistics(errorTournaments);
       console.log("Начинаю удалять папку дня ", date);
-      await deleteFolder(`src/store/copies/${date}`);
+      // await deleteFolder(`src/store/copies/${date}`);
     } catch (error) {
       console.log(error);
     }
