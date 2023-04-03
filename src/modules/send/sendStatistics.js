@@ -3,21 +3,7 @@ const Excel = require("exceljs");
 
 const { getEmail } = require("../../utils/email");
 
-const transporter = createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: "pokerteamsoft@gmail.com",
-    pass: "tnekyspaizuzbocv",
-  },
-  tls: {
-    minVersion: "TLSv1.2",
-    rejectUnauthorized: true,
-  },
-});
-
-const promiseWrapper = (mailOptions) =>
+const promiseWrapper = (mailOptions, transporter) =>
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -55,7 +41,7 @@ const mailOptions = (mails, html, content) => {
   };
 };
 
-const sendMail = async (mail, tournaments, html) => {
+const sendMail = async (mail, tournaments, html, transporter) => {
   const workbook = new Excel.Workbook();
   const worksheet = workbook.addWorksheet("Debtors");
   worksheet.columns = [
@@ -84,7 +70,7 @@ const sendMail = async (mail, tournaments, html) => {
   for (let i = 0; i < 5; i++) {
     try {
       console.log("Попытка отправить номер ", i);
-      await promiseWrapper(mailOptions(mail, html, buffer));
+      await promiseWrapper(mailOptions(mail, html, buffer), transporter);
       break;
     } catch (e) {
       console.log(e);
@@ -94,6 +80,21 @@ const sendMail = async (mail, tournaments, html) => {
 
 const sendStatistics = async (errorTournaments) => {
   const aliases = Object.keys(errorTournaments);
+
+  const transporter = createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "pokerteamsoft@gmail.com",
+      pass: "yrvqnyfvqrcqjcei",
+    },
+    tls: {
+      minVersion: "TLSv1.2",
+      rejectUnauthorized: true,
+    },
+  });
+
   const { email } = await getEmail();
 
   if (!aliases.length) {
@@ -107,11 +108,14 @@ const sendStatistics = async (errorTournaments) => {
       [`${email},pokerteamsoft@gmail.com`],
       Object.values(errorTournaments).flat(),
       `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
+      transporter,
     );
     console.log("Закончил отправлять статистику по турнирам на почту админов");
   } catch (error) {
     console.log("Отправка не письма на почту админов не удалась, произошла ошибка: ", error);
   }
+
+  transporter.close()
 };
 
 module.exports = { sendStatistics };

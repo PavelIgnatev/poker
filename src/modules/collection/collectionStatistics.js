@@ -5,7 +5,6 @@ const { readFile, writeFile } = require("../../utils/promisify");
 const { sendStatistics } = require("../send/sendStatistics");
 
 let filter = require("../filter/filter");
-const { deleteFolder } = require("../delete/deleteFolder");
 
 const collectionStatistics = async () => {
   const errorTournaments = {};
