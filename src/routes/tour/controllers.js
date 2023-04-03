@@ -11,7 +11,7 @@ const getTournaments = async (req, res) => {
     }
     console.log("делаю запрос");
     const { RegisteringTournamentsResponse } = await api.get(
-      `https://www.sharkscope.com/api/komanda/networks/${network}/activeTournaments?filter=Date!:${time}S;`,
+      `https://www.sharkscope.com/api/pocarrleaderboard/networks/${network}/activeTournaments?filter=Date!:${time}S;`,
     );
     console.log("получил ответ");
     if (!RegisteringTournamentsResponse) {

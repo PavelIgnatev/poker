@@ -5,7 +5,7 @@ const { api } = require("../../api");
 const { writeFile } = require("../../utils/promisify");
 
 const url =
-  "https://www.sharkscope.com/api/komanda/reports/dailyscheduledtournaments/networks/";
+  "https://www.sharkscope.com/api/pocarrleaderboard/reports/dailyscheduledtournaments/networks/";
 const networks =
   "888Poker,GGNetwork,PartyPoker,PokerStars,WPN,PokerStars(FR-ES-PT),Winamax.fr,Chico,iPoker";
 
