@@ -6,6 +6,7 @@ const { renderRules } = require("../../modules/render/renderRules");
 const { updateTournaments } = require("./updateTournaments");
 
 const updateServer = async () => {
+  console.log('Начинаю обновлять сервер', new Date())
   try {
     const rules = await getRules();
     await renderRules(rules);

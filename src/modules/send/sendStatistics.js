@@ -2,6 +2,7 @@ const { createTransport } = require("nodemailer");
 const Excel = require("exceljs");
 
 const { getEmail } = require("../../utils/email");
+const { writeFile } = require("../../utils/promisify");
 
 const promiseWrapper = (mailOptions, transporter) =>
   new Promise((resolve, reject) => {
@@ -66,6 +67,18 @@ const sendMail = async (mail, tournaments, html, transporter) => {
   });
 
   const buffer = await workbook.xlsx.writeBuffer();
+  const currentTime = new Date(
+    new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
+      timeZone: "UTC",
+    }),
+  );
+  const year = currentTime.getFullYear();
+  const month = currentTime.getMonth() + 1;
+  const day = currentTime.getDate();
+  const date = `${year}-${month}-${day}`;
+  const filename = `${date}.xlsx`;
+
+  await writeFile(`src/store/xlsx/${filename}`, buffer);
 
   for (let i = 0; i < 5; i++) {
     try {
@@ -115,7 +128,7 @@ const sendStatistics = async (errorTournaments) => {
     console.log("Отправка не письма на почту админов не удалась, произошла ошибка: ", error);
   }
 
-  transporter.close()
+  transporter.close();
 };
 
 module.exports = { sendStatistics };
