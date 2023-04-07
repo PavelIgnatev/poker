@@ -18,6 +18,7 @@ import { getOffpeak } from "../../store/Offpeak";
 import { RulesSection } from "../../components/Admin.RulesSection";
 import { getUpdate } from "../../store/Update";
 import { UpdateSection } from "../../components/UpdateSection";
+import StopWordsSection from "../../components/Admin.StopWordsSection";
 
 export const AdminPage: FC = () => {
   const isAdmin = useStore($isValidAdminPassword);
@@ -50,6 +51,7 @@ export const AdminPage: FC = () => {
       <UpdateSection />
       <SampleSection />
       <OffpeakSection />
+      {/* <StopWordsSection/> */}
       <RulesSection />
       <AliasesSection />
     </>

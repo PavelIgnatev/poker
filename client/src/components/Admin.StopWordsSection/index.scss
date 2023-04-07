@@ -1,0 +1,45 @@
+@import "src/assets/style/design.scss";
+
+
+.stop-words-section {
+  &__title {
+    color: $baseColor;
+    margin-top: 50px;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .BaseInputString {
+    width: 40%;
+  }
+
+  &__words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    &__word {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      height: 64px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      color: #4a72ff;
+      background: #f5f8ff;
+      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.02), 0 0.1px 0.3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
+      transition: background 0.2s ease-in-out, transform 50ms ease-in;
+
+      &:hover {
+        background-color: #f7cccc;
+      }
+    }
+  }
+
+}

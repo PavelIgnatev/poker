@@ -4,6 +4,7 @@ const { getRules } = require("../../utils/rules");
 const { writeFile, readFile } = require("../../utils/promisify");
 const { renderRules } = require("../../modules/render/renderRules");
 const { updateTournaments } = require("./updateTournaments");
+const { updateScore } = require("./updateScore");
 
 const updateUrl = "src/store/update/update.json";
 
@@ -52,6 +53,13 @@ const updateServer = async () => {
     await updtateAllCopies();
   } catch (error) {
     console.log("Ошибка при сохранении всех копий: ", error);
+  }
+
+  // Обновление данных для папки Score
+  try {
+    await updateScore()
+  } catch (error) {
+    console.log("Ошибка при сохранении score")
   }
 
   await writeFile(updateUrl, JSON.stringify({ isUpdated: false }));
