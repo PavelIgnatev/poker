@@ -55,17 +55,13 @@ async function renderRules(rules) {
       StartDay = StartDayQ(weekDay),
       Name = NameQ(name),
       NotName = NotNameQ(name),
-      FLAGS = FLAGSQ(tournament),
-      ability1 = tournament['@ability'],
-      ability2 = tournament['@abilityBid'];
+      FLAGS = FLAGSQ(tournament);
 
     const isTurbo = isTurboS(tournament);
     const isOffpeak = isOffpeakQ(tournament, offpeak, Number(tournament['@realDuration'] ?? 0) * 1000);
     const isSuperTurbo = isSuperTurboS(tournament);
     const isKo = isNormalS(tournament);
     const isNormal = !isTurbo && !isSuperTurbo;
-    const isAbility1 = ability1 && ability1 !== '-'
-    const isAbility2 = ability2 && ability2 !== '-'
 
     const level = (ruleLevel[0] === 'A' || ruleLevel[0] === 'B')? ruleLevel[0] : validateNumber(ruleLevel);
     const effmu = ruleLevel.replace(level, "").replace("-", "");
@@ -81,8 +77,6 @@ async function renderRules(rules) {
         return renderCheck(rule, rule.map(renderRule).join(" && "));
       })
       .join("")}
-
-    if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 1 } 
     
     return { valid: false, guarantee: 1, rules: false };
   };

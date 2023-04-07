@@ -6081,25 +6081,19 @@ const { getNetwork } = getNetwork_1;
       NameQ(name);
       NotNameQ(name);
       FLAGSQ(tournament);
-      const ability1 = tournament['@ability'],
-      ability2 = tournament['@abilityBid'];
 
     isTurboS(tournament);
     isOffpeakQ(tournament, offpeak, Number(tournament['@realDuration'] ?? 0) * 1000);
     isSuperTurboS(tournament);
     isNormalS(tournament);
-    const isAbility1 = ability1 && ability1 !== '-';
-    const isAbility2 = ability2 && ability2 !== '-';
 
     const level = (ruleLevel[0] === 'A' || ruleLevel[0] === 'B')? ruleLevel[0] : validateNumber(ruleLevel);
     ruleLevel.replace(level, "").replace("-", "");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((FromTo(0,100000))
+    if((FromTo(0,1000000))
     && network === 'PS.eu') return { valid: true, rules: true, guarantee: 1, color: "blue" };
-
-    if(isGetTournaments && isAbility1 && isAbility2 && Number(ability1) <= Number(ability2)) return { valid: true, rules: false, guarantee: 1 } 
     
     return { valid: false, guarantee: 1, rules: false };
   };

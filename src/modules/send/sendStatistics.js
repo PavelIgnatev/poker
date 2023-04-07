@@ -51,8 +51,6 @@ const sendMail = async (mail, tournaments, html, region, transporter) => {
     { header: "Guarantee", key: "@prizepool" },
     { header: "ReEntry", key: "@multientries" },
     { header: "Entrants", key: "@totalEntrants" },
-    { header: "A1", key: "@ability" },
-    { header: "A2", key: "@abilityBid" },
   ];
 
   Array.from(tournaments).forEach((e) => {

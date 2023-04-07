@@ -34,8 +34,6 @@ const fs = () => {
         const startDate = Number(isStartDate * 1000);
 
         const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
-        t["@ability"] = "-";
-        t["@abilityBid"] = "-";
         t["@getWeekday"] = "Friday";
         t["@realDuration"] = d;
         t["@nickname"] = t?.["TournamentEntry"]?.["@playerName"] ?? "undefined";

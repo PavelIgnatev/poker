@@ -1,12 +1,10 @@
-const { saveRulesAbility2 } = require("../../utils/rules");
-
 async function updateRules(preview) {
   const settings = {};
 
   const levels = Object.keys(preview);
   levels.forEach((level) => {
     preview[level].forEach((tournament) => {
-      let { network, level, currency, bid, status, name, ability } = tournament;
+      let { network, level, currency, bid, status, name } = tournament;
       let time = name.split(")(")[1];
       if (!time?.includes(":")) time = "all";
       name = name.split(" (A1:")[0].split(" (A2: ")[0];
@@ -22,10 +20,8 @@ async function updateRules(preview) {
       if (!settings[network][time][level][currency][bid][status])
         settings[network][time][level][currency][bid][status][name] = {};
 
-      settings[network][time][level][currency][bid][status][name] = Number(ability);
     });
   });
-  await saveRulesAbility2(settings);
 }
 
 module.exports = { updateRules };

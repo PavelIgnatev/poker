@@ -19,7 +19,6 @@ export type Rule = {
   bid: string;
   status: string;
   name: string;
-  ability: string;
 };
 
 export type LevelPlusEffmu = string;

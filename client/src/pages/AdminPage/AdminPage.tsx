@@ -1,7 +1,6 @@
 import { useStore } from "effector-react";
 import { FC, useEffect } from "react";
 
-import { Ability2Section } from "../../components/Admin.Ability2Section";
 import { AliasesSection } from "../../components/Admin.AliasesSection";
 import {
   OnPasswordSubmit,
@@ -52,7 +51,6 @@ export const AdminPage: FC = () => {
       <SampleSection />
       <OffpeakSection />
       <RulesSection />
-      <Ability2Section />
       <AliasesSection />
     </>
   );

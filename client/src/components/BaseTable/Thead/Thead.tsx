@@ -91,24 +91,6 @@ export const Thead = ({
           Guarantee
         </th>
         <th
-          onClick={() => handleClick("@ability")}
-          className={cx(classes.th, {
-            [classes.active]: sortedKey === "@ability",
-            [classes.reverse]: isReverse,
-          })}
-        >
-          Ability
-        </th>
-        <th
-          onClick={() => handleClick("@abilityBid")}
-          className={cx(classes.th, {
-            [classes.active]: sortedKey === "@abilityBid",
-            [classes.reverse]: isReverse,
-          })}
-        >
-          Ability2
-        </th>
-        <th
           onClick={() => handleClick("@duration")}
           className={cx(classes.th, {
             [classes.active]: sortedKey === "@duration",

@@ -23,8 +23,6 @@ export interface tableCellModel {
   "@totalEntrants": string;
   "@prizepool": string | number;
   "@ko"?: boolean;
-  "@ability": number | string;
-  "@abilityBid": number | string;
   "@duration": string;
   "@timezone": string | undefined;
   "@level": string;
