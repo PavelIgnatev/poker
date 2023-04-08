@@ -30,6 +30,12 @@ async function renderRules(rules) {
     AbilityEqual: AbilityEqualQ,
     AbilityFrom: AbilityFromQ,
     AbilityTo: AbilityToQ,
+    StartRegEqual: StartRegEqualQ,
+    StartRegFrom: StartRegFromQ,
+    StartRegTo: StartRegToQ,
+    LateRegEqual: LateRegEqualQ,
+    LateRegFrom: LateRegFromQ,
+    LateRegTo: LateRegToQ,
     TicketEqual: TicketEqualQ,
     TicketFrom: TicketFromQ,
     TicketTo: TicketToQ,
@@ -67,6 +73,12 @@ async function renderRules(rules) {
       AbilityEqual = AbilityEqualQ(ability),
       AbilityFrom = AbilityFromQ(ability),
       AbilityTo = AbilityToQ(ability),
+      StartRegEqual = StartRegEqualQ(tournament["@msStartForRule"]),
+      StartRegFrom = StartRegFromQ(tournament["@msStartForRule"]),
+      StartRegTo = StartRegToQ(tournament["@msStartForRule"]),
+      LateRegEqual = LateRegEqualQ(tournament["@msLateForRule"]),
+      LateRegFrom = LateRegFromQ(tournament["@msLateForRule"]),
+      LateRegTo = LateRegToQ(tournament["@msLateForRule"]),
       TicketEqual = TicketEqualQ(tournament?.["@tickets"] ?? 0),
       TicketFrom = TicketFromQ(tournament?.["@tickets"] ?? 0),
       TicketTo = TicketToQ(tournament?.["@tickets"] ?? 0),
@@ -77,7 +89,6 @@ async function renderRules(rules) {
       Class = ClassQ(tournament),
       Structure = StructureQ(tournament),
       Game = GameQ(tournament);
-
     const isTurbo = isTurboS(tournament);
     const isSuperTurbo = isSuperTurboS(tournament);
     const isKo = isNormalS(tournament);

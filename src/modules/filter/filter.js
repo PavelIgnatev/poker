@@ -12,6 +12,12 @@ const { getNetwork } = require("../../helpers/getNetwork");
     AbilityEqual: AbilityEqualQ,
     AbilityFrom: AbilityFromQ,
     AbilityTo: AbilityToQ,
+    StartRegEqual: StartRegEqualQ,
+    StartRegFrom: StartRegFromQ,
+    StartRegTo: StartRegToQ,
+    LateRegEqual: LateRegEqualQ,
+    LateRegFrom: LateRegFromQ,
+    LateRegTo: LateRegToQ,
     TicketEqual: TicketEqualQ,
     TicketFrom: TicketFromQ,
     TicketTo: TicketToQ,
@@ -49,6 +55,12 @@ const { getNetwork } = require("../../helpers/getNetwork");
       AbilityEqual = AbilityEqualQ(ability),
       AbilityFrom = AbilityFromQ(ability),
       AbilityTo = AbilityToQ(ability),
+      StartRegEqual = StartRegEqualQ(tournament["@msStartForRule"]),
+      StartRegFrom = StartRegFromQ(tournament["@msStartForRule"]),
+      StartRegTo = StartRegToQ(tournament["@msStartForRule"]),
+      LateRegEqual = LateRegEqualQ(tournament["@msLateForRule"]),
+      LateRegFrom = LateRegFromQ(tournament["@msLateForRule"]),
+      LateRegTo = LateRegToQ(tournament["@msLateForRule"]),
       TicketEqual = TicketEqualQ(tournament?.["@tickets"] ?? 0),
       TicketFrom = TicketFromQ(tournament?.["@tickets"] ?? 0),
       TicketTo = TicketToQ(tournament?.["@tickets"] ?? 0),
@@ -59,7 +71,6 @@ const { getNetwork } = require("../../helpers/getNetwork");
       Class = ClassQ(tournament),
       Structure = StructureQ(tournament),
       Game = GameQ(tournament);
-
     const isTurbo = isTurboS(tournament);
     const isSuperTurbo = isSuperTurboS(tournament);
     const isKo = isNormalS(tournament);
@@ -70,7 +81,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((AbilityFrom(0))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (AbilityTo(10000000))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
+    if((StartRegFrom(79200000))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (StartRegTo(86340000))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
     
     return { valid: false, guarantee: 1, rules: false };
   };

@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { timeStringToMilliseconds } = require("../../helpers/timeStringToMilliseconds");
 
 const validateNumber = (value) => {
   return value
@@ -18,12 +19,17 @@ function renderRule(rule) {
 
   return (
     `(${type}(${values
-      .map((value, i) =>
-        config[type][i].type === "string" && indexPrizepool !== i
-          ? `"${value}"`
-          : indexPrizepool !== i
-          ? Number(value)
-          : value,
+      .map((value, i) => {
+          if(config[type][i].type === 'time') {
+            return timeStringToMilliseconds(value)
+          } 
+
+          return config[type][i].type === "string" && indexPrizepool !== i
+            ? `"${value}"`
+            : indexPrizepool !== i
+            ? Number(value)
+            : value
+        }
       )
       .join(",")}))` +
     (network !== "all" ? `&& network === '${network}'` : "") +

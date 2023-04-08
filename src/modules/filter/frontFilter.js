@@ -36,6 +36,12 @@ const EntrantsTo = curry((entrants, to) => Number(entrants) <= Number(to));
 const AbilityEqual = curry((ability, equal) => Number(ability) === Number(equal));
 const AbilityFrom = curry((ability, from) => Number(ability) >= Number(from));
 const AbilityTo = curry((ability, to) => Number(ability) <= Number(to));
+const StartRegEqual = curry((startRegMs, equal) => Number(startRegMs) === Number(equal));
+const StartRegFrom = curry((startRegMs, from) => Number(startRegMs) >= Number(from));
+const StartRegTo = curry((startRegMs, to) => Number(startRegMs) <= Number(to));
+const LateRegEqual = curry((lateRegMs, equal) => Number(lateRegMs) === Number(equal));
+const LateRegFrom = curry((lateRegMs, from) => Number(lateRegMs) >= Number(from));
+const LateRegTo = curry((lateRegMs, to) => Number(lateRegMs) <= Number(to));
 const TicketEqual = curry((ticket, equal) => Number(ticket) === Number(equal));
 const TicketFrom = curry((ticket, from) => Number(ticket) >= Number(from));
 const TicketTo = curry((ticket, to) => Number(ticket) <= Number(to));
@@ -92,6 +98,12 @@ var curry_1 = {
   Class,
   Game,
   Structure,
+  StartRegEqual,
+  StartRegFrom,
+  StartRegTo,
+  LateRegEqual,
+  LateRegFrom,
+  LateRegTo,
 };
 
 /**
@@ -231,6 +243,12 @@ const { getNetwork } = getNetwork_1;
     AbilityEqual: AbilityEqualQ,
     AbilityFrom: AbilityFromQ,
     AbilityTo: AbilityToQ,
+    StartRegEqual: StartRegEqualQ,
+    StartRegFrom: StartRegFromQ,
+    StartRegTo: StartRegToQ,
+    LateRegEqual: LateRegEqualQ,
+    LateRegFrom: LateRegFromQ,
+    LateRegTo: LateRegToQ,
     TicketEqual: TicketEqualQ,
     TicketFrom: TicketFromQ,
     TicketTo: TicketToQ,
@@ -266,8 +284,14 @@ const { getNetwork } = getNetwork_1;
       EntrantsFromQ(tournament?.["@totalEntrants"] ?? 0);
       EntrantsToQ(tournament?.["@totalEntrants"] ?? 0);
       AbilityEqualQ(ability);
-      const AbilityFrom = AbilityFromQ(ability),
-      AbilityTo = AbilityToQ(ability);
+      AbilityFromQ(ability);
+      AbilityToQ(ability);
+      StartRegEqualQ(tournament["@msStartForRule"]);
+      const StartRegFrom = StartRegFromQ(tournament["@msStartForRule"]),
+      StartRegTo = StartRegToQ(tournament["@msStartForRule"]);
+      LateRegEqualQ(tournament["@msLateForRule"]);
+      LateRegFromQ(tournament["@msLateForRule"]);
+      LateRegToQ(tournament["@msLateForRule"]);
       TicketEqualQ(tournament?.["@tickets"] ?? 0);
       TicketFromQ(tournament?.["@tickets"] ?? 0);
       TicketToQ(tournament?.["@tickets"] ?? 0);
@@ -278,7 +302,6 @@ const { getNetwork } = getNetwork_1;
       ClassQ(tournament);
       StructureQ(tournament);
       GameQ(tournament);
-
     const isTurbo = isTurboS(tournament);
     const isSuperTurbo = isSuperTurboS(tournament);
     const isKo = isNormalS(tournament);
@@ -289,7 +312,7 @@ const { getNetwork } = getNetwork_1;
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((AbilityFrom(0))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (AbilityTo(10000000))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
+    if((StartRegFrom(79200000))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (StartRegTo(86340000))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
     
     return { valid: false, guarantee: 1, rules: false };
   };

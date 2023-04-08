@@ -28,6 +28,7 @@
     "@fastify/swagger": "^7.5.1",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@material-ui/pickers": "^3.3.10",
+    "@mui/lab": "^5.0.0-alpha.125",
     "@mui/x-date-pickers": "^6.0.4",
     "@rollup/plugin-commonjs": "^24.0.1",
     "axios": "^0.23.0",
