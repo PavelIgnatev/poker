@@ -20,15 +20,15 @@ const CustomToastContainer = styled(ToastContainer)({
 export const Pages: FC = () => {
   return (
     <>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/admin" component={() => <AdminPage />} />
-          <Route path="/info" component={() => <InfoPage />} />
-          <Route path="/*" component={() => <MainPage />} />
-        </Switch>
-        <CustomToastContainer hideProgressBar={true} />
-      </BrowserRouter>
-      <div id="modal-root" />
+        <BrowserRouter>
+          <Switch>
+            <Route path="/admin" component={() => <AdminPage />} />
+            <Route path="/info" component={() => <InfoPage />} />
+            <Route path="/*" component={() => <MainPage />} />
+          </Switch>
+          <CustomToastContainer hideProgressBar={true} />
+        </BrowserRouter>
+        <div id="modal-root" />
     </>
   );
 };

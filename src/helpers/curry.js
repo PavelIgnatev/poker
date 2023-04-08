@@ -22,6 +22,12 @@ const EntrantsTo = curry((entrants, to) => Number(entrants) <= Number(to));
 const AbilityEqual = curry((ability, equal) => Number(ability) === Number(equal));
 const AbilityFrom = curry((ability, from) => Number(ability) >= Number(from));
 const AbilityTo = curry((ability, to) => Number(ability) <= Number(to));
+const StartRegEqual = curry((startRegMs, equal) => Number(startRegMs) === Number(equal));
+const StartRegFrom = curry((startRegMs, from) => Number(startRegMs) >= Number(from));
+const StartRegTo = curry((startRegMs, to) => Number(startRegMs) <= Number(to));
+const LateRegEqual = curry((lateRegMs, equal) => Number(lateRegMs) === Number(equal));
+const LateRegFrom = curry((lateRegMs, from) => Number(lateRegMs) >= Number(from));
+const LateRegTo = curry((lateRegMs, to) => Number(lateRegMs) <= Number(to));
 const TicketEqual = curry((ticket, equal) => Number(ticket) === Number(equal));
 const TicketFrom = curry((ticket, from) => Number(ticket) >= Number(from));
 const TicketTo = curry((ticket, to) => Number(ticket) <= Number(to));
@@ -78,4 +84,10 @@ module.exports = {
   Class,
   Game,
   Structure,
+  StartRegEqual,
+  StartRegFrom,
+  StartRegTo,
+  LateRegEqual,
+  LateRegFrom,
+  LateRegTo,
 };

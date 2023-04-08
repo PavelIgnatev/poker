@@ -70,7 +70,7 @@ const { getNetwork } = require("../../helpers/getNetwork");
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    
+    if((AbilityFrom(0))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (AbilityTo(10000000))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
     
     return { valid: false, guarantee: 1, rules: false };
   };

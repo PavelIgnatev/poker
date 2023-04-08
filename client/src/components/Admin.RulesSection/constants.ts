@@ -86,6 +86,48 @@ export const RULES_TYPES_TO_FIELDS = {
       options: null,
     },
   ],
+  StartRegEqual: [
+    {
+      type: "time",
+      placeholder: "Equal",
+      options: null,
+    },
+  ],
+  StartRegFrom: [
+    {
+      type: "time",
+      placeholder: "From",
+      options: null,
+    },
+  ],
+  StartRegTo: [
+    {
+      type: "time",
+      placeholder: "To",
+      options: null,
+    },
+  ],
+  LateRegEqual: [
+    {
+      type: "time",
+      placeholder: "Equal",
+      options: null,
+    },
+  ],
+  LateRegFrom: [
+    {
+      type: "time",
+      placeholder: "From",
+      options: null,
+    },
+  ],
+  LateRegTo: [
+    {
+      type: "time",
+      placeholder: "To",
+      options: null,
+    },
+  ],
   Name: [
     {
       type: "string",

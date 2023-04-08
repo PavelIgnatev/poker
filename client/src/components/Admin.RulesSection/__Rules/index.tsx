@@ -38,6 +38,12 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
   const [types, setTypes] = useState<rulesType[]>([RULES_TYPES[0]]);
   const [values, setValues] = useState<valuesType>([{}]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
+
+
+  const handleTimeChange = (time: Date | null) => {
+    setSelectedTime(time);
+  };
 
   const handleAddRuleRow = () => {
     setTypes((types) => [...types, RULES_TYPES[0]]);
@@ -159,7 +165,8 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                   />
                   {fields.map((field, fieldIndex) => {
                     const { type: elementType, placeholder, options } = field;
-
+                    
+                    const isTime = elementType === "time"
                     const isNum = elementType === "number";
                     const value = String(ruleValues?.[fieldIndex] || "");
 
@@ -185,6 +192,13 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                           key={String(Math.random()).substr(2, 12)}
                         />
                       );
+                    }
+
+                    
+                    if (isTime) {
+                      return (
+                        <h1>ТаймПикер</h1>
+                      )
                     }
 
                     return (

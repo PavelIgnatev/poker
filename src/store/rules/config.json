@@ -83,23 +83,44 @@
             "options": null
         }
     ],
-    "TicketEqual": [
+    "StartRegEqual": [
         {
-            "type": "number",
+            "type": "time",
             "placeholder": "Equal",
             "options": null
         }
     ],
-    "TicketFrom": [
+    "StartRegFrom": [
         {
-            "type": "number",
+            "type": "time",
             "placeholder": "From",
             "options": null
         }
     ],
-    "TicketTo": [
+    "StartRegTo": [
         {
-            "type": "number",
+            "type": "time",
+            "placeholder": "To",
+            "options": null
+        }
+    ],
+    "LateRegEqual": [
+        {
+            "type": "time",
+            "placeholder": "Equal",
+            "options": null
+        }
+    ],
+    "LateRegFrom": [
+        {
+            "type": "time",
+            "placeholder": "From",
+            "options": null
+        }
+    ],
+    "LateRegTo": [
+        {
+            "type": "time",
             "placeholder": "To",
             "options": null
         }
