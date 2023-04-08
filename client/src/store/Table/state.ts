@@ -18,6 +18,9 @@ import { getNetwork } from "./../../helpers/getNetwork";
 import { $config } from "../Config";
 import { $filterContent } from "../Filter";
 import { $store } from "../Store";
+import { dateToTimeString } from "../../helpers/dateToTimeString";
+import { timeStringToMilliseconds } from "../../helpers/timeStringToMilliseconds";
+import { millisecondsToTimeString } from "../../helpers/millisecondsToTimeString";
 
 export const $tableState = createStore<tableCellModel[] | null | undefined>(
   null
@@ -116,7 +119,6 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     );
 
     const pp = prizepool >= 0 ? prizepool : "-";
-
     return {
       ...tournament,
       "@date": isStartDate,
@@ -144,7 +146,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@network": network,
       "@ability": ability ? ability : "-",
       "@duration": duration ? getTimeBySec(duration) : "-",
-      "@getWeekday": isStartDate ? getWeekday(startDate) : "-",
+      "@getWeekday": isStartDate ? getWeekday(Number(isStartDate) * 1000) : "-",
       "@scheduledStartDate": isStartDate ? getDate(startDate) : "-",
       "@lateRegEndDate": isRegDate ? getDate(regDate) : "-",
       "@numberLateRegEndDate": regDate,
@@ -153,6 +155,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@level": level,
       "@usdBid": Number(bid),
       "@usdPrizepool": Number(pp),
+      "@msStartForRule": isStartDate? timeStringToMilliseconds(dateToTimeString(Number(isStartDate) * 1000)) : "-",
+      "@msLateForRule": isRegDate?  timeStringToMilliseconds(dateToTimeString(Number(isRegDate) * 1000)) : "-",
     };
   });
 

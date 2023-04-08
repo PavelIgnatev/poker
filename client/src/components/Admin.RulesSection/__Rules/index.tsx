@@ -38,11 +38,14 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
   const [types, setTypes] = useState<rulesType[]>([RULES_TYPES[0]]);
   const [values, setValues] = useState<valuesType>([{}]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
+  const [internalValue, setInternalValue] = useState<string>('00:00');
 
 
-  const handleTimeChange = (time: Date | null) => {
-    setSelectedTime(time);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
+    if (/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/.test(inputValue)) {
+      setInternalValue(inputValue);
+    }
   };
 
   const handleAddRuleRow = () => {
@@ -123,6 +126,7 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
     color + level + network + status + KO
   );
 
+
   return (
     <div className={b("rules")}>
       {rules.map((ruleRows, ruleIndex) => {
@@ -165,8 +169,8 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                   />
                   {fields.map((field, fieldIndex) => {
                     const { type: elementType, placeholder, options } = field;
-                    
-                    const isTime = elementType === "time"
+
+                    const isTime = elementType === "time";
                     const isNum = elementType === "number";
                     const value = String(ruleValues?.[fieldIndex] || "");
 
@@ -194,11 +198,35 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                       );
                     }
 
-                    
                     if (isTime) {
                       return (
-                        <h1>ТаймПикер</h1>
-                      )
+                        <input
+                          key={String(Math.random()).substr(2, 12)}
+                          type="time"
+                          disabled={!isEditable}
+                          style={{
+                            backgroundColor: 'white',
+                            borderRadius: '4px',
+                            color: `${isEditable? "black" : "rgba(0, 0, 0, 0.38)"}`,
+                            fontSize: '16px',
+                            padding: '10px',
+                            border: 'none',                    
+                            outline: `1px solid ${isEditable? "black" : "#bdbdbd"}`,
+                            borderColor: '#333333',
+                          }}
+                          value={value}
+                          onChange={(e) => {
+                            const value = e.currentTarget.value;
+                            handleValues(
+                              value,
+                              rowIndex,
+                              fieldIndex
+                            );
+                          }}
+                          min="00:00"
+                          max="23:59"
+                        />
+                      );
                     }
 
                     return (
