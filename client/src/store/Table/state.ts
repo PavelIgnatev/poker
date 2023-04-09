@@ -18,7 +18,7 @@ import { getNetwork } from "./../../helpers/getNetwork";
 import { $config } from "../Config";
 import { $filterContent } from "../Filter";
 import { $store } from "../Store";
-import { IGNORELIST } from "../../helpers/validateNames";
+import { $stopWords } from "../StopWords";
 
 export const $tableState = createStore<tableCellModel[] | null | undefined>(
   null
@@ -31,7 +31,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
   const config = $config.getState();
   const filter = $filterContent.getState();
-  const { ability1, ability2, rules, currency: lastValue, offpeak } = $store.getState();
+  const stopWords = $stopWords.getState();
+  const { rules, currency: lastValue, offpeak } = $store.getState();
 
   const {
     moneyStart,
@@ -55,14 +56,14 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
 
   // Валидация названия турнира
-  const validateName = (name: string, ignoreList: string[]) => {
+  const validateName = (name: string, stopWords: string[]) => {
     if(!name) return ''
     else name = name.toLowerCase();
 
     const cleanedName = name.replace(/[^\w]/gi, "").replace(/\d+/g, "");
 
     
-    const hasIgnoreWords = ignoreList.some(word => cleanedName.toLowerCase().includes(word.toLowerCase()));
+    const hasIgnoreWords = stopWords.some(word => cleanedName.toLowerCase().includes(word.toLowerCase()));
     
     if (hasIgnoreWords) {
       return name;
@@ -77,7 +78,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const network = getNetwork(tournament["@network"]);
     const { level: networksLevel = 1, effmu = "A" } = networks?.[network] ?? {};
     const level = networksLevel + effmu;
-    const validatedName = validateName(tournament["@name"], IGNORELIST)
+    const validatedName = validateName(tournament["@name"], stopWords)
     const stake = Number(tournament["@stake"] ?? 0);
     const rake = Number(tournament["@rake"] ?? 0);
     const bid = (stake + rake).toFixed(2);
@@ -98,15 +99,15 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const rebuy = isRebuy(tournament);
 
     const isMandatoryСonditions = isNL && isH && !rebuy && !od && !sng;
-    const info = ability1?.[network]?.[time]?.[bid]?.[validatedName];
-    const ability = isMandatoryСonditions && info?.["@avability"];
+    // const info = ability1?.[network]?.[time]?.[bid]?.[validatedName];
+    // const ability = isMandatoryСonditions && info?.["@avability"];
     
 
-    const duration = info?.["@duration"]
-      ? Math.round(info?.["@duration"])
-      : null;
-    const abilityBid =
-      ability2?.[network]?.[level]?.[currency]?.[bid]?.[status];
+    // const duration = info?.["@duration"]
+    //   ? Math.round(info?.["@duration"])
+    //   : null;
+    // const abilityBid =
+    //   ability2?.[network]?.[level]?.[currency]?.[bid]?.[status];
     const sat = isSat(tournament);
 
     //Фикс гарантии для WPN и 888Poker и Chiko
@@ -179,12 +180,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@superturbo": !!superturbo,
       "@prizepool": pp,
       "@network": network,
-      "@ability": ability ? ability : "-",
-      "@abilityBid":
-        typeof abilityBid === "number"
-          ? Number(abilityBid) + Number(rulesAbility2)
-          : "-",
-      "@duration": duration ? getTimeBySec(duration) : "-",
+      "@duration": "-",
       "@getWeekday": isStartDate ? getWeekday(startDate) : "-",
       "@scheduledStartDate": isStartDate ? getDate(startDate) : "-",
       "@lateRegEndDate": isRegDate ? getDate(regDate) : "-",
@@ -243,15 +239,15 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
     let color = "rgb(238, 236, 255)";
 
-    if (ability2 - ability1 === -2 || ability2 - ability1 <= -2) {
-      color = "rgba(235,96,96,0.5)"; // red
-    }
-    if (ability2 - ability1 === -1 || ability2 - ability1 === 0) {
-      color = "rgba(247,255,105,0.5)"; // желтый
-    }
-    if (ability1 < ability2) {
-      color = "rgba(98,179,82,0.5)"; // зеленый
-    }
+    // if (ability2 - ability1 === -2 || ability2 - ability1 <= -2) {
+    //   color = "rgba(235,96,96,0.5)"; // red
+    // }
+    // if (ability2 - ability1 === -1 || ability2 - ability1 === 0) {
+    //   color = "rgba(247,255,105,0.5)"; // желтый
+    // }
+    // if (ability1 < ability2) {
+    //   color = "rgba(98,179,82,0.5)"; // зеленый
+    // }
     // if (
     //   (colorRule === "red" || colorRule === "blue") &&
     //   rules &&

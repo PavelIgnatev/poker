@@ -16,6 +16,7 @@ import { RulesSectionRules } from "./__Rules";
 
 import "./index.scss";
 
+
 type KOType = "KO" | "Freezout" | "all";
 type StatusType = "Normal" | "Turbo" | "SuperTurbo" | "all";
 type ColorsType = "blue" | "red" | "brown" | "black" | "green" | "orange";
@@ -55,6 +56,7 @@ export const RulesSection = () => {
     setSelectedNetwork(option.value ?? SHORT_NETWORKS[0].value);
   const level = selectedLevel + selectedEffmu;
   const isAllLevels = selectedLevel === ALL_LEVELS;
+
 
   useEffect(() => {
     getRulesRequest({

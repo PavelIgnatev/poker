@@ -13,6 +13,7 @@ const updateScore = async () => {
   try {
     await writeFile(`src/store/score/${date}.json`, JSON.stringify(compress(score)))
   }
+
   catch (e) {
     console.log("Не удалось записать полученный score")
   }

@@ -19,12 +19,14 @@ import { RulesSection } from "../../components/Admin.RulesSection";
 import { getUpdate } from "../../store/Update";
 import { UpdateSection } from "../../components/UpdateSection";
 import StopWordsSection from "../../components/Admin.StopWordsSection";
+import { getStopWords } from "../../store/StopWords";
 
 export const AdminPage: FC = () => {
   const isAdmin = useStore($isValidAdminPassword);
 
   useEffect(() => {
     getSample();
+    getStopWords();
     getUpdate();
     getOffpeak();
   }, [isAdmin]);
@@ -51,7 +53,7 @@ export const AdminPage: FC = () => {
       <UpdateSection />
       <SampleSection />
       <OffpeakSection />
-      {/* <StopWordsSection/> */}
+      <StopWordsSection/>
       <RulesSection />
       <AliasesSection />
     </>

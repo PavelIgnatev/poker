@@ -2,6 +2,7 @@ import { rulesModel } from "./../@types/rulesModel";
 import { offpeakModel } from "../@types/offpeakModel";
 import axios from "axios";
 import ConfigApi from "./ConfigApi";
+import { stopWordsModel } from "../@types/stopWords";
 class Api extends ConfigApi {
   async get<T>(url: string, params?: any) {
     let fullUrl: string = url;
@@ -21,6 +22,9 @@ class Api extends ConfigApi {
   }
   async postSample(sample: string) {
     return await axios.post(`/api/sample`, { sample });
+  }
+  async postStopWords(stopWords: stopWordsModel) {
+    return await axios.post(`/api/stopwords`, { stopWords });
   }
   async postOffpeak(offpeak: offpeakModel) {
     return await axios.post(`/api/offpeak`, { offpeak });
