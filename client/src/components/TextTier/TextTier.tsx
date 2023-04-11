@@ -2,7 +2,7 @@ import classes from "./TextTier.module.scss";
 
 
 export const TextTier = ({ levelAndEffmu }: any) => {
-  const textTierOptions: any = {
+    const textTierOptions: any = {
     "AA": {
         "title": "You may late register and/or re-enter if you will have: 50+ big blinds in KO's, 10+ big blinds in non-KO's with 1,500+ entrants, >40 or <15 big blinds in non-KO's with 1499- entrants",
         "subtitle": ""
