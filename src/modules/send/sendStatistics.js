@@ -101,8 +101,8 @@ const sendStatistics = async (errorTournaments) => {
     port: 587,
     secure: false,
     auth: {
-      user: "palllkaignatev@gmail.com",
-      pass: "utjhheduajuoemza",
+      user: "offstakepocarr@gmail.com",
+      pass: "cnhcaftfppetmdwb",
     },
     tls: {
       minVersion: "TLSv1.2",
@@ -110,6 +110,8 @@ const sendStatistics = async (errorTournaments) => {
     },
   });
 
+  
+  const errorAliases = [];
   const config = await getConfig();
   const errorTournamentsByRegion = {};
   const aliases = Object.keys(errorTournaments);
@@ -118,6 +120,34 @@ const sendStatistics = async (errorTournaments) => {
     console.log("Нечего отправлять, все сыграли правильные турниры", new Date());
     return;
   }
+
+
+  console.log("Начинаю отправлять статистику по турнирам на почты игроков");
+
+  for (let i = 0; i < aliases.length; i++) {
+    const alias = aliases[i];
+
+    if (!config[alias]) {
+      continue;
+    }
+
+    const { mail } = config[alias];
+
+    try {
+      await sendMail(
+        [mail],
+        Array.from(errorTournaments[alias]),
+        `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
+        '',
+        transporter
+      );
+    } catch {
+      errorAliases.push(alias);
+    }
+  }
+
+  console.log("Закончил отправлять статистику по турнирам на почты игроков");
+
 
   for (let i = 0; i < aliases.length; i++) {
     const alias = aliases[i];

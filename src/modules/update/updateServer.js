@@ -18,7 +18,9 @@ const updateServer = async () => {
   }
 
   try {
-    await writeFile(updateUrl, JSON.stringify({ isUpdated: true, timestamp: Date.now() }));
+    await setTimeout(() => {
+      writeFile(updateUrl, JSON.stringify({ isUpdated: true, timestamp: Date.now() }));
+    }, 500) 
   } catch (error) {
     console.log("Ошибка обновлении статуса обновления сервера: ", error);
   }
