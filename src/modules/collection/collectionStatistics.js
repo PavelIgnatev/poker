@@ -10,6 +10,22 @@ const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
 
 let filter = require("../filter/filter");
 
+const IGNORELIST = ["scoop", "wsop"];
+const validateName = (name, stopWords) => {
+  if(!name) return ''
+  else name = name.toLowerCase();
+
+  const cleanedName = name.replace(/[^\w]/gi, "").replace(/\d+/g, "");
+
+
+  stopWords.forEach(word => {
+    cleanedName.replace(word, '')
+  })
+  
+  return cleanedName;
+}
+
+
 const collectionStatistics = async () => {
   const errorTournaments = {};
 
@@ -98,7 +114,7 @@ const collectionStatistics = async () => {
               const network = t?.["@network"];
               if (networks?.[network]) {
                 const d = Number(ft["@duration"] ?? 0);
-                const name = t["@name"]?.toLowerCase();
+                const name = validateName(t["@name"], IGNORELIST);
 
                 const { level: networksLevel, effmu } = networks[network];
                 const level = networksLevel + effmu;
