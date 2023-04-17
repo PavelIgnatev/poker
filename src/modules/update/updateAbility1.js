@@ -5,22 +5,19 @@ const { getTournaments } = require("../../helpers/getTournaments");
 
 
 const IGNORELIST = ["scoop", "wsop"];
-const validateName = (name, ignoreList) => {
+const validateName = (name, stopWords) => {
   if(!name) return ''
   else name = name.toLowerCase();
 
   const cleanedName = name.replace(/[^\w]/gi, "").replace(/\d+/g, "");
 
-  
-  const hasIgnoreWords = ignoreList.some(word => cleanedName.toLowerCase().includes(word.toLowerCase()));
-  
-  if (hasIgnoreWords) {
-    return name;
-  }
+
+  stopWords.forEach(word => {
+    cleanedName.replace(word, '')
+  })
   
   return cleanedName;
 }
-
 
 
 const updateAbility1 = async () => {
