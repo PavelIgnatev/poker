@@ -187,6 +187,7 @@ const collectionStatistics = async () => {
         host: "smtp.gmail.com",
         port: 587,
         secure: false,
+        pool: true,
         auth: {
           user: "offstakepocarr@gmail.com",
           pass: "cnhcaftfppetmdwb",
