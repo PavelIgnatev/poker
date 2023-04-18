@@ -105,33 +105,7 @@ const sendStatistics = async (errorTournaments, transporter) => {
     return;
   }
 
-
-  console.log("Начинаю отправлять статистику по турнирам на почты игроков");
-
-  for (let i = 0; i < aliases.length; i++) {
-    const alias = aliases[i];
-
-    if (!config[alias]) {
-      continue;
-    }
-
-    const { mail } = config[alias];
-
-    try {
-      await sendMail(
-        [mail],
-        Array.from(errorTournaments[alias]),
-        `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
-        '',
-        transporter
-      );
-    } catch {
-      errorAliases.push(alias);
-    }
-  }
-
-  console.log("Закончил отправлять статистику по турнирам на почты игроков");
-
+  console.log('Начал отправку по зонам')
 
   for (let i = 0; i < aliases.length; i++) {
     const alias = aliases[i];
@@ -195,6 +169,38 @@ const sendStatistics = async (errorTournaments, transporter) => {
       console.log(`Отправка не письма на почту ${key} не удалась, произошла ошибка: `, error);
     }
   }
+
+  console.log('Закончил отправку по зонам')
+
+
+
+  console.log("Начинаю отправлять статистику по турнирам на почты игроков");
+
+  for (let i = 0; i < aliases.length; i++) {
+    const alias = aliases[i];
+
+    if (!config[alias]) {
+      continue;
+    }
+
+    const { mail } = config[alias];
+
+    try {
+      await sendMail(
+        [mail],
+        Array.from(errorTournaments[alias]),
+        `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
+        '',
+        transporter
+      );
+    } catch {
+      errorAliases.push(alias);
+    }
+  }
+
+  console.log("Закончил отправлять статистику по турнирам на почты игроков");
+
+
 
   transporter.close();
 };
