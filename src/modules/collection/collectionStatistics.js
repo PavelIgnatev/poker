@@ -1,9 +1,8 @@
-const fs = require("fs");
+const { createTransport } = require("nodemailer");
 const { api } = require("../../api");
 const { getMoreProp } = require("../../helpers/getMoreProp");
 const { getWeekday } = require("../../helpers/getWeekday");
 const { readFile, writeFile } = require("../../utils/promisify");
-const { deleteFolder } = require("../delete/deleteFolder");
 const { getStatus } = require("../../helpers/getStatus");
 const { sendStatistics } = require("../send/sendStatistics");
 const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
@@ -12,19 +11,17 @@ let filter = require("../filter/filter");
 
 const IGNORELIST = ["scoop", "wsop"];
 const validateName = (name, stopWords) => {
-  if(!name) return ''
+  if (!name) return "";
   else name = name.toLowerCase();
 
   const cleanedName = name.replace(/[^\w]/gi, "").replace(/\d+/g, "");
 
+  stopWords.forEach((word) => {
+    cleanedName.replace(word, "");
+  });
 
-  stopWords.forEach(word => {
-    cleanedName.replace(word, '')
-  })
-  
   return cleanedName;
-}
-
+};
 
 const collectionStatistics = async () => {
   const errorTournaments = {};
@@ -186,7 +183,21 @@ const collectionStatistics = async () => {
     console.log("Перезаписываю алиасы");
     await writeFile("src/store/config/config.json", JSON.stringify(config));
     try {
-      await sendStatistics(errorTournaments);
+      const transporter = createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        auth: {
+          user: "offstakepocarr@gmail.com",
+          pass: "cnhcaftfppetmdwb",
+        },
+        tls: {
+          minVersion: "TLSv1.2",
+          rejectUnauthorized: true,
+        },
+      });
+
+      await sendStatistics(errorTournaments, transporter);
       console.log("Начинаю удалять папку дня ", date);
       // await deleteFolder(`src/store/copies/${date}`);
     } catch (error) {

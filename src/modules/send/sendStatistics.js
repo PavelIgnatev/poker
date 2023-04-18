@@ -1,4 +1,3 @@
-const { createTransport } = require("nodemailer");
 const Excel = require("exceljs");
 const { getConfig } = require("../../utils/config");
 const { writeFile } = require("../../utils/promisify");
@@ -93,23 +92,8 @@ const sendMail = async (mail, tournaments, html, region, transporter) => {
   }
 };
 
-const sendStatistics = async (errorTournaments) => {
+const sendStatistics = async (errorTournaments, transporter) => {
   console.log("Начинаю отправлять статистику по турнирам");
-
-  const transporter = createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: "offstakepocarr@gmail.com",
-      pass: "cnhcaftfppetmdwb",
-    },
-    tls: {
-      minVersion: "TLSv1.2",
-      rejectUnauthorized: true,
-    },
-  });
-
   
   const errorAliases = [];
   const config = await getConfig();
