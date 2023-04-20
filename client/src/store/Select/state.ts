@@ -33,7 +33,7 @@ export const ADDRESS = [
   { value: "pocarrelite@gmail.com", label: "International" },
   { value: "mgr.miranda85@gmail.com", label: "Latina" },
   { value: "pocarr.ru@gmail.com", label: "Pocarr Team" },
-  { value: "pocarroffstaketest@gmail.com", label: "Spanish" },
+  { value: "pocarr.esoffstake@gmail.com", label: "Spanish" },
 ];
 
 export const TIMERANGE = [

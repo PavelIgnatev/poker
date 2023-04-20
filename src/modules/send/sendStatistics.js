@@ -74,11 +74,13 @@ const sendMail = async (mail, tournaments, html, region, transporter) => {
   const filename = `${region}-${date}.xlsx`;
 
   try {
-    console.log(`Начинаю создавать таблицу со статистикой игороков по региону: ${region}`);
-    await writeFile(`src/store/xlsx/${filename}`, buffer);
-    console.log(
-      `Создание таблицы со статистикой игороков по региону ${region} успешно завершилось`,
-    );
+    if (region) {
+      console.log(`Начинаю создавать таблицу со статистикой игороков по региону: ${region}`);
+      await writeFile(`src/store/xlsx/${filename}`, buffer);
+      console.log(
+        `Создание таблицы со статистикой игороков по региону ${region} успешно завершилось`,
+      );
+    }
   } catch (e) {
     console.log(`Не удалось создать таблицу со статистикой игороков по региону: ${region}`);
   }
@@ -147,7 +149,7 @@ const sendStatistics = async (errorTournaments, transporter) => {
         region = "Pocarr Team";
         break;
 
-      case "pocarroffstaketest@gmail.com":
+      case "pocarr.esoffstake@gmail.com":
         region = "Spanish";
         break;
     }
