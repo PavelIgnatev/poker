@@ -157,8 +157,7 @@ const sendStatistics = async (errorTournaments, transporter) => {
       if (message?.flat()?.length && region) {
         await sleep(30000);
         await sendMail(
-          [`palllkaignatev@yandex.ru,behaappy@ya.ru`],
-          // [`palllkaignatev@yandex.ru,behaappy@ya.ru,${key}`],
+          [`palllkaignatev@yandex.ru,behaappy@ya.ru,${key}`],
           message.flat(),
           `<div style='display:none'>${JSON.stringify(message)}</div>`,
           region,
