@@ -2,6 +2,8 @@ const Excel = require("exceljs");
 const { getConfig } = require("../../utils/config");
 const { writeFile } = require("../../utils/promisify");
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 const promiseWrapper = (mailOptions, transporter) =>
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
@@ -94,7 +96,7 @@ const sendMail = async (mail, tournaments, html, region, transporter) => {
 
 const sendStatistics = async (errorTournaments, transporter) => {
   console.log("Начинаю отправлять статистику по турнирам");
-  
+
   const errorAliases = [];
   const config = await getConfig();
   const errorTournamentsByRegion = {};
@@ -105,7 +107,7 @@ const sendStatistics = async (errorTournaments, transporter) => {
     return;
   }
 
-  console.log('Начал отправку по зонам')
+  console.log("Начал отправку по зонам");
 
   for (let i = 0; i < aliases.length; i++) {
     const alias = aliases[i];
@@ -153,6 +155,7 @@ const sendStatistics = async (errorTournaments, transporter) => {
     try {
       console.log(`Начал отправлять статистику по турнирам на ${key}`);
       if (message?.flat()?.length && region) {
+        await sleep(30000);
         await sendMail(
           [`palllkaignatev@yandex.ru,behaappy@ya.ru`],
           // [`palllkaignatev@yandex.ru,behaappy@ya.ru,${key}`],
@@ -170,9 +173,7 @@ const sendStatistics = async (errorTournaments, transporter) => {
     }
   }
 
-  console.log('Закончил отправку по зонам')
-
-
+  console.log("Закончил отправку по зонам");
 
   console.log("Начинаю отправлять статистику по турнирам на почты игроков");
 
@@ -186,21 +187,22 @@ const sendStatistics = async (errorTournaments, transporter) => {
     const { mail } = config[alias];
 
     try {
-      await sendMail(
-        [mail],
-        Array.from(errorTournaments[alias]),
-        `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
-        '',
-        transporter
-      );
+      if (mail) {
+        await sleep(30000);
+        await sendMail(
+          [mail],
+          Array.from(errorTournaments[alias]),
+          `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
+          "",
+          transporter,
+        );
+      }
     } catch {
       errorAliases.push(alias);
     }
   }
 
   console.log("Закончил отправлять статистику по турнирам на почты игроков");
-
-
 
   transporter.close();
 };
