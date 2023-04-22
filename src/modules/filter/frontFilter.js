@@ -268,9 +268,9 @@ const { getNetwork } = getNetwork_1;
   const filter = (ruleLevel, tournament, isGetTournaments = false) => {
     const ability = !tournament['@ability'] || tournament['@ability'] === '-' ? 0 : tournament['@ability'];
 
-    const name = tournament["@name"]?.toLowerCase(),
-      network = getNetwork(tournament["@network"]),
-      bid = Number(tournament["@usdBid"]),
+    const name = tournament["@name"]?.toLowerCase();
+      getNetwork(tournament["@network"]);
+      const bid = Number(tournament["@usdBid"]),
       prizepool = Math.round(Number(tournament["@usdPrizepool"])),
       weekDay = tournament["@getWeekday"];
 
@@ -281,14 +281,14 @@ const { getNetwork } = getNetwork_1;
       PrizepoolFromQ(prizepool);
       PrizepoolToQ(prizepool);
       EntrantsEqualQ(tournament?.["@totalEntrants"] ?? 0);
-      EntrantsFromQ(tournament?.["@totalEntrants"] ?? 0);
+      const EntrantsFrom = EntrantsFromQ(tournament?.["@totalEntrants"] ?? 0);
       EntrantsToQ(tournament?.["@totalEntrants"] ?? 0);
       AbilityEqualQ(ability);
       AbilityFromQ(ability);
       AbilityToQ(ability);
       StartRegEqualQ(tournament["@msStartForRule"]);
-      const StartRegFrom = StartRegFromQ(tournament["@msStartForRule"]),
-      StartRegTo = StartRegToQ(tournament["@msStartForRule"]);
+      StartRegFromQ(tournament["@msStartForRule"]);
+      StartRegToQ(tournament["@msStartForRule"]);
       LateRegEqualQ(tournament["@msLateForRule"]);
       LateRegFromQ(tournament["@msLateForRule"]);
       LateRegToQ(tournament["@msLateForRule"]);
@@ -302,17 +302,16 @@ const { getNetwork } = getNetwork_1;
       ClassQ(tournament);
       StructureQ(tournament);
       GameQ(tournament);
-    const isTurbo = isTurboS(tournament);
-    const isSuperTurbo = isSuperTurboS(tournament);
-    const isKo = isNormalS(tournament);
-    const isNormal = !isTurbo && !isSuperTurbo;
+    isTurboS(tournament);
+    isSuperTurboS(tournament);
+    isNormalS(tournament);
 
-    const level = validateNumber(ruleLevel);
+    validateNumber(ruleLevel);
     const effmu = 'A';
   
     if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
 
-    if((StartRegFrom(79200000))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (StartRegTo(86340000))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) return { valid: true, rules: true, guarantee: 1 };
+    if((EntrantsFrom(1))&& effmu === 'A') return { valid: true, rules: true, guarantee: 1 };
     
     return { valid: false, guarantee: 1, rules: false };
   };

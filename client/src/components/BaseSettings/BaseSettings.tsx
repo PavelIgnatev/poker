@@ -133,7 +133,7 @@ export const BaseSettings = () => {
                       }
                     />
                     <Checkbox
-                      label="Freeze-out"
+                      label="Vanila"
                       selected={tournamentsSettings.freezout}
                       onChange={() =>
                         editableTournamentsSettings.handleChangeFreezout(
