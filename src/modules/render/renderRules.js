@@ -97,7 +97,9 @@ async function renderRules(rules) {
     const level = validateNumber(ruleLevel);
     const effmu = 'A'
   
-    if (!name || !bid) return { valid: false, guarantee: 1, rules: false };
+    if (!name || !bid) {
+      return { valid: false, guarantee: 1, rules: false };
+    };\n
 
     ${nativeRules
       .map((rule) => {

@@ -16,7 +16,9 @@ function renderCheck(rules, ruleString) {
     );
   });
 
-  return `if(${ruleString}) return { valid: true, rules: true, guarantee: ${maxGuarantee} };`;
+  return `if(${ruleString}) {
+    return { valid: true, rules: true, guarantee: ${maxGuarantee} };
+  };\n`;
 }
 
 module.exports = { renderCheck };

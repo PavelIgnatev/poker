@@ -40,7 +40,7 @@ const collectionStatistics = async () => {
 
         try {
           result = await api.get(
-            `https://www.sharkscope.com/api/pocarrleaderboard/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${Math.round(
+            `https://www.sharkscope.com/api/komanda/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${Math.round(
               +new Date(
                 new Date(date).toLocaleString("en-EN", {
                   timeZone: "UTC",
@@ -116,7 +116,7 @@ const collectionStatistics = async () => {
                 t["@prize"] = t?.["TournamentEntry"]?.["@prize"] ?? 0;
                 t["@d"] = data[0];
                 t["@times"] = data[1];
-                t["@level"] = level;
+                t["@level"] = level.replace('A', '');
                 t["@multientries"] = t?.["TournamentEntry"]?.["@multientries"] ?? 0;
                 t["@usdBid"] = Number(bid);
                 t["@usdPrizepool"] = Number(pp);

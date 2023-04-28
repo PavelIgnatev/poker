@@ -93,15 +93,18 @@ const sendMail = async (mail, tournaments, html, transporter) => {
 
 const sendStatistics = async (errorTournaments) => {
   const aliases = Object.keys(errorTournaments);
+  const user = "pokerteamsoft@gmail.com";
+  const pass = "yrvqnyfvqrcqjcei";
 
   const transporter = createTransport({
     host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {
-      user: "pokerteamsoft@gmail.com",
-      pass: "yrvqnyfvqrcqjcei",
+      user,
+      pass,
     },
+    pool: true,
     tls: {
       minVersion: "TLSv1.2",
       rejectUnauthorized: true,

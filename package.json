@@ -8,7 +8,7 @@
   "scripts": {
     "start": "PORT=80 NODE_ENV=production node --max-old-space-size=4096 ./src/server.js",
     "server": "node --max-old-space-size=4096 ./src/server.js",
-    "download:store": "scp -r root@185.237.99.141:/root/poker/src/store  /Users/pikcelll/Documents/pocarr/poker/src/store",
+    "download:store": "scp -r root@194.67.111.37:/root/poker/src/store  /Users/pikcelll/Documents/pocarr/poker/src/store",
     "client": "npm start --prefix client",
     "prettier": "prettier --config ./.prettierrc  --write .",
     "prepare": "husky install",

@@ -1,6 +1,7 @@
 const { PORT } = require("./config/");
 const { createFastifyInstance } = require("./createFastifyInstance");
 const { crons } = require("./modules/crons/crons");
+const process = require('process')
 
 process.env.TZ = "UTC";
 
