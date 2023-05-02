@@ -272,10 +272,10 @@ const { getNetwork } = getNetwork_1;
       network = getNetwork(tournament["@network"]),
       bid = Number(tournament["@usdBid"]),
       prizepool = Math.round(Number(tournament["@usdPrizepool"])),
-      weekDay = tournament["@getWeekday"],
+      weekDay = tournament["@getWeekday"];
 
-      BidEqual = BidEqualQ(bid),
-      BidFrom = BidFromQ(bid),
+      BidEqualQ(bid);
+      const BidFrom = BidFromQ(bid),
       BidTo = BidToQ(bid);
       PrizepoolEqualQ(prizepool);
       PrizepoolFromQ(prizepool);
@@ -594,11 +594,113 @@ const { getNetwork } = getNetwork_1;
     return { valid: true, rules: true, guarantee: 1 };
   }if((BidFrom(10))&& network === 'iPoker'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(55))&& network === 'iPoker'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo) {
     return { valid: true, rules: true, guarantee: 1 };
-  }if((BidEqual(1))&& network === 'Chico'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) {
+  }if((BidFrom(1))&& network === 'Chico'&& level === '1'&& effmu === 'A'&& isNormal&& isKo && (BidTo(12))&& network === 'Chico'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) {
     return { valid: true, rules: true, guarantee: 1 };
-  }if((BidEqual(1))&& network === 'PokerStars(FR-ES-PT)'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) {
+  }if((BidFrom(1))&& network === 'Chico'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (BidTo(12))&& network === 'Chico'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) {
     return { valid: true, rules: true, guarantee: 1 };
-  }if((BidEqual(1))&& network === 'PartyPoker'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) {
+  }if((BidFrom(2))&& network === 'Chico'&& level === '3'&& effmu === 'A'&& isNormal&& isKo && (BidTo(22))&& network === 'Chico'&& level === '3'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(3))&& network === 'Chico'&& level === '4'&& effmu === 'A'&& isNormal&& isKo && (BidTo(33))&& network === 'Chico'&& level === '4'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'Chico'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(4))&& network === 'Chico'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'Chico'&& level === '2'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(4))&& network === 'Chico'&& level === '2'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(2))&& network === 'Chico'&& level === '3'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(4))&& network === 'Chico'&& level === '3'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(3))&& network === 'Chico'&& level === '4'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(7))&& network === 'Chico'&& level === '4'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(8))&& network === 'Chico'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (BidTo(60))&& network === 'Chico'&& level === '5'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(3))&& network === 'Chico'&& level === '5'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(12.6))&& network === 'Chico'&& level === '5'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(15))&& network === 'Chico'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (BidTo(109))&& network === 'Chico'&& level === '6'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(5))&& network === 'Chico'&& level === '6'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(21))&& network === 'Chico'&& level === '6'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(15))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (BidTo(109))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(12))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isNormal&& !isKo && (BidTo(55))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isNormal&& !isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(5))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(31))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(22))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (BidTo(160))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(25))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& !isKo && (BidTo(109))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& !isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(10))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(55))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'PokerStars(FR-ES-PT)'&& level === '1'&& effmu === 'A'&& isNormal&& isKo && (BidTo(12))&& network === 'PokerStars(FR-ES-PT)'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'PokerStars(FR-ES-PT)'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (BidTo(12))&& network === 'PokerStars(FR-ES-PT)'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(2))&& network === 'PokerStars(FR-ES-PT)'&& level === '3'&& effmu === 'A'&& isNormal&& isKo && (BidTo(22))&& network === 'PokerStars(FR-ES-PT)'&& level === '3'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(3))&& network === 'PokerStars(FR-ES-PT)'&& level === '4'&& effmu === 'A'&& isNormal&& isKo && (BidTo(33))&& network === 'PokerStars(FR-ES-PT)'&& level === '4'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'PokerStars(FR-ES-PT)'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(4))&& network === 'PokerStars(FR-ES-PT)'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'PokerStars(FR-ES-PT)'&& level === '2'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(4))&& network === 'PokerStars(FR-ES-PT)'&& level === '2'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(2))&& network === 'PokerStars(FR-ES-PT)'&& level === '3'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(4))&& network === 'PokerStars(FR-ES-PT)'&& level === '3'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(3))&& network === 'PokerStars(FR-ES-PT)'&& level === '4'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(7))&& network === 'PokerStars(FR-ES-PT)'&& level === '4'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(8))&& network === 'PokerStars(FR-ES-PT)'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (BidTo(60))&& network === 'PokerStars(FR-ES-PT)'&& level === '5'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(3))&& network === 'PokerStars(FR-ES-PT)'&& level === '5'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(12.6))&& network === 'PokerStars(FR-ES-PT)'&& level === '5'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(15))&& network === 'PokerStars(FR-ES-PT)'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (BidTo(109))&& network === 'PokerStars(FR-ES-PT)'&& level === '6'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(5))&& network === 'PokerStars(FR-ES-PT)'&& level === '6'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(21))&& network === 'PokerStars(FR-ES-PT)'&& level === '6'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(15))&& network === 'PokerStars(FR-ES-PT)'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (BidTo(109))&& network === 'PokerStars(FR-ES-PT)'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(12))&& network === 'PokerStars(FR-ES-PT)'&& level === '7'&& effmu === 'A'&& isNormal&& !isKo && (BidTo(55))&& network === 'PokerStars(FR-ES-PT)'&& level === '7'&& effmu === 'A'&& isNormal&& !isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(5))&& network === 'PokerStars(FR-ES-PT)'&& level === '7'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(31))&& network === 'PokerStars(FR-ES-PT)'&& level === '7'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(22))&& network === 'PokerStars(FR-ES-PT)'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (BidTo(160))&& network === 'PokerStars(FR-ES-PT)'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(25))&& network === 'PokerStars(FR-ES-PT)'&& level === '8'&& effmu === 'A'&& isNormal&& !isKo && (BidTo(109))&& network === 'PokerStars(FR-ES-PT)'&& level === '8'&& effmu === 'A'&& isNormal&& !isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(10))&& network === 'PokerStars(FR-ES-PT)'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(55))&& network === 'PokerStars(FR-ES-PT)'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'PartyPoker'&& level === '1'&& effmu === 'A'&& isNormal&& isKo && (BidTo(12))&& network === 'PartyPoker'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'PartyPoker'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (BidTo(12))&& network === 'PartyPoker'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(2))&& network === 'PartyPoker'&& level === '3'&& effmu === 'A'&& isNormal&& isKo && (BidTo(22))&& network === 'PartyPoker'&& level === '3'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(3))&& network === 'PartyPoker'&& level === '4'&& effmu === 'A'&& isNormal&& isKo && (BidTo(33))&& network === 'PartyPoker'&& level === '4'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'PartyPoker'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(4))&& network === 'PartyPoker'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(1))&& network === 'PartyPoker'&& level === '2'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(4))&& network === 'PartyPoker'&& level === '2'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(2))&& network === 'PartyPoker'&& level === '3'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(4))&& network === 'PartyPoker'&& level === '3'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(3))&& network === 'PartyPoker'&& level === '4'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(7))&& network === 'PartyPoker'&& level === '4'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(8))&& network === 'PartyPoker'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (BidTo(60))&& network === 'PartyPoker'&& level === '5'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(3))&& network === 'PartyPoker'&& level === '5'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(12.6))&& network === 'PartyPoker'&& level === '5'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(15))&& network === 'PartyPoker'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (BidTo(109))&& network === 'PartyPoker'&& level === '6'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(5))&& network === 'PartyPoker'&& level === '6'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(21))&& network === 'PartyPoker'&& level === '6'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(15))&& network === 'PartyPoker'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (BidTo(109))&& network === 'PartyPoker'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(12))&& network === 'PartyPoker'&& level === '7'&& effmu === 'A'&& isNormal&& !isKo && (BidTo(55))&& network === 'PartyPoker'&& level === '7'&& effmu === 'A'&& isNormal&& !isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(5))&& network === 'PartyPoker'&& level === '7'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(31))&& network === 'PartyPoker'&& level === '7'&& effmu === 'A'&& isTurbo&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(22))&& network === 'PartyPoker'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (BidTo(160))&& network === 'PartyPoker'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(25))&& network === 'PartyPoker'&& level === '8'&& effmu === 'A'&& isNormal&& !isKo && (BidTo(109))&& network === 'PartyPoker'&& level === '8'&& effmu === 'A'&& isNormal&& !isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  }if((BidFrom(10))&& network === 'PartyPoker'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(55))&& network === 'PartyPoker'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo) {
     return { valid: true, rules: true, guarantee: 1 };
   }
     
