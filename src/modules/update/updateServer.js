@@ -10,8 +10,8 @@ const updateServer = async () => {
   try {
     const rules = await getRules();
     await renderRules(rules);
-  } catch (erorr) {
-    console.log("Ошибка при рендере правил: ", erorr);
+  } catch (error) {
+    console.log("Ошибка при рендере правил: ", error);
   }
 
   // Отправка писем

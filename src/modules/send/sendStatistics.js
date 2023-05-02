@@ -4,6 +4,8 @@ const Excel = require("exceljs");
 const { getEmail } = require("../../utils/email");
 const { writeFile } = require("../../utils/promisify");
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 const promiseWrapper = (mailOptions, transporter) =>
   new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
@@ -17,7 +19,7 @@ const promiseWrapper = (mailOptions, transporter) =>
 
 const mailOptions = (mails, html, content) => {
   const currentTime = new Date(
-    new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
+    new Date(Date.now() - 3 * 86400000).toLocaleString("en-EN", {
       timeZone: "UTC",
     }),
   );
@@ -68,7 +70,7 @@ const sendMail = async (mail, tournaments, html, transporter) => {
 
   const buffer = await workbook.xlsx.writeBuffer();
   const currentTime = new Date(
-    new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
+    new Date(Date.now() - 3 * 86400000).toLocaleString("en-EN", {
       timeZone: "UTC",
     }),
   );
@@ -78,7 +80,15 @@ const sendMail = async (mail, tournaments, html, transporter) => {
   const date = `${year}-${month}-${day}`;
   const filename = `${date}.xlsx`;
 
-  await writeFile(`src/store/xlsx/${filename}`, buffer);
+  try {
+    console.log(`Начинаю создавать таблицу со статистикой игороков`);
+    await writeFile(`src/store/xlsx/${filename}`, buffer);
+    console.log(
+      `Создание таблицы со статистикой игороков успешно завершилось`,
+    );
+  } catch (e) {
+    console.log(`Не удалось создать таблицу со статистикой игороков`);
+  }
 
   for (let i = 0; i < 5; i++) {
     try {
@@ -120,13 +130,16 @@ const sendStatistics = async (errorTournaments) => {
   console.log("Начинаю отправлять статистику по турнирам на почту админов");
   console.log(email);
   try {
+    await sleep(30000);
     await sendMail(
       [`${email},pokerteamsoft@gmail.com`],
       Object.values(errorTournaments).flat(),
       `<div style='display:none'>${JSON.stringify(errorTournaments)}</div>`,
       transporter,
     );
-    console.log("Закончил отправлять статистику по турнирам на почту админов");
+    console.log(
+      `Закончил отправлять статистику по турнирам на почту ${email}`
+    );
   } catch (error) {
     console.log("Отправка не письма на почту админов не удалась, произошла ошибка: ", error);
   }

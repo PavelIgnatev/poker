@@ -6,6 +6,12 @@ const { sendStatistics } = require("../send/sendStatistics");
 
 let filter = require("../filter/filter");
 
+function parseсUTCToMilliseconds(datetimeStr) {
+  const date = new Date(`${datetimeStr} UTC`);
+
+  return date.getTime() / 1000 + 86400;
+}
+
 const collectionStatistics = async () => {
   const errorTournaments = {};
 
@@ -14,7 +20,7 @@ const collectionStatistics = async () => {
 
   try {
     const currentTime = new Date(
-      new Date(Date.now() - 2 * 86400000).toLocaleString("en-EN", {
+      new Date(Date.now() - 3 * 86400000).toLocaleString("en-EN", {
         timeZone: "UTC",
       }),
     );
@@ -22,7 +28,7 @@ const collectionStatistics = async () => {
     const month = currentTime.getMonth() + 1;
     const day = currentTime.getDate();
     const date = `${year}-${month}-${day}`;
-    console.log(date, new Date(), "collection statistic");
+    console.log(date, new Date(), "collection statistic", "ms: ", parseсUTCToMilliseconds(date));
     const path = `src/store/copies/${date}`;
     const stateConfig = JSON.parse(await readFile(`${path}/config.json`));
     const ability1 = JSON.parse(await readFile(`${path}/ability1.json`));
@@ -40,14 +46,8 @@ const collectionStatistics = async () => {
 
         try {
           result = await api.get(
-            `https://www.sharkscope.com/api/komanda/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${Math.round(
-              +new Date(
-                new Date(date).toLocaleString("en-EN", {
-                  timeZone: "UTC",
-                }),
-              ) /
-                1000 +
-                86400 * 2,
+            `https://www.sharkscope.com/api/komanda/networks/Player Group/players/${alias}/completedTournaments?Order=Last,99&filter=Date:3d;Date:0~${parseсUTCToMilliseconds(
+              date,
             )}`,
           );
         } catch (error) {
@@ -68,65 +68,53 @@ const collectionStatistics = async () => {
           console.log("Игрок", alias, "без турниров", new Date());
         } else {
           // Фильтруем те, которые идут не в нужный день по таймзоне EST
-          Array.from(tournaments)
-            .filter(
-              (tournament) =>
-                Number(
-                  new Date(
-                    Number((tournament["@date"] ?? tournament["@scheduledStartDate"] ?? 0) + "000"),
-                  ).toLocaleString("en-EN", {
-                    day: "numeric",
-                    timeZone: "UTC",
-                  }),
-                ) === Number(day),
-            )
-            .forEach((ft) => {
-              const t = getMoreProp(ft);
-              const network = t?.["@network"];
-              if (networks?.[network]) {
-                const d = Number(ft["@duration"] ?? 0);
-                const name = t["@name"]?.toLowerCase();
+          Array.from(tournaments).forEach((ft) => {
+            const t = getMoreProp(ft);
+            const network = t?.["@network"];
+            if (networks?.[network]) {
+              const d = Number(ft["@duration"] ?? 0);
+              const name = t["@name"]?.toLowerCase();
 
-                const { level: networksLevel, effmu } = networks[network];
-                const level = networksLevel + effmu;
-                const bid = t["@bid"];
-                const isStartDate = Number(t["@date"] ?? t["@scheduledStartDate"] ?? 0);
+              const { level: networksLevel, effmu } = networks[network];
+              const level = networksLevel + effmu;
+              const bid = t["@bid"];
+              const isStartDate = Number(t["@date"] ?? 0);
+              const ms = Number(`${isStartDate - d}000`);
 
-                const data = new Date(Number(Number(`${isStartDate - d}000`)))
-                  .toLocaleString("en-EN", {
-                    hour12: false,
-                    day: "numeric",
-                    month: "short",
-                    hour: "numeric",
-                    minute: "numeric",
-                    timeZone: "UTC",
-                  })
-                  .replace(", 24", ", 00")
-                  .split(", ");
+              const data = new Date(ms)
+                .toLocaleString("en-EN", {
+                  hour12: false,
+                  day: "numeric",
+                  month: "short",
+                  hour: "numeric",
+                  minute: "numeric",
+                  timeZone: "UTC",
+                })
+                .replace(", 24", ", 00")
+                .split(", ");
 
-                const startDate = Number(isStartDate * 1000);
 
-                const info = ability1?.[network]?.[data[1]]?.[bid]?.[name]?.["@avability"];
-                const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
-                t["@ability"] = info ? info : "-";
-                t["@getWeekday"] = isStartDate ? getWeekday(startDate) : "-";
-                t["@realDuration"] = d;
-                t["@alias"] = alias;
-                t["@nickname"] = t?.["TournamentEntry"]?.["@playerName"] ?? "undefined";
-                t["@prize"] = t?.["TournamentEntry"]?.["@prize"] ?? 0;
-                t["@d"] = data[0];
-                t["@times"] = data[1];
-                t["@level"] = level.replace('A', '');
-                t["@multientries"] = t?.["TournamentEntry"]?.["@multientries"] ?? 0;
-                t["@usdBid"] = Number(bid);
-                t["@usdPrizepool"] = Number(pp);
+              const info = ability1?.[network]?.[data[1]]?.[bid]?.[name]?.["@avability"];
+              const pp = t["@prizepool"] >= 0 ? t["@prizepool"] : "-";
+              t["@ability"] = info ? info : "-";
+              t["@getWeekday"] = isStartDate ? getWeekday(ms) : "-";
+              t["@realDuration"] = d;
+              t["@alias"] = alias;
+              t["@nickname"] = t?.["TournamentEntry"]?.["@playerName"] ?? "undefined";
+              t["@prize"] = t?.["TournamentEntry"]?.["@prize"] ?? 0;
+              t["@d"] = data[0];
+              t["@times"] = data[1];
+              t["@level"] = level.replace("A", "");
+              t["@multientries"] = t?.["TournamentEntry"]?.["@multientries"] ?? 0;
+              t["@usdBid"] = Number(bid);
+              t["@usdPrizepool"] = Number(pp);
 
-                if (Number(bid) !== 0 && !filter.filter(level, t, true).valid) {
-                  if (!errorTournaments[alias]) errorTournaments[alias] = [];
-                  errorTournaments[alias].push(t);
-                }
+              if (Number(bid) !== 0 && !filter.filter(level, t, true).valid) {
+                if (!errorTournaments[alias]) errorTournaments[alias] = [];
+                errorTournaments[alias].push(t);
               }
-            });
+            }
+          });
         }
       }),
     );
