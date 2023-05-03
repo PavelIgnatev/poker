@@ -666,6 +666,156 @@ if((BidFrom(25))&& network === 'PartyPoker'&& level === '8'&& effmu === 'A'&& is
 if((BidFrom(10))&& network === 'PartyPoker'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(55))&& network === 'PartyPoker'&& level === '8'&& effmu === 'A'&& isTurbo&& isKo) {
     return { valid: true, rules: true, guarantee: 1 };
   };
+if((BidEqual(16.5))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isNormal&& isKo && (Name("builder"))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Friday"))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(16.5))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isNormal&& isKo && (Name("builder"))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Saturday"))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(11))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isNormal&& isKo && (Name("storm"))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(11))&& network === 'PokerStars'&& effmu === 'A'&& isNormal && (Name("storm"))&& network === 'PokerStars'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(22))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal && (Name("builder"))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal && (StartDay("Friday"))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(22))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal && (Name("builder"))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal && (StartDay("Saturday"))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(33))&& network === 'PokerStars'&& level === '3'&& effmu === 'A'&& isNormal && (Name("builder"))&& network === 'PokerStars'&& level === '3'&& effmu === 'A'&& isNormal && (StartDay("Friday"))&& network === 'PokerStars'&& level === '3'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(33))&& network === 'PokerStars'&& level === '3'&& effmu === 'A'&& isNormal && (Name("builder"))&& network === 'PokerStars'&& level === '3'&& effmu === 'A'&& isNormal && (StartDay("Saturday"))&& network === 'PokerStars'&& level === '3'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(55))&& network === 'PokerStars'&& level === '4'&& effmu === 'A'&& isNormal && (Name("builder"))&& network === 'PokerStars'&& level === '4'&& effmu === 'A'&& isNormal && (StartDay("Friday"))&& network === 'PokerStars'&& level === '4'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(55))&& network === 'PokerStars'&& level === '4'&& effmu === 'A'&& isNormal && (Name("builder"))&& network === 'PokerStars'&& level === '4'&& effmu === 'A'&& isNormal && (StartDay("Saturday"))&& network === 'PokerStars'&& level === '4'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(82))&& network === 'PokerStars'&& level === '5'&& effmu === 'A'&& isNormal && (Name("builder"))&& network === 'PokerStars'&& level === '5'&& effmu === 'A'&& isNormal && (StartDay("Friday"))&& network === 'PokerStars'&& level === '5'&& effmu === 'A'&& isNormal && (StartRegFrom(18000000))&& network === 'PokerStars'&& level === '5'&& effmu === 'A'&& isNormal && (StartRegTo(50400000))&& network === 'PokerStars'&& level === '5'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("builder"))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal && (BidEqual(162))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal && (StartRegFrom(79200000))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal && (StartRegTo(18000000))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal && (StartDay("Friday"))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("builder"))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal && (BidEqual(162))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal && (StartRegFrom(79200000))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal && (StartRegTo(18000000))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal && (StartDay("Saturday"))&& network === 'PokerStars'&& level === '6'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("cooldown"))&& network === 'PokerStars'&& level === '7'&& effmu === 'A'&& isNormal && (BidEqual(109))&& network === 'PokerStars'&& level === '7'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("builder"))&& network === 'PokerStars'&& level === '7'&& effmu === 'A'&& isNormal && (BidEqual(215))&& network === 'PokerStars'&& level === '7'&& effmu === 'A'&& isNormal && (StartRegFrom(18000000))&& network === 'PokerStars'&& level === '7'&& effmu === 'A'&& isNormal && (StartRegTo(50400000))&& network === 'PokerStars'&& level === '7'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("cooldown"))&& network === 'PokerStars'&& level === '8'&& effmu === 'A'&& isNormal && (BidEqual(109))&& network === 'PokerStars'&& level === '8'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("marathon"))&& network === 'PokerStars'&& level === '8'&& effmu === 'A'&& isNormal && (BidEqual(55))&& network === 'PokerStars'&& level === '8'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("masters"))&& network === 'GGNetwork'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (BidEqual(25))&& network === 'GGNetwork'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'GGNetwork'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("masters"))&& network === 'GGNetwork'&& level === '3'&& effmu === 'A'&& isNormal&& isKo && (BidEqual(25))&& network === 'GGNetwork'&& level === '3'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'GGNetwork'&& level === '3'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("main"))&& network === 'GGNetwork'&& level === '3'&& effmu === 'A'&& isNormal&& isKo && (BidEqual(52.5))&& network === 'GGNetwork'&& level === '3'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'GGNetwork'&& level === '3'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("masters"))&& network === 'GGNetwork'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (BidEqual(150))&& network === 'GGNetwork'&& level === '6'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("main"))&& network === 'GGNetwork'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (BidEqual(388))&& network === 'GGNetwork'&& level === '6'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("masters"))&& network === 'GGNetwork'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (BidEqual(150))&& network === 'GGNetwork'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(210))&& network === 'GGNetwork'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (StartRegFrom(39600000))&& network === 'GGNetwork'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (StartRegTo(61200000))&& network === 'GGNetwork'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(388))&& network === 'GGNetwork'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'GGNetwork'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(150))&& network === 'GGNetwork'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (Name("masters"))&& network === 'GGNetwork'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(210))&& network === 'GGNetwork'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (StartRegFrom(39600000))&& network === 'GGNetwork'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (StartRegTo(61200000))&& network === 'GGNetwork'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(525))&& network === 'GGNetwork'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'GGNetwork'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(388))&& network === 'GGNetwork'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'GGNetwork'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(25))&& network === 'Winamax.fr'&& level === '3'&& effmu === 'A'&& isNormal&& isKo && (Name("half price"))&& network === 'Winamax.fr'&& level === '3'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'Winamax.fr'&& level === '3'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(25))&& network === 'Winamax.fr'&& level === '4'&& effmu === 'A'&& isNormal&& isKo && (Name("half price"))&& network === 'Winamax.fr'&& level === '4'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'Winamax.fr'&& level === '4'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(125))&& network === 'Winamax.fr'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'Winamax.fr'&& level === '5'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(50))&& network === 'Winamax.fr'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (Name("monstr"))&& network === 'Winamax.fr'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (StartRegFrom(79200000))&& network === 'Winamax.fr'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (StartRegTo(21600000))&& network === 'Winamax.fr'&& level === '5'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(50))&& network === 'Winamax.fr'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (Name("monstr"))&& network === 'Winamax.fr'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (StartRegFrom(79200000))&& network === 'Winamax.fr'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (StartRegTo(21600000))&& network === 'Winamax.fr'&& level === '6'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(50))&& network === 'Winamax.fr'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (Name("monstr"))&& network === 'Winamax.fr'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (StartRegFrom(79200000))&& network === 'Winamax.fr'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (StartRegTo(21600000))&& network === 'Winamax.fr'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(33))&& network === '888Poker'&& level === '4'&& effmu === 'A'&& isNormal&& isKo && (Name("rumble"))&& network === '888Poker'&& level === '4'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(109))&& network === '888Poker'&& level === '8'&& effmu === 'A'&& isNormal && (Name("bigshot"))&& network === '888Poker'&& level === '8'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(55))&& network === 'WPN'&& level === '6'&& effmu === 'A'&& isNormal && (StartDay("Sunday"))&& network === 'WPN'&& level === '6'&& effmu === 'A'&& isNormal) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(109))&& network === 'WPN'&& level === '7'&& effmu === 'A'&& isNormal&& !isKo && (PrizepoolFrom(300000))&& network === 'WPN'&& level === '7'&& effmu === 'A'&& isNormal&& !isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(215))&& network === 'WPN'&& level === '8'&& effmu === 'A'&& isNormal&& !isKo && (PrizepoolFrom(400000))&& network === 'WPN'&& level === '8'&& effmu === 'A'&& isNormal&& !isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(50))&& network === 'iPoker'&& level === '4'&& effmu === 'A'&& isNormal&& isKo && (Name("daily main"))&& network === 'iPoker'&& level === '4'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(100))&& network === 'iPoker'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'iPoker'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'iPoker'&& level === '5'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(100))&& network === 'iPoker'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'iPoker'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'iPoker'&& level === '6'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(100))&& network === 'iPoker'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'iPoker'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'iPoker'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("slam ko"))&& network === 'iPoker'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'iPoker'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("100"))&& network === 'iPoker'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'iPoker'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'iPoker'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((Name("main"))&& network === 'Chico'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'Chico'&& level === '5'&& effmu === 'A'&& isNormal&& isKo && (BidEqual(109))&& network === 'Chico'&& level === '5'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(109))&& network === 'Chico'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'Chico'&& level === '6'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'Chico'&& level === '6'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(109))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(109))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
 
     
     return { valid: false, guarantee: 1, rules: false };
