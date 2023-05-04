@@ -197,6 +197,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
   tournaments = tournaments.map((tournament) => {
     const level = tournament["@level"];
 
+    console.log(filter)
+
     const { valid } = filter(level, tournament, true);
 
     function calculateDifficultyPercent(difficulty: number) {

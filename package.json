@@ -63,7 +63,8 @@
     "pm2": "^5.2.2",
     "prettier": "2.7.1",
     "qs": "^6.11.0",
-    "rollup": "^3.17.0"
+    "rollup": "^3.17.0",
+    "serve": "^14.2.0"
   },
   "lint-staged": {
     "*.(js|jsx|ts|tsx|md|scss)": "prettier --config .prettierrc --write"

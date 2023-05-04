@@ -102,6 +102,9 @@ if((Game("!H"))&& effmu === 'A') {
 if((Class("!scheduled"))&& effmu === 'A') {
     return { valid: false, guarantee: 1, rules: false };
   };
+if((Name("speed racer"))&& network === 'GGNetwork'&& effmu === 'A') {
+    return { valid: false, guarantee: 1, rules: false };
+  };
 if((BidFrom(1))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo && (BidTo(3.3))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo && (Name("hot"))&& network === 'PokerStars'&& level === '1'&& effmu === 'A'&& isTurbo&& isKo) {
     return { valid: true, rules: true, guarantee: 1 };
   };
@@ -814,6 +817,9 @@ if((BidEqual(109))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isNor
     return { valid: true, rules: true, guarantee: 1 };
   };
 if((BidEqual(109))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
+    return { valid: true, rules: true, guarantee: 1 };
+  };
+if((BidEqual(13131))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (Name("31sa"))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) {
     return { valid: true, rules: true, guarantee: 1 };
   };
 
