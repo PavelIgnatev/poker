@@ -819,9 +819,6 @@ if((BidEqual(109))&& network === 'Chico'&& level === '7'&& effmu === 'A'&& isNor
 if((BidEqual(109))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (Name("main"))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo && (StartDay("Sunday"))&& network === 'Chico'&& level === '8'&& effmu === 'A'&& isNormal&& isKo) {
     return { valid: true, rules: true, guarantee: 1 };
   };
-if((BidEqual(13131))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo && (Name("31sa"))&& network === 'PokerStars'&& level === '2'&& effmu === 'A'&& isNormal&& isKo) {
-    return { valid: true, rules: true, guarantee: 1 };
-  };
 
     
     return { valid: false, guarantee: 1, rules: false };
