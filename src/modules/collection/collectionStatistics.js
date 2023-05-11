@@ -5,6 +5,7 @@ const { readFile, writeFile } = require("../../utils/promisify");
 const { sendStatistics } = require("../send/sendStatistics");
 
 let filter = require("../filter/filter");
+const { getCurrencyRate } = require("../currencyRate/getCurrencyRate");
 
 function parseсUTCToMilliseconds(datetimeStr) {
   const date = new Date(`${datetimeStr} UTC`);
@@ -19,6 +20,7 @@ const collectionStatistics = async () => {
   filter = require("../filter/filter");
 
   try {
+    const lastValue = await getCurrencyRate();
     const currentTime = new Date(
       new Date(Date.now() - 3 * 86400000).toLocaleString("en-EN", {
         timeZone: "UTC",
@@ -74,9 +76,11 @@ const collectionStatistics = async () => {
             if (networks?.[network]) {
               const d = Number(ft["@duration"] ?? 0);
               const name = t["@name"]?.toLowerCase();
+              const currency = t["@currency"];
 
-              const { level: networksLevel, effmu } = networks[network];
-              const level = networksLevel + effmu;
+              const { level: networksLevel } = networks[network];
+              const level = networksLevel + 'A';
+
               const bid = t["@bid"];
               const isStartDate = Number(t["@date"] ?? 0);
               const ms = Number(`${isStartDate - d}000`);
@@ -106,8 +110,9 @@ const collectionStatistics = async () => {
               t["@times"] = data[1];
               t["@level"] = level.replace("A", "");
               t["@multientries"] = t?.["TournamentEntry"]?.["@multientries"] ?? 0;
-              t["@usdBid"] = Number(bid);
-              t["@usdPrizepool"] = Number(pp);
+              t["@usdBid"] = currency === "CNY" ? Math.round(Number(bid) / lastValue) : Number(bid);
+              t["@usdPrizepool"] =
+                currency === "CNY" && pp !== "-" ? Math.round(Number(pp) / lastValue) : Number(pp);
 
               if (Number(bid) !== 0 && !filter.filter(level, t, true).valid) {
                 if (!errorTournaments[alias]) errorTournaments[alias] = [];

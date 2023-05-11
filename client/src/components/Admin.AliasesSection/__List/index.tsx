@@ -61,6 +61,7 @@ export const AliasesSectionList = ({
   const [selectedAlias, setSelectedAlias] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const classes2 = useStyles();
+  const pending = useStore(getAliasesRequest.pending);
 
   const password = useStore($password);
   const aliases = useStore($aliases);
@@ -127,7 +128,11 @@ export const AliasesSectionList = ({
         {aliases.map((user) => (
           <ListItem
             key={user}
-            onClick={() => handleAliasClick(user)}
+            onClick={() => {
+              if (!pending) {
+                handleAliasClick(user);
+              }
+            }}
             className={classes2.listItem}
           >
             <ListItemText primary={user} />
@@ -135,8 +140,10 @@ export const AliasesSectionList = ({
               color="error"
               aria-label="delete user"
               onClick={(e) => {
-                e.stopPropagation();
-                handleOpenModal(user);
+                if (!pending) {
+                  e.stopPropagation();
+                  handleOpenModal(user);
+                }
               }}
             >
               <DeleteIcon />

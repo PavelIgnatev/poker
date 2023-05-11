@@ -4,10 +4,13 @@ import { selectModel } from "../../@types/selectsModel";
 import { $tournamentsSettings, TIMEZONES } from "./state";
 
 export const editableTournamentsSettings = createApi($tournamentsSettings, {
-  handleChangeNetwork: (setting, network: MultiValue<selectModel>) => ({
-    ...setting,
-    network,
-  }),
+  handleChangeNetwork: (setting, network: MultiValue<selectModel>) => {
+    localStorage.setItem("networks", JSON.stringify(network));
+    return {
+      ...setting,
+      network,
+    };
+  },
   handleChangeTime: (setting, time: SingleValue<selectModel>) => ({
     ...setting,
     time,

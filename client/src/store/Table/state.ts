@@ -20,7 +20,6 @@ import { $filterContent } from "../Filter";
 import { $store } from "../Store";
 import { dateToTimeString } from "../../helpers/dateToTimeString";
 import { timeStringToMilliseconds } from "../../helpers/timeStringToMilliseconds";
-import { millisecondsToTimeString } from "../../helpers/millisecondsToTimeString";
 
 export const $tableState = createStore<tableCellModel[] | null | undefined>(
   null
@@ -33,7 +32,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
 
   const config = $config.getState();
   const filter = $filterContent.getState();
-  const { ability1 } = $store.getState();
+  const { ability1, lastValue } = $store.getState();
 
   const {
     moneyStart,
@@ -75,6 +74,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     const superturbo = isSuperTurbo(tournament);
     const status = getStatus(tournament);
     const rebuy = isRebuy(tournament);
+    const currency = tournament["@currency"];
 
     const info = ability1?.[network]?.[time]?.[bid]?.[name];
     const ability = info?.["@avability"];
@@ -153,10 +153,15 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       "@timezone": timezone,
       "@status": status,
       "@level": level,
-      "@usdBid": Number(bid),
-      "@usdPrizepool": Number(pp),
-      "@msStartForRule": isStartDate? timeStringToMilliseconds(dateToTimeString(Number(isStartDate) * 1000)) : "-",
-      "@msLateForRule": isRegDate?  timeStringToMilliseconds(dateToTimeString(Number(isRegDate) * 1000)) : "-",
+      "@usdBid":
+        currency === "CNY" ? Math.round(Number(bid) / lastValue) : Number(bid),
+      "@usdPrizepool": currency === "CNY" && pp !== "-" ? pp / lastValue : pp,
+      "@msStartForRule": isStartDate
+        ? timeStringToMilliseconds(dateToTimeString(Number(isStartDate) * 1000))
+        : "-",
+      "@msLateForRule": isRegDate
+        ? timeStringToMilliseconds(dateToTimeString(Number(isRegDate) * 1000))
+        : "-",
     };
   });
 
@@ -197,7 +202,7 @@ export const $filtredTableState = $tableState.map((tournaments) => {
   tournaments = tournaments.map((tournament) => {
     const level = tournament["@level"];
 
-    console.log(filter)
+    console.log(filter);
 
     const { valid } = filter(level, tournament, true);
 

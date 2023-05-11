@@ -80,7 +80,9 @@ export const SHORT_NETWORKS = [
 ];
 
 export const DEFAULT_EDITABLE_TOURNAMENTS_SETTINGS: tournamentsSettingsProps = {
-  network: null,
+  network: localStorage.getItem("networks")
+    ? JSON.parse(localStorage.getItem("networks") as string)
+    : null,
   time: TIMERANGE[2],
   timezone: TIMEZONES[15],
   timezoneTable: null,

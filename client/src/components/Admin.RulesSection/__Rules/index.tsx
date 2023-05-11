@@ -15,7 +15,6 @@ import { validateNumber } from "../../../helpers/validateNumber";
 import { RULES_TYPES_TO_FIELDS, RULES_TYPES } from "../constants";
 import { b } from "../index";
 import { SingleSelect } from "../../SingleSelect";
-import { ConfirmationDialog } from "../../ConfirmationDialog";
 
 type RulesSectionRulesProps = {
   color: string;
@@ -37,16 +36,6 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
 
   const [types, setTypes] = useState<rulesType[]>([RULES_TYPES[0]]);
   const [values, setValues] = useState<valuesType>([{}]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [internalValue, setInternalValue] = useState<string>('00:00');
-
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-    if (/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/.test(inputValue)) {
-      setInternalValue(inputValue);
-    }
-  };
 
   const handleAddRuleRow = () => {
     setTypes((types) => [...types, RULES_TYPES[0]]);
@@ -77,14 +66,6 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
     editableRule,
     ...(savedRules ? savedRules : []),
   ];
-
-  const handleRulesCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleRulesOpen = () => {
-    setIsModalOpen(true);
-  };
 
   const handleSaveRule = () => {
     postRulesRequest(editableRule);
@@ -125,7 +106,6 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
   const uniqueElemKeyGetter = getUniqueElemKeyGetter(
     color + level + network + status + KO
   );
-
 
   return (
     <div className={b("rules")}>
@@ -205,23 +185,23 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                           type="time"
                           disabled={!isEditable}
                           style={{
-                            backgroundColor: 'white',
-                            borderRadius: '4px',
-                            color: `${isEditable? "black" : "rgba(0, 0, 0, 0.38)"}`,
-                            fontSize: '16px',
-                            padding: '10px',
-                            border: 'none',                    
-                            outline: `1px solid ${isEditable? "black" : "#bdbdbd"}`,
-                            borderColor: '#333333',
+                            backgroundColor: "white",
+                            borderRadius: "4px",
+                            color: `${
+                              isEditable ? "black" : "rgba(0, 0, 0, 0.38)"
+                            }`,
+                            fontSize: "16px",
+                            padding: "10px",
+                            border: "none",
+                            outline: `1px solid ${
+                              isEditable ? "black" : "#bdbdbd"
+                            }`,
+                            borderColor: "#333333",
                           }}
                           value={value}
                           onChange={(e) => {
                             const value = e.currentTarget.value;
-                            handleValues(
-                              value,
-                              rowIndex,
-                              fieldIndex
-                            );
+                            handleValues(value, rowIndex, fieldIndex);
                           }}
                           min="00:00"
                           max="23:59"
@@ -265,21 +245,13 @@ export const RulesSectionRules = (props: RulesSectionRulesProps) => {
                       color="error"
                       aria-label="delete user"
                       style={{ width: "56px" }}
-                      onClick={() => handleRulesOpen()}
+                      onClick={() => {
+                        deleteRulesRequest(rules[ruleIndex]);
+                      }}
                     >
                       <DeleteIcon />
                     </IconButton>
                   )}
-                  <ConfirmationDialog
-                    isOpen={isModalOpen}
-                    title="Are you sure?"
-                    content="Do you really want to perform this action?"
-                    onCancel={handleRulesCancel}
-                    onConfirm={() => {
-                      deleteRulesRequest(rules[ruleIndex]);
-                      handleRulesCancel();
-                    }}
-                  />
                 </div>
               );
             })}

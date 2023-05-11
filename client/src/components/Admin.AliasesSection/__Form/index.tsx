@@ -39,6 +39,9 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
   selectedLevel,
 }) => {
   const classes = useStyles();
+  const postPending = useStore(postConfigRequest.pending)
+  const getPending = useStore(getAliasesRequest.pending)
+  const pending = postPending || getPending
 
   const [alias, setAlias] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -77,6 +80,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         onChange={(e) => setAlias(e.currentTarget.value)}
         autoComplete="off"
         required
+        disabled={pending}
         fullWidth
       />
       <TextField
@@ -85,6 +89,7 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         value={password}
         onChange={(e) => setPassword(e.currentTarget.value)}
         autoComplete="off"
+        disabled={pending}
         required
         fullWidth
       />
@@ -95,12 +100,14 @@ export const AliasesSectionForm: FC<AliasesSectionFormProps> = ({
         defaultValue={TIMEZONES[15]}
         required
         fullWidth
+        disabled={pending}
         onSingleChange={(option) => setTZone(option?.value ?? "0")}
       />
       <Button
         type="submit"
         variant="contained"
         color="primary"
+        disabled={pending}
         className={classes.button}
       >
         Add
