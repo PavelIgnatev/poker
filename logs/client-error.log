@@ -1,0 +1,1963 @@
+
+<--- Last few GCs --->
+
+[3952:0x64a7f60]    99810 ms: Mark-sweep (reduce) 485.2 (489.6) -> 484.7 (491.1) MB, 1247.3 / 0.0 ms  (average mu = 0.132, current mu = 0.058) allocation failure scavenge might not succeed
+[3952:0x64a7f60]   101106 ms: Mark-sweep (reduce) 485.8 (493.1) -> 485.4 (493.9) MB, 1280.4 / 0.0 ms  (average mu = 0.075, current mu = 0.012) allocation failure scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+ 1: 0xa3ac30 node::Abort() [/usr/bin/node]
+ 2: 0x970199 node::FatalError(char const*, char const*) [/usr/bin/node]
+ 3: 0xbba76e v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/bin/node]
+ 4: 0xbbaae7 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/bin/node]
+ 5: 0xd76d05  [/usr/bin/node]
+ 6: 0xd7788f  [/usr/bin/node]
+ 7: 0xd856cb v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/bin/node]
+ 8: 0xd8928c v8::internal::Heap::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [/usr/bin/node]
+ 9: 0xd5796b v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationType, v8::internal::AllocationOrigin) [/usr/bin/node]
+10: 0x109ffbf v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [/usr/bin/node]
+11: 0x14491d9  [/usr/bin/node]
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! react-effector@0.1.0 start: `PORT=3001 BROWSER=none react-scripts start`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-02-04T17_22_34_665Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-02-04T17_22_34_724Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! react-effector@0.1.0 start: `PORT=3001 BROWSER=none react-scripts start`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-02-04T17_23_06_761Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-02-04T17_23_06_885Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! react-effector@0.1.0 start: `PORT=3001 BROWSER=none react-scripts start`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-02-04T17_23_45_622Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-02-04T17_23_45_757Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! react-effector@0.1.0 start: `PORT=3001 BROWSER=none react-scripts start`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-02-04T17_24_26_764Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-02-04T17_24_26_870Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_03_49_787Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_03_49_817Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_03_52_965Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_03_52_990Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_03_56_170Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_03_56_197Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_03_59_281Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_03_59_309Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_02_596Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_02_628Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_05_649Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_05_674Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_08_826Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_08_853Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_12_123Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_12_150Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_15_206Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_15_236Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_18_459Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_18_482Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_21_513Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_21_538Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_24_599Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_24_624Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_27_983Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_28_013Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_31_030Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_31_056Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_34_214Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_34_245Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_37_480Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_37_503Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_40_557Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_40_581Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_43_584Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_43_608Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_46_851Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_46_877Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_49_982Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_50_007Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_53_253Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_53_277Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_56_382Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_56_405Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_59_462Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_04_59_487Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_03_858Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_03_879Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_05_869Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_05_896Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_08_998Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_09_024Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_12_097Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_12_119Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_15_258Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_15_284Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_18_458Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_18_482Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_21_552Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_21_573Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_24_863Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_24_888Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_28_027Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_28_052Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_31_119Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_31_143Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_34_469Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_34_495Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_37_417Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_37_437Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_40_649Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_40_676Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_43_684Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_43_708Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_46_802Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_46_824Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_50_062Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_50_082Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_53_123Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_53_145Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_56_380Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_56_405Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_59_401Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_05_59_422Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_02_742Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_02_769Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_07_576Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_07_611Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_10_727Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_10_753Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_13_852Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_13_877Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_17_059Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_17_083Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_20_160Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_20_182Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_23_264Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_23_289Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_26_510Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_26_531Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_29_673Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_06_29_707Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_45_461Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_48_539Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_51_760Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_54_923Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_58_130Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_01_316Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_04_385Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_10_451Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_10_480Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_13_485Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_13_523Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_16_614Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_16_647Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_19_822Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_19_850Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_23_003Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_23_032Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_26_114Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_26_142Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_29_258Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_29_288Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_32_391Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_32_418Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_35_536Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_35_568Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_38_640Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_42_547Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_42_578Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_45_679Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_45_708Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_48_866Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_24_56_124Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_24_56_152Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_24_59_151Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_24_59_178Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_03_453Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_03_483Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_05_585Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_05_616Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_08_727Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_08_752Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_11_920Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_11_952Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_15_029Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_15_057Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_18_154Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_18_183Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_21_396Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_21_421Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_24_499Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_24_523Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_27_667Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_27_693Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_30_980Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_31_010Z-debug.log
+sh: 1: serve: not found
+npm ERR! code ELIFECYCLE
+npm ERR! syscall spawn
+npm ERR! file sh
+npm ERR! errno ENOENT
+npm ERR! react-effector@0.1.0 start: `PORT=3001 serve -s build`
+npm ERR! spawn ENOENT
+npm ERR! 
+npm ERR! Failed at the react-effector@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_34_005Z-debug.log
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! exp@1.0.0 client: `npm start --prefix client`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the exp@1.0.0 client script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_25_34_033Z-debug.log

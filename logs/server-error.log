@@ -1,0 +1,89 @@
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_45_003Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_48_118Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_51_265Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_54_482Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_15_57_544Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_00_752Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2023-05-04T11_16_03_883Z-debug.log
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /root/package.json
+npm ERR! errno -2
+npm ERR! enoent ENOENT: no such file or directory, open '/root/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+[Error: ENOENT: no such file or directory, open 'src/store/currency/currency.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'src/store/currency/currency.json'
+}
+[Error: ENOENT: no such file or directory, open 'src/store/currency/currency.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'src/store/currency/currency.json'
+}
