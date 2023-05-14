@@ -17,7 +17,7 @@ function renderCheck(rules, ruleString) {
   });
 
   return `if(${ruleString}) {
-    return { valid: true, rules: true, guarantee: ${maxGuarantee} };
+    return { valid: true, rules: true, guarantee: ${maxGuarantee}, rules: ${JSON.stringify(rules)} };
   };\n`;
 }
 

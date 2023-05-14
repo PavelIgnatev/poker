@@ -198,13 +198,13 @@ export const $filtredTableState = $tableState.map((tournaments) => {
     );
   });
 
+  console.log(tournaments);
+
   // определение цвета турнира
   tournaments = tournaments.map((tournament) => {
     const level = tournament["@level"];
 
-    console.log(filter);
-
-    const { valid } = filter(level, tournament, true);
+    const { valid, ...props } = filter(level, tournament, true);
 
     function calculateDifficultyPercent(difficulty: number) {
       if (difficulty === 69) {
@@ -224,13 +224,12 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       ...tournament,
       valid,
       percent: calculateDifficultyPercent(Number(tournament["@ability"])),
+      props,
     };
   });
-  const d = new Set();
+
   // фильтр по времени "от"-"до"
   tournaments = tournaments.filter((item) => {
-    d.add(item["@game"]);
-
     const startDate = item?.["@scheduledStartDate"] ?? "-";
     const { dateStart, dateEnd } = $tournamentsSettings.getState();
 
@@ -244,6 +243,8 @@ export const $filtredTableState = $tableState.map((tournaments) => {
       ? dateStart <= res && res <= r
       : !(dateStart > res && res > dateEnd);
   });
+
+  console.log(tournaments);
 
   return tournaments;
 });
